@@ -12,7 +12,7 @@ export const Container: FC<PropsWithChildren<ContainerProps>> = ({
 }) => (
   <div
     className={cn(
-      'mx-auto px-4 lg:max-w-screen-lg 2xl:max-w-screen-xl',
+      'mx-auto px-4 lg:max-w-screen-lg xl:max-w-screen-xl',
       className
     )}
   >

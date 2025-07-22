@@ -2,10 +2,15 @@
 @import 'tw-animate-css';
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-brand-primary: #ede3c8;
+  --color-brand-secondary: #d7c7a3;
+  --color-brand-action: #3a492a;
+
   --font-mohave: var(--font-mohave);
   --font-caladea: var(--font-caladea);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -39,8 +44,6 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-brand-primary: #ede3c8;
-  --color-brand-secondary: #3a492a;
 }
 
 :root {

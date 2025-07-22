@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 
 const NavLink = ({ href, label }: { href: string; label: string }) => {
   return (
-    <li className='text-brand-secondary text-lg'>
+    <li className='text-brand-action text-lg'>
       <Link href={href}>{label}</Link>
     </li>
   )
@@ -32,7 +32,7 @@ export const Navbar = () => {
     <header
       className={cn(
         'bg-brand-primary/50 backdrop-blur fixed left-0 right-0 z-50 py-4',
-        !isTopOfTheScreen && 'border-b border-b-brand-secondary/10'
+        !isTopOfTheScreen && 'border-b border-b-brand-action/10'
       )}
     >
       <Container className='flex justify-between items-center'>
