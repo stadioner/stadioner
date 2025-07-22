@@ -86,3 +86,13 @@
     @apply bg-background text-foreground;
   }
 }
+
+.emoji-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 33px;
+  height: 33px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.8);
+}
