@@ -77,7 +77,7 @@ export const Map = () => {
       <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}' />
 
       <ZoomableMarker
-        position={[49.355362810666996, 13.004856931980328]}
+        position={[49.402084920025644, 13.00085318237539]}
         icon={createEmojiIcon('🏠')}
         popupContent={
           <>
