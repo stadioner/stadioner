@@ -41,7 +41,7 @@ export const Navbar = () => {
             src='/logo.svg'
             alt='Stadioner logo'
             className={cn(
-              'transition duration-500 size-12 origin-top',
+              'transition duration-500 size-12 origin-top-left',
               isTopOfTheScreen ? 'scale-[320%]' : 'scale-[100%]'
             )}
           />
