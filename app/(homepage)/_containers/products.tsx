@@ -1,3 +1,4 @@
+import { Border } from '@/components/border'
 import { Container } from '@/components/container'
 
 export const Products = () => {
@@ -9,21 +10,15 @@ export const Products = () => {
         </h3>
 
         <div className='grid grid-cols-3 gap-6'>
-          <div className='border-6 border-brand-action p-1'>
-            <div className='border-2 border-brand-action'>
-              <img src='/products/citron.webp' alt='Limonáda citron' />
-            </div>
-          </div>
-          <div className='border-6 border-brand-action p-1'>
-            <div className='border-2 border-brand-action'>
-              <img src='/products/cola.webp' alt='Limonáda cola mix' />
-            </div>
-          </div>
-          <div className='border-6 border-brand-action p-1'>
-            <div className='border-2 border-brand-action'>
-              <img src='/products/voda.webp' alt='Pramenitá voda' />
-            </div>
-          </div>
+          <Border>
+            <img src='/products/citron.webp' alt='Limonáda citron' />
+          </Border>
+          <Border>
+            <img src='/products/cola.webp' alt='Limonáda cola mix' />
+          </Border>
+          <Border>
+            <img src='/products/voda.webp' alt='Pramenitá voda' />
+          </Border>
         </div>
       </Container>
     </section>
