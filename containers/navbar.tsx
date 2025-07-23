@@ -32,7 +32,7 @@ export const Navbar = () => {
     <header
       className={cn(
         'bg-brand-primary/50 backdrop-blur fixed left-0 right-0 z-50 py-4',
-        !isTopOfTheScreen && 'border-b border-b-brand-action/10'
+        !isTopOfTheScreen && 'border-b border-b-brand-action/20'
       )}
     >
       <Container className='flex justify-between items-center'>
