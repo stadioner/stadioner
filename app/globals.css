@@ -90,6 +90,10 @@
   }
 }
 
+* {
+  scroll-behavior: smooth !important;
+}
+
 .emoji-icon {
   display: flex;
   justify-content: center;

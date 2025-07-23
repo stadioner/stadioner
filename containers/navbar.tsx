@@ -3,6 +3,7 @@
 import { Container } from '@/components/container'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 const NavLink = ({ href, label }: { href: string; label: string }) => {
@@ -14,6 +15,7 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
 }
 
 export const Navbar = () => {
+  const pathname = usePathname()
   const [isTopOfTheScreen, setIsTopOfTheScreen] = useState<boolean>(true)
 
   useEffect(() => {
@@ -31,7 +33,7 @@ export const Navbar = () => {
   return (
     <header
       className={cn(
-        'bg-brand-primary/50 backdrop-blur fixed left-0 right-0 z-50 py-4',
+        'bg-brand-primary/50 backdrop-blur fixed left-0 right-0 z-[999] py-4',
         !isTopOfTheScreen && 'border-b border-b-brand-action/20'
       )}
     >
@@ -42,7 +44,9 @@ export const Navbar = () => {
             alt='Stadioner logo'
             className={cn(
               'transition duration-500 size-12 origin-top-left',
-              isTopOfTheScreen ? 'scale-[320%]' : 'scale-[100%]'
+              isTopOfTheScreen && pathname === '/'
+                ? 'scale-[320%]'
+                : 'scale-[100%]'
             )}
           />
         </Link>
