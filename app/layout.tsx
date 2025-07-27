@@ -6,11 +6,13 @@ import { Navbar } from '@/containers/navbar'
 
 const mohave = Mohave({
   variable: '--font-mohave',
+  subsets: ['latin'],
 })
 
 const caladea = Caladea({
   variable: '--font-caladea',
   weight: '400',
+  subsets: ['latin'],
 })
 
 export const metadata: Metadata = {
