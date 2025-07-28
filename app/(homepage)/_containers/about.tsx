@@ -2,7 +2,7 @@ import { Container } from '@/components/container'
 
 export const About = () => {
   return (
-    <main className='bg-brand-secondary pt-12 pb-20'>
+    <main className='bg-brand-secondary pt-12 pb-32'>
       <Container>
         <div className='flex justify-between'>
           <div>

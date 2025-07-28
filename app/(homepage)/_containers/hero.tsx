@@ -1,12 +1,20 @@
-import { Container } from '@/components/container'
-
 export const Hero = () => {
   return (
-    <section className='bg-brand-primary'>
-      <Container className='pt-96 pb-10 text-brand-action flex justify-center'>
-        <div className='inline-flex flex-col items-center w-max'></div>
-      </Container>
-      <img src='/hero/main.webp' alt='hero' />
+    <section className='relative h-[55vh] w-full'>
+      {/* <video
+        autoPlay
+        muted
+        loop
+        className='absolute -top-42 left-0 overflow-hidden w-full'
+      >
+        <source src='https://cdn.coverr.co/videos/coverr-pouring-beer-in-slow-motion-1435/720p.mp4' />
+      </video> */}
+      <img
+        src='/hero/main.webp'
+        alt='hero'
+        className='absolute bottom-0 left-0 z-10'
+      />
+      <div className='bg-brand-primary absolute left-0 bottom-0 w-full h-full' />
     </section>
   )
 }
