@@ -22,7 +22,7 @@ export const Navbar = () => {
   // Framer Motion scroll-based scaling
   const { scrollY } = useScroll()
   // Scale from 7 (top) to 1 (scrolled 120px or more)
-  const scale = useTransform(scrollY, [0, 120], [3, 1])
+  const scale = useTransform(scrollY, [0, 120], [4, 1])
 
   // Track when logo is at normal scale
   useEffect(() => {
@@ -41,9 +41,8 @@ export const Navbar = () => {
       className={cn(
         'fixed left-0 right-0 z-[1001] py-4 transition-colors duration-300',
         logoAtNormalScale
-          ? 'bg-brand-primary/70 backdrop-blur-lg '
-          : 'bg-transparent backdrop-blur-none n',
-        logoAtNormalScale && 'border-b border-b-brand-action/20'
+          ? 'bg-brand-primary/70 backdrop-blur-lg border-b border-b-brand-action/20'
+          : 'bg-transparent backdrop-blur-none'
       )}
     >
       <Container
@@ -52,20 +51,29 @@ export const Navbar = () => {
           logoAtNormalScale ? 'text-brand-action' : 'text-black'
         )}
       >
-        <div className='flex justify-center items-center'>
-          <Link href='/'>
-            <motion.img
-              src={logoAtNormalScale ? 'logo.svg' : 'logo.svg'}
-              alt='Stadioner logo'
-              style={
-                pathname === '/'
-                  ? { scale, originY: 0, originX: 0 }
-                  : { scale: 1, originY: 0, originX: 0 }
-              }
-              className='size-12'
-            />
-          </Link>
-        </div>
+        <nav className='flex-1'>
+          <ul
+            className={cn(
+              'flex gap-8 justify-start',
+              logoAtNormalScale ? 'text-brand-action' : 'text-brand-action'
+            )}
+          >
+            <NavLink href='/produkty' label='Produkty' />
+            <NavLink href='/prodejni-mista' label='Prodejní Místa' />
+          </ul>
+        </nav>
+        <Link href='/' className='flex justify-center'>
+          <motion.img
+            src={logoAtNormalScale ? 'logo.svg' : 'logo.svg'}
+            alt='Stadioner logo'
+            style={
+              pathname === '/'
+                ? { scale, originY: 0, originX: 0.5 }
+                : { scale: 1, originY: 0, originX: 0.5 }
+            }
+            className='size-16'
+          />
+        </Link>
         <nav className='flex-1'>
           <ul
             className={cn(
@@ -73,7 +81,6 @@ export const Navbar = () => {
               logoAtNormalScale ? 'text-brand-action' : 'text-brand-action'
             )}
           >
-            <NavLink href='/produkty' label='Produkty' />
             <NavLink href='/blog' label='Blog' />
             <NavLink href='/o-nas' label='O Nás' />
             <NavLink href='/kontakt' label='Kontakt' />

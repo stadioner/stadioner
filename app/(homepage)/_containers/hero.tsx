@@ -1,6 +1,6 @@
 export const Hero = () => {
   return (
-    <section className='relative h-[55vh] w-full'>
+    <section className='relative h-[63vh] w-full'>
       {/* <video
         autoPlay
         muted

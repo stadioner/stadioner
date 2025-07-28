@@ -17,8 +17,8 @@ const products = [
       { label: 'STUPEŇ', value: '12°' },
       { label: 'FILTRACE', value: 'Nefiltrované' },
     ],
-    image: '/products/dvanactka.webp',
-    caps: '/products/dvanactka.webp',
+    image: '/products/cola/bottle.webp',
+    caps: '/products/cola/cap.webp',
   },
   {
     name: 'Koutská jedenáctka',
@@ -150,7 +150,7 @@ export const Products = () => {
                       current === idx
                         ? 'border-brand-action'
                         : 'border-transparent'
-                    } p-1 bg-zinc-800`}
+                    } bg-zinc-800`}
                     whileTap={{ scale: 0.9 }}
                     animate={{ scale: current === idx ? 1.1 : 1 }}
                     transition={{ type: 'spring', stiffness: 300 }}
@@ -159,7 +159,7 @@ export const Products = () => {
                     <img
                       src={p.caps}
                       alt={p.name}
-                      className='w-10 h-10 object-contain'
+                      className='w-14 h-14 object-cover'
                     />
                   </motion.button>
                 ))}
