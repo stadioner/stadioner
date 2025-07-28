@@ -2,7 +2,7 @@ import { Container } from '@/components/container'
 
 export const About = () => {
   return (
-    <main className='bg-brand-secondary pt-12 pb-32'>
+    <section className='bg-brand-secondary pt-12 pb-32'>
       <Container>
         <div className='flex gap-32'>
           <div>
@@ -25,6 +25,6 @@ export const About = () => {
           </div>
         </div>
       </Container>
-    </main>
+    </section>
   )
 }

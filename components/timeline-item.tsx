@@ -76,6 +76,7 @@ export const TimelineItem: FC<TimelineItemProps> = ({
           ref={imageRef}
           src={src}
           style={{ scale: scrollYImageProgress, opacity: scrollYImageProgress }}
+          className='w-[50%] pt-6'
         />
       </div>
     </li>
