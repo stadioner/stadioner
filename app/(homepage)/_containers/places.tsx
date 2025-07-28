@@ -22,7 +22,7 @@ export const Places = () => {
             elit. Mollitia dolores nostrum rem laudantium quidem incidunt hic
             rerum. Temporibus cumque non rerum! Magnam iste quam, explicabo quas
             commodi, odit earum architecto incidunt hic eveniet nostrum ipsam
-            rem. Quas quis cupiditate ut?
+            rem.
           </p>
         </div>
         <Border>
