@@ -39,9 +39,9 @@ export const Navbar = () => {
   return (
     <header
       className={cn(
-        'fixed left-0 right-0 z-[1001] py-4 transition-colors duration-300',
+        'fixed left-0 right-0 z-[1001] py-4 transition-all duration-300',
         logoAtNormalScale
-          ? 'bg-brand-primary/70 backdrop-blur-lg border-b border-b-brand-action/20'
+          ? 'bg-brand-secondary backdrop-blur-lg border-b border-b-brand-action/20'
           : 'bg-transparent backdrop-blur-none'
       )}
     >
