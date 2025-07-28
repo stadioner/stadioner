@@ -22,7 +22,7 @@ export const Navbar = () => {
   // Framer Motion scroll-based scaling
   const { scrollY } = useScroll()
   // Scale from 7 (top) to 1 (scrolled 120px or more)
-  const scale = useTransform(scrollY, [0, 120], [7, 1])
+  const scale = useTransform(scrollY, [0, 120], [6, 1])
 
   // Track when logo is at normal scale
   useEffect(() => {
