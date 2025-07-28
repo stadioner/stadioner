@@ -12,6 +12,19 @@ export const Places = () => {
   return (
     <section className='bg-brand-secondary pt-32 pb-10'>
       <Container>
+        <div className='flex gap-32 pb-6'>
+          <h2 className='text-brand-action text-6xl font-bold flex-nowrap text-nowrap'>
+            Nejen v Koutě
+          </h2>
+          <p>
+            Neustále se rozšiřujeme a snažíme se zajistit, aby naše pití mohl
+            ochutnat každý. Lorem ipsum, dolor sit amet consectetur adipisicing
+            elit. Mollitia dolores nostrum rem laudantium quidem incidunt hic
+            rerum. Temporibus cumque non rerum! Magnam iste quam, explicabo quas
+            commodi, odit earum architecto incidunt hic eveniet nostrum ipsam
+            rem. Quas quis cupiditate ut?
+          </p>
+        </div>
         <Border>
           <Map />
         </Border>
