@@ -23,10 +23,11 @@ export const TimelineItem: FC<TimelineItemProps> = ({
     offset: ['0 1', '1 1'],
   })
 
-  const ref = useRef<any>(null)
+  const dotRef = useRef<HTMLDivElement>(null)
+  const yearRef = useRef<HTMLParagraphElement>(null)
 
   const { scrollYProgress: scrollYColorProgress } = useScroll({
-    target: ref,
+    target: dotRef,
     offset: ['start center', 'end center'],
   })
 
@@ -40,7 +41,7 @@ export const TimelineItem: FC<TimelineItemProps> = ({
       >
         <div className='-ml-[5px] mr-3 h-[9px] w-[9px] rounded-full bg-zinc-400 dark:bg-zinc-600' />
         <motion.div
-          ref={ref}
+          ref={dotRef}
           style={{ opacity: scrollYColorProgress }}
           className='absolute -ml-[5px] mr-3 h-[9px] w-[9px] rounded-full z-10 bg-brand-action'
         />
@@ -48,7 +49,7 @@ export const TimelineItem: FC<TimelineItemProps> = ({
           {year}
         </p>
         <motion.p
-          ref={ref}
+          ref={yearRef}
           style={{ opacity: scrollYColorProgress }}
           className='absolute ml-4 text-sm text-brand-action'
         >
