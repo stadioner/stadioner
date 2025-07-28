@@ -17,8 +17,7 @@ const NavLink = ({ href, label }: { href: string; label: string }) => {
 
 export const Navbar = () => {
   const pathname = usePathname()
-  const [isTopOfTheScreen, setIsTopOfTheScreen] = useState<boolean>(true)
-  const [logoAtNormalScale, setLogoAtNormalScale] = useState(true)
+  const [logoAtNormalScale, setLogoAtNormalScale] = useState(false)
 
   // Framer Motion scroll-based scaling
   const { scrollY } = useScroll()
@@ -36,18 +35,6 @@ export const Navbar = () => {
       setLogoAtNormalScale(true)
     }
   }, [pathname, scale])
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY === 0) {
-        setIsTopOfTheScreen(true)
-      }
-      if (window.scrollY !== 0) setIsTopOfTheScreen(false)
-    }
-
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
 
   return (
     <header
