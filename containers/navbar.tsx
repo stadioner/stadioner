@@ -33,7 +33,7 @@ export const Navbar = () => {
   return (
     <header
       className={cn(
-        'bg-brand-primary/50 backdrop-blur fixed left-0 right-0 z-[999] py-4',
+        'bg-brand-primary/50 backdrop-blur fixed left-0 right-0 z-[1001] py-4',
         !isTopOfTheScreen && 'border-b border-b-brand-action/20'
       )}
     >
