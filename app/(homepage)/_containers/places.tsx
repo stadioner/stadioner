@@ -10,7 +10,7 @@ const Map = dynamic(
 
 export const Places = () => {
   return (
-    <section className='bg-brand-secondary'>
+    <section className='bg-brand-secondary pt-32 pb-10'>
       <Container>
         <Border>
           <Map />
