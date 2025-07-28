@@ -10,7 +10,7 @@ const Map = dynamic(
 
 export const Places = () => {
   return (
-    <section className='bg-brand-secondary pt-32 pb-10'>
+    <section className='bg-brand-primary pt-32 pb-10'>
       <Container>
         <div className='flex gap-32 pb-6'>
           <h2 className='text-brand-action text-6xl font-bold flex-nowrap text-nowrap'>
