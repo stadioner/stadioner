@@ -8,8 +8,8 @@ export const Intro = () => {
   const [fadeOut, setFadeOut] = useState(false)
 
   useEffect(() => {
-    const revealTimer = setTimeout(() => setReveal(true), 800)
-    const fadeTimer = setTimeout(() => setFadeOut(true), 2200) // 800ms + 1.2s reveal
+    const revealTimer = setTimeout(() => setReveal(true), 400)
+    const fadeTimer = setTimeout(() => setFadeOut(true), 1800) // 800ms + 1.2s reveal
     return () => {
       clearTimeout(revealTimer)
       clearTimeout(fadeTimer)
