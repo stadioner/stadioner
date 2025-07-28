@@ -73,6 +73,7 @@ export const Navbar = () => {
               logoAtNormalScale ? 'text-brand-action' : 'text-brand-action'
             )}
           >
+            <NavLink href='/produkty' label='Produkty' />
             <NavLink href='/blog' label='Blog' />
             <NavLink href='/o-nas' label='O Nás' />
             <NavLink href='/kontakt' label='Kontakt' />

@@ -4,12 +4,12 @@ export const About = () => {
   return (
     <main className='bg-brand-secondary pt-12 pb-32'>
       <Container>
-        <div className='flex justify-between'>
+        <div className='flex gap-32'>
           <div>
             <p className='text-lg'>od roku 1736</p>
-            <h3 className='text-6xl font-bold text-brand-action'>
+            <h2 className='text-6xl font-bold text-brand-action text-nowrap'>
               Pivovar, kde ožívá <br /> šlechtický odkaz, <br /> řemeslo a chuť.
-            </h3>
+            </h2>
           </div>
           <div>
             <p className='max-w-[60ch] pt-6'>

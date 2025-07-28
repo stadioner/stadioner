@@ -63,12 +63,9 @@ export const Map = () => {
       zoom={7}
       scrollWheelZoom={false}
       attributionControl={false}
-      className='h-[400px] rounded-lg md:h-[700px]'
+      className='h-[400px] md:h-[500px]'
     >
       {/* https://leaflet-extras.github.io/leaflet-providers/preview/ */}
-
-      {/* default */}
-      {/* <TileLayer url='https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png' /> */}
 
       {/* white */}
       {/* <TileLayer url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png' /> */}

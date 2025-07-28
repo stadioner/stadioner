@@ -24,7 +24,7 @@ const products = [
     name: 'Koutská jedenáctka',
     subtitle: 'Lehký ležák s jemnou hořkostí',
     description:
-      'Tato jedenáctka vyniká svou pitelností, čistým profilem a jemně chmelovým aroma. Skvěle se hodí k české kuchyni, lehkým jídlům nebo jen tak k posezení. Pokud hledáš poctivé řemeslné pivo s nižší stupňovitostí, Koutská 11 je sázka na jistotu.',
+      'Tato jedenáctka vyniká svou pitelností, čistým profilem a jemně chmelovým aroma. Skvěle se hodí k české kuchyni, lehkým jídlům nebo jen tak k posezení s přáteli. Pokud hledáš poctivé řemeslné pivo s nižší stupňovitostí, Koutská 11 je sázka na jistotu.',
     stats: [
       { label: 'TYP PIVA', value: 'Ležák světlý' },
       { label: 'ABV', value: '4.2%' },
@@ -63,7 +63,7 @@ export const Products = () => {
 
   return (
     <section className='bg-brand-secondary relative'>
-      <div className='bg-brand-action py-4'>
+      <div className='bg-brand-action py-8'>
         {/* Top ripped paper */}
         <div
           className='absolute -top-5 left-0 w-full z-10'
@@ -86,7 +86,7 @@ export const Products = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4 }}
-                    className='text-3xl md:text-5xl font-bold text-brand-primary mb-4'
+                    className='text-3xl md:text-6xl font-bold text-brand-primary mb-4'
                   >
                     {product.name}
                   </motion.h2>
@@ -103,7 +103,7 @@ export const Products = () => {
                     {product.description}
                   </motion.p>
                 </AnimatePresence>
-                <div className='flex gap-8 border-t border-zinc-600 pt-6 mb-6'>
+                <div className='flex justify-between border-t border-zinc-600 pt-6 mb-6'>
                   {product.stats.map(stat => (
                     <div
                       key={stat.label}
@@ -122,20 +122,20 @@ export const Products = () => {
                   <div className='flex gap-4'>
                     <button
                       onClick={handlePrev}
-                      className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-zinc-300 hover:bg-zinc-700 transition disabled:opacity-50'
+                      className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
                       aria-label='Previous product'
                     >
                       &#8592;
                     </button>
                     <button
                       onClick={handleNext}
-                      className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-zinc-300 hover:bg-zinc-700 transition disabled:opacity-50'
                       aria-label='Next product'
+                      className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
                     >
                       &#8594;
                     </button>
                   </div>
-                  <button className='ml-2 px-6 py-2 rounded-full border border-zinc-500 text-zinc-200 font-bold hover:bg-zinc-700 transition'>
+                  <button className='ml-2 px-6 py-2 rounded-full border border-zinc-500 text-brand-action font-bold bg-brand-primary hover:bg-brand-secondary transition cursor-pointer'>
                     DETAILY
                   </button>
                 </div>
@@ -146,7 +146,7 @@ export const Products = () => {
                   <motion.button
                     key={p.name}
                     onClick={() => handleSelect(idx)}
-                    className={`rounded-full border-4 ${
+                    className={`rounded-full border-4 cursor-pointer ${
                       current === idx
                         ? 'border-brand-action'
                         : 'border-transparent'
