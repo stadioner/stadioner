@@ -6,43 +6,46 @@ import { Container } from '@/components/container'
 
 const products = [
   {
-    name: 'SHINER ¡ÓRALE! LIMÓN',
-    subtitle: 'CERVEZA WITH LIME',
+    name: 'Profesor dvanáctka',
+    subtitle: 'Klasický nefiltrovaný ležák s plnou chutí',
     description:
-      '“Órale!” can mean many different things, but for Texans, it’s what comes to mind when your favorite Mexican-style cerveza adds a bit of all-natural limón for an extra kick of lime flavor.',
+      'Pivo Profesor 12 je ideální volbou pro ty, kdo hledají poctivé, nekompromisní pivo bez zbytečných úprav. Je nefiltrované a nepasterizované, takže si zachovává přirozenou chuť a charakter skutečného českého ležáku. Perfektně se hodí ke grilovaným masům, sýrům i jen tak k posezení s přáteli.',
     stats: [
-      { label: 'FIRST BREWED', value: '2024' },
-      { label: 'ABV', value: '4.5%' },
-      { label: 'BITTERNESS', value: '9 IBU' },
+      { label: 'TYP', value: 'Ležák světlý' },
+      { label: 'ABV', value: '5.1%' },
+      { label: 'STUPEŇ', value: '12°' },
+      { label: 'FILTRACE', value: 'Nefiltrované' },
+    ],
+    image: '/products/dvanactka.webp',
+    caps: '/products/dvanactka.webp',
+  },
+  {
+    name: 'Koutská jedenáctka',
+    subtitle: 'Lehký ležák s jemnou hořkostí',
+    description:
+      'Tato jedenáctka vyniká svou pitelností, čistým profilem a jemně chmelovým aroma. Skvěle se hodí k české kuchyni, lehkým jídlům nebo jen tak k posezení. Pokud hledáš poctivé řemeslné pivo s nižší stupňovitostí, Koutská 11 je sázka na jistotu.',
+    stats: [
+      { label: 'TYP PIVA', value: 'Ležák světlý' },
+      { label: 'ABV', value: '4.2%' },
+      { label: 'STUPEŇ', value: '11°' },
+      { label: 'FILTRACE', value: 'Nefiltrované' },
+    ],
+    image: '/products/jedenactka.webp',
+    caps: '/products/jedenactka.webp',
+  },
+  {
+    name: 'Limonáda citrón',
+    subtitle: 'Svěží citronová limonáda z pramenité vody',
+    description:
+      'Citronová limonáda Stadioner je svěží nealkoholický nápoj vyráběný z pramenité vody z šumavských lesů. Vyniká příjemně kyselou chutí citronu, která osvěží v každé situaci – ať už při práci, sportu nebo odpočinku. Díky pečlivě zvolenému složení bez zbytečných konzervantů je limonáda lehká, přírodní a vyvážená.',
+    stats: [
+      { label: 'OBJEM', value: '500 ml' },
+      { label: 'CHUŤ', value: 'Citrón' },
+      { label: 'SLOŽENÍ', value: 'Pramenitá voda' },
+      { label: 'BALENÍ', value: 'Vratný obal' },
     ],
     image: '/products/citron.webp',
     caps: '/products/citron.webp',
-  },
-  {
-    name: 'SHINER COLA MIX',
-    subtitle: 'CERVEZA WITH COLA',
-    description:
-      'A refreshing blend of classic cola and beer, perfect for summer days and BBQs.',
-    stats: [
-      { label: 'FIRST BREWED', value: '2023' },
-      { label: 'ABV', value: '4.2%' },
-      { label: 'BITTERNESS', value: '12 IBU' },
-    ],
-    image: '/products/cola.webp',
-    caps: '/products/cola.webp',
-  },
-  {
-    name: 'SHINER VODA',
-    subtitle: 'NATURAL SPRING WATER',
-    description:
-      'Pure spring water for a crisp, clean taste. Perfect for any occasion.',
-    stats: [
-      { label: 'FIRST BREWED', value: '2022' },
-      { label: 'ABV', value: '0%' },
-      { label: 'BITTERNESS', value: '0 IBU' },
-    ],
-    image: '/products/voda.webp',
-    caps: '/products/voda.webp',
   },
 ]
 
@@ -74,7 +77,7 @@ export const Products = () => {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.4 }}
-                  className='text-3xl md:text-5xl font-bold text-zinc-100 mb-4'
+                  className='text-3xl md:text-5xl font-bold text-brand-primary mb-4'
                 >
                   {product.name}
                 </motion.h2>
@@ -98,32 +101,31 @@ export const Products = () => {
                     className='flex flex-col items-center min-w-[90px]'
                   >
                     <span className='text-xs text-zinc-400'>{stat.label}</span>
-                    <span className='text-lg font-bold text-zinc-100'>
+                    <span className='text-lg font-bold text-brand-primary'>
                       {stat.value}
                     </span>
                   </div>
                 ))}
               </div>
-              <div className='flex gap-4'>
-                <button
-                  onClick={handlePrev}
-                  className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-zinc-300 hover:bg-zinc-700 transition disabled:opacity-50'
-                  aria-label='Previous product'
-                >
-                  &#8592;
-                </button>
-                <button
-                  onClick={handleNext}
-                  className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-zinc-300 hover:bg-zinc-700 transition disabled:opacity-50'
-                  aria-label='Next product'
-                >
-                  &#8594;
-                </button>
-                <button className='ml-6 px-6 py-2 rounded-full bg-brand-action text-white font-bold hover:bg-brand-action/80 transition'>
-                  FIND
-                </button>
+              <div className='flex justify-between'>
+                <div className='flex gap-4'>
+                  <button
+                    onClick={handlePrev}
+                    className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-zinc-300 hover:bg-zinc-700 transition disabled:opacity-50'
+                    aria-label='Previous product'
+                  >
+                    &#8592;
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-zinc-300 hover:bg-zinc-700 transition disabled:opacity-50'
+                    aria-label='Next product'
+                  >
+                    &#8594;
+                  </button>
+                </div>
                 <button className='ml-2 px-6 py-2 rounded-full border border-zinc-500 text-zinc-200 font-bold hover:bg-zinc-700 transition'>
-                  DETAILS
+                  DETAILY
                 </button>
               </div>
             </div>
