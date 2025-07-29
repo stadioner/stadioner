@@ -63,7 +63,7 @@ export const Map = () => {
       zoom={7}
       scrollWheelZoom={false}
       attributionControl={false}
-      className='h-[400px] md:h-[500px]'
+      className='h-[400px] md:h-[500px] w-[65vw]'
     >
       {/* https://leaflet-extras.github.io/leaflet-providers/preview/ */}
 

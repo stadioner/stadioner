@@ -25,9 +25,18 @@ export const Places = () => {
             rem.
           </p>
         </div>
-        <Border>
-          <Map />
-        </Border>
+
+        <div className='flex justify-between'>
+          <div className='text-xl'>
+            <p>🏠 Pivovar Stadioner</p>
+            <p>🍺 Pivnice</p>
+            <p>🍖 Restaurace</p>
+          </div>
+
+          <Border>
+            <Map />
+          </Border>
+        </div>
       </Container>
     </section>
   )
