@@ -5,7 +5,12 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from 'framer-motion'
 
 const NavLink = ({ href, label }: { href: string; label: string }) => {
   return (
@@ -24,20 +29,20 @@ export const Navbar = () => {
   // Scale from 7 (top) to 1 (scrolled 120px or more)
   const scale = useTransform(scrollY, [0, 120], [4, 1])
 
-  // Track when logo is at normal scale
+  // Sync logoAtNormalScale with scale value using Framer Motion event
+  useMotionValueEvent(scale, 'change', v => {
+    setLogoAtNormalScale(Number(v) <= 1.01)
+  })
+
+  // On mount and navigation, set initial state
   useEffect(() => {
-    if (pathname === '/') {
-      const unsubscribe = scale.on('change', v => {
-        setLogoAtNormalScale(Number(v) <= 1.01) // allow for float rounding
-      })
-      return () => unsubscribe()
-    } else {
-      setLogoAtNormalScale(true)
-    }
-  }, [pathname, scale])
+    setLogoAtNormalScale(pathname !== '/' || Number(scale.get()) <= 1.01)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname])
 
   return (
-    <header
+    <motion.header
+      style={{}}
       className={cn(
         'fixed left-0 right-0 z-[1001] py-4 transition-all duration-300',
         logoAtNormalScale
@@ -87,6 +92,6 @@ export const Navbar = () => {
           </ul>
         </nav>
       </Container>
-    </header>
+    </motion.header>
   )
 }
