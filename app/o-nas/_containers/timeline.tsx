@@ -1,12 +1,8 @@
 'use client'
 
 import { useState, useCallback, useEffect } from 'react'
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useTransform,
-} from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Border } from '@/components/border'
 
 interface TimelineSlide {
   id: number
@@ -56,19 +52,10 @@ const timelineData: TimelineSlide[] = [
 export const Timeline = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down')
-  const [lastSlide, setLastSlide] = useState(0)
-  const scrollY = useMotionValue(0)
-  const slideIndex = useTransform(
-    scrollY,
-    [0, 100],
-    [0, timelineData.length - 1]
-  )
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up')
 
   const nextSlide = useCallback(() => {
     if (!isScrolling) {
-      setLastSlide(currentSlide)
-      setScrollDirection('down')
       setIsScrolling(true)
       setCurrentSlide(prev => Math.min(prev + 1, timelineData.length - 1))
       setTimeout(() => setIsScrolling(false), 1000)
@@ -77,8 +64,6 @@ export const Timeline = () => {
 
   const prevSlide = useCallback(() => {
     if (!isScrolling) {
-      setLastSlide(currentSlide)
-      setScrollDirection('up')
       setIsScrolling(true)
       setCurrentSlide(prev => Math.max(prev - 1, 0))
       setTimeout(() => setIsScrolling(false), 1000)
@@ -87,8 +72,6 @@ export const Timeline = () => {
 
   const goToSlide = (index: number) => {
     if (!isScrolling) {
-      setLastSlide(currentSlide)
-      setScrollDirection(index > currentSlide ? 'down' : 'up')
       setIsScrolling(true)
       setCurrentSlide(index)
       setTimeout(() => setIsScrolling(false), 1000)
@@ -122,11 +105,9 @@ export const Timeline = () => {
         scrollTimeout = setTimeout(() => {
           if (wheelEvent.deltaY > 0) {
             // Scrolling down - next slide
-            setScrollDirection('down')
             nextSlide()
           } else {
             // Scrolling up - previous slide
-            setScrollDirection('up')
             prevSlide()
           }
         }, 100)
@@ -173,19 +154,21 @@ export const Timeline = () => {
             backgroundImage: `url(${timelineData[currentSlide].image})`,
           }}
           initial={{
-            opacity: 0,
-            scale: 0.95,
+            opacity: 0.8,
+            scale: 1.05,
+            filter: 'blur(5px)',
           }}
           animate={{
             opacity: 1,
             scale: 1,
-            y: 0,
+            filter: 'blur(0px)',
           }}
           exit={{
-            opacity: 0.5,
-            y: scrollDirection === 'down' ? 1000 : -1000,
+            opacity: 0.8,
+            scale: 1.05,
+            filter: 'blur(5px)',
           }}
-          transition={{ duration: 0.6, ease: 'easeInOut' }}
+          transition={{ duration: 0.45, ease: 'easeInOut' }}
         >
           <div className='absolute inset-0 bg-black/40' />
         </motion.div>
@@ -194,21 +177,21 @@ export const Timeline = () => {
       {/* Timeline Navigation */}
       <div className='absolute left-8 top-1/2 -translate-y-1/2 z-10'>
         <div className='relative'>
-          <div className='w-0.5 h-64 bg-white/30' />
+          <div className='w-0.5 h-64 bg-brand-primary/30' />
           {timelineData.map((slide, index) => (
             <button
               key={slide.id}
               onClick={() => goToSlide(index)}
               className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 transition-all duration-300 ${
                 index === currentSlide
-                  ? 'bg-white border-white scale-125'
-                  : 'bg-transparent border-white/50 hover:border-white'
+                  ? 'bg-brand-primary border-brand-primary scale-125'
+                  : 'bg-transparent border-brand-primary/50 hover:border-brand-primary'
               }`}
               style={{ top: `${(index / (timelineData.length - 1)) * 100}%` }}
             >
               {index === currentSlide && (
                 <motion.div
-                  className='absolute inset-1 bg-white rounded-full'
+                  className='absolute inset-1 bg-brand-primary rounded-full'
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ duration: 0.3 }}
@@ -231,32 +214,34 @@ export const Timeline = () => {
               transition={{ duration: 0.6, ease: 'easeInOut' }}
               className='max-w-2xl'
             >
-              <div className='bg-black/60 backdrop-blur-sm p-8 rounded-lg'>
-                <motion.p
-                  className='text-white/80 text-sm mb-2'
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2, duration: 0.4 }}
-                >
-                  {timelineData[currentSlide].year}
-                </motion.p>
-                <motion.h2
-                  className='text-4xl font-bold text-white mb-4'
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3, duration: 0.5 }}
-                >
-                  {timelineData[currentSlide].title}
-                </motion.h2>
-                <motion.p
-                  className='text-white/90 text-lg leading-relaxed'
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.4, duration: 0.5 }}
-                >
-                  {timelineData[currentSlide].description}
-                </motion.p>
-              </div>
+              <Border>
+                <div className='bg-brand-action-dark/70 backdrop-blur-sm p-8'>
+                  <motion.p
+                    className='text-white/80 text-sm mb-2'
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ delay: 0.2, duration: 0.4 }}
+                  >
+                    {timelineData[currentSlide].year}
+                  </motion.p>
+                  <motion.h2
+                    className='text-4xl font-bold text-white mb-4'
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.5 }}
+                  >
+                    {timelineData[currentSlide].title}
+                  </motion.h2>
+                  <motion.p
+                    className='text-white/90 text-lg leading-relaxed'
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.5 }}
+                  >
+                    {timelineData[currentSlide].description}
+                  </motion.p>
+                </div>
+              </Border>
             </motion.div>
           </AnimatePresence>
         </div>
