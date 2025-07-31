@@ -3,6 +3,7 @@ import { Caladea, Mohave } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
 import { Navbar } from '@/containers/navbar'
+import { Footer } from '@/containers/footer'
 
 const mohave = Mohave({
   variable: '--font-mohave',
@@ -36,6 +37,7 @@ export default function RootLayout({
       >
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   )
