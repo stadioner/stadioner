@@ -175,7 +175,7 @@ export const Timeline = () => {
       </AnimatePresence>
 
       {/* Timeline Navigation */}
-      <div className='absolute left-8 top-1/2 -translate-y-1/2 z-10'>
+      <div className='absolute left-8 top-1/2 -translate-y-1/2 z-20'>
         <div className='relative'>
           <div className='w-0.5 h-64 bg-brand-primary/30' />
           {timelineData.map((slide, index) => (
@@ -197,6 +197,10 @@ export const Timeline = () => {
                   transition={{ duration: 0.3 }}
                 />
               )}
+
+              <p className='absolute -right-9 top-1/2 -translate-y-1/2 text-brand-primary'>
+                {slide.year}
+              </p>
             </button>
           ))}
         </div>
@@ -204,7 +208,7 @@ export const Timeline = () => {
 
       {/* Content */}
       <div className='relative z-10 h-full flex items-center'>
-        <div className='container mx-auto px-8'>
+        <div className='container mx-auto pl-14'>
           <AnimatePresence mode='wait'>
             <motion.div
               key={currentSlide}
