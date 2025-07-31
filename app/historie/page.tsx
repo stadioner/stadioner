@@ -1,6 +1,6 @@
 import { Timeline } from './_containers/timeline'
 
-export default function ONasPage() {
+export default function HistoriePage() {
   return (
     <main>
       <Timeline />

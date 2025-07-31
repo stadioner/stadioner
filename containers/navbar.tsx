@@ -87,7 +87,7 @@ export const Navbar = () => {
             )}
           >
             <NavLink href='/blog' label='Blog' />
-            <NavLink href='/o-nas' label='O Nás' />
+            <NavLink href='/historie' label='Historie' />
             <NavLink href='/kontakt' label='Kontakt' />
           </ul>
         </nav>
