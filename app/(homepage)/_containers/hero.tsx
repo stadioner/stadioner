@@ -12,7 +12,7 @@ export const Hero = () => {
       <img
         src='/hero/main.webp'
         alt='hero'
-        className='absolute bottom-0 left-0 z-10'
+        className='absolute bottom-0 left-0 z-10 w-full'
       />
       <div className='bg-brand-primary absolute left-0 bottom-0 w-full h-full' />
     </section>
