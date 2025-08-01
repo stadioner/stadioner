@@ -6,15 +6,6 @@ export const Footer = () => {
   return (
     <footer className='bg-brand-secondary pt-20 pb-10'>
       <Container>
-        <div className='flex gap-6 justify-center mb-20'>
-          <Link href='instagram.com' target='_blank'>
-            <InstagramIcon size={30} className='stroke-brand-action' />
-          </Link>
-          <Link href='facebook.com' target='_blank'>
-            <FacebookIcon size={30} className='stroke-brand-action' />
-          </Link>
-        </div>
-
         <div className='grid grid-cols-3 gap-10'>
           <div className='grid text-xl'>
             <h4 className='text-3xl font-bold'>Odkazy</h4>
@@ -35,18 +26,29 @@ export const Footer = () => {
             <Link href='/'>Pramenitá Voda (Sycená)</Link>
             <Link href='/'>Pramenitá Voda (Nesycená)</Link>
           </div>
-          <div className='justify-self-end text-xl'>
-            <h4 className='text-3xl font-bold'>Adresa</h4>
-            <p>Kout na Šumavě 2</p>
-            <p>34502 Kout na Šumavě</p>
-            <Link
-              href='https://maps.app.goo.gl/XQF36VsckwAMPkmRA'
-              target='_blank'
-              className='text-zinc-700 inline-flex items-center gap-1 mt-2'
-            >
-              <ExternalLinkIcon size={15} />
-              trasa
-            </Link>
+          <div className='grid justify-between justify-self-end gap-4 text-xl'>
+            <div>
+              <h4 className='text-3xl font-bold'>Adresa</h4>
+              <p>Kout na Šumavě 2</p>
+              <p>34502 Kout na Šumavě</p>
+              <Link
+                href='https://maps.app.goo.gl/XQF36VsckwAMPkmRA'
+                target='_blank'
+                className='text-zinc-700 inline-flex items-center gap-1 mt-2'
+              >
+                <ExternalLinkIcon size={15} />
+                trasa
+              </Link>
+            </div>
+
+            <div className='flex gap-4 w-min h-min'>
+              <Link href='instagram.com' target='_blank'>
+                <InstagramIcon size={25} className='stroke-brand-action' />
+              </Link>
+              <Link href='facebook.com' target='_blank'>
+                <FacebookIcon size={25} className='stroke-brand-action' />
+              </Link>
+            </div>
           </div>
         </div>
 
