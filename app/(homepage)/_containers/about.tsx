@@ -9,7 +9,7 @@ export const About = () => {
           <div>
             <p className='text-lg'>od roku 1736</p>
             <h2 className='text-6xl font-bold text-brand-action text-nowrap'>
-              Pivovar, kde ožívá <br /> šlechtický odkaz, <br /> řemeslo a chuť.
+              Pivovar, kde ožívá šlechtický <br /> odkaz, řemeslo a chuť.
             </h2>
           </div>
           <div className='flex flex-col justify-between gap-4'>
@@ -18,8 +18,7 @@ export const About = () => {
               Aspernatur nihil totam repellat, repudiandae provident obcaecati
               ipsam minima aliquam reprehenderit, esse eos corporis accusantium
               sint saepe odio assumenda praesentium nostrum molestiae facere
-              porro odit et. Lorem ipsum dolor sit amet consectetur adipisicing
-              elit.
+              porro odit et.
             </p>
             <Link
               href='/o-nas'
