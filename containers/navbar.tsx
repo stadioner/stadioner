@@ -13,8 +13,10 @@ import {
 } from 'framer-motion'
 
 const NavLink = ({ href, label }: { href: string; label: string }) => {
+  const pathname = usePathname()
+
   return (
-    <li className='text-xl'>
+    <li className={cn('text-xl', pathname.includes(href) && 'font-bold')}>
       <Link href={href}>{label}</Link>
     </li>
   )
@@ -49,7 +51,8 @@ export const Navbar = () => {
       >
         <nav className='flex-1'>
           <ul className={cn('flex gap-8 justify-start text-brand-action')}>
-            <NavLink href='/produkty' label='Produkty' />
+            <NavLink href='/piva' label='Piva' />
+            <NavLink href='/nealko' label='Nealko' />
             <NavLink href='/prodejni-mista' label='Prodejní Místa' />
           </ul>
         </nav>
