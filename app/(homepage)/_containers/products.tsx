@@ -118,25 +118,20 @@ export const Products = () => {
                     </div>
                   ))}
                 </div>
-                <div className='flex justify-between'>
-                  <div className='flex gap-4'>
-                    <button
-                      onClick={handlePrev}
-                      className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
-                      aria-label='Previous product'
-                    >
-                      &#8592;
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      aria-label='Next product'
-                      className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
-                    >
-                      &#8594;
-                    </button>
-                  </div>
-                  <button className='ml-2 px-6 py-2 rounded-full border border-zinc-500 text-brand-action font-bold bg-brand-primary hover:bg-brand-secondary transition cursor-pointer'>
-                    DETAILY
+                <div className='flex gap-4'>
+                  <button
+                    onClick={handlePrev}
+                    className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+                    aria-label='Previous product'
+                  >
+                    &#8592;
+                  </button>
+                  <button
+                    onClick={handleNext}
+                    aria-label='Next product'
+                    className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+                  >
+                    &#8594;
                   </button>
                 </div>
               </div>
