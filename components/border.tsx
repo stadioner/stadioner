@@ -13,14 +13,14 @@ export const Border = ({
   return (
     <div
       className={cn(
-        'border-[4.5px] border-brand-action p-1',
+        'border-[3.5px] border-brand-action p-1',
         rounded && 'rounded-full',
         background && 'bg-brand-secondary'
       )}
     >
       <div
         className={cn(
-          'border-2 border-brand-action',
+          'border-[1.5px] border-brand-action',
           rounded && 'rounded-full',
           background && 'bg-brand-secondary'
         )}
