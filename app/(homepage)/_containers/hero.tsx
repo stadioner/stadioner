@@ -12,7 +12,7 @@ export const Hero = () => {
         <Container className='mt-56 text-brand-action'>
           <h1 className='text-8xl font-bold uppercase'>Stadioner</h1>
           <h3 className='text-3xl font-semibold'>
-            Pivovar, kde ožívá šlechtický odkaz, řemeslo a chut'.
+            Pivovar, kde ožívá šlechtický odkaz, řemeslo a chuť.
           </h3>
           <p className='text-xl'>est. 1736</p>
         </Container>

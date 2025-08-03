@@ -11,9 +11,9 @@ export const About = () => {
             Historie sahající až do roku 1736
           </h2>
           <p className='max-w-[80ch]'>
-            V Kouté na Sumave ozívá pivovar s hlubokými koreny. Zalozil ho rod
-            Stadionú, po kterém nese i jméno. Navazujeme na jejich odkaz: ctíme
-            tradici, ale prinásime novou energii a smer.
+            V Koutě na Šumavě ožívá pivovar s hlubokými kořeny. Založil ho rod
+            Stadionů, po kterém nese i jméno. Navazujeme na jejich odkaz: ctíme
+            tradici, ale přinášíme novou energii a směr.
           </p>
           <div className='w-min whitespace-nowrap mt-6'>
             <Border>
