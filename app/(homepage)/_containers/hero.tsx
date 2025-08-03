@@ -2,7 +2,7 @@ import { Container } from '@/components/container'
 
 export const Hero = () => {
   return (
-    <section className='relative h-[88vh] w-full'>
+    <section className='relative h-[86vh] w-full'>
       <img
         src='/hero/main.webp'
         alt='hero'
