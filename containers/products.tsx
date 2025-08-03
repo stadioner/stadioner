@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Container } from '@/components/container'
-import RippedPaperSVG from '../../../components/ripped-paper-svg'
+import { RippedPaperSVG } from '@/components/ripped-paper-svg'
+import { cn } from '@/lib/utils'
 
 const products = [
   {
@@ -50,7 +51,13 @@ const products = [
   },
 ]
 
-export const Products = () => {
+export const Products = ({
+  rippedPaper,
+  hScreen,
+}: {
+  rippedPaper?: boolean
+  hScreen?: boolean
+}) => {
   const [current, setCurrent] = useState(0)
 
   const handlePrev = () =>
@@ -62,15 +69,16 @@ export const Products = () => {
   const product = products[current]
 
   return (
-    <section className='bg-brand-secondary relative'>
-      <div className='bg-brand-action py-8'>
-        {/* Top ripped paper */}
-        <div
-          className='absolute -top-5 left-0 w-full z-10'
-          style={{ lineHeight: 0 }}
-        >
-          <RippedPaperSVG flip />
-        </div>
+    <section className={cn('relative', !hScreen && 'bg-brand-secondary')}>
+      <div className={cn('bg-brand-action py-8', hScreen && '')}>
+        {rippedPaper && (
+          <div
+            className='absolute -top-5 left-0 w-full z-10'
+            style={{ lineHeight: 0 }}
+          >
+            <RippedPaperSVG flip />
+          </div>
+        )}
         <Container>
           <div className='flex flex-col md:flex-row gap-8 items-stretch mt-8'>
             {/* Left: Info & Navigation */}
@@ -177,13 +185,14 @@ export const Products = () => {
             </div>
           </div>
         </Container>
-        {/* Bottom ripped paper */}
-        <div
-          className='absolute -bottom-5 left-0 w-full z-10'
-          style={{ lineHeight: 0 }}
-        >
-          <RippedPaperSVG />
-        </div>
+        {rippedPaper && (
+          <div
+            className='absolute -bottom-5 left-0 w-full z-10'
+            style={{ lineHeight: 0 }}
+          >
+            <RippedPaperSVG />
+          </div>
+        )}
       </div>
     </section>
   )
