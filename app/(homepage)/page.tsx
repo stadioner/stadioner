@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { Hero } from './_containers/hero'
 import { Places } from './_containers/places'
 import { Intro } from './_containers/intro'
@@ -11,7 +12,11 @@ export default function HomePage() {
 
       <Hero />
       <About />
-      <Products rippedPaper />
+      <Suspense
+        fallback={<div className='bg-brand-action py-8'>Loading...</div>}
+      >
+        <Products rippedPaper />
+      </Suspense>
       <Places />
     </main>
   )
