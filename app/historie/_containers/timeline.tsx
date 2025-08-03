@@ -176,32 +176,36 @@ export const Timeline = () => {
 
       {/* Timeline Navigation */}
       <div className='absolute left-8 top-1/2 -translate-y-1/2 z-20'>
-        <div className='relative'>
-          <div className='w-0.5 h-64 bg-brand-primary/30' />
-          {timelineData.map((slide, index) => (
-            <button
-              key={slide.id}
-              onClick={() => goToSlide(index)}
-              className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 transition-all duration-300 ${
-                index === currentSlide
-                  ? 'bg-brand-primary border-brand-primary scale-125'
-                  : 'bg-transparent border-brand-primary/50 hover:border-brand-primary'
-              }`}
-              style={{ top: `${(index / (timelineData.length - 1)) * 100}%` }}
-            >
-              {index === currentSlide && (
-                <motion.div
-                  className='absolute inset-1 bg-brand-primary rounded-full'
-                  initial={{ scale: 0 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.3 }}
-                />
-              )}
+        <div className='relative flex flex-col h-64'>
+          <div className='absolute left-1/2 top-0 bottom-0 w-0.5 bg-brand-primary/30 transform -translate-x-1/2' />
 
-              <p className='absolute -right-9 top-1/2 -translate-y-1/2 text-brand-primary'>
+          {/* Timeline items */}
+          {timelineData.map((slide, index) => (
+            <div key={slide.id} className='relative flex-1 flex items-center'>
+              {/* Timeline dot */}
+              <button
+                onClick={() => goToSlide(index)}
+                className={`absolute left-1/2 -translate-x-1/2 w-4 h-4 rounded-full border-2 transition-all duration-300 z-10 ${
+                  index === currentSlide
+                    ? 'bg-brand-primary border-brand-primary scale-125'
+                    : 'bg-transparent border-brand-primary/50 hover:border-brand-primary'
+                }`}
+              >
+                {index === currentSlide && (
+                  <motion.div
+                    className='absolute inset-1 bg-brand-primary rounded-full'
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+              </button>
+
+              {/* Year label */}
+              <div className='absolute -right-12 text-brand-primary whitespace-nowrap text-sm'>
                 {slide.year}
-              </p>
-            </button>
+              </div>
+            </div>
           ))}
         </div>
       </div>
