@@ -12,17 +12,16 @@ export const Places = () => {
   return (
     <section className='bg-brand-primary pt-32 pb-10'>
       <Container>
-        <div className='flex gap-32 pb-6'>
+        <div className='pb-6'>
           <h2 className='text-brand-action text-6xl font-bold flex-nowrap text-nowrap'>
-            Nejen v Koutě
+            Nejsme jen v Koutě na Šumavě
           </h2>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
-            omnis natus impedit laudantium culpa maiores quae molestiae, unde
-            hic officiis id doloribus aliquam quibusdam in maxime atque
-            explicabo illum amet labore expedita sunt! Culpa ea incidunt ipsam
-            eveniet, suscipit eligendi sapiente, beatae accusamus amet nihil at,
-            rem odio consectetur ex?
+          <p className='max-w-[100ch]'>
+            Naše hlavní výdejní místo najdete v pivovaru STADIONER v Koutě na
+            Šumavě. Zde si můžete přímo zakoupit naše produkty nebo vrátit
+            prázdné lahve. Kromě toho jsou naše produkty k dostání i v řadě
+            restaurací, hospod a obchodů napříč Plzeňským krajem. Podívejte se
+            na mapu a najděte nejbližší místo ve vašem okolí.
           </p>
         </div>
 
