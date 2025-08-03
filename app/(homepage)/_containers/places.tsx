@@ -17,25 +17,29 @@ export const Places = () => {
             Nejen v Koutě
           </h2>
           <p>
-            Neustále se rozšiřujeme a snažíme se zajistit, aby naše pití mohl
-            ochutnat každý. Lorem ipsum, dolor sit amet consectetur adipisicing
-            elit. Mollitia dolores nostrum rem laudantium quidem incidunt hic
-            rerum. Temporibus cumque non rerum! Magnam iste quam, explicabo quas
-            commodi, odit earum architecto incidunt hic eveniet nostrum ipsam
-            rem.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum
+            omnis natus impedit laudantium culpa maiores quae molestiae, unde
+            hic officiis id doloribus aliquam quibusdam in maxime atque
+            explicabo illum amet labore expedita sunt! Culpa ea incidunt ipsam
+            eveniet, suscipit eligendi sapiente, beatae accusamus amet nihil at,
+            rem odio consectetur ex?
           </p>
         </div>
 
-        <div className='flex justify-between'>
-          <div className='text-xl'>
-            <p>🏠 Pivovar Stadioner</p>
-            <p>🍺 Pivnice</p>
-            <p>🍖 Restaurace</p>
-          </div>
-
+        <div className='relative'>
           <Border>
             <Map />
           </Border>
+
+          <div className='absolute top-5 right-5 z-[1000]'>
+            <Border backgroundLight>
+              <div className='text-xl p-4'>
+                <p>🏠 Pivovar Stadioner</p>
+                <p>🍺 Pivnice</p>
+                <p>🍖 Restaurace</p>
+              </div>
+            </Border>
+          </div>
         </div>
       </Container>
     </section>
