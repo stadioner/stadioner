@@ -7,6 +7,7 @@ import { useLanguage } from '@/store/use-language'
 import { AnimatePresence } from 'framer-motion'
 import { NavItem } from './nav-item'
 import { Border } from '@/components/border'
+import { LanguageSelector } from '@/components/language-selector'
 
 export const Navbar = () => {
   const { language } = useLanguage()
@@ -49,6 +50,7 @@ export const Navbar = () => {
                 <NavItem label='Blog' href='/blog' />
                 <NavItem label='Historie' href='/historie' />
                 <NavItem label='Kontakt' href='/kontakt' />
+                <LanguageSelector />
               </ul>
             </div>
           </div>
