@@ -1,8 +1,8 @@
 import { Hero } from './_containers/hero'
-import { Products } from './_containers/products'
 import { Places } from './_containers/places'
 import { Intro } from './_containers/intro'
 import { About } from './_containers/about'
+import { Products } from '@/containers/products'
 
 export default function HomePage() {
   return (
@@ -11,7 +11,7 @@ export default function HomePage() {
 
       <Hero />
       <About />
-      <Products />
+      <Products rippedPaper />
       <Places />
     </main>
   )

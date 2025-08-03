@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import { Caladea, Mohave } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/lib/utils'
-import { Navbar } from '@/containers/navbar'
+import { Navbar } from '@/containers/navbar/navbar'
 import { Footer } from '@/containers/footer'
 
 const mohave = Mohave({

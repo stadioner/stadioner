@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 
-const RippedPaperSVG = ({ flip = false }: { flip?: boolean }) => {
+export const RippedPaperSVG = ({ flip = false }: { flip?: boolean }) => {
   const width = 1440
   const height = 20
   const points = 340
@@ -30,5 +30,3 @@ const RippedPaperSVG = ({ flip = false }: { flip?: boolean }) => {
     </svg>
   )
 }
-
-export default RippedPaperSVG

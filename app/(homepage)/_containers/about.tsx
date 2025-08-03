@@ -1,33 +1,27 @@
+import { Border } from '@/components/border'
 import { Container } from '@/components/container'
 import Link from 'next/link'
 
 export const About = () => {
   return (
     <section className='bg-brand-secondary pb-24'>
-      <Container>
-        <div className='flex gap-32'>
-          <div>
-            <p className='text-lg'>od roku 1736</p>
-            <h2 className='text-6xl font-bold text-brand-action text-nowrap'>
-              Pivovar, kde ožívá šlechtický <br /> odkaz, řemeslo a chuť.
-            </h2>
-          </div>
-          <div className='flex flex-col justify-between gap-4'>
-            <p className='pt-6'>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Aspernatur nihil totam repellat, repudiandae provident obcaecati
-              ipsam minima aliquam reprehenderit, esse eos corporis accusantium
-              sint saepe odio assumenda praesentium nostrum molestiae facere
-              porro odit et.
-            </p>
-            <Link
-              href='/o-nas'
-              className='bg-brand-action rounded-md p-4 text-brand-primary text-2xl w-full font-semibold text-center'
-            >
-              Kompletní historie
-            </Link>
+      <Container className='flex justify-between gap-10'>
+        <div>
+          <h2 className='text-[44px] font-bold text-brand-action text-nowrap'>
+            Historie sahající až do roku 1736
+          </h2>
+          <p className='max-w-[80ch]'>
+            V Kouté na Sumave ozívá pivovar s hlubokými koreny. Zalozil ho rod
+            Stadionú, po kterém nese i jméno. Navazujeme na jejich odkaz: ctíme
+            tradici, ale prinásime novou energii a smer.
+          </p>
+          <div className='w-min whitespace-nowrap mt-6'>
+            <Border>
+              <button className='p-2'>Projít si celou historii</button>
+            </Border>
           </div>
         </div>
+        <div>timeline</div>
       </Container>
     </section>
   )
