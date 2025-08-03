@@ -8,7 +8,7 @@ export const Footer = () => {
       <Container>
         <div className='grid grid-cols-3 gap-10'>
           <div className='grid text-xl'>
-            <h4 className='text-3xl font-bold'>Odkazy</h4>
+            <h4 className='text-3xl font-bold bg-brand-action'>Odkazy</h4>
             <Link href='/'>Domů</Link>
             <Link href='/produkty'>Produkty</Link>
             <Link href='/prodejni-mista'>Prodejní Místa</Link>
@@ -17,7 +17,7 @@ export const Footer = () => {
             <Link href='/kontakt'>Kontakt</Link>
           </div>
           <div className='flex flex-col justify-self-center text-xl'>
-            <h4 className='text-3xl font-bold'>Produkty</h4>
+            <h4 className='text-3xl font-bold text-brand-action'>Produkty</h4>
             <Link href='/produkty/?produkt=profesor-dvanactka&kategorie=pivo'>
               Profesor Dvanáctka
             </Link>
@@ -42,7 +42,7 @@ export const Footer = () => {
           </div>
           <div className='grid justify-between justify-self-end gap-4 text-xl'>
             <div>
-              <h4 className='text-3xl font-bold'>Adresa</h4>
+              <h4 className='text-3xl font-bold bg-brand-action'>Adresa</h4>
               <p>Kout na Šumavě 2</p>
               <p>34502 Kout na Šumavě</p>
               <Link
