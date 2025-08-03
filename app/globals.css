@@ -104,3 +104,19 @@
   border-radius: 10px;
   background: rgba(0, 0, 0, 0.8);
 }
+
+.animate-bottle {
+  animation: bottle 1.5s infinite;
+}
+
+@keyframes bottle {
+  0%,
+  100% {
+    transform: translateY(-2.5%);
+    animation-timing-function: ease-in;
+  }
+  50% {
+    transform: none;
+    animation-timing-function: ease-out;
+  }
+}
