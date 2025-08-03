@@ -18,13 +18,27 @@ export const Footer = () => {
           </div>
           <div className='flex flex-col justify-self-center text-xl'>
             <h4 className='text-3xl font-bold'>Produkty</h4>
-            <Link href='/'>Profesor Dvanáctka</Link>
-            <Link href='/'>Koutská Jedenáctka</Link>
-            <Link href='/'>Limonáda Pomeranč</Link>
-            <Link href='/'>Limonáda Citrón</Link>
-            <Link href='/'>Cola Mix</Link>
-            <Link href='/'>Pramenitá Voda (Sycená)</Link>
-            <Link href='/'>Pramenitá Voda (Nesycená)</Link>
+            <Link href='/produkty/?produkt=profesor-dvanactka&kategorie=pivo'>
+              Profesor Dvanáctka
+            </Link>
+            <Link href='/produkty/produkty?produkt=koutska-jedenactka&kategorie=pivo'>
+              Koutská Jedenáctka
+            </Link>
+            <Link href='/produkty/produkty?produkt=limonada-pomeranc&kategorie=limo'>
+              Limonáda Pomeranč
+            </Link>
+            <Link href='/produkty/produkty?produkt=limonada-citron&kategorie=limo'>
+              Limonáda Citrón
+            </Link>
+            <Link href='/produkty/produkty?produkt=colamix&kategorie=limo'>
+              Cola Mix
+            </Link>
+            <Link href='/produkty/?produkt=pramenita-voda-sycena&kategorie=voda'>
+              Pramenitá Voda (Sycená)
+            </Link>
+            <Link href='/produkty/?produkt=pramenita-voda-nesycena&kategorie=voda'>
+              Pramenitá Voda (Nesycená)
+            </Link>
           </div>
           <div className='grid justify-between justify-self-end gap-4 text-xl'>
             <div>

@@ -60,11 +60,11 @@ const products = [
     caps: '/products/cap.webp',
   },
   {
-    name: 'Pramenitá voda',
+    name: 'Pramenitá voda (Sycená)',
     subtitle: 'Čistá voda z šumavských pramenů',
     category: 'voda',
     categoryLabel: 'Voda',
-    slug: 'pramenita-voda',
+    slug: 'pramenita-voda-sycena',
     description:
       'Pramenitá voda Stadioner pochází z čistých šumavských pramenů. Je přirozeně čistá, bez přidaných látek a minerálů. Ideální pro každodenní pití, sportovní aktivity nebo jako základ pro přípravu nápojů. Balená ve vratných obalech pro šetrnost k životnímu prostředí.',
     stats: [
