@@ -9,12 +9,12 @@ export const Hero = () => {
         className='absolute bottom-0 left-0 z-10 w-full'
       />
       <div className='bg-brand-primary absolute left-0 bottom-0 w-full h-full'>
-        <Container className='mt-56 text-brand-action'>
-          <h1 className='text-8xl font-bold uppercase'>Stadioner</h1>
-          <h3 className='text-3xl font-semibold'>
+        <Container className='mt-44 text-brand-action'>
+          <h1 className='text-[140px] font-bold uppercase'>Stadioner</h1>
+          <h3 className='text-4xl font-semibold -mt-10'>
             Pivovar, kde ožívá šlechtický odkaz, řemeslo a chuť.
           </h3>
-          <p className='text-xl'>est. 1736</p>
+          <p className='text-2xl'>est. 1736</p>
         </Container>
       </div>
     </section>
