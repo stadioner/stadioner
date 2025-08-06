@@ -18,11 +18,13 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow.src,
 })
 
-const createEmojiIcon = (emoji: string) => {
-  const iconHTML = `<div class="emoji-icon text-lg">${emoji}</div>`
-  return L.divIcon({
-    html: iconHTML,
-    className: 'custom-icon',
+const createImageIcon = (imageUrl: string) => {
+  return L.icon({
+    iconUrl: imageUrl,
+    iconSize: [32, 32], // Adjust size as needed
+    iconAnchor: [16, 32], // Adjust anchor as needed
+    popupAnchor: [0, -32],
+    className: 'custom-image-icon',
   })
 }
 
@@ -72,7 +74,7 @@ export const Map = () => {
 
       <ZoomableMarker
         position={[49.402084920025644, 13.00085318237539]}
-        icon={createEmojiIcon('🏠')}
+        icon={createImageIcon('/map/pivovar.svg')}
         popupContent={
           <>
             <h3 className='text-lg font-bold'>Pivovar Stadioner</h3>
@@ -82,7 +84,7 @@ export const Map = () => {
       />
       <ZoomableMarker
         position={[50.08705930316747, 14.421203738317592]}
-        icon={createEmojiIcon('🍺')}
+        icon={createImageIcon('/map/hospoda.svg')}
         popupContent={
           <>
             <Link href='' className='text-lg font-bold underline'>

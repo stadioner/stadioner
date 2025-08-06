@@ -4,7 +4,7 @@ export const Hero = () => {
   return (
     <section className='relative h-[86vh] w-full'>
       <img
-        src='/hero/main.webp'
+        src='/hero/main.svg'
         alt='hero'
         className='absolute bottom-0 left-0 z-10 w-full'
       />
