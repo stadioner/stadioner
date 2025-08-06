@@ -7,7 +7,6 @@ import { Border } from '@/components/border'
 interface TimelineSlide {
   id: number
   year: string
-  title: string
   description: string
   image: string
 }
@@ -16,35 +15,66 @@ const timelineData: TimelineSlide[] = [
   {
     id: 1,
     year: '1736',
-    title: 'JAK TO VŠE ZAČALO',
     description:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, magnam. Inventore, earum hic pariatur ducimus recusandae culpa aliquid minima? Facilis nesciunt natus quisquam id cumque iste. Officia odit architecto debitis modi perferendis, nihil laudantium illo corporis. Perspiciatis, dolorem aspernatur, minus alias perferendis expedita quaerat mollitia quae repellendus, delectus beatae amet?',
+      'Pivovar Kout na Šumavě pak vznikl v roce 1736 pod správou rodu Stadionů, jejichž erb dodnes zdobí logo.',
     image: '/history/1.webp',
   },
 
   {
     id: 2,
-    year: '1759',
-    title: 'Lorem, ipsum dolor.',
+    year: '1838',
     description:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, magnam. Inventore, earum hic pariatur ducimus recusandae culpa aliquid minima? Facilis nesciunt natus quisquam id cumque iste. Officia odit architecto debitis modi perferendis, nihil laudantium illo corporis. Perspiciatis, dolorem aspernatur, minus alias perferendis expedita quaerat mollitia quae repellendus, delectus beatae amet?',
+      'Dne 2. července došlo v areálu pivovaru k ničivému požáru, který ho zcela zničil, včetně bytu sládka a sýpky. Tímto incidentem končí jedna etapa jeho existence.',
 
     image: '/history/2.webp',
   },
   {
     id: 3,
-    year: '1794',
-    title: 'Lorem, ipsum dolor.',
+    year: '1849 - 1870',
     description:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, magnam. Inventore, earum hic pariatur ducimus recusandae culpa aliquid minima? Facilis nesciunt natus quisquam id cumque iste. Officia odit architecto debitis modi perferendis, nihil laudantium illo corporis. Perspiciatis, dolorem aspernatur, minus alias perferendis expedita quaerat mollitia quae repellendus, delectus beatae amet?',
+      'Po požáru se hrabě Karel Bedřich Stadion-Thannhausen rozhodl postavit nový, modernější pivovar s větší kapacitou. V tomto období, konkrétně v roce 1870, byly pod kostelem vybudovány unikátní pivovarské sklepy.',
     image: '/history/3.webp',
   },
   {
     id: 4,
-    year: '1811',
-    title: 'Lorem, ipsum dolor.',
+    year: '1933',
     description:
-      'Lorem, ipsum dolor sit amet consectetur adipisicing elit. Provident, magnam. Inventore, earum hic pariatur ducimus recusandae culpa aliquid minima? Facilis nesciunt natus quisquam id cumque iste. Officia odit architecto debitis modi perferendis, nihil laudantium illo corporis. Perspiciatis, dolorem aspernatur, minus alias perferendis expedita quaerat mollitia quae repellendus, delectus beatae amet?',
+      'Sladovna, nejstarší dochovaná část pivovaru, byla naposledy upravena a zvýšena o patro. Jednalo se o poslední velkou stavební úpravu na pivovaru před jeho pozdějším uzavřením a následným úpadkem.',
+    image: '/history/1.webp',
+  },
+  {
+    id: 5,
+    year: '1949 - 1966',
+    description:
+      'V důsledku únorových událostí byl pivovar znárodněn a začleněn do národního podniku. Poslední várka piva byla uvařena v roce 1966, poté se provoz změnil na výrobnu sodovek a stáčírnu.',
+    image: '/history/1.webp',
+  },
+  {
+    id: 6,
+    year: '1971 - 1993',
+    description:
+      'Po definitivním uzavření v roce 1971 začal areál chátrat. Symbolickým koncem původního pivovaru se stal rok 1993, kdy byly původní měděné kádě z varny vymontovány a prodány do sběru.',
+    image: '/history/1.webp',
+  },
+  {
+    id: 7,
+    year: '2002 - 2005',
+    description:
+      'V roce 2002 zakoupil chátrající areál Jan Skala. Společně s bývalým sládkem Bohuslavem Hlavsou začal pracovat na obnovení pivovarnické tradice a renovaci celého komplexu.',
+    image: '/history/1.webp',
+  },
+  {
+    id: 8,
+    year: '2006',
+    description:
+      'Dne 27. března byla uvařena první várka piva, čímž byl pivovar v Koutě na Šumavě oficiálně znovu otevřen. Značka se tak navrátila na mapu regionálního pivovarnictví.',
+    image: '/history/1.webp',
+  },
+  {
+    id: 9,
+    year: '2010',
+    description:
+      'Koutské pivo slavilo velký úspěch, když získalo první místo v prestižní soutěži "Dvanáctka roku 2010". Tento úspěch potvrdil kvalitu piva a jeho rostoucí popularitu.',
     image: '/history/1.webp',
   },
 ]
@@ -52,11 +82,12 @@ const timelineData: TimelineSlide[] = [
 export const Timeline = () => {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [isScrolling, setIsScrolling] = useState(false)
-  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('up')
+  const [scrollDirection, setScrollDirection] = useState<'up' | 'down'>('down')
 
   const nextSlide = useCallback(() => {
     if (!isScrolling) {
       setIsScrolling(true)
+      setScrollDirection('down')
       setCurrentSlide(prev => Math.min(prev + 1, timelineData.length - 1))
       setTimeout(() => setIsScrolling(false), 1000)
     }
@@ -65,6 +96,7 @@ export const Timeline = () => {
   const prevSlide = useCallback(() => {
     if (!isScrolling) {
       setIsScrolling(true)
+      setScrollDirection('up')
       setCurrentSlide(prev => Math.max(prev - 1, 0))
       setTimeout(() => setIsScrolling(false), 1000)
     }
@@ -73,6 +105,7 @@ export const Timeline = () => {
   const goToSlide = (index: number) => {
     if (!isScrolling) {
       setIsScrolling(true)
+      setScrollDirection(index > currentSlide ? 'down' : 'up')
       setCurrentSlide(index)
       setTimeout(() => setIsScrolling(false), 1000)
     }
@@ -154,29 +187,31 @@ export const Timeline = () => {
             backgroundImage: `url(${timelineData[currentSlide].image})`,
           }}
           initial={{
-            opacity: 0.8,
-            scale: 1.05,
+            opacity: 0.1,
+            scale: 0.9,
             filter: 'blur(5px)',
           }}
           animate={{
             opacity: 1,
+            y: 0,
             scale: 1,
             filter: 'blur(0px)',
           }}
           exit={{
             opacity: 0.8,
+            y: scrollDirection === 'down' ? '-100%' : '100%',
             scale: 1.05,
             filter: 'blur(5px)',
           }}
-          transition={{ duration: 0.45, ease: 'easeInOut' }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
           <div className='absolute inset-0 bg-black/40' />
         </motion.div>
       </AnimatePresence>
 
       {/* Timeline Navigation */}
-      <div className='absolute left-8 top-1/2 -translate-y-1/2 z-20'>
-        <div className='relative flex flex-col h-64'>
+      <div className='absolute left-18 top-1/2 -translate-y-1/2 z-20'>
+        <div className='relative flex flex-col h-[500px]'>
           <div className='absolute left-1/2 top-0 bottom-0 w-0.5 bg-brand-primary/30 transform -translate-x-1/2' />
 
           {/* Timeline items */}
@@ -202,7 +237,7 @@ export const Timeline = () => {
               </button>
 
               {/* Year label */}
-              <div className='absolute -right-12 text-brand-primary whitespace-nowrap text-sm'>
+              <div className='absolute left-5 top-1/2 -translate-y-1/2 text-brand-primary whitespace-nowrap text-sm'>
                 {slide.year}
               </div>
             </div>
@@ -212,7 +247,7 @@ export const Timeline = () => {
 
       {/* Content */}
       <div className='relative z-10 h-full flex items-center'>
-        <div className='container mx-auto pl-14'>
+        <div className='container mx-auto pl-40'>
           <AnimatePresence mode='wait'>
             <motion.div
               key={currentSlide}
@@ -224,21 +259,13 @@ export const Timeline = () => {
             >
               <Border>
                 <div className='bg-brand-action-dark/70 backdrop-blur-sm p-8'>
-                  <motion.p
-                    className='text-white/80 text-sm mb-2'
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.2, duration: 0.4 }}
-                  >
-                    {timelineData[currentSlide].year}
-                  </motion.p>
                   <motion.h2
-                    className='text-4xl font-bold text-white mb-4'
+                    className='text-4xl font-bold text-brand-primary mb-4'
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3, duration: 0.5 }}
                   >
-                    {timelineData[currentSlide].title}
+                    {timelineData[currentSlide].year}
                   </motion.h2>
                   <motion.p
                     className='text-white/90 text-lg leading-relaxed'
