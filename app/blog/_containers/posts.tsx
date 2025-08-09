@@ -2,16 +2,17 @@
 
 import { Border } from '@/components/border'
 import { urlFor } from '@/sanity/lib/image'
+import { Post } from '@/types/blog'
 import Link from 'next/link'
 import { useState } from 'react'
 
-export const Posts = ({ posts }: { posts: any }) => {
+export const Posts = ({ posts }: { posts: Post[] }) => {
   const [categories, setCategories] = useState<string[]>([])
 
   const filteredPosts =
     categories.length === 0
       ? posts
-      : posts.filter((post: any) =>
+      : posts.filter(post =>
           post.categories.some((cat: any) => categories.includes(cat))
         )
 
@@ -19,7 +20,7 @@ export const Posts = ({ posts }: { posts: any }) => {
 
   return (
     <section className='grid grid-cols-3 gap-10'>
-      {posts.map((post: any) => (
+      {posts.map((post: Post) => (
         <Link href={`/blog/${post.slug.current}`} key={post._id}>
           <Border>
             <div className='aspect-square overflow-hidden relative'>

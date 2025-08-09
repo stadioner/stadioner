@@ -5,9 +5,10 @@ import { RichText } from '@/app/blog/_containers/rich-text'
 import { PortableText } from '@portabletext/react'
 import { parseISO, format } from 'date-fns'
 import { urlFor } from '@/sanity/lib/image'
+import { Post as PostType } from '@/types/blog'
 
 interface Props {
-  post: any
+  post: PostType
 }
 
 export const Post = ({ post }: Props) => {
@@ -28,7 +29,7 @@ export const Post = ({ post }: Props) => {
             <p>{post.author.name}</p>
           </div>
           <div className='mt-10'>
-            {post.categories.map((category: any) => (
+            {post.categories.map(category => (
               <p
                 key={category.title}
                 className='bg-brand-action py-1 px-2 w-min whitespace-nowrap text-brand-primary'
