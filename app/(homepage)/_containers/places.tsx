@@ -2,6 +2,7 @@
 
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
+import { MapLegend } from '@/components/map-legend'
 import dynamic from 'next/dynamic'
 const Map = dynamic(
   () => import('@/components/map').then(mod => ({ default: mod.Map })),
@@ -30,24 +31,7 @@ export const Places = () => {
             <Map />
           </Border>
 
-          <div className='absolute top-5 right-5 z-[1000]'>
-            <Border backgroundLight>
-              <div className='text-xl p-4'>
-                <p className='flex items-center'>
-                  <img src='/map/pivovar.svg' className='size-10' />
-                  Pivovar Stadioner
-                </p>
-                <p className='flex items-center'>
-                  <img src='/map/pivoteka.svg' className='size-10' />
-                  Pivnice
-                </p>
-                <p className='flex items-center'>
-                  <img src='/map/restaurace.svg' className='size-10' />
-                  Restaurace
-                </p>
-              </div>
-            </Border>
-          </div>
+          <MapLegend />
         </div>
       </Container>
     </section>

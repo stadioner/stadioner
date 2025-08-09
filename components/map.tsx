@@ -45,13 +45,15 @@ const ZoomableMarker = ({
     <Marker
       position={position}
       icon={icon}
-      eventHandlers={{
-        dblclick: () => map.setView(position, zoomLevel, { animate: true }),
-        click: () =>
-          map.setView([49.9171208544799, 14.67178354882282], 7, {
-            animate: true,
-          }),
-      }}
+      eventHandlers={
+        {
+          // dblclick: () => map.setView(position, zoomLevel, { animate: true }),
+          // click: () =>
+          //   map.setView([49.9171208544799, 14.67178354882282], 7, {
+          //     animate: true,
+          //   }),
+        }
+      }
     >
       <Popup>{popupContent}</Popup>
     </Marker>
