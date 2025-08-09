@@ -4,6 +4,7 @@ import { Container } from '@/components/container'
 import { RichText } from '@/app/blog/_containers/rich-text'
 import { PortableText } from '@portabletext/react'
 import { parseISO, format } from 'date-fns'
+import { urlFor } from '@/sanity/lib/image'
 
 interface Props {
   post: any
@@ -11,32 +12,42 @@ interface Props {
 
 export const Post = ({ post }: Props) => {
   const parsedDate = parseISO(post.publishedAt)
-  const formattedDate = format(parsedDate, 'dd. MM. yy')
+  const formattedDate = format(parsedDate, 'dd. MM. yyyy')
 
   return (
-    <section className='scroll-mt-28'>
-      <Container>
-        <h1 className='mb-14 mt-2 text-3xl font-black sm:text-4xl md:text-5xl lg:text-6xl'>
-          {post.title}
-        </h1>
-        <div className='font-stabil'>
+    <section>
+      <Container className='grid grid-cols-[1fr_4fr]'>
+        <div>
           <p>{formattedDate}</p>
-          <p>{post.author.name}</p>
-          <div className='mt-5'>
+          <div className='flex gap-2'>
+            <img
+              src={urlFor(post.author.image)}
+              alt={post.author.name}
+              className='size-7 rounded-full'
+            />
+            <p>{post.author.name}</p>
+          </div>
+          <div className='mt-10'>
             {post.categories.map((category: any) => (
               <p
                 key={category.title}
-                style={{ background: `#${category.color}` }}
-                className='mb-1 rounded-2xl py-1 text-center text-xs lg:w-1/2'
+                className='bg-brand-action py-1 px-2 w-min whitespace-nowrap text-brand-primary'
               >
                 {category.title}
               </p>
             ))}
           </div>
         </div>
+
         <div>
-          <PortableText value={post.body} components={RichText} />
-          <div className='mt-10' />
+          <h1 className='mb-10 text-3xl font-black sm:text-4xl md:text-5xl lg:text-6xl text-brand-action'>
+            {post.title}
+          </h1>
+
+          <div>
+            <PortableText value={post.body} components={RichText} />
+            <div className='mt-10' />
+          </div>
         </div>
       </Container>
     </section>
