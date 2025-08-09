@@ -11,7 +11,7 @@ export const NavItem = ({ href, label }: { href: string; label: string }) => {
     <li
       className={cn(
         'text-brand-action text-lg',
-        pathname === href && 'font-bold'
+        pathname.includes(href) && 'font-bold'
       )}
     >
       <Link href={href}>{label}</Link>
