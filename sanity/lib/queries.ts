@@ -3,6 +3,7 @@ import { groq } from 'next-sanity'
 export const PostsQuery = groq`
     *[_type=='post'] {
         ...,
+        author->,
         categories[]->
     }
 `
@@ -14,7 +15,7 @@ export const PostsPathsQuery = groq`
 export const PostQuery = groq`
     *[_type == "post" && slug.current == $slug][0]{
         ...,
-        writtenby->,
+        author->,
         categories[]->
     }
 `

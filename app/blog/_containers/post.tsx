@@ -1,8 +1,7 @@
 'use client'
 
 import { Container } from '@/components/container'
-import { RichText } from '@/components/rich-text'
-import { urlFor } from '@/sanity/lib/image'
+import { RichText } from '@/app/blog/_containers/rich-text'
 import { PortableText } from '@portabletext/react'
 import { parseISO, format } from 'date-fns'
 
