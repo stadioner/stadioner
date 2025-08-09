@@ -41,7 +41,7 @@ export const LanguageSelector = () => {
           variant='outline'
           role='combobox'
           aria-expanded={open}
-          className='justify-between border-none bg-transparent hover:bg-transparent cursor-pointer p-0'
+          className='justify-between border-none !bg-transparent hover:bg-transparent cursor-pointer p-0 shadow-none'
         >
           <Image src={imgSrc(language)} width={30} height={30} alt={language} />
         </Button>

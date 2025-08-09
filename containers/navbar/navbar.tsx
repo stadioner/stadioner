@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { useLanguage } from '@/store/use-language'
 import { AnimatePresence } from 'framer-motion'
-import { NavItem } from './nav-item'
+import { NavItem } from '../../components/nav-item'
 import { Border } from '@/components/border'
 import { LanguageSelector } from '@/components/language-selector'
 
@@ -24,7 +24,7 @@ export const Navbar = () => {
         <Border background>
           <div
             className={cn(
-              'flex justify-between items-center h-full w-full px-4 bg-brand-secondary shadow-sm backdrop-blur-lg dark:bg-zinc-800/40 py-2'
+              'flex justify-between items-center h-full w-full px-4 bg-brand-secondary shadow-sm py-2'
             )}
           >
             <div>
