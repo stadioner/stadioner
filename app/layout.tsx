@@ -5,6 +5,7 @@ import { cn } from '@/lib/utils'
 import { Navbar } from '@/containers/navbar/navbar'
 import { Footer } from '@/containers/footer'
 import { AgeGate } from '@/components/age-gate'
+import { CookieConsent } from '@/components/cookie-consent'
 
 const mohave = Mohave({
   variable: '--font-mohave',
@@ -31,7 +32,7 @@ export default function RootLayout({
     <html lang='en'>
       <body
         className={cn(
-          'antialiased font-mohave',
+          'antialiased font-mohave bg-brand-action',
           mohave.variable,
           caladea.variable
         )}
@@ -40,6 +41,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <CookieConsent />
         </AgeGate>
       </body>
     </html>

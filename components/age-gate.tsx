@@ -9,42 +9,53 @@ import {
   DialogFooter,
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
+import { useAgeVerification } from '@/store/use-age-verification'
+import { useCookieConsent } from '@/store/use-cookie-consent'
 
 export const AgeGate = ({ children }: { children: React.ReactNode }) => {
-  const [ageVerified, setAgeVerified] = useState(false)
-  const [open, setOpen] = useState(true)
+  const { isVerified, setVerified } = useAgeVerification()
+  const { hasConsented } = useCookieConsent()
+  const [sessionVerified, setSessionVerified] = useState(false)
+  const [open, setOpen] = useState(!(isVerified || sessionVerified))
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const verified = localStorage.getItem('age-verified') === 'true'
-      setAgeVerified(verified)
-      setOpen(!verified)
-    }
-  }, [])
+    setOpen(!(isVerified || sessionVerified))
+  }, [isVerified, sessionVerified])
 
   const handleVerify = () => {
-    setAgeVerified(true)
-    setOpen(false)
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('age-verified', 'true')
+    if (hasConsented) {
+      setVerified(true)
+    } else {
+      setSessionVerified(true)
     }
+    setOpen(false)
   }
 
+  // Pokud není souhlas s cookies, nikdy neukládej ověření a vždy se ptej znovu po reloadu
+  useEffect(() => {
+    if (!hasConsented && isVerified) {
+      setVerified(false)
+      setOpen(true)
+    }
+  }, [hasConsented])
+
   return (
-    <>
+    <section className='bg-brand-action'>
       <Dialog open={open}>
-        <DialogContent showCloseButton={false}>
+        <DialogContent showCloseButton={false} className='bg-brand-primary'>
           <DialogHeader>
-            <DialogTitle>Je vám 18 let nebo více?</DialogTitle>
+            <DialogTitle className='text-brand-action text-2xl'>
+              Je vám 18 let nebo více?
+            </DialogTitle>
           </DialogHeader>
           <DialogFooter>
-            <Button onClick={handleVerify} autoFocus>
+            <Button variant='green' onClick={handleVerify} autoFocus>
               Ano, je mi 18+
             </Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      {ageVerified && children}
-    </>
+      {(isVerified || sessionVerified) && children}
+    </section>
   )
 }
