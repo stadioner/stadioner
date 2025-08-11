@@ -121,14 +121,16 @@ export const Posts = ({ posts }: { posts: Post[] }) => {
                   </div>
 
                   <div className='absolute right-0 bottom-0'>
-                    {post.categories.map((category: any, id: number) => (
-                      <p
-                        key={post.categories[id]._id}
-                        className='text-sm bg-brand-action p-1 text-brand-primary'
-                      >
-                        {category.title}
-                      </p>
-                    ))}
+                    {post.categories.map(
+                      (category: { title: string }, id: number) => (
+                        <p
+                          key={post.categories[id]._id}
+                          className='text-sm bg-brand-action p-1 text-brand-primary'
+                        >
+                          {category.title}
+                        </p>
+                      )
+                    )}
                   </div>
                 </div>
               </Border>
