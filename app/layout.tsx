@@ -4,6 +4,7 @@ import './globals.css'
 import { cn } from '@/lib/utils'
 import { Navbar } from '@/containers/navbar/navbar'
 import { Footer } from '@/containers/footer'
+import { AgeGate } from '@/components/age-gate'
 
 const mohave = Mohave({
   variable: '--font-mohave',
@@ -35,9 +36,11 @@ export default function RootLayout({
           caladea.variable
         )}
       >
-        <Navbar />
-        {children}
-        <Footer />
+        <AgeGate>
+          <Navbar />
+          {children}
+          <Footer />
+        </AgeGate>
       </body>
     </html>
   )
