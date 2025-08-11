@@ -1,7 +1,7 @@
 import { urlFor } from '@/sanity/lib/image'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 
 export const RichText = {
   types: {
@@ -59,7 +59,13 @@ export const RichText = {
   },
 
   marks: {
-    link: ({ children, value }: any) => {
+    link: ({
+      children,
+      value,
+    }: {
+      children: ReactNode
+      value: { href: string }
+    }) => {
       const rel = !value.href.startsWith('/')
         ? 'noreferrer noopener'
         : undefined
