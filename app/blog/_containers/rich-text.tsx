@@ -1,7 +1,8 @@
 import { urlFor } from '@/sanity/lib/image'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PropsWithChildren, ReactNode } from 'react'
+import { PropsWithChildren } from 'react'
+import type {} from '@portabletext/react'
 
 export const RichText = {
   types: {
@@ -50,7 +51,6 @@ export const RichText = {
         {children}
       </h4>
     ),
-
     blockquote: ({ children }: PropsWithChildren) => (
       <blockquote className='py-5 pl-5 my-5 border-l-4 border-l-indigo-500'>
         {children}
@@ -62,17 +62,15 @@ export const RichText = {
     link: ({
       children,
       value,
-    }: {
-      children: ReactNode
-      value: { href: string }
-    }) => {
-      const rel = !value.href.startsWith('/')
-        ? 'noreferrer noopener'
-        : undefined
+    }: PropsWithChildren<{ value?: { href: string } }>) => {
+      const rel =
+        value?.href && !value.href.startsWith('/')
+          ? 'noreferrer noopener'
+          : undefined
 
       return (
         <Link
-          href={value.href}
+          href={value?.href || '#'}
           rel={rel}
           className='underline decoration-indigo-500 hover:decoration-black'
         >
