@@ -7,7 +7,21 @@ import { Container } from '@/components/container'
 import { RippedPaperSVG } from '@/components/ripped-paper-svg'
 import { cn } from '@/lib/utils'
 
-const products = [
+// Typ produktu
+interface Product {
+  name: string
+  subtitle: string
+  category: string
+  categoryLabel: string
+  slug: string
+  description: string
+  stats: { label: string; value: string }[]
+  image: string
+  icon: string
+}
+
+// Rozdělené produkty podle kategorií
+const beers: Product[] = [
   {
     name: 'Profesor dvanáctka',
     subtitle: 'Klasický nefiltrovaný ležák s plnou chutí',
@@ -23,7 +37,7 @@ const products = [
       { label: 'FILTRACE', value: 'Nefiltrované' },
     ],
     image: '/products/bottle.webp',
-    caps: '/products/cap.webp',
+    icon: '/products/pivo/dvanactka/icon.svg',
   },
   {
     name: 'Koutská jedenáctka',
@@ -40,8 +54,11 @@ const products = [
       { label: 'FILTRACE', value: 'Nefiltrované' },
     ],
     image: '/products/bottle.webp',
-    caps: '/products/cap.webp',
+    icon: '/products/pivo/jedenactka/icon.svg',
   },
+]
+
+const limos: Product[] = [
   {
     name: 'Limonáda citrón',
     subtitle: 'Svěží citronová limonáda z pramenité vody',
@@ -57,8 +74,45 @@ const products = [
       { label: 'BALENÍ', value: 'Vratný obal' },
     ],
     image: '/products/bottle.webp',
-    caps: '/products/cap.webp',
+    icon: '/products/limo/citron/icon.svg',
   },
+  {
+    name: 'Limonáda pomeranč',
+    subtitle: 'Osvěžující pomerančová limonáda z pramenité vody',
+    category: 'limo',
+    categoryLabel: 'Limonáda',
+    slug: 'limonada-pomeranc',
+    description:
+      'Pomerančová limonáda Stadioner je sladší nealkoholický nápoj s výraznou ovocnou chutí, vyráběný z pramenité vody z šumavských lesů. Díky jemnému sycení a přírodnímu aroma nabízí osvěžení, které potěší v horkých dnech i při odpočinku. Bez zbytečných konzervantů a umělých barviv.',
+    stats: [
+      { label: 'OBJEM', value: '500 ml' },
+      { label: 'CHUŤ', value: 'Pomeranč' },
+      { label: 'SLOŽENÍ', value: 'Pramenitá voda' },
+      { label: 'BALENÍ', value: 'Vratný obal' },
+    ],
+    image: '/products/bottle.webp',
+    icon: '/products/limo/pomeranc/icon.svg',
+  },
+  {
+    name: 'Cola mix',
+    subtitle: 'Klasická cola s jemným citronovým nádechem',
+    category: 'limo',
+    categoryLabel: 'Limonáda',
+    slug: 'cola-mix',
+    description:
+      'Cola mix Stadioner spojuje tradiční colovou chuť s osvěžujícím citronovým nádechem. Vyrábí se z pramenité vody z šumavských lesů a je jemně sycená pro ideální pitelný zážitek. Perfektní volba pro milovníky coly, kteří chtějí něco neobvyklého, ale přitom známého.',
+    stats: [
+      { label: 'OBJEM', value: '500 ml' },
+      { label: 'CHUŤ', value: 'Cola s citronem' },
+      { label: 'SLOŽENÍ', value: 'Pramenitá voda' },
+      { label: 'BALENÍ', value: 'Vratný obal' },
+    ],
+    image: '/products/bottle.webp',
+    icon: '/products/limo/colamix/icon.svg',
+  },
+]
+
+const waters: Product[] = [
   {
     name: 'Pramenitá voda (Sycená)',
     subtitle: 'Čistá voda z šumavských pramenů',
@@ -74,9 +128,33 @@ const products = [
       { label: 'BALENÍ', value: 'Vratný obal' },
     ],
     image: '/products/bottle.webp',
-    caps: '/products/cap.webp',
+    icon: '/products/voda/sycena/icon.svg',
+  },
+  {
+    name: 'Pramenitá voda (Nesycená)',
+    subtitle: 'Čistá voda z šumavských pramenů',
+    category: 'voda',
+    categoryLabel: 'Voda',
+    slug: 'pramenita-voda-nesycena',
+    description:
+      'Pramenitá voda Stadioner pochází z čistých šumavských pramenů. Je přirozeně čistá, bez přidaných látek a minerálů, a díky své jemné chuti je ideální pro každodenní pití. Vhodná k hydrataci během dne, sportu i k přípravě jídel či nápojů. Balená ve vratných obalech pro šetrnost k životnímu prostředí.',
+    stats: [
+      { label: 'OBJEM', value: '500 ml' },
+      { label: 'TYP', value: 'Pramenitá' },
+      { label: 'SLOŽENÍ', value: 'Přírodní' },
+      { label: 'BALENÍ', value: 'Vratný obal' },
+    ],
+    image: '/products/bottle.webp',
+    icon: '/products/voda/nesycena/icon.svg',
   },
 ]
+
+// Mapování kategorií na pole produktů
+const productMap: { [key: string]: Product[] } = {
+  pivo: beers,
+  limo: limos,
+  voda: waters,
+}
 
 const categories = [
   { id: 'pivo', label: 'Pivo' },
@@ -93,71 +171,53 @@ export const Products = ({
 }) => {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const [current, setCurrent] = useState(0)
   const [selectedCategory, setSelectedCategory] = useState('pivo')
+  const [current, setCurrent] = useState(0)
 
-  // Filter products based on selected category
-  const filteredProducts = products.filter(
-    product => product.category === selectedCategory
-  )
+  // Vždy aktuální pole produktů podle kategorie
+  const filteredProducts = productMap[selectedCategory] || []
 
   // Handle URL changes on mount and when searchParams change
   useEffect(() => {
     const productSlug = searchParams.get('produkt')
     const categoryParam = searchParams.get('kategorie')
-
-    if (categoryParam) {
+    if (categoryParam && productMap[categoryParam]) {
       setSelectedCategory(categoryParam)
     }
-
+    let idx = 0
     if (productSlug) {
-      const productIndex = products.findIndex(p => p.slug === productSlug)
-      if (productIndex !== -1) {
-        setCurrent(productIndex)
+      const foundIdx = (
+        productMap[categoryParam || selectedCategory] || []
+      ).findIndex((p: Product) => p.slug === productSlug)
+      if (foundIdx !== -1) {
+        idx = foundIdx
       }
     }
+    setCurrent(idx)
   }, [searchParams])
 
   // Reset current product when category changes
   useEffect(() => {
-    const filteredProducts = products.filter(
-      product => product.category === selectedCategory
-    )
-    if (filteredProducts.length > 0) {
-      // Check if current product exists in new category
-      const currentProduct = products[current]
-      const productExistsInCategory =
-        currentProduct && currentProduct.category === selectedCategory
-
-      if (!productExistsInCategory) {
-        // Reset to first product in new category
-        setCurrent(0)
-        const firstProduct = filteredProducts[0]
-        const params = new URLSearchParams(searchParams.toString())
-        params.set('produkt', firstProduct.slug)
-        params.set('kategorie', selectedCategory)
-        router.push(`?${params.toString()}`, { scroll: false })
-      }
-    }
-  }, [selectedCategory, current, searchParams, router])
+    setCurrent(0)
+  }, [selectedCategory])
 
   const updateURL = (productIndex: number, category?: string) => {
     const targetCategory = category || selectedCategory
-    const targetFilteredProducts = products.filter(
-      product => product.category === targetCategory
+    const targetFilteredProducts = productMap[targetCategory] || []
+    const safeIndex = Math.max(
+      0,
+      Math.min(productIndex, targetFilteredProducts.length - 1)
     )
-    const product = targetFilteredProducts[productIndex]
+    const product = targetFilteredProducts[safeIndex]
+    if (!product) return
     const params = new URLSearchParams(searchParams.toString())
     params.set('produkt', product.slug)
-    if (category) {
-      params.set('kategorie', category)
-    }
+    params.set('kategorie', targetCategory)
     router.push(`?${params.toString()}`, { scroll: false })
   }
 
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category)
-    // Reset current to 0 and update URL with new category
     setCurrent(0)
     updateURL(0, category)
   }
@@ -179,10 +239,7 @@ export const Products = ({
     updateURL(idx)
   }
 
-  // Ensure we have a valid product
   const product = filteredProducts[current] || filteredProducts[0]
-
-  // Don't render if no products are available
   if (!product) {
     return null
   }
@@ -219,7 +276,7 @@ export const Products = ({
             </div>
           </div>
 
-          <div className='flex flex-col md:flex-row gap-8 items-stretch mt-8'>
+          <div className='flex flex-col md:grid md:grid-cols-[1.2fr_1fr] gap-8 items-stretch mt-8'>
             {/* Left: Info & Navigation */}
             <div className='flex-1 flex flex-col justify-center'>
               <div className='mb-8'>
@@ -251,19 +308,21 @@ export const Products = ({
                   </motion.p>
                 </AnimatePresence>
                 <div className='flex justify-between border-t border-zinc-600 pt-6 mb-6'>
-                  {product.stats.map(stat => (
-                    <div
-                      key={stat.label}
-                      className='flex flex-col items-center min-w-[90px]'
-                    >
-                      <span className='text-xs text-zinc-400'>
-                        {stat.label}
-                      </span>
-                      <span className='text-lg font-bold text-brand-primary'>
-                        {stat.value}
-                      </span>
-                    </div>
-                  ))}
+                  {product.stats.map(
+                    (stat: { label: string; value: string }) => (
+                      <div
+                        key={stat.label}
+                        className='flex flex-col items-center min-w-[90px]'
+                      >
+                        <span className='text-xs text-zinc-400'>
+                          {stat.label}
+                        </span>
+                        <span className='text-lg font-bold text-brand-primary'>
+                          {stat.value}
+                        </span>
+                      </div>
+                    )
+                  )}
                 </div>
                 <div className='flex gap-4'>
                   <button
@@ -282,15 +341,15 @@ export const Products = ({
                   </button>
                 </div>
               </div>
-              {/* Bottle caps selector */}
+              {/* Bottle icon selector */}
               <div className='flex gap-2 mt-auto'>
-                {filteredProducts.map((p, idx) => (
+                {filteredProducts.map((p: Product, idx: number) => (
                   <motion.button
                     key={p.name}
                     onClick={() => handleSelect(idx)}
-                    className={`rounded-full border-4 cursor-pointer ${
+                    className={`rounded-full border-2 cursor-pointer ${
                       current === idx
-                        ? 'border-brand-action'
+                        ? 'border-brand-secondary'
                         : 'border-transparent'
                     } bg-zinc-800`}
                     whileTap={{ scale: 0.9 }}
@@ -299,9 +358,9 @@ export const Products = ({
                     aria-label={`Select ${p.name}`}
                   >
                     <img
-                      src={p.caps}
+                      src={p.icon}
                       alt={p.name}
-                      className='w-14 h-14 object-cover'
+                      className='w-14 h-14 object-cover rounded-full'
                     />
                   </motion.button>
                 ))}
