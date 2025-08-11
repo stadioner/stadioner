@@ -1,5 +1,6 @@
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
+import { buttonVariants } from '@/components/ui/button'
 import Link from 'next/link'
 
 const timelineData = [
@@ -50,7 +51,17 @@ export const About = () => {
           </p>
           <div className='w-min whitespace-nowrap mt-6'>
             <Border>
-              <button className='p-2'>Projít si celou historii</button>
+              <Link
+                href='/historie'
+                className={buttonVariants({
+                  variant: 'ghost',
+                  size: 'lg',
+                  className:
+                    'hover:bg-transparent text-brand-action text-lg font-medium',
+                })}
+              >
+                Projít si celou historii
+              </Link>
             </Border>
           </div>
         </div>

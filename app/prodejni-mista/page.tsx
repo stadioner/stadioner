@@ -26,7 +26,7 @@ export default function ProdejniMistaPage() {
       <section className='bg-brand-action py-12'>
         <Container className='grid grid-cols-2'>
           <div>
-            <h2 className='text-brand-primary text-5xl font-semibold'>
+            <h2 className='text-brand-primary text-5xl font-bold'>
               Výdejní Místo
             </h2>
             <p className='text-zinc-100 mt-2'>
@@ -41,7 +41,7 @@ export default function ProdejniMistaPage() {
       <section className='py-12'>
         <Container className='grid grid-cols-2'>
           <div>
-            <h2 className='text-brand-action text-5xl font-semibold'>
+            <h2 className='text-brand-action text-5xl font-bold'>
               Pojízdná prodejna
             </h2>
             <p className='mt-2'>Kout na Šumavě 2, 345 02 Kout na Šumavě</p>
