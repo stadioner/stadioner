@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
-import { useLanguage } from '@/store/use-language'
+import { useLanguage, useLanguageSync } from '@/store/use-language'
 import { Border } from './border'
 
 const languages = [
@@ -30,6 +30,7 @@ const languages = [
 ]
 
 export const LanguageSelector = () => {
+  useLanguageSync()
   const { language, imgSrc, setLanguage } = useLanguage(state => state)
 
   const [open, setOpen] = useState<boolean>(false)
