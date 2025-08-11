@@ -8,8 +8,14 @@ export async function generateStaticParams() {
   return posts
 }
 
-export default async function Page({ params }: { params: any }) {
-  const post = await cachedClient(PostQuery, params)
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+
+  const post = await cachedClient(PostQuery, { slug })
 
   return (
     <main className='bg-brand-primary pt-40 pb-20'>
