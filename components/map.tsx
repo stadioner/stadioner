@@ -1,7 +1,7 @@
 'use client'
 
 import L, { LatLngExpression } from 'leaflet'
-import { MapContainer, Marker, Popup, TileLayer, useMap } from 'react-leaflet'
+import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 
@@ -39,22 +39,8 @@ const ZoomableMarker = ({
   zoomLevel?: number
   popupContent: ReactNode
 }) => {
-  const map = useMap()
-
   return (
-    <Marker
-      position={position}
-      icon={icon}
-      eventHandlers={
-        {
-          // dblclick: () => map.setView(position, zoomLevel, { animate: true }),
-          // click: () =>
-          //   map.setView([49.9171208544799, 14.67178354882282], 7, {
-          //     animate: true,
-          //   }),
-        }
-      }
-    >
+    <Marker position={position} icon={icon}>
       <Popup>{popupContent}</Popup>
     </Marker>
   )

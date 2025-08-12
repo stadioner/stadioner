@@ -166,9 +166,9 @@ const productMap: { [key: string]: Product[] } = {
 }
 
 const categories = [
-  { id: 'pivo', label: 'Pivo' },
-  { id: 'limo', label: 'Limonáda' },
-  { id: 'voda', label: 'Voda' },
+  { id: 'pivo', label: 'Piva' },
+  { id: 'limo', label: 'Limonády' },
+  { id: 'voda', label: 'Vody' },
 ]
 
 export const Products = ({

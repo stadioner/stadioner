@@ -29,8 +29,30 @@ export const Navbar = () => {
           >
             <div>
               <ul className='flex items-center gap-6'>
-                <NavItem label='Produkty' href='/produkty' />
-                <NavItem label='Prodejní Místa' href='/prodejni-mista' />
+                <NavItem
+                  label={
+                    language === 'cs'
+                      ? 'Produkty'
+                      : language === 'en'
+                        ? 'Products'
+                        : language === 'de'
+                          ? 'Produkte'
+                          : ''
+                  }
+                  href='/produkty'
+                />
+                <NavItem
+                  label={
+                    language === 'cs'
+                      ? 'Prodejní Místa'
+                      : language === 'en'
+                        ? 'Sales Locations'
+                        : language === 'de'
+                          ? 'Verkaufsstellen'
+                          : ''
+                  }
+                  href='/prodejni-mista'
+                />
               </ul>
             </div>
 
@@ -48,8 +70,30 @@ export const Navbar = () => {
             <div className='flex items-center'>
               <ul className='flex items-center gap-6'>
                 <NavItem label='Blog' href='/blog' />
-                <NavItem label='Historie' href='/historie' />
-                <NavItem label='Kontakt' href='/kontakt' />
+                <NavItem
+                  label={
+                    language === 'cs'
+                      ? 'Historie'
+                      : language === 'en'
+                        ? 'History'
+                        : language === 'de'
+                          ? 'Geschichte'
+                          : ''
+                  }
+                  href='/historie'
+                />
+                <NavItem
+                  label={
+                    language === 'cs'
+                      ? 'Kontakt'
+                      : language === 'en'
+                        ? 'Contact'
+                        : language === 'de'
+                          ? 'Kontakt'
+                          : ''
+                  }
+                  href='/kontakt'
+                />
                 <LanguageSelector />
               </ul>
             </div>

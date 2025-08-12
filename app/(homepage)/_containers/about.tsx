@@ -49,7 +49,7 @@ export const About = () => {
           <h2 className='text-[44px] font-bold text-brand-action text-nowrap'>
             {language === 'cs' && 'Historie sahající až do roku 1736'}
             {language === 'en' && 'History dating back to 1736'}
-            {language === 'de' && 'Geschichte bis ins Jahr 1736 zurückreichend'}
+            {language === 'de' && 'Geschichte bis ins Jahr 1736'}
           </h2>
           <p className='max-w-[80ch]'>
             {language === 'cs' &&

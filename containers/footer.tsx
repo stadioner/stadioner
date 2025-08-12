@@ -1,23 +1,56 @@
+'use client'
+
 import { Container } from '@/components/container'
+import { useLanguage } from '@/store/use-language'
 import { ExternalLinkIcon, FacebookIcon, InstagramIcon } from 'lucide-react'
 import Link from 'next/link'
 
 export const Footer = () => {
+  const { language } = useLanguage()
+
   return (
     <footer className='bg-brand-secondary pt-20 pb-10'>
       <Container>
         <div className='grid grid-cols-3 gap-10'>
           <div className='grid text-xl'>
-            <h4 className='text-3xl font-bold text-brand-action'>Odkazy</h4>
-            <Link href='/'>Domů</Link>
-            <Link href='/produkty'>Produkty</Link>
-            <Link href='/prodejni-mista'>Prodejní Místa</Link>
+            <h4 className='text-3xl font-bold text-brand-action'>
+              {language === 'cs' && 'Odkazy'}
+              {language === 'en' && 'Links'}
+              {language === 'de' && 'Links'}
+            </h4>
+            <Link href='/'>
+              {language === 'cs' && 'Domů'}
+              {language === 'en' && 'Home'}
+              {language === 'de' && 'Startseite'}
+            </Link>
+            <Link href='/produkty'>
+              {language === 'cs' && 'Produkty'}
+              {language === 'en' && 'Products'}
+              {language === 'de' && 'Produkte'}
+            </Link>
+            <Link href='/prodejni-mista'>
+              {language === 'cs' && 'Prodejní Místa'}
+              {language === 'en' && 'Sales Locations'}
+              {language === 'de' && 'Verkaufsstellen'}
+            </Link>
             <Link href='/blog'>Blog</Link>
-            <Link href='/historie'>Historie</Link>
-            <Link href='/kontakt'>Kontakt</Link>
+            <Link href='/historie'>
+              {language === 'cs' && 'Historie'}
+              {language === 'en' && 'History'}
+              {language === 'de' && 'Geschichte'}
+            </Link>
+            <Link href='/kontakt'>
+              {language === 'cs' && 'Kontakt'}
+              {language === 'en' && 'Contact'}
+              {language === 'de' && 'Kontakt'}
+            </Link>
           </div>
           <div className='flex flex-col justify-self-center text-xl'>
-            <h4 className='text-3xl font-bold text-brand-action'>Produkty</h4>
+            <h4 className='text-3xl font-bold text-brand-action'>
+              {language === 'cs' && 'Produkty'}
+              {language === 'en' && 'Products'}
+              {language === 'de' && 'Produkte'}
+            </h4>
             <Link href='/produkty/?produkt=profesor-dvanactka&kategorie=pivo'>
               Profesor Dvanáctka
             </Link>
@@ -42,7 +75,11 @@ export const Footer = () => {
           </div>
           <div className='grid justify-between justify-self-end gap-4 text-xl'>
             <div>
-              <h4 className='text-3xl font-bold text-brand-action'>Adresa</h4>
+              <h4 className='text-3xl font-bold text-brand-action'>
+                {language === 'cs' && 'Adresa'}
+                {language === 'en' && 'Address'}
+                {language === 'de' && 'Adresse'}
+              </h4>
               <p>Kout na Šumavě 2</p>
               <p>34502 Kout na Šumavě</p>
               <Link
@@ -51,7 +88,10 @@ export const Footer = () => {
                 className='text-zinc-700 inline-flex items-center gap-1 mt-2'
               >
                 <ExternalLinkIcon size={15} />
-                trasa
+
+                {language === 'cs' && 'Trasa'}
+                {language === 'en' && 'Route'}
+                {language === 'de' && 'Strecke'}
               </Link>
             </div>
 
