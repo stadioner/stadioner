@@ -1,6 +1,9 @@
+'use client'
+
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
 import { buttonVariants } from '@/components/ui/button'
+import { useLanguage } from '@/store/use-language'
 import Link from 'next/link'
 
 const timelineData = [
@@ -37,17 +40,24 @@ const timelineData = [
 ]
 
 export const About = () => {
+  const { language } = useLanguage()
+
   return (
     <section className='bg-brand-secondary pb-24'>
       <Container className='flex justify-between gap-10'>
         <div>
           <h2 className='text-[44px] font-bold text-brand-action text-nowrap'>
-            Historie sahající až do roku 1736
+            {language === 'cs' && 'Historie sahající až do roku 1736'}
+            {language === 'en' && 'History dating back to 1736'}
+            {language === 'de' && 'Geschichte bis ins Jahr 1736 zurückreichend'}
           </h2>
           <p className='max-w-[80ch]'>
-            V Koutě na Šumavě ožívá pivovar s hlubokými kořeny. Založil ho rod
-            Stadionů, po kterém nese i jméno. Navazujeme na jejich odkaz: ctíme
-            tradici, ale přinášíme novou energii a směr.
+            {language === 'cs' &&
+              'V Koutě na Šumavě ožívá pivovar s hlubokými kořeny. Založil ho rod Stadionů, po kterém nese i jméno. Navazujeme na jejich odkaz: ctíme tradici, ale přinášíme novou energii a směr.'}
+            {language === 'en' &&
+              'In Kout na Šumavě, a brewery with deep roots is coming back to life. It was founded by the Stadion family, after whom it is named. We are continuing their legacy: we honor tradition, but we bring new energy and direction.'}
+            {language === 'de' &&
+              'In Kout na Šumavě erwacht eine Brauerei mit tiefen Wurzeln zu neuem Leben. Sie wurde von der Familie Stadion gegründet, nach der sie auch benannt ist. Wir knüpfen an ihr Vermächtnis an: Wir ehren die Tradition, bringen aber neue Energie und eine neue Ausrichtung mit.'}
           </p>
           <div className='w-min whitespace-nowrap mt-6'>
             <Border>
@@ -60,7 +70,9 @@ export const About = () => {
                     'hover:bg-transparent text-brand-action text-lg font-semibold',
                 })}
               >
-                Projít si celou historii
+                {language === 'cs' && 'Projít si celou historii'}
+                {language === 'en' && 'Go through the entire history'}
+                {language === 'de' && 'Die gesamte Geschichte durchgehen'}
               </Link>
             </Border>
           </div>
