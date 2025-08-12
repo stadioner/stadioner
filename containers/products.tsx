@@ -6,6 +6,15 @@ import { useRouter, useSearchParams } from 'next/navigation'
 import { Container } from '@/components/container'
 import { RippedPaperSVG } from '@/components/ripped-paper-svg'
 import { cn } from '@/lib/utils'
+import {
+  Dialog,
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
 
 // Typ produktu
 interface Product {
@@ -173,6 +182,7 @@ export const Products = ({
   const searchParams = useSearchParams()
   const [selectedCategory, setSelectedCategory] = useState('pivo')
   const [current, setCurrent] = useState(0)
+  const [open, setOpen] = useState(false)
 
   // Vždy aktuální pole produktů podle kategorie
   const filteredProducts = productMap[selectedCategory] || []
@@ -324,21 +334,45 @@ export const Products = ({
                     )
                   )}
                 </div>
-                <div className='flex gap-4'>
-                  <button
-                    onClick={handlePrev}
-                    className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
-                    aria-label='Previous product'
-                  >
-                    &#8592;
-                  </button>
-                  <button
-                    onClick={handleNext}
-                    aria-label='Next product'
-                    className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
-                  >
-                    &#8594;
-                  </button>
+                <div className='flex justify-between'>
+                  <div className='flex gap-4'>
+                    <button
+                      onClick={handlePrev}
+                      className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+                      aria-label='Previous product'
+                    >
+                      &#8592;
+                    </button>
+                    <button
+                      onClick={handleNext}
+                      aria-label='Next product'
+                      className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+                    >
+                      &#8594;
+                    </button>
+                  </div>
+                  <Dialog>
+                    <DialogTrigger className='bg-brand-primary text-brand-action font-bold py-2 px-4 cursor-pointer hover:opacity-90 transition'>
+                      Složení
+                    </DialogTrigger>
+                    <DialogContent className='bg-brand-primary'>
+                      <DialogHeader>
+                        <DialogTitle className='text-brand-action text-2xl'>
+                          Složení a Alergeny
+                        </DialogTitle>
+                      </DialogHeader>
+
+                      <div>
+                        <p>1. fdk sjfsk fja</p>
+                        <p>2. fdk sjfsk fja</p>
+                        <p>3. fdk sjfsk fja</p>
+                        <p>4. fdk sjfsk fja</p>
+                        <p>5. fdk sjfsk fja</p>
+                        <p>6. fdk sjfsk fja</p>
+                        <p>7. fdk sjfsk fja</p>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                 </div>
               </div>
               {/* Bottle icon selector */}
