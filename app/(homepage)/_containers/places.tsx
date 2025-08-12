@@ -24,11 +24,11 @@ export const Places = () => {
           </h2>
           <p className='max-w-[100ch]'>
             {language === 'cs' &&
-              'Naše hlavní výdejní místo najdete v pivovaru STADIONER v Koutě na Šumavě. Zde si můžete přímo zakoupit naše produkty nebo vrátit prázdné lahve. Kromě toho jsou naše produkty k dostání i v řadě restaurací, hospod a obchodů napříč Plzeňským krajem. Podívejte se na mapu a najděte nejbližší místo ve vašem okolí.'}
+              'Naše hlavní výdejní místo najdete v pivovaru STADIONER v Koutě na Šumavě. Zde si můžete přímo zakoupit naše produkty nebo vrátit prázdné lahve. Kromě toho jsou naše produkty k dostání i v řadě restaurací, hospod a obchodů napříč Plzeňským krajem.'}
             {language === 'en' &&
-              'Our main distribution point is located at the STADIONER brewery in Kout na Šumavě. Here you can purchase our products directly or return empty bottles. In addition, our products are available in a number of restaurants, pubs, and shops across the Plzeň Region. Take a look at the map and find the nearest location in your area.'}
+              'Our main distribution point is located at the STADIONER brewery in Kout na Šumavě. Here you can purchase our products directly or return empty bottles. In addition, our products are available in a number of restaurants, pubs, and shops across the Plzeň Region.'}
             {language === 'de' &&
-              'Unsere Hauptverkaufsstelle befindet sich in der Brauerei STADIONER in Kout na Šumavě. Hier können Sie unsere Produkte direkt kaufen oder leere Flaschen zurückgeben. Darüber hinaus sind unsere Produkte auch in einer Reihe von Restaurants, Gaststätten und Geschäften in der gesamten Region Pilsen erhältlich. Schauen Sie sich die Karte an und finden Sie den nächstgelegenen Standort in Ihrer Nähe.'}
+              'Unsere Hauptverkaufsstelle befindet sich in der Brauerei STADIONER in Kout na Šumavě. Hier können Sie unsere Produkte direkt kaufen oder leere Flaschen zurückgeben. Darüber hinaus sind unsere Produkte auch in einer Reihe von Restaurants, Gaststätten und Geschäften in der gesamten Region Pilsen erhältlich.'}
           </p>
         </div>
 
