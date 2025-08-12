@@ -57,7 +57,7 @@ export const About = () => {
                   variant: 'ghost',
                   size: 'lg',
                   className:
-                    'hover:bg-transparent text-brand-action text-lg font-medium',
+                    'hover:bg-transparent text-brand-action text-lg font-semibold',
                 })}
               >
                 Projít si celou historii
