@@ -188,7 +188,7 @@ export default function ProdejniMistaPage() {
                 <button
                   aria-label='Předchozí'
                   onClick={goPrev}
-                  className='p-2 rounded-md border border-brand-action text-brand-action hover:bg-brand-action hover:text-brand-primary transition-colors'
+                  className='p-2 rounded-md border border-brand-action text-brand-action hover:bg-brand-action hover:text-brand-primary transition-colors cursor-pointer'
                 >
                   <ArrowLeftIcon size={18} />
                 </button>
@@ -198,7 +198,7 @@ export default function ProdejniMistaPage() {
                 <button
                   aria-label='Další'
                   onClick={goNext}
-                  className='p-2 rounded-md border border-brand-action text-brand-action hover:bg-brand-action hover:text-brand-primary transition-colors'
+                  className='p-2 rounded-md border border-brand-action text-brand-action hover:bg-brand-action hover:text-brand-primary transition-colors cursor-pointer'
                 >
                   <ArrowRightIcon size={18} />
                 </button>

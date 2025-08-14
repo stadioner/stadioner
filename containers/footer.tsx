@@ -51,19 +51,19 @@ export const Footer = () => {
               {language === 'en' && 'Products'}
               {language === 'de' && 'Produkte'}
             </h4>
-            <Link href='/produkty/?produkt=profesor-dvanactka&kategorie=pivo'>
+            <Link href='/produkty?produkt=profesor-dvanactka&kategorie=pivo'>
               Profesor Dvanáctka
             </Link>
-            <Link href='/produkty/produkty?produkt=koutska-jedenactka&kategorie=pivo'>
+            <Link href='/produkty?produkt=koutska-jedenactka&kategorie=pivo'>
               Koutská Jedenáctka
             </Link>
-            <Link href='/produkty/produkty?produkt=limonada-pomeranc&kategorie=limo'>
+            <Link href='/produkty?produkt=limonada-pomeranc&kategorie=limo'>
               Limonáda Pomeranč
             </Link>
-            <Link href='/produkty/produkty?produkt=limonada-citron&kategorie=limo'>
+            <Link href='/produkty?produkt=limonada-citron&kategorie=limo'>
               Limonáda Citrón
             </Link>
-            <Link href='/produkty/produkty?produkt=colamix&kategorie=limo'>
+            <Link href='/produkty?produkt=cola-mix&kategorie=limo'>
               Cola Mix
             </Link>
             <Link href='/produkty/?produkt=pramenita-voda-sycena&kategorie=voda'>
