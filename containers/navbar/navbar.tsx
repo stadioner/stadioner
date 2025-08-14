@@ -19,7 +19,7 @@ export const Navbar = () => {
     <>
       <nav
         className={cn(
-          'fixed left-0 right-0 top-7 z-[1001] mx-auto lg:grid items-center px-14 transition hidden'
+          'fixed left-0 right-0 top-7 z-[1001] mx-auto md:grid items-center px-8 lg:px-10 xl:px-14 transition hidden'
         )}
       >
         <Border background>
@@ -115,7 +115,7 @@ export const Navbar = () => {
 
       <nav
         className={cn(
-          'fixed left-0 right-0 top-5 z-[1001] mx-auto grid items-center px-2 transition lg:hidden'
+          'fixed left-0 right-0 top-5 z-[1001] mx-auto grid items-center px-2 transition md:hidden'
         )}
       >
         <Border background>
