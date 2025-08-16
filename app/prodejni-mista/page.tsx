@@ -73,7 +73,7 @@ export default function ProdejniMistaPage() {
       <Container className='pb-20'>
         <section>
           <div className='pb-6'>
-            <h2 className='text-brand-action text-6xl font-bold flex-nowrap text-nowrap'>
+            <h2 className='text-brand-action text-3xl md:text-4xl lg:text-6xl font-bold flex-nowrap text-nowrap'>
               {language === 'cs' && 'Nejsme jen v Koutě na Šumavě'}
               {language === 'en' && 'We are not only in Kout na Šumavě'}
               {language === 'de' && 'Wir sind nicht nur in Kout na Šumavě'}
@@ -99,7 +99,7 @@ export default function ProdejniMistaPage() {
 
       <RippedPaperSVG flip />
       <section className='bg-brand-action py-12'>
-        <Container className='grid grid-cols-2 gap-6'>
+        <Container className='grid md:grid-cols-2 gap-6'>
           <div className='flex flex-col justify-between'>
             <div>
               <div>
@@ -110,7 +110,12 @@ export default function ProdejniMistaPage() {
                   Kout na Šumavě 2, 345 02 Kout na Šumavě
                 </p>
               </div>
-              <p className='text-zinc-100 mt-6 text-sm'>
+              <img
+                src='/placeholder-hl.webp'
+                alt=''
+                className='md:hidden py-4'
+              />
+              <p className='text-zinc-100 md:mt-6 text-sm'>
                 {language === 'cs' && (
                   <>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -148,13 +153,13 @@ export default function ProdejniMistaPage() {
             </div>
             <a
               href='tel:'
-              className='text-brand-primary flex gap-1 items-center'
+              className='text-brand-primary flex gap-1 items-center mt-8 md:mt-0'
             >
               <PhoneIcon size={16} />
               +420 111 222 333
             </a>
           </div>
-          <img src='/placeholder-hl.webp' alt='' />
+          <img src='/placeholder-hl.webp' alt='' className='hidden md:block' />
         </Container>
       </section>
       <RippedPaperSVG />
@@ -164,26 +169,28 @@ export default function ProdejniMistaPage() {
           <h2 className='text-brand-action text-5xl font-bold mb-1'>
             Pojízdná prodejna
           </h2>
-          <div className='grid grid-cols-2 gap-6'>
-            <Border>
-              <Map
-                flexible
-                center={current.position}
-                markers={[
-                  {
-                    position: current.position,
-                    iconUrl: current.iconUrl,
-                    popupContent: (
-                      <>
-                        <h3 className='text-lg font-bold'>{current.place}</h3>
-                        <p>{formattedDate}</p>
-                      </>
-                    ),
-                  },
-                ]}
-              />
-            </Border>
-            <div>
+          <div className='grid md:grid-cols-2 gap-6'>
+            <div className='order-2 md:order-1'>
+              <Border>
+                <Map
+                  flexible
+                  center={current.position}
+                  markers={[
+                    {
+                      position: current.position,
+                      iconUrl: current.iconUrl,
+                      popupContent: (
+                        <>
+                          <h3 className='text-lg font-bold'>{current.place}</h3>
+                          <p>{formattedDate}</p>
+                        </>
+                      ),
+                    },
+                  ]}
+                />
+              </Border>
+            </div>
+            <div className='order-1 md:order-2'>
               <div className='flex items-center gap-3 mb-4'>
                 <button
                   aria-label='Předchozí'
