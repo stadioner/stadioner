@@ -285,6 +285,20 @@ export const Products = ({
           </div>
 
           <div className='flex flex-col md:grid md:grid-cols-[1.2fr_1fr] gap-8 items-stretch mt-8'>
+            <div className='flex-1 md:hidden flex items-center justify-center'>
+              <AnimatePresence mode='wait'>
+                <motion.img
+                  key={product.image}
+                  src={product.image}
+                  alt={product.name}
+                  initial={{ opacity: 0, x: 40 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -40 }}
+                  transition={{ duration: 0.5 }}
+                  className='max-h-[300px] drop-shadow-2xl animate-bottle'
+                />
+              </AnimatePresence>
+            </div>
             {/* Left: Info & Navigation */}
             <div className='flex-1 flex flex-col justify-center'>
               <div className='mb-8'>
@@ -336,7 +350,7 @@ export const Products = ({
                   <div className='flex gap-4'>
                     <button
                       onClick={handlePrev}
-                      className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+                      className='size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
                       aria-label='Previous product'
                     >
                       &#8592;
@@ -344,7 +358,7 @@ export const Products = ({
                     <button
                       onClick={handleNext}
                       aria-label='Next product'
-                      className='w-10 h-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+                      className='size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
                     >
                       &#8594;
                     </button>
@@ -392,14 +406,14 @@ export const Products = ({
                     <img
                       src={p.icon}
                       alt={p.name}
-                      className='w-14 h-14 object-cover rounded-full'
+                      className='size-12 md:size-14 object-cover rounded-full'
                     />
                   </motion.button>
                 ))}
               </div>
             </div>
             {/* Right: Product Image */}
-            <div className='flex-1 flex items-center justify-center'>
+            <div className='flex-1 hidden md:flex items-center justify-center'>
               <AnimatePresence mode='wait'>
                 <motion.img
                   key={product.image}
