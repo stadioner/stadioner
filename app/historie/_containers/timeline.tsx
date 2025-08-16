@@ -210,7 +210,7 @@ export const Timeline = () => {
       </AnimatePresence>
 
       {/* Timeline Navigation */}
-      <div className='absolute left-18 top-1/2 -translate-y-1/2 z-20'>
+      <div className='absolute left-4 md:left-18 top-1/2 -translate-y-1/2 z-20'>
         <div className='relative flex flex-col h-[500px]'>
           <div className='absolute left-1/2 top-0 bottom-0 w-0.5 bg-brand-primary/30 transform -translate-x-1/2' />
 
@@ -247,7 +247,7 @@ export const Timeline = () => {
 
       {/* Content */}
       <div className='relative z-10 h-full flex items-center'>
-        <div className='container mx-auto pl-40'>
+        <div className='container mx-auto pl-32 pr-2'>
           <AnimatePresence mode='wait'>
             <motion.div
               key={currentSlide}
