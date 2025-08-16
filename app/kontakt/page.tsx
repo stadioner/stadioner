@@ -9,7 +9,7 @@ export default function KontaktPage() {
 
   return (
     <main className='bg-brand-primary pt-32 pb-20'>
-      <Container className='grid grid-cols-2 gap-10'>
+      <Container className='grid md:grid-cols-2 gap-10'>
         <div>
           <div>
             <p className='font-bold text-xl'>Pivovar Stadioner</p>
