@@ -11,7 +11,7 @@ export const Footer = () => {
   return (
     <footer className='bg-brand-secondary pt-20 pb-10'>
       <Container>
-        <div className='grid grid-cols-3 gap-10'>
+        <div className='grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-20 md:gap-10'>
           <div className='grid text-xl'>
             <h4 className='text-3xl font-bold text-brand-action'>
               {language === 'cs' && 'Odkazy'}
@@ -73,7 +73,7 @@ export const Footer = () => {
               Pramenitá Voda (Nesycená)
             </Link>
           </div>
-          <div className='grid justify-between justify-self-end gap-4 text-xl'>
+          <div className='grid justify-between md:justify-self-end gap-4 text-xl'>
             <div>
               <h4 className='text-3xl font-bold text-brand-action'>
                 {language === 'cs' && 'Adresa'}
