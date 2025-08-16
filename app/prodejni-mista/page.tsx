@@ -69,7 +69,7 @@ export default function ProdejniMistaPage() {
   }, [current.date, language])
 
   return (
-    <main className='bg-brand-primary pt-44 pb-20'>
+    <main className='bg-brand-primary pt-32 md:pt-40 pb-20'>
       <Container className='pb-20'>
         <section>
           <div className='pb-6'>

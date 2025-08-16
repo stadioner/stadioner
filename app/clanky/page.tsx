@@ -7,7 +7,7 @@ export default async function BlogPage() {
   const posts = await cachedClient(PostsQuery)
 
   return (
-    <main className='bg-brand-primary pt-40 pb-28'>
+    <main className='bg-brand-primary pt-32 md:pt-40 pb-28'>
       <Container>
         <Posts posts={posts} />
       </Container>

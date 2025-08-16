@@ -43,8 +43,6 @@ export const Posts = ({ posts }: { posts: Post[] }) => {
     )
   }
 
-  console.log(posts)
-
   return (
     <>
       {/* Kategorie filtr */}
@@ -64,6 +62,7 @@ export const Posts = ({ posts }: { posts: Post[] }) => {
           </button>
         ))}
       </div>
+
       <div className='mb-12 relative'>
         <span className='absolute left-3 top-1/2 -translate-y-1/2 text-brand-action pointer-events-none'>
           {/* Ikonka lupy SVG */}
@@ -90,6 +89,7 @@ export const Posts = ({ posts }: { posts: Post[] }) => {
           className='pl-10 pr-4 py-2 border border-brand-action text-lg placeholder:text-brand-action focus-within:border-brand-action focus-within:outline-brand-action w-full'
         />
       </div>
+
       {filteredPosts.length === 0 ? (
         <div className='py-20'>
           <h3 className='text-center text-brand-action text-5xl font-bold'>
@@ -100,9 +100,9 @@ export const Posts = ({ posts }: { posts: Post[] }) => {
           </p>
         </div>
       ) : (
-        <section className='grid grid-cols-3 gap-10'>
+        <section className='grid md:grid-cols-3 gap-10'>
           {filteredPosts.map((post: Post) => (
-            <Link href={`/blog/${post.slug.current}`} key={post._id}>
+            <Link href={`/clanky/${post.slug.current}`} key={post._id}>
               <Border>
                 <div className='aspect-square overflow-hidden relative'>
                   <img

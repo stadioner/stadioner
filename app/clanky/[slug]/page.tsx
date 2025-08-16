@@ -18,7 +18,7 @@ export default async function Page({
   const post = await cachedClient(PostQuery, { slug })
 
   return (
-    <main className='bg-brand-primary pt-40 pb-20'>
+    <main className='bg-brand-primary pt-32 md:pt-40 pb-20'>
       <Post post={post} />
     </main>
   )

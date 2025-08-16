@@ -3,7 +3,7 @@ import { Suspense } from 'react'
 
 export default function ProduktyPage() {
   return (
-    <main className='bg-brand-action pt-32 pb-40'>
+    <main className='bg-brand-action pt-24 md:pt-32 pb-40'>
       <Suspense
         fallback={<div className='bg-brand-action py-8'>Loading...</div>}
       >
