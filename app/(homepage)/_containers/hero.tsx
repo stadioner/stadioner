@@ -11,7 +11,7 @@ export const Hero = () => {
       <img
         src='/hero/main.svg'
         alt='hero'
-        className='absolute bottom-0 left-0 z-10 w-full'
+        className='absolute bottom-0 left-0 z-10 w-full scale-200 sm:scale-100'
       />
       <div className='bg-brand-primary absolute left-0 bottom-0 w-full h-full'>
         <Container className='mt-32 md:mt-44 text-brand-action'>
