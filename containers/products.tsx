@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import { useLanguage } from '@/store/use-language'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Container } from '@/components/container'
@@ -25,10 +26,11 @@ interface Product {
   stats: { label: string; value: string }[]
   image: string
   icon: string
+  ingredients: string
 }
 
-// Rozdělené produkty podle kategorií
-const beers: Product[] = [
+// Rozdělené produkty podle kategorií (čeština)
+const beersCs: Product[] = [
   {
     name: 'Profesor dvanáctka',
     subtitle: 'Klasický nefiltrovaný ležák s plnou chutí',
@@ -45,6 +47,7 @@ const beers: Product[] = [
     ],
     image: '/products/pivo/dvanactka/bottle.webp',
     icon: '/products/pivo/dvanactka/icon.svg',
+    ingredients: '/products/etiq.webp',
   },
   {
     name: 'Koutská jedenáctka',
@@ -62,10 +65,11 @@ const beers: Product[] = [
     ],
     image: '/products/bottle.webp',
     icon: '/products/pivo/jedenactka/icon.svg',
+    ingredients: '/products/etiq.webp',
   },
 ]
 
-const limos: Product[] = [
+const limosCs: Product[] = [
   {
     name: 'Limonáda citrón',
     subtitle: 'Svěží citronová limonáda z pramenité vody',
@@ -82,6 +86,7 @@ const limos: Product[] = [
     ],
     image: '/products/limo/citron/bottle.webp',
     icon: '/products/limo/citron/icon.svg',
+    ingredients: '/products/etiq.webp',
   },
   {
     name: 'Limonáda pomeranč',
@@ -99,6 +104,7 @@ const limos: Product[] = [
     ],
     image: '/products/limo/pomeranc/bottle.webp',
     icon: '/products/limo/pomeranc/icon.svg',
+    ingredients: '/products/etiq.webp',
   },
   {
     name: 'Cola mix',
@@ -116,10 +122,11 @@ const limos: Product[] = [
     ],
     image: '/products/limo/colamix/bottle.webp',
     icon: '/products/limo/colamix/icon.svg',
+    ingredients: '/products/etiq.webp',
   },
 ]
 
-const waters: Product[] = [
+const watersCs: Product[] = [
   {
     name: 'Pramenitá voda (Sycená)',
     subtitle: 'Čistá voda z šumavských pramenů',
@@ -136,6 +143,7 @@ const waters: Product[] = [
     ],
     image: '/products/voda/sycena/bottle.webp',
     icon: '/products/voda/sycena/icon.svg',
+    ingredients: '/products/etiq.webp',
   },
   {
     name: 'Pramenitá voda (Nesycená)',
@@ -153,20 +161,297 @@ const waters: Product[] = [
     ],
     image: '/products/bottle.webp',
     icon: '/products/voda/nesycena/icon.svg',
+    ingredients: '/products/etiq.webp',
   },
 ]
 
-// Mapování kategorií na pole produktů
-const productMap: { [key: string]: Product[] } = {
-  pivo: beers,
-  limo: limos,
-  voda: waters,
-}
+// English
+const beersEn: Product[] = [
+  {
+    name: 'Professor 12',
+    subtitle: 'Classic unfiltered lager with full flavor',
+    category: 'pivo',
+    categoryLabel: 'Beer',
+    slug: 'profesor-dvanactka',
+    description:
+      'Professor 12 is the perfect choice for those who seek an honest, uncompromising beer without unnecessary tweaks. Unfiltered and unpasteurized, it preserves the natural taste and character of a true Czech lager. Perfect with grilled meats, cheeses, or just for a relaxed evening with friends.',
+    stats: [
+      { label: 'TYPE', value: 'Pale lager' },
+      { label: 'ABV', value: '5.1%' },
+      { label: 'DEGREE', value: '12°' },
+      { label: 'FILTRATION', value: 'Unfiltered' },
+    ],
+    image: '/products/pivo/dvanactka/bottle.webp',
+    icon: '/products/pivo/dvanactka/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+  {
+    name: 'Koutska 11',
+    subtitle: 'Light lager with gentle bitterness',
+    category: 'pivo',
+    categoryLabel: 'Beer',
+    slug: 'koutska-jedenactka',
+    description:
+      'This 11° stands out for its drinkability, clean profile, and a delicate hop aroma. Great with Czech cuisine, lighter meals, or simply for an easy-going get-together. If you want honest craft beer with a lower gravity, Koutska 11 is a safe bet.',
+    stats: [
+      { label: 'TYPE', value: 'Pale lager' },
+      { label: 'ABV', value: '4.2%' },
+      { label: 'DEGREE', value: '11°' },
+      { label: 'FILTRATION', value: 'Unfiltered' },
+    ],
+    image: '/products/bottle.webp',
+    icon: '/products/pivo/jedenactka/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+]
 
-const categories = [
+const limosEn: Product[] = [
+  {
+    name: 'Lemon Lemonade',
+    subtitle: 'Refreshing lemon soda made from spring water',
+    category: 'limo',
+    categoryLabel: 'Lemonade',
+    slug: 'limonada-citron',
+    description:
+      'Stadioner Lemon Lemonade is a refreshing non-alcoholic drink made from spring water from the Šumava forests. It features a pleasantly tart lemon taste that refreshes in any situation—at work, during sports, or while relaxing. Carefully balanced without unnecessary preservatives.',
+    stats: [
+      { label: 'VOLUME', value: '500 ml' },
+      { label: 'FLAVOR', value: 'Lemon' },
+      { label: 'INGREDIENTS', value: 'Spring water' },
+      { label: 'PACKAGING', value: 'Returnable bottle' },
+    ],
+    image: '/products/limo/citron/bottle.webp',
+    icon: '/products/limo/citron/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+  {
+    name: 'Orange Lemonade',
+    subtitle: 'Refreshing orange soda made from spring water',
+    category: 'limo',
+    categoryLabel: 'Lemonade',
+    slug: 'limonada-pomeranc',
+    description:
+      'Stadioner Orange Lemonade is a sweeter non-alcoholic drink with a pronounced fruity taste, made from spring water from the Šumava forests. Gently carbonated and naturally flavored for a pleasant refreshment.',
+    stats: [
+      { label: 'VOLUME', value: '500 ml' },
+      { label: 'FLAVOR', value: 'Orange' },
+      { label: 'INGREDIENTS', value: 'Spring water' },
+      { label: 'PACKAGING', value: 'Returnable bottle' },
+    ],
+    image: '/products/limo/pomeranc/bottle.webp',
+    icon: '/products/limo/pomeranc/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+  {
+    name: 'Cola mix',
+    subtitle: 'Classic cola with a hint of lemon',
+    category: 'limo',
+    categoryLabel: 'Lemonade',
+    slug: 'cola-mix',
+    description:
+      'Stadioner Cola mix combines the traditional cola taste with a refreshing lemon note. Made from spring water from the Šumava forests and gently carbonated for ideal drinkability.',
+    stats: [
+      { label: 'VOLUME', value: '500 ml' },
+      { label: 'FLAVOR', value: 'Cola with lemon' },
+      { label: 'INGREDIENTS', value: 'Spring water' },
+      { label: 'PACKAGING', value: 'Returnable bottle' },
+    ],
+    image: '/products/limo/colamix/bottle.webp',
+    icon: '/products/limo/colamix/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+]
+
+const watersEn: Product[] = [
+  {
+    name: 'Spring water (Sparkling)',
+    subtitle: 'Pure water from Šumava springs',
+    category: 'voda',
+    categoryLabel: 'Water',
+    slug: 'pramenita-voda-sycena',
+    description:
+      'Stadioner spring water comes from the pristine springs of the Šumava mountains. Naturally pure, without added substances or minerals. Ideal for everyday drinking, sports, or as a base for beverages. Packed in returnable bottles for sustainability.',
+    stats: [
+      { label: 'VOLUME', value: '500 ml' },
+      { label: 'TYPE', value: 'Spring' },
+      { label: 'COMPOSITION', value: 'Natural' },
+      { label: 'PACKAGING', value: 'Returnable bottle' },
+    ],
+    image: '/products/voda/sycena/bottle.webp',
+    icon: '/products/voda/sycena/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+  {
+    name: 'Spring water (Still)',
+    subtitle: 'Pure water from Šumava springs',
+    category: 'voda',
+    categoryLabel: 'Water',
+    slug: 'pramenita-voda-nesycena',
+    description:
+      'Stadioner spring water comes from clean Šumava springs. Naturally pure and with a gentle taste, ideal for everyday hydration, sports, and cooking. Packed in returnable bottles to be kind to the environment.',
+    stats: [
+      { label: 'VOLUME', value: '500 ml' },
+      { label: 'TYPE', value: 'Spring' },
+      { label: 'COMPOSITION', value: 'Natural' },
+      { label: 'PACKAGING', value: 'Returnable bottle' },
+    ],
+    image: '/products/bottle.webp',
+    icon: '/products/voda/nesycena/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+]
+
+// Deutsch
+const beersDe: Product[] = [
+  {
+    name: 'Professor 12',
+    subtitle: 'Klassisches ungefiltertes Lager mit vollem Geschmack',
+    category: 'pivo',
+    categoryLabel: 'Bier',
+    slug: 'profesor-dvanactka',
+    description:
+      'Professor 12 ist die ideale Wahl für alle, die ein ehrliches, kompromissloses Bier ohne unnötige Zusätze suchen. Ungefiltert und unpasteurisiert bewahrt es den natürlichen Geschmack und Charakter eines echten tschechischen Lagers. Perfekt zu Gegrilltem, Käse oder einfach zum gemütlichen Beisammensein.',
+    stats: [
+      { label: 'TYP', value: 'Helles Lager' },
+      { label: 'ABV', value: '5.1%' },
+      { label: 'GRAD', value: '12°' },
+      { label: 'FILTRATION', value: 'Ungefiltert' },
+    ],
+    image: '/products/pivo/dvanactka/bottle.webp',
+    icon: '/products/pivo/dvanactka/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+  {
+    name: 'Koutska 11',
+    subtitle: 'Leichtes Lager mit feiner Bittere',
+    category: 'pivo',
+    categoryLabel: 'Bier',
+    slug: 'koutska-jedenactka',
+    description:
+      'Dieses 11° ist besonders trinkbar, mit sauberem Profil und feinem Hopfenaroma. Passt hervorragend zur tschechischen Küche, zu leichten Gerichten oder einfach zum gemütlichen Abend. Wer ehrliches Craft-Bier mit niedriger Stammwürze sucht, liegt mit Koutska 11 richtig.',
+    stats: [
+      { label: 'TYP', value: 'Helles Lager' },
+      { label: 'ABV', value: '4.2%' },
+      { label: 'GRAD', value: '11°' },
+      { label: 'FILTRATION', value: 'Ungefiltert' },
+    ],
+    image: '/products/bottle.webp',
+    icon: '/products/pivo/jedenactka/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+]
+
+const limosDe: Product[] = [
+  {
+    name: 'Zitronenlimonade',
+    subtitle: 'Erfrischende Zitronenlimonade aus Quellwasser',
+    category: 'limo',
+    categoryLabel: 'Limonade',
+    slug: 'limonada-citron',
+    description:
+      'Die Zitronenlimonade von Stadioner ist ein erfrischendes alkoholfreies Getränk aus Quellwasser des Böhmerwalds. Angenehm säuerlich und ideal zum Arbeiten, Sport oder Entspannen. Ohne unnötige Konservierungsstoffe – leicht, natürlich und ausgewogen.',
+    stats: [
+      { label: 'VOLUMEN', value: '500 ml' },
+      { label: 'GESCHMACK', value: 'Zitrone' },
+      { label: 'ZUSAMMENSETZUNG', value: 'Quellwasser' },
+      { label: 'VERPACKUNG', value: 'Mehrwegflasche' },
+    ],
+    image: '/products/limo/citron/bottle.webp',
+    icon: '/products/limo/citron/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+  {
+    name: 'Orangenlimonade',
+    subtitle: 'Erfrischende Orangenlimonade aus Quellwasser',
+    category: 'limo',
+    categoryLabel: 'Limonade',
+    slug: 'limonada-pomeranc',
+    description:
+      'Die Orangenlimonade von Stadioner ist ein süßer, fruchtiger Durstlöscher aus Quellwasser des Böhmerwalds. Sanft kohlensäurehaltig mit natürlichem Aroma – ideal zur Erfrischung.',
+    stats: [
+      { label: 'VOLUMEN', value: '500 ml' },
+      { label: 'GESCHMACK', value: 'Orange' },
+      { label: 'ZUSAMMENSETZUNG', value: 'Quellwasser' },
+      { label: 'VERPACKUNG', value: 'Mehrwegflasche' },
+    ],
+    image: '/products/limo/pomeranc/bottle.webp',
+    icon: '/products/limo/pomeranc/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+  {
+    name: 'Cola Mix',
+    subtitle: 'Klassische Cola mit einem Hauch Zitrone',
+    category: 'limo',
+    categoryLabel: 'Limonade',
+    slug: 'cola-mix',
+    description:
+      'Stadioner Cola Mix verbindet den traditionellen Cola-Geschmack mit einer erfrischenden Zitronennote. Aus Quellwasser des Böhmerwalds und sanft kohlensäurehaltig – ideal trinkbar.',
+    stats: [
+      { label: 'VOLUMEN', value: '500 ml' },
+      { label: 'GESCHMACK', value: 'Cola mit Zitrone' },
+      { label: 'ZUSAMMENSETZUNG', value: 'Quellwasser' },
+      { label: 'VERPACKUNG', value: 'Mehrwegflasche' },
+    ],
+    image: '/products/limo/colamix/bottle.webp',
+    icon: '/products/limo/colamix/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+]
+
+const watersDe: Product[] = [
+  {
+    name: 'Quellwasser (Kohlensäurehaltig)',
+    subtitle: 'Reines Wasser aus Böhmerwaldquellen',
+    category: 'voda',
+    categoryLabel: 'Wasser',
+    slug: 'pramenita-voda-sycena',
+    description:
+      'Das Quellwasser von Stadioner stammt aus sauberen Quellen des Böhmerwalds. Natürlich rein, ohne Zusatzstoffe oder Mineralien. Ideal für den täglichen Genuss, Sport oder als Basis für Getränke. In Mehrwegflaschen für mehr Nachhaltigkeit.',
+    stats: [
+      { label: 'VOLUMEN', value: '500 ml' },
+      { label: 'TYP', value: 'Quell' },
+      { label: 'ZUSAMMENSETZUNG', value: 'Natürlich' },
+      { label: 'VERPACKUNG', value: 'Mehrwegflasche' },
+    ],
+    image: '/products/voda/sycena/bottle.webp',
+    icon: '/products/voda/sycena/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+  {
+    name: 'Quellwasser (Still)',
+    subtitle: 'Reines Wasser aus Böhmerwaldquellen',
+    category: 'voda',
+    categoryLabel: 'Wasser',
+    slug: 'pramenita-voda-nesycena',
+    description:
+      'Stadioner Quellwasser stammt aus reinen Böhmerwaldquellen. Natürlich rein, mit sanftem Geschmack – ideal für tägliche Hydration, Sport und Kochen. In Mehrwegflaschen für die Umwelt.',
+    stats: [
+      { label: 'VOLUMEN', value: '500 ml' },
+      { label: 'TYP', value: 'Quell' },
+      { label: 'ZUSAMMENSETZUNG', value: 'Natürlich' },
+      { label: 'VERPACKUNG', value: 'Mehrwegflasche' },
+    ],
+    image: '/products/bottle.webp',
+    icon: '/products/voda/nesycena/icon.svg',
+    ingredients: '/products/etiq.webp',
+  },
+]
+
+// Kategorie (labels) podle jazyka
+const categoriesCs = [
   { id: 'pivo', label: 'Piva' },
   { id: 'limo', label: 'Limonády' },
   { id: 'voda', label: 'Vody' },
+]
+const categoriesEn = [
+  { id: 'pivo', label: 'Beers' },
+  { id: 'limo', label: 'Lemonades' },
+  { id: 'voda', label: 'Water' },
+]
+const categoriesDe = [
+  { id: 'pivo', label: 'Biere' },
+  { id: 'limo', label: 'Limonaden' },
+  { id: 'voda', label: 'Wasser' },
 ]
 
 export const Products = ({
@@ -176,11 +461,37 @@ export const Products = ({
   rippedPaper?: boolean
   hScreen?: boolean
 }) => {
+  const { language } = useLanguage()
+  const activeLang = language === 'en' || language === 'de' ? language : 'cs'
+
+  // Mapování kategorií na pole produktů dle jazyka
+  const productMap: { [key: string]: Product[] } =
+    activeLang === 'cs'
+      ? { pivo: beersCs, limo: limosCs, voda: watersCs }
+      : activeLang === 'en'
+        ? { pivo: beersEn, limo: limosEn, voda: watersEn }
+        : { pivo: beersDe, limo: limosDe, voda: watersDe }
+
+  const categories =
+    activeLang === 'cs'
+      ? categoriesCs
+      : activeLang === 'en'
+        ? categoriesEn
+        : categoriesDe
+
+  const uiLabels = {
+    cs: { composition: 'Složení', compositionTitle: 'Složení a Alergeny' },
+    en: {
+      composition: 'Ingredients',
+      compositionTitle: 'Ingredients & Allergens',
+    },
+    de: { composition: 'Zutaten', compositionTitle: 'Zutaten & Allergene' },
+  } as const
+  const labels = uiLabels[activeLang as 'cs' | 'en' | 'de']
   const router = useRouter()
   const searchParams = useSearchParams()
   const [selectedCategory, setSelectedCategory] = useState('pivo')
   const [current, setCurrent] = useState(0)
-  const [open, setOpen] = useState(false)
 
   // Vždy aktuální pole produktů podle kategorie
   const filteredProducts = productMap[selectedCategory] || []
@@ -365,24 +676,20 @@ export const Products = ({
                   </div>
                   <Dialog>
                     <DialogTrigger className='bg-brand-primary text-brand-action font-bold py-2 px-4 cursor-pointer hover:opacity-90 transition'>
-                      Složení
+                      {labels.composition}
                     </DialogTrigger>
-                    <DialogContent className='bg-brand-primary'>
+                    <DialogContent className='bg-brand-primary h-[500px]'>
                       <DialogHeader>
                         <DialogTitle className='text-brand-action text-2xl'>
-                          Složení a Alergeny
+                          {labels.compositionTitle}
                         </DialogTitle>
                       </DialogHeader>
 
-                      <div>
-                        <p>1. fdk sjfsk fja</p>
-                        <p>2. fdk sjfsk fja</p>
-                        <p>3. fdk sjfsk fja</p>
-                        <p>4. fdk sjfsk fja</p>
-                        <p>5. fdk sjfsk fja</p>
-                        <p>6. fdk sjfsk fja</p>
-                        <p>7. fdk sjfsk fja</p>
-                      </div>
+                      <img
+                        src={product.ingredients}
+                        alt='ingredients'
+                        className='max-h-[400px]'
+                      />
                     </DialogContent>
                   </Dialog>
                 </div>
