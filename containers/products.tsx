@@ -43,7 +43,7 @@ const beers: Product[] = [
       { label: 'STUPEŇ', value: '12°' },
       { label: 'FILTRACE', value: 'Nefiltrované' },
     ],
-    image: '/products/bottle.webp',
+    image: '/products/pivo/dvanactka/bottle.webp',
     icon: '/products/pivo/dvanactka/icon.svg',
   },
   {
@@ -80,7 +80,7 @@ const limos: Product[] = [
       { label: 'SLOŽENÍ', value: 'Pramenitá voda' },
       { label: 'BALENÍ', value: 'Vratný obal' },
     ],
-    image: '/products/bottle.webp',
+    image: '/products/limo/citron/bottle.webp',
     icon: '/products/limo/citron/icon.svg',
   },
   {
@@ -97,7 +97,7 @@ const limos: Product[] = [
       { label: 'SLOŽENÍ', value: 'Pramenitá voda' },
       { label: 'BALENÍ', value: 'Vratný obal' },
     ],
-    image: '/products/bottle.webp',
+    image: '/products/limo/pomeranc/bottle.webp',
     icon: '/products/limo/pomeranc/icon.svg',
   },
   {
@@ -114,7 +114,7 @@ const limos: Product[] = [
       { label: 'SLOŽENÍ', value: 'Pramenitá voda' },
       { label: 'BALENÍ', value: 'Vratný obal' },
     ],
-    image: '/products/bottle.webp',
+    image: '/products/limo/colamix/bottle.webp',
     icon: '/products/limo/colamix/icon.svg',
   },
 ]
@@ -134,7 +134,7 @@ const waters: Product[] = [
       { label: 'SLOŽENÍ', value: 'Přírodní' },
       { label: 'BALENÍ', value: 'Vratný obal' },
     ],
-    image: '/products/bottle.webp',
+    image: '/products/voda/sycena/bottle.webp',
     icon: '/products/voda/sycena/icon.svg',
   },
   {
@@ -265,7 +265,7 @@ export const Products = ({
         )}
         <Container>
           {/* Category Selector */}
-          <div className='flex justify-center mb-8'>
+          <div className='flex justify-center'>
             <div className='flex bg-zinc-800/50 p-1 backdrop-blur-sm'>
               {categories.map(category => (
                 <button
@@ -284,7 +284,7 @@ export const Products = ({
             </div>
           </div>
 
-          <div className='flex flex-col md:grid md:grid-cols-[1.2fr_1fr] gap-8 items-stretch mt-8'>
+          <div className='flex flex-col md:grid md:grid-cols-[1.2fr_1fr] gap-8 items-stretch mt-6 sm:mt-12'>
             <div className='flex-1 md:hidden flex items-center justify-center'>
               <AnimatePresence mode='wait'>
                 <motion.img
@@ -324,7 +324,7 @@ export const Products = ({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4, delay: 0.1 }}
-                    className='text-zinc-200 mb-8 max-w-lg'
+                    className='text-zinc-200 mb-8 max-w-lg hidden sm:block'
                   >
                     {product.description}
                   </motion.p>
