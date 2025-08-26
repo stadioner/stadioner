@@ -7,7 +7,7 @@ export const Hero = () => {
   const { language } = useLanguage()
 
   return (
-    <section className='relative h-[70vh] sm:h-[86vh] w-full'>
+    <section className='relative h-[70vh] sm:h-[86vh] w-full overflow-hidden'>
       <img
         src='/hero/main.svg'
         alt='hero'
