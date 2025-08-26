@@ -43,7 +43,7 @@ export const About = () => {
   const { language } = useLanguage()
 
   return (
-    <section className='bg-brand-secondary pb-24'>
+    <section className='bg-brand-secondary pb-24 overflow-hidden'>
       <Container className='flex flex-col lg:flex-row gap-10'>
         <div className='flex-1'>
           <h2 className='text-3xl sm:text-5xl font-bold text-brand-action'>
@@ -67,7 +67,7 @@ export const About = () => {
                   variant: 'ghost',
                   size: 'lg',
                   className:
-                    'hover:bg-transparent text-brand-action text-lg font-semibold',
+                    'hover:bg-brand-action hover:text-brand-primary text-brand-action text-lg font-semibold',
                 })}
               >
                 {language === 'cs' && 'Projít si celou historii'}

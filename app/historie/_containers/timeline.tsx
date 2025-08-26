@@ -16,7 +16,7 @@ const timelineData: TimelineSlide[] = [
     id: 1,
     year: '1736',
     description:
-      'Pivovar Kout na Šumavě pak vznikl v roce 1736 pod správou rodu Stadionů, jejichž erb dodnes zdobí logo.',
+      'Pivovar Kout na Šumavě vznikl v roce 1736 pod správou rodu Stadionů.',
     image: '/history/1.webp',
   },
 
