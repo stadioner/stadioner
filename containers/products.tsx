@@ -568,7 +568,7 @@ export const Products = ({
       <div className={cn('bg-brand-action py-8', hScreen && '')}>
         {rippedPaper && (
           <div
-            className='absolute -top-5 left-0 w-full z-10'
+            className='absolute -top-4 left-0 w-full z-10'
             style={{ lineHeight: 0 }}
           >
             <RippedPaperSVG flip />
@@ -738,7 +738,7 @@ export const Products = ({
         </Container>
         {rippedPaper && (
           <div
-            className='absolute -bottom-5 left-0 w-full z-10'
+            className='absolute -bottom-4 left-0 w-full z-10'
             style={{ lineHeight: 0 }}
           >
             <RippedPaperSVG />
