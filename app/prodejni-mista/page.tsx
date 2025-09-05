@@ -126,8 +126,8 @@ export default function ProdejniMistaPage() {
                 </p>
               </div>
               <img
-                src='/placeholder-hl.webp'
-                alt=''
+                src='/vydejni-misto.webp'
+                alt='Výdejní místo Stadioner (Kout na Šumavě)'
                 className='md:hidden py-4'
               />
               <div className='text-zinc-100 md:mt-6 space-y-4'>
@@ -210,7 +210,11 @@ export default function ProdejniMistaPage() {
               +420 111 222 333
             </a>
           </div>
-          <img src='/placeholder-hl.webp' alt='' className='hidden md:block' />
+          <img
+            src='/vydejni-misto.webp'
+            alt='Výdejní místo Stadioner (Kout na Šumavě)'
+            className='hidden md:block'
+          />
         </Container>
       </section>
       <RippedPaperSVG />
