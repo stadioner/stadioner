@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import {
   Dialog,
   DialogContent,
@@ -16,11 +17,15 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
   const { isVerified, setVerified } = useAgeVerification()
   const { hasConsented } = useCookieConsent()
   const [sessionVerified, setSessionVerified] = useState(false)
-  const [open, setOpen] = useState(!(isVerified || sessionVerified))
+  const pathname = usePathname()
+  const isStudioPage = pathname?.startsWith('/studio')
+  const [open, setOpen] = useState(
+    !(isVerified || sessionVerified) && !isStudioPage
+  )
 
   useEffect(() => {
-    setOpen(!(isVerified || sessionVerified))
-  }, [isVerified, sessionVerified])
+    setOpen(!(isVerified || sessionVerified) && !isStudioPage)
+  }, [isVerified, sessionVerified, isStudioPage])
 
   const handleVerify = () => {
     if (hasConsented) {
@@ -55,7 +60,7 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-      {(isVerified || sessionVerified) && children}
+      {(isVerified || sessionVerified || isStudioPage) && children}
     </section>
   )
 }
