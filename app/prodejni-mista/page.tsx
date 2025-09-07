@@ -138,7 +138,8 @@ export default function ProdejniMistaPage() {
                       areálu pivovaru v Koutě na Šumavě. Zde si můžete zakoupit
                       všechny naše produkty přímo od výrobce, včetně čerstvých
                       piv, limonád a vod ze šumavských pramenů. Nabízíme také
-                      možnost vrácení prázdných lahví a prodej suvenýrů.
+                      možnost vrácení prázdných lahví. Možnost zakoupit lahvové
+                      i sudové pivo.
                     </>
                   )}
                   {language === 'en' && (
@@ -148,7 +149,7 @@ export default function ProdejniMistaPage() {
                       Šumavě. Here you can purchase all our products directly
                       from the manufacturer, including fresh beers, lemonades,
                       and waters from Šumava springs. We also offer bottle
-                      returns and souvenir sales.
+                      returns. You can purchase both bottled and draft beer.
                     </>
                   )}
                   {language === 'de' && (
@@ -158,7 +159,8 @@ export default function ProdejniMistaPage() {
                       Hier können Sie alle unsere Produkte direkt vom Hersteller
                       kaufen, einschließlich frischer Biere, Limonaden und
                       Wasser aus den Böhmerwaldquellen. Wir bieten auch
-                      Flaschenrückgabe und Souvenirverkauf an.
+                      Flaschenrückgabe an. Sie können sowohl Flaschen- als auch
+                      Fassbier kaufen.
                     </>
                   )}
                 </p>
