@@ -54,9 +54,9 @@ export const Footer = () => {
             <Link href='/produkty?produkt=profesor-dvanactka&kategorie=pivo'>
               Profesor Dvanáctka
             </Link>
-            <Link href='/produkty?produkt=koutska-jedenactka&kategorie=pivo'>
+            {/* <Link href='/produkty?produkt=koutska-jedenactka&kategorie=pivo'>
               Koutská Jedenáctka
-            </Link>
+            </Link> */}
             <Link href='/produkty?produkt=limonada-pomeranc&kategorie=limo'>
               Limonáda Pomeranč
             </Link>

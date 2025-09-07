@@ -1,4 +1,0 @@
-- ověření historie
-- historie obrázky
-- mockup produkty
-- právní požadavky

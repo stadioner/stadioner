@@ -49,24 +49,24 @@ const beersCs: Product[] = [
     icon: '/products/pivo/dvanactka/icon.svg',
     ingredients: '/products/etiq.webp',
   },
-  {
-    name: 'Koutská jedenáctka',
-    subtitle: 'Lehký ležák s jemnou hořkostí',
-    category: 'pivo',
-    categoryLabel: 'Pivo',
-    slug: 'koutska-jedenactka',
-    description:
-      'Tato jedenáctka vyniká svou pitelností, čistým profilem a jemně chmelovým aroma. Skvěle se hodí k české kuchyni, lehkým jídlům nebo jen tak k posezení s přáteli. Pokud hledáš poctivé řemeslné pivo s nižší stupňovitostí, Koutská 11 je sázka na jistotu.',
-    stats: [
-      { label: 'TYP PIVA', value: 'Ležák světlý' },
-      { label: 'ABV', value: '4.2%' },
-      { label: 'STUPEŇ', value: '11°' },
-      { label: 'FILTRACE', value: 'Nefiltrované' },
-    ],
-    image: '/products/bottle.webp',
-    icon: '/products/pivo/jedenactka/icon.svg',
-    ingredients: '/products/etiq.webp',
-  },
+  //   {
+  //     name: 'Koutská jedenáctka',
+  //     subtitle: 'Lehký ležák s jemnou hořkostí',
+  //     category: 'pivo',
+  //     categoryLabel: 'Pivo',
+  //     slug: 'koutska-jedenactka',
+  //     description:
+  //       'Tato jedenáctka vyniká svou pitelností, čistým profilem a jemně chmelovým aroma. Skvěle se hodí k české kuchyni, lehkým jídlům nebo jen tak k posezení s přáteli. Pokud hledáš poctivé řemeslné pivo s nižší stupňovitostí, Koutská 11 je sázka na jistotu.',
+  //     stats: [
+  //       { label: 'TYP PIVA', value: 'Ležák světlý' },
+  //       { label: 'ABV', value: '4.2%' },
+  //       { label: 'STUPEŇ', value: '11°' },
+  //       { label: 'FILTRACE', value: 'Nefiltrované' },
+  //     ],
+  //     image: '/products/bottle.webp',
+  //     icon: '/products/pivo/jedenactka/icon.svg',
+  //     ingredients: '/products/etiq.webp',
+  //   },
 ]
 
 const limosCs: Product[] = [
@@ -185,24 +185,24 @@ const beersEn: Product[] = [
     icon: '/products/pivo/dvanactka/icon.svg',
     ingredients: '/products/etiq.webp',
   },
-  {
-    name: 'Koutska 11',
-    subtitle: 'Light lager with gentle bitterness',
-    category: 'pivo',
-    categoryLabel: 'Beer',
-    slug: 'koutska-jedenactka',
-    description:
-      'This 11° stands out for its drinkability, clean profile, and a delicate hop aroma. Great with Czech cuisine, lighter meals, or simply for an easy-going get-together. If you want honest craft beer with a lower gravity, Koutska 11 is a safe bet.',
-    stats: [
-      { label: 'TYPE', value: 'Pale lager' },
-      { label: 'ABV', value: '4.2%' },
-      { label: 'DEGREE', value: '11°' },
-      { label: 'FILTRATION', value: 'Unfiltered' },
-    ],
-    image: '/products/bottle.webp',
-    icon: '/products/pivo/jedenactka/icon.svg',
-    ingredients: '/products/etiq.webp',
-  },
+  //   {
+  //     name: 'Koutska 11',
+  //     subtitle: 'Light lager with gentle bitterness',
+  //     category: 'pivo',
+  //     categoryLabel: 'Beer',
+  //     slug: 'koutska-jedenactka',
+  //     description:
+  //       'This 11° stands out for its drinkability, clean profile, and a delicate hop aroma. Great with Czech cuisine, lighter meals, or simply for an easy-going get-together. If you want honest craft beer with a lower gravity, Koutska 11 is a safe bet.',
+  //     stats: [
+  //       { label: 'TYPE', value: 'Pale lager' },
+  //       { label: 'ABV', value: '4.2%' },
+  //       { label: 'DEGREE', value: '11°' },
+  //       { label: 'FILTRATION', value: 'Unfiltered' },
+  //     ],
+  //     image: '/products/bottle.webp',
+  //     icon: '/products/pivo/jedenactka/icon.svg',
+  //     ingredients: '/products/etiq.webp',
+  //   },
 ]
 
 const limosEn: Product[] = [
@@ -321,24 +321,24 @@ const beersDe: Product[] = [
     icon: '/products/pivo/dvanactka/icon.svg',
     ingredients: '/products/etiq.webp',
   },
-  {
-    name: 'Koutska 11',
-    subtitle: 'Leichtes Lager mit feiner Bittere',
-    category: 'pivo',
-    categoryLabel: 'Bier',
-    slug: 'koutska-jedenactka',
-    description:
-      'Dieses 11° ist besonders trinkbar, mit sauberem Profil und feinem Hopfenaroma. Passt hervorragend zur tschechischen Küche, zu leichten Gerichten oder einfach zum gemütlichen Abend. Wer ehrliches Craft-Bier mit niedriger Stammwürze sucht, liegt mit Koutska 11 richtig.',
-    stats: [
-      { label: 'TYP', value: 'Helles Lager' },
-      { label: 'ABV', value: '4.2%' },
-      { label: 'GRAD', value: '11°' },
-      { label: 'FILTRATION', value: 'Ungefiltert' },
-    ],
-    image: '/products/bottle.webp',
-    icon: '/products/pivo/jedenactka/icon.svg',
-    ingredients: '/products/etiq.webp',
-  },
+  //   {
+  //     name: 'Koutska 11',
+  //     subtitle: 'Leichtes Lager mit feiner Bittere',
+  //     category: 'pivo',
+  //     categoryLabel: 'Bier',
+  //     slug: 'koutska-jedenactka',
+  //     description:
+  //       'Dieses 11° ist besonders trinkbar, mit sauberem Profil und feinem Hopfenaroma. Passt hervorragend zur tschechischen Küche, zu leichten Gerichten oder einfach zum gemütlichen Abend. Wer ehrliches Craft-Bier mit niedriger Stammwürze sucht, liegt mit Koutska 11 richtig.',
+  //     stats: [
+  //       { label: 'TYP', value: 'Helles Lager' },
+  //       { label: 'ABV', value: '4.2%' },
+  //       { label: 'GRAD', value: '11°' },
+  //       { label: 'FILTRATION', value: 'Ungefiltert' },
+  //     ],
+  //     image: '/products/bottle.webp',
+  //     icon: '/products/pivo/jedenactka/icon.svg',
+  //     ingredients: '/products/etiq.webp',
+  //   },
 ]
 
 const limosDe: Product[] = [
@@ -500,25 +500,23 @@ export const Products = ({
   useEffect(() => {
     const productSlug = searchParams.get('produkt')
     const categoryParam = searchParams.get('kategorie')
+
     if (categoryParam && productMap[categoryParam]) {
       setSelectedCategory(categoryParam)
     }
+
     let idx = 0
     if (productSlug) {
-      const foundIdx = (
-        productMap[categoryParam || selectedCategory] || []
-      ).findIndex((p: Product) => p.slug === productSlug)
+      const targetCategory = categoryParam || selectedCategory
+      const foundIdx = (productMap[targetCategory] || []).findIndex(
+        (p: Product) => p.slug === productSlug
+      )
       if (foundIdx !== -1) {
         idx = foundIdx
       }
     }
     setCurrent(idx)
-  }, [searchParams])
-
-  // Reset current product when category changes
-  useEffect(() => {
-    setCurrent(0)
-  }, [selectedCategory])
+  }, [searchParams, productMap, selectedCategory])
 
   const updateURL = (productIndex: number, category?: string) => {
     const targetCategory = category || selectedCategory
@@ -595,6 +593,49 @@ export const Products = ({
             </div>
           </div>
 
+          {/* Navigation arrows and product icons */}
+          <div className='flex items-center justify-center gap-4 mt-6'>
+            <button
+              onClick={handlePrev}
+              className='size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+              aria-label='Previous product'
+            >
+              &#8592;
+            </button>
+
+            <div className='flex gap-2'>
+              {filteredProducts.map((p: Product, idx: number) => (
+                <motion.button
+                  key={p.name}
+                  onClick={() => handleSelect(idx)}
+                  className={`rounded-full border-2 cursor-pointer ${
+                    current === idx
+                      ? 'border-brand-secondary'
+                      : 'border-transparent'
+                  } bg-zinc-800`}
+                  whileTap={{ scale: 0.9 }}
+                  animate={{ scale: current === idx ? 1.1 : 1 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                  aria-label={`Select ${p.name}`}
+                >
+                  <img
+                    src={p.icon}
+                    alt={p.name}
+                    className='size-12 md:size-14 object-cover rounded-full'
+                  />
+                </motion.button>
+              ))}
+            </div>
+
+            <button
+              onClick={handleNext}
+              aria-label='Next product'
+              className='size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+            >
+              &#8594;
+            </button>
+          </div>
+
           <div className='flex flex-col md:grid md:grid-cols-[1.2fr_1fr] gap-8 items-stretch mt-6 sm:mt-12'>
             <div className='flex-1 md:hidden flex items-center justify-center'>
               <AnimatePresence mode='wait'>
@@ -657,23 +698,7 @@ export const Products = ({
                     )
                   )}
                 </div>
-                <div className='flex justify-between'>
-                  <div className='flex gap-4'>
-                    <button
-                      onClick={handlePrev}
-                      className='size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
-                      aria-label='Previous product'
-                    >
-                      &#8592;
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      aria-label='Next product'
-                      className='size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
-                    >
-                      &#8594;
-                    </button>
-                  </div>
+                <div className='flex justify-end'>
                   <Dialog>
                     <DialogTrigger className='bg-brand-primary text-brand-action font-bold py-2 px-4 cursor-pointer hover:opacity-90 transition'>
                       {labels.composition}
@@ -693,30 +718,6 @@ export const Products = ({
                     </DialogContent>
                   </Dialog>
                 </div>
-              </div>
-              {/* Bottle icon selector */}
-              <div className='flex gap-2 mt-auto'>
-                {filteredProducts.map((p: Product, idx: number) => (
-                  <motion.button
-                    key={p.name}
-                    onClick={() => handleSelect(idx)}
-                    className={`rounded-full border-2 cursor-pointer ${
-                      current === idx
-                        ? 'border-brand-secondary'
-                        : 'border-transparent'
-                    } bg-zinc-800`}
-                    whileTap={{ scale: 0.9 }}
-                    animate={{ scale: current === idx ? 1.1 : 1 }}
-                    transition={{ type: 'spring', stiffness: 300 }}
-                    aria-label={`Select ${p.name}`}
-                  >
-                    <img
-                      src={p.icon}
-                      alt={p.name}
-                      className='size-12 md:size-14 object-cover rounded-full'
-                    />
-                  </motion.button>
-                ))}
               </div>
             </div>
             {/* Right: Product Image */}
