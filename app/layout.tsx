@@ -37,8 +37,8 @@ export default function RootLayout({
           caladea.variable
         )}
       >
+        <Navbar />
         <AgeGate>
-          <Navbar />
           {children}
           <Footer />
           <CookieConsent />
