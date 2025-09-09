@@ -9,32 +9,72 @@ import Link from 'next/link'
 const timelineData = [
   {
     year: '1736',
-    title: 'Založení pivovaru',
-    description: 'Rod Stadionů zakládá pivovar v Koutě na Šumavě',
+    title: {
+      cs: 'Založení pivovaru',
+      en: 'Brewery Foundation',
+      de: 'Brauerei-Gründung',
+    },
+    description: {
+      cs: 'Rod Stadionů zakládá pivovar v Koutě na Šumavě',
+      en: 'The Stadion family founds the brewery in Kout na Šumavě',
+      de: 'Die Familie Stadion gründet die Brauerei in Kout na Šumavě',
+    },
     position: 'left',
   },
   {
-    year: '1823',
-    title: 'Rozšíření výroby',
-    description: 'Pivovar se rozšiřuje a modernizuje',
+    year: '1838',
+    title: {
+      cs: 'Ničivý požár',
+      en: 'Devastating Fire',
+      de: 'Verheerender Brand',
+    },
+    description: {
+      cs: 'Pivovar zcela zničen požárem',
+      en: 'Brewery completely destroyed by fire',
+      de: 'Brauerei durch Brand vollständig zerstört',
+    },
     position: 'right',
   },
   {
-    year: '1898',
-    title: 'Průmyslová revoluce',
-    description: 'Zavedení moderních technologií výroby',
+    year: '1870',
+    title: {
+      cs: 'Obnova a rozšíření',
+      en: 'Rebuilding and Expansion',
+      de: 'Wiederaufbau und Erweiterung',
+    },
+    description: {
+      cs: 'Nový pivovar s unikátními sklepy',
+      en: 'New brewery with unique cellars',
+      de: 'Neue Brauerei mit einzigartigen Kellern',
+    },
     position: 'left',
   },
   {
-    year: '1921',
-    title: 'První republika',
-    description: 'Pivovar prosperuje v novém Československu',
+    year: '1966',
+    title: {
+      cs: 'Konec výroby piva',
+      en: 'End of Beer Production',
+      de: 'Ende der Bierproduktion',
+    },
+    description: {
+      cs: 'Poslední várka piva uvařena',
+      en: 'Last batch of beer brewed',
+      de: 'Letzte Biercharge gebraut',
+    },
     position: 'right',
   },
   {
-    year: '1944',
-    title: 'Těžké časy',
-    description: 'Pivovar přežívá válečné období',
+    year: '2006',
+    title: {
+      cs: 'Znovuotevření',
+      en: 'Reopening',
+      de: 'Wiedereröffnung',
+    },
+    description: {
+      cs: 'Pivovar oficiálně znovu otevřen',
+      en: 'Brewery officially reopened',
+      de: 'Brauerei offiziell wiedereröffnet',
+    },
     position: 'left',
   },
 ]
@@ -117,7 +157,8 @@ export const About = () => {
                     } w-32`}
                   >
                     <div className='text-sm text-brand-action'>
-                      <b>{item.year}</b> - {item.title}
+                      <b>{item.year}</b> -{' '}
+                      {item.title[language as keyof typeof item.title]}
                     </div>
                   </div>
                 </div>

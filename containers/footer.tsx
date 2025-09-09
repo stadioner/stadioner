@@ -33,7 +33,11 @@ export const Footer = () => {
               {language === 'en' && 'Sales Locations'}
               {language === 'de' && 'Verkaufsstellen'}
             </Link>
-            <Link href='/blog'>Blog</Link>
+            <Link href='/blog'>
+              {language === 'cs' && 'Články'}
+              {language === 'en' && 'Articles'}
+              {language === 'de' && 'Artikel'}
+            </Link>
             <Link href='/historie'>
               {language === 'cs' && 'Historie'}
               {language === 'en' && 'History'}
@@ -52,25 +56,37 @@ export const Footer = () => {
               {language === 'de' && 'Produkte'}
             </h4>
             <Link href='/produkty?produkt=profesor-dvanactka&kategorie=pivo'>
-              Profesor Dvanáctka
+              {language === 'cs' && 'Profesor dvanáctka'}
+              {language === 'en' && 'Professor 12'}
+              {language === 'de' && 'Professor 12'}
             </Link>
             {/* <Link href='/produkty?produkt=koutska-jedenactka&kategorie=pivo'>
               Koutská Jedenáctka
             </Link> */}
             <Link href='/produkty?produkt=limonada-pomeranc&kategorie=limo'>
-              Limonáda Pomeranč
+              {language === 'cs' && 'Limonáda pomeranč'}
+              {language === 'en' && 'Orange Lemonade'}
+              {language === 'de' && 'Orangenlimonade'}
             </Link>
             <Link href='/produkty?produkt=limonada-citron&kategorie=limo'>
-              Limonáda Citrón
+              {language === 'cs' && 'Limonáda citrón'}
+              {language === 'en' && 'Lemon Lemonade'}
+              {language === 'de' && 'Zitronenlimonade'}
             </Link>
             <Link href='/produkty?produkt=cola-mix&kategorie=limo'>
-              Cola Mix
+              {language === 'cs' && 'Cola mix'}
+              {language === 'en' && 'Cola mix'}
+              {language === 'de' && 'Cola Mix'}
             </Link>
             <Link href='/produkty/?produkt=pramenita-voda-sycena&kategorie=voda'>
-              Pramenitá Voda (Sycená)
+              {language === 'cs' && 'Pramenitá voda (Sycená)'}
+              {language === 'en' && 'Spring water (Sparkling)'}
+              {language === 'de' && 'Quellwasser (Kohlensäurehaltig)'}
             </Link>
             <Link href='/produkty/?produkt=pramenita-voda-nesycena&kategorie=voda'>
-              Pramenitá Voda (Nesycená)
+              {language === 'cs' && 'Pramenitá voda (Nesycená)'}
+              {language === 'en' && 'Spring water (Still)'}
+              {language === 'de' && 'Quellwasser (Still)'}
             </Link>
           </div>
           <div className='grid justify-between md:justify-self-end gap-4 text-xl'>
@@ -107,7 +123,10 @@ export const Footer = () => {
         </div>
 
         <p className='pt-14 text-xs text-center'>
-          &copy; {new Date().getFullYear()} Stadioner
+          &copy; {new Date().getFullYear()} Stadioner -{' '}
+          {language === 'cs' && 'Všechna práva vyhrazena'}
+          {language === 'en' && 'All rights reserved'}
+          {language === 'de' && 'Alle Rechte vorbehalten'}
         </p>
       </Container>
     </footer>

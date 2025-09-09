@@ -119,7 +119,9 @@ export default function ProdejniMistaPage() {
             <div>
               <div>
                 <h2 className='text-brand-primary text-5xl font-bold'>
-                  Výdejní Místo
+                  {language === 'cs' && 'Výdejní Místo'}
+                  {language === 'en' && 'Distribution Point'}
+                  {language === 'de' && 'Verkaufsstelle'}
                 </h2>
                 <p className='text-zinc-100 mt-1'>
                   Kout na Šumavě 2, 345 02 Kout na Šumavě
@@ -206,7 +208,7 @@ export default function ProdejniMistaPage() {
             </div>
             <a
               href='tel:'
-              className='text-brand-primary flex gap-1 items-center mt-8 md:mt-0'
+              className='text-brand-primary flex gap-1 items-center mt-8 md:mt-10'
             >
               <PhoneIcon size={16} />
               +420 111 222 333
