@@ -8,6 +8,11 @@ import { useLanguage } from '@/store/use-language'
 interface TimelineSlide {
   id: number
   year: string
+  title: {
+    cs: string
+    en: string
+    de: string
+  }
   description: {
     cs: string
     en: string
@@ -20,6 +25,11 @@ const timelineData: TimelineSlide[] = [
   {
     id: 1,
     year: '1736',
+    title: {
+      cs: 'Založení pivovaru',
+      en: 'Brewery Foundation',
+      de: 'Brauerei-Gründung',
+    },
     description: {
       cs: 'Pivovar Kout na Šumavě vznikl v roce 1736 pod správou rodu Stadionů.',
       en: 'The Kout na Šumavě brewery was founded in 1736 under the management of the Stadion family.',
@@ -31,6 +41,11 @@ const timelineData: TimelineSlide[] = [
   {
     id: 2,
     year: '1838',
+    title: {
+      cs: 'Ničivý požár',
+      en: 'Devastating Fire',
+      de: 'Verheerender Brand',
+    },
     description: {
       cs: 'Dne 2. července došlo v areálu pivovaru k ničivému požáru, který ho zcela zničil, včetně bytu sládka a sýpky. Tímto incidentem končí jedna etapa jeho existence.',
       en: "On July 2nd, a devastating fire occurred in the brewery premises, completely destroying it, including the brewer's apartment and granary. This incident marked the end of one stage of its existence.",
@@ -41,6 +56,11 @@ const timelineData: TimelineSlide[] = [
   {
     id: 3,
     year: '1849 - 1870',
+    title: {
+      cs: 'Obnova a rozšíření',
+      en: 'Rebuilding and Expansion',
+      de: 'Wiederaufbau und Erweiterung',
+    },
     description: {
       cs: 'Po požáru se hrabě Karel Bedřich Stadion-Thannhausen rozhodl postavit nový, modernější pivovar s větší kapacitou. V tomto období, konkrétně v roce 1870, byly pod kostelem vybudovány unikátní pivovarské sklepy.',
       en: 'After the fire, Count Karel Bedřich Stadion-Thannhausen decided to build a new, more modern brewery with greater capacity. During this period, specifically in 1870, unique brewery cellars were built under the church.',
@@ -51,6 +71,11 @@ const timelineData: TimelineSlide[] = [
   {
     id: 4,
     year: '1933',
+    title: {
+      cs: 'Poslední modernizace',
+      en: 'Last Modernization',
+      de: 'Letzte Modernisierung',
+    },
     description: {
       cs: 'Sladovna, nejstarší dochovaná část pivovaru, byla naposledy upravena a zvýšena o patro. Jednalo se o poslední velkou stavební úpravu na pivovaru před jeho pozdějším uzavřením a následným úpadkem.',
       en: 'The malt house, the oldest preserved part of the brewery, was last modified and raised by one floor. This was the last major construction modification to the brewery before its later closure and subsequent decline.',
@@ -61,6 +86,11 @@ const timelineData: TimelineSlide[] = [
   {
     id: 5,
     year: '1949 - 1966',
+    title: {
+      cs: 'Znárodnění a konec',
+      en: 'Nationalization and End',
+      de: 'Verstaatlichung und Ende',
+    },
     description: {
       cs: 'V důsledku únorových událostí byl pivovar znárodněn a začleněn do národního podniku. Poslední várka piva byla uvařena v roce 1966, poté se provoz změnil na výrobnu sodovek a stáčírnu.',
       en: 'As a result of the February events, the brewery was nationalized and incorporated into a state enterprise. The last batch of beer was brewed in 1966, after which the operation changed to soda production and bottling.',
@@ -71,6 +101,11 @@ const timelineData: TimelineSlide[] = [
   {
     id: 6,
     year: '1971 - 1993',
+    title: {
+      cs: 'Úpadek a zánik',
+      en: 'Decline and Demise',
+      de: 'Verfall und Untergang',
+    },
     description: {
       cs: 'Po definitivním uzavření v roce 1971 začal areál chátrat. Symbolickým koncem původního pivovaru se stal rok 1993, kdy byly původní měděné kádě z varny vymontovány a prodány do sběru.',
       en: 'After the final closure in 1971, the premises began to deteriorate. The symbolic end of the original brewery came in 1993, when the original copper kettles from the brewhouse were dismantled and sold for scrap.',
@@ -81,6 +116,11 @@ const timelineData: TimelineSlide[] = [
   {
     id: 7,
     year: '2002 - 2005',
+    title: {
+      cs: 'Nový začátek',
+      en: 'New Beginning',
+      de: 'Neuer Anfang',
+    },
     description: {
       cs: 'V roce 2002 zakoupil chátrající areál Jan Skala. Společně s bývalým sládkem Bohuslavem Hlavsou začal pracovat na obnovení pivovarnické tradice a renovaci celého komplexu.',
       en: 'In 2002, Jan Skala purchased the dilapidated premises. Together with former brewer Bohuslav Hlavsa, he began working on restoring the brewing tradition and renovating the entire complex.',
@@ -91,6 +131,11 @@ const timelineData: TimelineSlide[] = [
   {
     id: 8,
     year: '2006',
+    title: {
+      cs: 'Znovuotevření',
+      en: 'Reopening',
+      de: 'Wiedereröffnung',
+    },
     description: {
       cs: 'Dne 27. března byla uvařena první várka piva, čímž byl pivovar v Koutě na Šumavě oficiálně znovu otevřen. Značka se tak navrátila na mapu regionálního pivovarnictví.',
       en: 'On March 27th, the first batch of beer was brewed, officially reopening the brewery in Kout na Šumavě. The brand thus returned to the map of regional brewing.',
@@ -101,10 +146,30 @@ const timelineData: TimelineSlide[] = [
   {
     id: 9,
     year: '2010',
+    title: {
+      cs: 'První úspěch',
+      en: 'First Success',
+      de: 'Erster Erfolg',
+    },
     description: {
       cs: 'Koutské pivo slavilo velký úspěch, když získalo první místo v prestižní soutěži "Dvanáctka roku 2010". Tento úspěch potvrdil kvalitu piva a jeho rostoucí popularitu.',
       en: 'Kout beer celebrated great success when it won first place in the prestigious "Beer of the Year 2010" competition. This success confirmed the quality of the beer and its growing popularity.',
       de: 'Kout-Bier feierte großen Erfolg, als es den ersten Platz im prestigeträchtigen Wettbewerb "Bier des Jahres 2010" gewann. Dieser Erfolg bestätigte die Qualität des Bieres und seine wachsende Popularität.',
+    },
+    image: '/history/1.webp',
+  },
+  {
+    id: 10,
+    year: '2025',
+    title: {
+      cs: 'Nová éra',
+      en: 'New Era',
+      de: 'Neue Ära',
+    },
+    description: {
+      cs: 'Nový majitel Aleš Pech převzal pivovar a přejmenoval ho na Stadioner. Tímto krokem začíná nová kapitola v historii pivovaru, která navazuje na bohatou tradici a přináší moderní přístup k řemeslnému pivovarnictví.',
+      en: "New owner Aleš Pech took over the brewery and renamed it to Stadioner. This marks the beginning of a new chapter in the brewery's history, building on the rich tradition while bringing a modern approach to craft brewing.",
+      de: 'Der neue Eigentümer Aleš Pech übernahm die Brauerei und benannte sie in Stadioner um. Damit beginnt ein neues Kapitel in der Geschichte der Brauerei, das auf der reichen Tradition aufbaut und einen modernen Ansatz zum Handwerksbrauen mitbringt.',
     },
     image: '/history/1.webp',
   },
@@ -237,7 +302,7 @@ export const Timeline = () => {
           }}
           transition={{ duration: 0.5, ease: 'easeInOut' }}
         >
-          <div className='absolute inset-0 bg-black/40' />
+          <div className='absolute inset-0 bg-black/65' />
         </motion.div>
       </AnimatePresence>
 
@@ -279,7 +344,7 @@ export const Timeline = () => {
 
       {/* Content */}
       <div className='relative z-10 h-full flex items-center'>
-        <div className='container mx-auto pl-32 pr-2'>
+        <div className='container mx-auto pl-32 md:pl-48 pr-2'>
           <AnimatePresence mode='wait'>
             <motion.div
               key={currentSlide}
@@ -289,30 +354,40 @@ export const Timeline = () => {
               transition={{ duration: 0.6, ease: 'easeInOut' }}
               className='max-w-2xl'
             >
-              <Border>
-                <div className='bg-brand-action-dark/70 backdrop-blur-sm p-8'>
-                  <motion.h2
-                    className='text-4xl font-bold text-brand-primary mb-4'
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3, duration: 0.5 }}
-                  >
-                    {timelineData[currentSlide].year}
-                  </motion.h2>
-                  <motion.p
-                    className='text-white/90 text-lg leading-relaxed'
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.5 }}
-                  >
-                    {
-                      timelineData[currentSlide].description[
-                        language as keyof (typeof timelineData)[0]['description']
-                      ]
-                    }
-                  </motion.p>
-                </div>
-              </Border>
+              <div>
+                <motion.div
+                  className='text-lg font-medium text-brand-primary mb-1'
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.5 }}
+                >
+                  {timelineData[currentSlide].year}
+                </motion.div>
+                <motion.h2
+                  className='text-5xl font-bold text-white mb-5'
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3, duration: 0.5 }}
+                >
+                  {
+                    timelineData[currentSlide].title[
+                      language as keyof (typeof timelineData)[0]['title']
+                    ]
+                  }
+                </motion.h2>
+                <motion.p
+                  className='text-white/90 text-lg leading-relaxed'
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.5 }}
+                >
+                  {
+                    timelineData[currentSlide].description[
+                      language as keyof (typeof timelineData)[0]['description']
+                    ]
+                  }
+                </motion.p>
+              </div>
             </motion.div>
           </AnimatePresence>
         </div>
