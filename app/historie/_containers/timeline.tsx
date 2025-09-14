@@ -334,7 +334,7 @@ export const Timeline = () => {
               </button>
 
               {/* Year label */}
-              <div className='absolute left-5 top-1/2 -translate-y-1/2 text-brand-primary whitespace-nowrap text-sm'>
+              <div className='absolute left-5 top-1/2 -translate-y-1/2 text-brand-primary whitespace-nowrap text-sm hidden md:block'>
                 {slide.year}
               </div>
             </div>
@@ -344,7 +344,7 @@ export const Timeline = () => {
 
       {/* Content */}
       <div className='relative z-10 h-full flex items-center'>
-        <div className='container mx-auto pl-32 md:pl-48 pr-2'>
+        <div className='container mx-auto pl-16 md:pl-48 pr-2'>
           <AnimatePresence mode='wait'>
             <motion.div
               key={currentSlide}
