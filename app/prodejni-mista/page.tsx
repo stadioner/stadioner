@@ -85,7 +85,7 @@ export default function ProdejniMistaPage() {
       <Container className='pb-20'>
         <section>
           <div className='pb-6'>
-            <h2 className='text-brand-action text-3xl md:text-4xl lg:text-6xl font-bold flex-nowrap text-nowrap'>
+            <h2 className='text-brand-action text-3xl md:text-4xl lg:text-6xl font-bold'>
               {language === 'cs' && 'Nejsme jen v Koutě na Šumavě'}
               {language === 'en' && 'We are not only in Kout na Šumavě'}
               {language === 'de' && 'Wir sind nicht nur in Kout na Šumavě'}

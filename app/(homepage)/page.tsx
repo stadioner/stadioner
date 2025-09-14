@@ -7,7 +7,7 @@ import { Products } from '@/containers/products'
 
 export default function HomePage() {
   return (
-    <main>
+    <main className='overflow-hidden'>
       <Intro />
 
       <Hero />
