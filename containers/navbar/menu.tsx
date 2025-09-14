@@ -34,7 +34,9 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
         onClick={() => setIsOpen(false)}
         className='absolute right-11 top-11 cursor-pointer text-brand-primary'
       >
-        Zavřít
+        {language === 'cs' && 'Zavřít'}
+        {language === 'en' && 'Close'}
+        {language === 'de' && 'Zurück'}
       </button>
 
       <ul className='absolute left-1/2 top-60 flex -translate-x-1/2 flex-col items-center gap-6 text-center text-white z-[1003]'>

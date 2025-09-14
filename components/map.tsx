@@ -131,18 +131,6 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
               </>
             }
           />
-          <CustomMarker
-            position={[50.08705930316747, 14.421203738317592]}
-            icon={createImageIcon('/map/hospoda.svg')}
-            popupContent={
-              <>
-                <Link href='' className='text-lg font-bold underline'>
-                  Název
-                </Link>
-                <p>Praha</p>
-              </>
-            }
-          />
         </>
       )}
     </MapContainer>

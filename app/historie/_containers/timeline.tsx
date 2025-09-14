@@ -2,7 +2,6 @@
 
 import { useState, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Border } from '@/components/border'
 import { useLanguage } from '@/store/use-language'
 
 interface TimelineSlide {

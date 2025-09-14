@@ -40,9 +40,9 @@ export default function KontaktPage() {
               {language === 'de' && 'Geschäftsführer'}
             </p>
             <p>
-              {language === 'cs' && 'Datum vzniku funkce'}
-              {language === 'en' && 'Date of appointment'}
-              {language === 'de' && 'Datum der Ernennung'}: 17. leden 2025
+              {language === 'cs' && 'Datum vzniku funkce: 17. leden 2025'}
+              {language === 'en' && 'Date of appointment: 17 January 2025'}
+              {language === 'de' && 'Datum der Ernennung: 17. Januar 2025'}
             </p>
           </div>
           <div className='mt-8'>

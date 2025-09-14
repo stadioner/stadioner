@@ -572,7 +572,7 @@ export const Products = ({
             <RippedPaperSVG flip />
           </div>
         )}
-        <Container>
+        <Container className=''>
           {/* Category Selector */}
           <div className='flex justify-center'>
             <div className='flex bg-zinc-800/50 p-1 backdrop-blur-sm'>
@@ -636,7 +636,7 @@ export const Products = ({
             </button>
           </div>
 
-          <div className='flex flex-col md:grid md:grid-cols-[1.2fr_1fr] gap-8 items-stretch mt-6 sm:mt-12'>
+          <div className='flex flex-col md:grid md:grid-cols-[1.6fr_1fr] gap-8 items-stretch mt-6 sm:mt-12'>
             <div className='flex-1 md:hidden flex items-center justify-center'>
               <AnimatePresence mode='wait'>
                 <motion.img
@@ -657,18 +657,38 @@ export const Products = ({
                 <p className='uppercase tracking-widest text-xs text-zinc-300 mb-2'>
                   {product.subtitle}
                 </p>
-                <AnimatePresence mode='wait'>
-                  <motion.h2
-                    key={product.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -20 }}
-                    transition={{ duration: 0.4 }}
-                    className='text-3xl md:text-6xl font-bold text-brand-primary mb-4'
-                  >
-                    {product.name}
-                  </motion.h2>
-                </AnimatePresence>
+                <div className='flex items-center justify-between mb-4'>
+                  <AnimatePresence mode='wait'>
+                    <motion.h2
+                      key={product.name}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
+                      transition={{ duration: 0.4 }}
+                      className='text-3xl md:text-6xl font-bold text-brand-primary'
+                    >
+                      {product.name}
+                    </motion.h2>
+                  </AnimatePresence>
+                  <Dialog>
+                    <DialogTrigger className='border border-brand-primary text-brand-primary font-bold py-1 px-3 mb-2 cursor-pointer hover:opacity-90 transition hover:bg-brand-primary hover:text-brand-action self-end'>
+                      {labels.composition}
+                    </DialogTrigger>
+                    <DialogContent className='bg-brand-primary h-[500px]'>
+                      <DialogHeader>
+                        <DialogTitle className='text-brand-action text-2xl'>
+                          {labels.compositionTitle}
+                        </DialogTitle>
+                      </DialogHeader>
+
+                      <img
+                        src={product.ingredients}
+                        alt='ingredients'
+                        className='max-h-[400px]'
+                      />
+                    </DialogContent>
+                  </Dialog>
+                </div>
                 <AnimatePresence mode='wait'>
                   <motion.p
                     key={product.description}
@@ -697,26 +717,6 @@ export const Products = ({
                       </div>
                     )
                   )}
-                </div>
-                <div className='flex justify-end'>
-                  <Dialog>
-                    <DialogTrigger className='bg-brand-primary text-brand-action font-bold py-2 px-4 cursor-pointer hover:opacity-90 transition'>
-                      {labels.composition}
-                    </DialogTrigger>
-                    <DialogContent className='bg-brand-primary h-[500px]'>
-                      <DialogHeader>
-                        <DialogTitle className='text-brand-action text-2xl'>
-                          {labels.compositionTitle}
-                        </DialogTitle>
-                      </DialogHeader>
-
-                      <img
-                        src={product.ingredients}
-                        alt='ingredients'
-                        className='max-h-[400px]'
-                      />
-                    </DialogContent>
-                  </Dialog>
                 </div>
               </div>
             </div>

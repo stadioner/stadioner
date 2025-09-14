@@ -64,7 +64,7 @@ const timelineData = [
     position: 'right',
   },
   {
-    year: '2006',
+    year: '2025',
     title: {
       cs: 'Znovuotevření',
       en: 'Reopening',
