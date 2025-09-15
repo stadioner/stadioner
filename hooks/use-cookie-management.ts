@@ -69,11 +69,19 @@ export const useCookieManagement = () => {
     if (cookiePreferences.marketing && !scriptsLoaded.current.has('fb')) {
       // Enable Facebook Pixel
       if (typeof window !== 'undefined' && !window.fbq) {
-        window.fbq = function () {
-          ;(window.fbq as any).callMethod
-            ? (window.fbq as any).callMethod.apply(window.fbq, arguments)
-            : (window.fbq as any).queue.push(arguments)
-        }
+        window.fbq = Object.assign(
+          function () {
+            ;(window.fbq as any).callMethod
+              ? (window.fbq as any).callMethod.apply(window.fbq, arguments)
+              : (window.fbq as any).queue.push(arguments)
+          },
+          {
+            push: function () {},
+            loaded: false,
+            version: '2.0',
+            queue: [],
+          }
+        )
         if (!(window as any)._fbq) (window as any)._fbq = window.fbq
         window.fbq.push = window.fbq
         window.fbq.loaded = !0
@@ -91,9 +99,17 @@ export const useCookieManagement = () => {
       document.head.appendChild(fbScript)
     } else if (!cookiePreferences.marketing) {
       // Disable Facebook Pixel
-      window.fbq = function () {
-        // No-op function
-      }
+      window.fbq = Object.assign(
+        function () {
+          // No-op function
+        },
+        {
+          push: function () {},
+          loaded: false,
+          version: '0',
+          queue: [],
+        }
+      )
     }
 
     // Manage Functional cookies (language preferences, etc.)
@@ -117,6 +133,12 @@ export const useCookieManagement = () => {
 declare global {
   interface Window {
     gtag: (...args: any[]) => void
-    fbq: (...args: any[]) => void
+    fbq: {
+      (...args: any[]): void
+      push: any
+      loaded: boolean
+      version: string
+      queue: any[]
+    }
   }
 }

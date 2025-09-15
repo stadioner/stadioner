@@ -107,7 +107,8 @@ export const CookieConsent = () => {
     },
   }
 
-  const t = translations[language] || translations.cs
+  const t =
+    translations[language as keyof typeof translations] || translations.cs
 
   return (
     <div className='fixed bottom-0 left-0 right-0 z-[1001] bg-brand-primary border-t border-brand-action p-4 shadow-lg'>
