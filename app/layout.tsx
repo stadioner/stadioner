@@ -6,6 +6,7 @@ import { Navbar } from '@/containers/navbar/navbar'
 import { Footer } from '@/containers/footer'
 import { AgeGate } from '@/components/age-gate'
 import { CookieConsent } from '@/components/cookie-consent'
+import { CookieManager } from '@/components/cookie-manager'
 
 const mohave = Mohave({
   variable: '--font-mohave',
@@ -106,6 +107,7 @@ export default function RootLayout({
           caladea.variable
         )}
       >
+        <CookieManager />
         <Navbar />
         <AgeGate>
           {children}

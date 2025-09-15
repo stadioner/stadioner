@@ -5,15 +5,46 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 
 interface CookieConsentStore {
   hasConsented: boolean
+  cookiePreferences: {
+    essential: boolean
+    functional: boolean
+    analytics: boolean
+    marketing: boolean
+  }
   setConsented: (consented: boolean) => void
+  setCookiePreferences: (
+    preferences: Partial<CookieConsentStore['cookiePreferences']>
+  ) => void
+  resetPreferences: () => void
 }
 
 export const useCookieConsent = create(
   persist<CookieConsentStore>(
     set => ({
       hasConsented: false,
+      cookiePreferences: {
+        essential: true, // Always true, can't be disabled
+        functional: false,
+        analytics: false,
+        marketing: false,
+      },
       setConsented: (consented: boolean) => {
         set({ hasConsented: consented })
+      },
+      setCookiePreferences: preferences => {
+        set(state => ({
+          cookiePreferences: { ...state.cookiePreferences, ...preferences },
+        }))
+      },
+      resetPreferences: () => {
+        set({
+          cookiePreferences: {
+            essential: true,
+            functional: false,
+            analytics: false,
+            marketing: false,
+          },
+        })
       },
     }),
     {

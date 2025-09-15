@@ -48,6 +48,11 @@ export const Footer = () => {
               {language === 'en' && 'Contact'}
               {language === 'de' && 'Kontakt'}
             </Link>
+            <Link href='/cookies'>
+              {language === 'cs' && 'Cookies'}
+              {language === 'en' && 'Cookies'}
+              {language === 'de' && 'Cookies'}
+            </Link>
           </div>
           <div className='flex flex-col justify-self-center text-xl'>
             <h4 className='text-3xl font-bold text-brand-action'>
