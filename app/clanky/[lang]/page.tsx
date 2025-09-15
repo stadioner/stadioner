@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const title = `${languageNames[lang as keyof typeof languageNames]} - Stadioner`
+  const title = `${languageNames[lang as keyof typeof languageNames]}`
   const description =
     lang === 'cs'
       ? 'Přečtěte si nejnovější články a novinky ze světa piva a gastronomie.'
