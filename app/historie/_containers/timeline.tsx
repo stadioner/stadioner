@@ -80,7 +80,7 @@ const timelineData: TimelineSlide[] = [
       en: 'The malt house, the oldest preserved part of the brewery, was last modified and raised by one floor. This was the last major construction modification to the brewery before its later closure and subsequent decline.',
       de: 'Die Mälzerei, der älteste erhaltene Teil der Brauerei, wurde zuletzt umgebaut und um ein Stockwerk erhöht. Dies war die letzte große bauliche Änderung an der Brauerei vor ihrer späteren Schließung und dem anschließenden Verfall.',
     },
-    image: '/history/1.webp',
+    image: '/history/4.webp',
   },
   {
     id: 5,
@@ -95,7 +95,7 @@ const timelineData: TimelineSlide[] = [
       en: 'As a result of the February events, the brewery was nationalized and incorporated into a state enterprise. The last batch of beer was brewed in 1966, after which the operation changed to soda production and bottling.',
       de: 'Infolge der Februareignisse wurde die Brauerei verstaatlicht und in ein Staatsunternehmen eingegliedert. Die letzte Biercharge wurde 1966 gebraut, danach änderte sich der Betrieb zur Sodaproduktion und Abfüllung.',
     },
-    image: '/history/1.webp',
+    image: '/history/5.webp',
   },
   {
     id: 6,
@@ -110,7 +110,7 @@ const timelineData: TimelineSlide[] = [
       en: 'After the final closure in 1971, the premises began to deteriorate. The symbolic end of the original brewery came in 1993, when the original copper kettles from the brewhouse were dismantled and sold for scrap.',
       de: 'Nach der endgültigen Schließung 1971 begann das Gelände zu verfallen. Das symbolische Ende der ursprünglichen Brauerei kam 1993, als die ursprünglichen Kupferkessel aus dem Sudhaus demontiert und als Schrott verkauft wurden.',
     },
-    image: '/history/1.webp',
+    image: '/history/6.webp',
   },
   {
     id: 7,
@@ -125,7 +125,7 @@ const timelineData: TimelineSlide[] = [
       en: 'In 2002, Jan Skala purchased the dilapidated premises. Together with former brewer Bohuslav Hlavsa, he began working on restoring the brewing tradition and renovating the entire complex.',
       de: '2002 kaufte Jan Skala das verfallene Gelände. Zusammen mit dem ehemaligen Braumeister Bohuslav Hlavsa begann er, an der Wiederherstellung der Brautradition und der Renovierung des gesamten Komplexes zu arbeiten.',
     },
-    image: '/history/1.webp',
+    image: '/history/7.webp',
   },
   {
     id: 8,
@@ -140,7 +140,7 @@ const timelineData: TimelineSlide[] = [
       en: 'On March 27th, the first batch of beer was brewed, officially reopening the brewery in Kout na Šumavě. The brand thus returned to the map of regional brewing.',
       de: 'Am 27. März wurde die erste Biercharge gebraut, wodurch die Brauerei in Kout na Šumavě offiziell wiedereröffnet wurde. Die Marke kehrte damit auf die Karte des regionalen Brauwesens zurück.',
     },
-    image: '/history/1.webp',
+    image: '/history/8.webp',
   },
   {
     id: 9,
@@ -155,7 +155,7 @@ const timelineData: TimelineSlide[] = [
       en: 'Kout beer celebrated great success when it won first place in the prestigious "Beer of the Year 2010" competition. This success confirmed the quality of the beer and its growing popularity.',
       de: 'Kout-Bier feierte großen Erfolg, als es den ersten Platz im prestigeträchtigen Wettbewerb "Bier des Jahres 2010" gewann. Dieser Erfolg bestätigte die Qualität des Bieres und seine wachsende Popularität.',
     },
-    image: '/history/1.webp',
+    image: '/history/9.webp',
   },
   {
     id: 10,
@@ -170,7 +170,7 @@ const timelineData: TimelineSlide[] = [
       en: "New owner Aleš Pech took over the brewery and renamed it to Stadioner. This marks the beginning of a new chapter in the brewery's history, building on the rich tradition while bringing a modern approach to craft brewing.",
       de: 'Der neue Eigentümer Aleš Pech übernahm die Brauerei und benannte sie in Stadioner um. Damit beginnt ein neues Kapitel in der Geschichte der Brauerei, das auf der reichen Tradition aufbaut und einen modernen Ansatz zum Handwerksbrauen mitbringt.',
     },
-    image: '/history/1.webp',
+    image: '/history/10.webp',
   },
 ]
 
