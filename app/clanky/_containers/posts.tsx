@@ -2,24 +2,39 @@
 
 import { Border } from '@/components/border'
 import { urlFor } from '@/sanity/lib/image'
-import { Post } from '@/types/blog'
+import { Post, Category, SupportedLanguage } from '@/types/blog'
 import Link from 'next/link'
 import { useState, useMemo } from 'react'
 
-export const Posts = ({ posts }: { posts: Post[] }) => {
+interface PostsProps {
+  posts: Post[]
+  categories: Category[]
+  language: SupportedLanguage
+}
+
+const translations = {
+  cs: {
+    searchPlaceholder: 'Hledat články...',
+    noPostsFound: 'Nebyly nalezeny žádné články.',
+    tryAdjusting: 'Zkuste upravit filtrování nebo hledání.',
+  },
+  en: {
+    searchPlaceholder: 'Search articles...',
+    noPostsFound: 'No articles found.',
+    tryAdjusting: 'Try adjusting filters or search.',
+  },
+  de: {
+    searchPlaceholder: 'Artikel suchen...',
+    noPostsFound: 'Keine Artikel gefunden.',
+    tryAdjusting: 'Versuchen Sie, Filter oder Suche anzupassen.',
+  },
+}
+
+export const Posts = ({ posts, categories, language }: PostsProps) => {
   const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [search, setSearch] = useState('')
 
-  // Získání všech unikátních kategorií z posts
-  const allCategories = useMemo(() => {
-    const map = new Map<string, string>()
-    posts.forEach(post => {
-      post.categories.forEach(cat => {
-        map.set(cat._id, cat.title)
-      })
-    })
-    return Array.from(map.entries()).map(([id, title]) => ({ id, title }))
-  }, [posts])
+  const t = translations[language]
 
   // Filtrování podle kategorií
   let filteredPosts =
@@ -29,10 +44,13 @@ export const Posts = ({ posts }: { posts: Post[] }) => {
           post.categories.some(cat => selectedCategories.includes(cat._id))
         )
 
-  // Filtrování podle search baru (title)
+  // Filtrování podle search baru (title a excerpt)
   if (search.trim() !== '') {
-    filteredPosts = filteredPosts.filter(post =>
-      post.title.toLowerCase().includes(search.toLowerCase())
+    filteredPosts = filteredPosts.filter(
+      post =>
+        post.title.toLowerCase().includes(search.toLowerCase()) ||
+        (post.excerpt &&
+          post.excerpt.toLowerCase().includes(search.toLowerCase()))
     )
   }
 
@@ -46,26 +64,36 @@ export const Posts = ({ posts }: { posts: Post[] }) => {
   return (
     <>
       {/* Kategorie filtr */}
-      <div className='mb-2 flex flex-wrap gap-2'>
-        {allCategories.map(cat => (
-          <button
-            key={cat.id}
-            onClick={() => toggleCategory(cat.id)}
-            className={`px-4 py-1 border text-sm font-medium transition-all duration-200 cursor-pointer
-              ${
-                selectedCategories.includes(cat.id)
-                  ? 'bg-brand-action text-brand-primary border-brand-action shadow-lg'
-                  : 'text-brand-action border-brand-action hover:bg-brand-action/10'
-              }`}
-          >
-            {cat.title}
-          </button>
-        ))}
+      <div className='mb-6 flex flex-wrap gap-2'>
+        {categories.length > 0 ? (
+          categories.map(cat => (
+            <button
+              key={cat._id}
+              onClick={() => toggleCategory(cat._id)}
+              className={`px-4 py-2 border text-sm font-medium transition-all duration-200 cursor-pointer
+                ${
+                  selectedCategories.includes(cat._id)
+                    ? 'bg-brand-action text-brand-primary border-brand-action shadow-lg'
+                    : 'text-brand-action border-brand-action hover:bg-brand-action/10'
+                }`}
+              style={cat.color ? { borderColor: cat.color } : {}}
+            >
+              {cat.title}
+            </button>
+          ))
+        ) : (
+          <p className='text-gray-500 text-sm'>
+            {language === 'cs'
+              ? 'Žádné kategorie nejsou k dispozici'
+              : language === 'en'
+                ? 'No categories available'
+                : 'Keine Kategorien verfügbar'}
+          </p>
+        )}
       </div>
 
       <div className='mb-12 relative'>
         <span className='absolute left-3 top-1/2 -translate-y-1/2 text-brand-action pointer-events-none'>
-          {/* Ikonka lupy SVG */}
           <svg
             width='20'
             height='20'
@@ -83,7 +111,7 @@ export const Posts = ({ posts }: { posts: Post[] }) => {
         </span>
         <input
           type='text'
-          placeholder='Hledat články...'
+          placeholder={t.searchPlaceholder}
           value={search}
           onChange={e => setSearch(e.target.value)}
           className='pl-10 pr-4 py-2 border border-brand-action text-lg placeholder:text-brand-action focus-within:border-brand-action focus-within:outline-brand-action w-full'
@@ -93,44 +121,48 @@ export const Posts = ({ posts }: { posts: Post[] }) => {
       {filteredPosts.length === 0 ? (
         <div className='py-20'>
           <h3 className='text-center text-brand-action text-5xl font-bold'>
-            Nebyly nalezeny žádné články.
+            {t.noPostsFound}
           </h3>
-          <p className='text-xl text-center'>
-            Zkuste upravit filtrování nebo hledání.
-          </p>
+          <p className='text-xl text-center'>{t.tryAdjusting}</p>
         </div>
       ) : (
         <section className='grid md:grid-cols-3 gap-10'>
           {filteredPosts.map((post: Post) => (
-            <Link href={`/clanky/${post.slug.current}`} key={post._id}>
+            <Link
+              href={`/clanky/${language}/${post.slug.current}`}
+              key={post._id}
+            >
               <Border>
                 <div className='aspect-square overflow-hidden relative'>
                   <img
                     src={urlFor(post.mainImage)}
-                    alt={post.title}
+                    alt={post.mainImage.alt || post.title}
                     className='absolute inset-0 object-cover hover:scale-[102%] transition aspect-square overflow-hidden'
                   />
 
                   <div className='flex gap-2 absolute right-0 top-0 bg-brand-action p-2 text-brand-primary'>
                     <img
                       src={urlFor(post.author.image)}
-                      alt=''
+                      alt={post.author.name}
                       className='rounded-full size-6'
                     />
                     <p>{post.author.name}</p>
                   </div>
 
-                  <div className='absolute right-0 bottom-0'>
-                    {post.categories.map(
-                      (category: { title: string }, id: number) => (
-                        <p
-                          key={post.categories[id]._id}
-                          className='text-sm bg-brand-action p-1 text-brand-primary'
-                        >
-                          {category.title}
-                        </p>
-                      )
-                    )}
+                  <div className='absolute left-0 bottom-0 flex flex-col gap-1'>
+                    {post.categories.map((category, index) => (
+                      <p
+                        key={category._id || `category-${index}`}
+                        className='text-sm bg-brand-action p-1 text-brand-primary'
+                        style={
+                          category.color
+                            ? { backgroundColor: category.color }
+                            : {}
+                        }
+                      >
+                        {category.title}
+                      </p>
+                    ))}
                   </div>
                 </div>
               </Border>

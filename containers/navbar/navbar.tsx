@@ -82,7 +82,7 @@ export const Navbar = () => {
                             ? 'Artikel'
                             : ''
                     }
-                    href='/clanky'
+                    href={`/clanky/${language}`}
                   />
                   <NavItem
                     label={

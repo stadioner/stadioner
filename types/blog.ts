@@ -1,20 +1,55 @@
 import { TypedObject } from 'sanity'
 
-export interface Post {
+export interface Category {
   _id: string
-  mainImage: string
+  title: string
   slug: {
     current: string
   }
-  publishedAt: string
-  author: {
-    name: string
-    image: string
-  }
-  categories: {
-    _id: string
-    title: string
-  }[]
-  title: string
-  body: TypedObject
+  description?: string
+  color?: string
+  language: string
 }
+
+export interface Author {
+  _id: string
+  name: string
+  image: string
+  bio?: string
+}
+
+export interface SEO {
+  metaTitle?: string
+  metaDescription?: string
+  keywords?: string[]
+}
+
+export interface Post {
+  _id: string
+  title: string
+  slug: {
+    current: string
+  }
+  language: string
+  excerpt?: string
+  author: Author
+  mainImage: {
+    asset: {
+      _ref: string
+    }
+    alt?: string
+  }
+  publishedAt: string
+  featured: boolean
+  categories: Category[]
+  body: TypedObject
+  seo?: SEO
+}
+
+export interface Language {
+  id: string
+  title: string
+  flag: string
+}
+
+export type SupportedLanguage = 'cs' | 'en' | 'de'
