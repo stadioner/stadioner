@@ -7,7 +7,7 @@ import { Switch } from '@/components/ui/switch'
 import { Button } from '@/components/ui/button'
 import { useState } from 'react'
 
-export const CookiesContent = () => {
+export const Cookies = () => {
   const { language } = useLanguage()
   const {
     cookiePreferences,

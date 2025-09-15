@@ -1,5 +1,5 @@
 import { Metadata } from 'next'
-import { CookiesContent } from './_containers/cookies-content'
+import { Cookies } from './_containers/cookies'
 
 export const metadata: Metadata = {
   title: 'Informace o cookies',
@@ -23,5 +23,5 @@ export const metadata: Metadata = {
 }
 
 export default function CookiesPage() {
-  return <CookiesContent />
+  return <Cookies />
 }
