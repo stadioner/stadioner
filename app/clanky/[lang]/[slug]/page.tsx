@@ -81,7 +81,7 @@ export async function generateStaticParams() {
       const posts = await cachedClient(postsPathsByLanguageQuery, {
         language: lang,
       })
-      return posts.map((post: any) => ({
+      return posts.map((post: { params: { slug: string } }) => ({
         lang,
         slug: post.params.slug,
       }))
