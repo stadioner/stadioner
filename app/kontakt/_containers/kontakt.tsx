@@ -93,6 +93,8 @@ export const Kontakt = () => {
               <p>Kout na Šumavě 2</p>
               <p>345 02 Kout na Šumavě</p>
               <p>IČO: 22478566</p>
+              <p>DIČ: CZ22478566</p>
+              <p>Spisová značka: C 46196/KSPL Krajský soud v Plzni</p>
               <p>
                 {language === 'cs' && 'Datová schránka'}
                 {language === 'en' && 'Data Box'}
