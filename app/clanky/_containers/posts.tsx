@@ -36,6 +36,13 @@ export const Posts = ({ posts, categories, language }: PostsProps) => {
 
   const t = translations[language]
 
+  // Helper function to check if a category has posts
+  const getCategoryPostCount = (categoryId: string) => {
+    return posts.filter(post =>
+      post.categories.some(cat => cat._id === categoryId)
+    ).length
+  }
+
   // Filtrování podle kategorií
   let filteredPosts =
     selectedCategories.length === 0
@@ -66,21 +73,40 @@ export const Posts = ({ posts, categories, language }: PostsProps) => {
       {/* Kategorie filtr */}
       <div className='mb-6 flex flex-wrap gap-2'>
         {categories.length > 0 ? (
-          categories.map(cat => (
-            <button
-              key={cat._id}
-              onClick={() => toggleCategory(cat._id)}
-              className={`px-4 py-2 border text-sm font-medium transition-all duration-200 cursor-pointer
-                ${
-                  selectedCategories.includes(cat._id)
-                    ? 'bg-brand-action text-brand-primary border-brand-action shadow-lg'
-                    : 'text-brand-action border-brand-action hover:bg-brand-action/10'
-                }`}
-              style={cat.color ? { borderColor: cat.color } : {}}
-            >
-              {cat.title}
-            </button>
-          ))
+          categories.map(cat => {
+            const postCount = getCategoryPostCount(cat._id)
+            return (
+              <button
+                key={cat._id}
+                onClick={() => toggleCategory(cat._id)}
+                className={`px-4 py-2 border text-sm font-medium transition-all duration-200 cursor-pointer flex items-center gap-2
+                  ${
+                    selectedCategories.includes(cat._id)
+                      ? 'bg-brand-action text-brand-primary border-brand-action shadow-lg'
+                      : 'text-brand-action border-brand-action hover:bg-brand-action/10'
+                  }`}
+                style={cat.color ? { borderColor: cat.color } : {}}
+                title={
+                  postCount === 0
+                    ? 'No posts in this category'
+                    : `${postCount} post${postCount !== 1 ? 's' : ''}`
+                }
+              >
+                <span>{cat.title}</span>
+                <span
+                  className={`text-xs px-1.5 py-0.5 rounded-full ${
+                    postCount === 0
+                      ? 'bg-gray-300 text-gray-600'
+                      : selectedCategories.includes(cat._id)
+                        ? 'bg-brand-primary/20 text-brand-primary'
+                        : 'bg-brand-action/20 text-brand-action'
+                  }`}
+                >
+                  {postCount}
+                </span>
+              </button>
+            )
+          })
         ) : (
           <p className='text-gray-500 text-sm'>
             {language === 'cs'
