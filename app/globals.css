@@ -107,6 +107,10 @@
   animation: bottle 1.5s infinite;
 }
 
+.animate-bottle-shadow {
+  animation: bottle-shadow 1.5s infinite;
+}
+
 @keyframes bottle {
   0%,
   100% {
@@ -115,6 +119,20 @@
   }
   50% {
     transform: none;
+    animation-timing-function: ease-out;
+  }
+}
+
+@keyframes bottle-shadow {
+  0%,
+  100% {
+    transform: scale(0.8) translateY(2.5%);
+    opacity: 0.3;
+    animation-timing-function: ease-in;
+  }
+  50% {
+    transform: scale(1) translateY(0);
+    opacity: 0.5;
     animation-timing-function: ease-out;
   }
 }

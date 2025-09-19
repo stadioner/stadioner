@@ -637,18 +637,21 @@ export const Products = ({
           </div>
 
           <div className='flex flex-col md:grid md:grid-cols-[1.6fr_1fr] gap-8 items-stretch mt-6 sm:mt-12'>
-            <div className='flex-1 md:hidden flex items-center justify-center'>
+            <div className='flex-1 md:hidden flex items-center justify-center relative'>
               <AnimatePresence mode='wait'>
-                <motion.img
-                  key={product.image}
-                  src={product.image}
-                  alt={product.name}
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -40 }}
-                  transition={{ duration: 0.5 }}
-                  className='max-h-[300px] drop-shadow-2xl animate-bottle'
-                />
+                <div className='relative'>
+                  <motion.img
+                    key={product.image}
+                    src={product.image}
+                    alt={product.name}
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -40 }}
+                    transition={{ duration: 0.5 }}
+                    className='max-h-[300px] drop-shadow-2xl animate-bottle relative z-10'
+                  />
+                  <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-8 bg-black/20 rounded-full blur-sm animate-bottle-shadow'></div>
+                </div>
               </AnimatePresence>
             </div>
             {/* Left: Info & Navigation */}
@@ -721,18 +724,21 @@ export const Products = ({
               </div>
             </div>
             {/* Right: Product Image */}
-            <div className='flex-1 hidden md:flex items-center justify-center'>
+            <div className='flex-1 hidden md:flex items-center justify-center relative'>
               <AnimatePresence mode='wait'>
-                <motion.img
-                  key={product.image}
-                  src={product.image}
-                  alt={product.name}
-                  initial={{ opacity: 0, x: 40 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -40 }}
-                  transition={{ duration: 0.5 }}
-                  className='max-h-[470px] drop-shadow-2xl animate-bottle'
-                />
+                <div className='relative'>
+                  <motion.img
+                    key={product.image}
+                    src={product.image}
+                    alt={product.name}
+                    initial={{ opacity: 0, x: 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -40 }}
+                    transition={{ duration: 0.5 }}
+                    className='max-h-[470px] drop-shadow-2xl animate-bottle relative z-10'
+                  />
+                  <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-10 bg-black/20 rounded-full blur-sm animate-bottle-shadow'></div>
+                </div>
               </AnimatePresence>
             </div>
           </div>
