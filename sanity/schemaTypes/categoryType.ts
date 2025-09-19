@@ -33,19 +33,6 @@ export const categoryType = defineType({
       },
       validation: Rule => Rule.required(),
     }),
-    defineField({
-      name: 'description',
-      type: 'text',
-      title: 'Description',
-    }),
-    defineField({
-      name: 'color',
-      type: 'string',
-      title: 'Color',
-      description: 'Hex color code for the category',
-      validation: Rule =>
-        Rule.regex(/^#[0-9A-F]{6}$/i, 'Must be a valid hex color'),
-    }),
   ],
   preview: {
     select: {
@@ -54,13 +41,11 @@ export const categoryType = defineType({
       color: 'color',
     },
     prepare(selection) {
-      const { title, language, color } = selection
+      const { title, language } = selection
       const lang = languages.find(l => l.id === language)
       return {
         title,
-        subtitle: lang
-          ? `${lang.flag} ${lang.title}${color ? ` • ${color}` : ''}`
-          : language,
+        subtitle: lang ? `${lang.flag} ${lang.title}` : language,
       }
     },
   },

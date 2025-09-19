@@ -96,19 +96,18 @@ export const postType = defineType({
     select: {
       title: 'title',
       language: 'language',
-      author: 'author.name',
       media: 'mainImage',
       publishedAt: 'publishedAt',
     },
     prepare(selection) {
-      const { title, language, author, publishedAt } = selection
+      const { title, language, publishedAt } = selection
       const lang = languages.find(l => l.id === language)
       const date = publishedAt
         ? new Date(publishedAt).toLocaleDateString()
         : 'Draft'
       return {
         title,
-        subtitle: `${lang ? `${lang.flag} ` : ''}${author ? `by ${author}` : ''} • ${date}`,
+        subtitle: `${lang ? `${lang.flag} ` : ''} • ${date}}`,
         media: selection.media,
       }
     },
