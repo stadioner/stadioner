@@ -33,13 +33,6 @@ export const postType = defineType({
       },
       validation: Rule => Rule.required(),
     }),
-
-    defineField({
-      name: 'author',
-      type: 'reference',
-      to: { type: 'author' },
-      title: 'Author',
-    }),
     defineField({
       name: 'mainImage',
       type: 'image',

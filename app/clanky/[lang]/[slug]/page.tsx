@@ -53,7 +53,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description,
       type: 'article',
       publishedTime: post.publishedAt,
-      authors: post.author?.name ? [post.author.name] : [],
       tags: keywords,
       images: imageUrl
         ? [

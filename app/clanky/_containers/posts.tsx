@@ -4,7 +4,7 @@ import { Border } from '@/components/border'
 import { urlFor } from '@/sanity/lib/image'
 import { Post, Category, SupportedLanguage } from '@/types/blog'
 import Link from 'next/link'
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 
 interface PostsProps {
   posts: Post[]
@@ -140,29 +140,21 @@ export const Posts = ({ posts, categories, language }: PostsProps) => {
                     className='absolute inset-0 object-cover hover:scale-[102%] transition aspect-square overflow-hidden'
                   />
 
-                  <div className='flex gap-2 absolute right-0 top-0 bg-brand-action p-2 text-brand-primary'>
-                    <img
-                      src={urlFor(post.author.image)}
-                      alt={post.author.name}
-                      className='rounded-full size-6'
-                    />
-                    <p>{post.author.name}</p>
-                  </div>
-
                   <div className='absolute left-0 bottom-0 flex flex-col gap-1'>
-                    {post.categories.map((category, index) => (
-                      <p
-                        key={category._id || `category-${index}`}
-                        className='text-sm bg-brand-action p-1 text-brand-primary'
-                        style={
-                          category.color
-                            ? { backgroundColor: category.color }
-                            : {}
-                        }
-                      >
-                        {category.title}
-                      </p>
-                    ))}
+                    {post.categories &&
+                      post.categories.map((category, index) => (
+                        <p
+                          key={category._id || `category-${index}`}
+                          className='text-sm bg-brand-action p-1 text-brand-primary'
+                          style={
+                            category.color
+                              ? { backgroundColor: category.color }
+                              : {}
+                          }
+                        >
+                          {category.title}
+                        </p>
+                      ))}
                   </div>
                 </div>
               </Border>

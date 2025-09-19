@@ -40,29 +40,6 @@ export const Post = ({ post }: Props) => {
         <div className='grid grid-cols-2 md:grid-cols-1'>
           <div>
             <p className='text-sm text-gray-600'>{formattedDate}</p>
-            <div className='flex gap-2 mt-2'>
-              {post.author?.image && (
-                <img
-                  src={urlFor(post.author.image) || ''}
-                  alt={
-                    typeof post.author.name === 'string'
-                      ? post.author.name
-                      : 'Author'
-                  }
-                  className='size-7 rounded-full'
-                />
-              )}
-              <div>
-                <p className='font-medium'>
-                  {typeof post.author?.name === 'string'
-                    ? post.author.name
-                    : 'Unknown Author'}
-                </p>
-                {post.author?.bio && typeof post.author.bio === 'string' && (
-                  <p className='text-sm text-gray-600'>{post.author.bio}</p>
-                )}
-              </div>
-            </div>
           </div>
           <div className='md:mt-10 justify-self-end md:justify-self-start flex flex-col gap-2'>
             {post.categories &&
