@@ -47,7 +47,7 @@ const beersCs: Product[] = [
     ],
     image: '/products/pivo/dvanactka/bottle.webp',
     icon: '/products/pivo/dvanactka/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/pivo/dvanactka/etiq.webp',
   },
   //   {
   //     name: 'Koutská jedenáctka',
@@ -65,7 +65,7 @@ const beersCs: Product[] = [
   //     ],
   //     image: '/products/bottle.webp',
   //     icon: '/products/pivo/jedenactka/icon.svg',
-  //     ingredients: '/products/etiq.webp',
+  //     ingredients: '/products/limo/citron/etiq.webp',
   //   },
 ]
 
@@ -86,7 +86,7 @@ const limosCs: Product[] = [
     ],
     image: '/products/limo/citron/bottle.webp',
     icon: '/products/limo/citron/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/limo/citron/etiq.webp',
   },
   {
     name: 'Limonáda pomeranč',
@@ -104,7 +104,7 @@ const limosCs: Product[] = [
     ],
     image: '/products/limo/pomeranc/bottle.webp',
     icon: '/products/limo/pomeranc/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/limo/pomeranc/etiq.webp',
   },
   {
     name: 'Cola mix',
@@ -122,7 +122,7 @@ const limosCs: Product[] = [
     ],
     image: '/products/limo/colamix/bottle.webp',
     icon: '/products/limo/colamix/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/limo/colamix/etiq.webp',
   },
 ]
 
@@ -143,7 +143,7 @@ const watersCs: Product[] = [
     ],
     image: '/products/voda/sycena/bottle.webp',
     icon: '/products/voda/sycena/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/voda/sycena/etiq.webp',
   },
   {
     name: 'Pramenitá voda (Nesycená)',
@@ -159,9 +159,9 @@ const watersCs: Product[] = [
       { label: 'SLOŽENÍ', value: 'Přírodní' },
       { label: 'BALENÍ', value: 'Vratný obal' },
     ],
-    image: '/products/bottle.webp',
+    image: '/products/voda/nesycena/bottle.webp',
     icon: '/products/voda/nesycena/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/voda/nesycena/etiq.webp',
   },
 ]
 
@@ -183,7 +183,7 @@ const beersEn: Product[] = [
     ],
     image: '/products/pivo/dvanactka/bottle.webp',
     icon: '/products/pivo/dvanactka/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/pivo/dvanactka/etiq.webp',
   },
   //   {
   //     name: 'Koutska 11',
@@ -201,7 +201,7 @@ const beersEn: Product[] = [
   //     ],
   //     image: '/products/bottle.webp',
   //     icon: '/products/pivo/jedenactka/icon.svg',
-  //     ingredients: '/products/etiq.webp',
+  //     ingredients: '/products/limo/citron/etiq.webp',
   //   },
 ]
 
@@ -222,7 +222,7 @@ const limosEn: Product[] = [
     ],
     image: '/products/limo/citron/bottle.webp',
     icon: '/products/limo/citron/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/limo/citron/etiq.webp',
   },
   {
     name: 'Orange Lemonade',
@@ -240,7 +240,7 @@ const limosEn: Product[] = [
     ],
     image: '/products/limo/pomeranc/bottle.webp',
     icon: '/products/limo/pomeranc/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/limo/pomeranc/etiq.webp',
   },
   {
     name: 'Cola mix',
@@ -258,7 +258,7 @@ const limosEn: Product[] = [
     ],
     image: '/products/limo/colamix/bottle.webp',
     icon: '/products/limo/colamix/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/limo/colamix/etiq.webp',
   },
 ]
 
@@ -279,7 +279,7 @@ const watersEn: Product[] = [
     ],
     image: '/products/voda/sycena/bottle.webp',
     icon: '/products/voda/sycena/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/voda/sycena/etiq.webp',
   },
   {
     name: 'Spring water (Still)',
@@ -295,9 +295,9 @@ const watersEn: Product[] = [
       { label: 'COMPOSITION', value: 'Natural' },
       { label: 'PACKAGING', value: 'Returnable bottle' },
     ],
-    image: '/products/bottle.webp',
+    image: '/products/voda/nesycena/bottle.webp',
     icon: '/products/voda/nesycena/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/voda/nesycena/etiq.webp',
   },
 ]
 
@@ -319,7 +319,7 @@ const beersDe: Product[] = [
     ],
     image: '/products/pivo/dvanactka/bottle.webp',
     icon: '/products/pivo/dvanactka/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/pivo/dvanactka/etiq.webp',
   },
   //   {
   //     name: 'Koutska 11',
@@ -337,7 +337,7 @@ const beersDe: Product[] = [
   //     ],
   //     image: '/products/bottle.webp',
   //     icon: '/products/pivo/jedenactka/icon.svg',
-  //     ingredients: '/products/etiq.webp',
+  //     ingredients: '/products/limo/citron/etiq.webp',
   //   },
 ]
 
@@ -358,7 +358,7 @@ const limosDe: Product[] = [
     ],
     image: '/products/limo/citron/bottle.webp',
     icon: '/products/limo/citron/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/limo/citron/etiq.webp',
   },
   {
     name: 'Orangenlimonade',
@@ -376,7 +376,7 @@ const limosDe: Product[] = [
     ],
     image: '/products/limo/pomeranc/bottle.webp',
     icon: '/products/limo/pomeranc/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/limo/pomeranc/etiq.webp',
   },
   {
     name: 'Cola Mix',
@@ -394,7 +394,7 @@ const limosDe: Product[] = [
     ],
     image: '/products/limo/colamix/bottle.webp',
     icon: '/products/limo/colamix/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/limo/colamix/etiq.webp',
   },
 ]
 
@@ -415,7 +415,7 @@ const watersDe: Product[] = [
     ],
     image: '/products/voda/sycena/bottle.webp',
     icon: '/products/voda/sycena/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/voda/sycena/etiq.webp',
   },
   {
     name: 'Quellwasser (Still)',
@@ -431,9 +431,9 @@ const watersDe: Product[] = [
       { label: 'ZUSAMMENSETZUNG', value: 'Natürlich' },
       { label: 'VERPACKUNG', value: 'Mehrwegflasche' },
     ],
-    image: '/products/bottle.webp',
+    image: '/products/voda/nesycena/bottle.webp',
     icon: '/products/voda/nesycena/icon.svg',
-    ingredients: '/products/etiq.webp',
+    ingredients: '/products/voda/nesycena/etiq.webp',
   },
 ]
 
