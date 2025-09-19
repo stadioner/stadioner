@@ -14,13 +14,21 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
   const [sessionVerified, setSessionVerified] = useState(false)
   const pathname = usePathname()
   const isStudioPage = pathname?.startsWith('/studio')
-  const [open, setOpen] = useState(
-    !(isVerified || sessionVerified) && !isStudioPage
-  )
+  const isExcludedPage =
+    pathname === '/rozcestnik' ||
+    pathname === '/qr' ||
+    pathname?.startsWith('/en/rozcestnik') ||
+    pathname?.startsWith('/de/rozcestnik') ||
+    pathname?.startsWith('/en/qr') ||
+    pathname?.startsWith('/de/qr')
+  const shouldShowAgeGate =
+    !(isVerified || sessionVerified) && !isStudioPage && !isExcludedPage
+
+  const [open, setOpen] = useState(shouldShowAgeGate)
 
   useEffect(() => {
-    setOpen(!(isVerified || sessionVerified) && !isStudioPage)
-  }, [isVerified, sessionVerified, isStudioPage])
+    setOpen(shouldShowAgeGate)
+  }, [isVerified, sessionVerified, isStudioPage, isExcludedPage])
 
   const handleVerify = () => {
     if (hasConsented) {
@@ -66,7 +74,8 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       )}
-      {(isVerified || sessionVerified || isStudioPage) && children}
+      {(isVerified || sessionVerified || isStudioPage || isExcludedPage) &&
+        children}
     </section>
   )
 }
