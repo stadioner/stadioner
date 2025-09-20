@@ -12,6 +12,7 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
   const { isVerified, setVerified } = useAgeVerification()
   const { hasConsented } = useCookieConsent()
   const [sessionVerified, setSessionVerified] = useState(false)
+  const [isHydrated, setIsHydrated] = useState(false)
   const pathname = usePathname()
   const isStudioPage = pathname?.startsWith('/studio')
   const isExcludedPage =
@@ -24,11 +25,18 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
   const shouldShowAgeGate =
     !(isVerified || sessionVerified) && !isStudioPage && !isExcludedPage
 
-  const [open, setOpen] = useState(shouldShowAgeGate)
+  const [open, setOpen] = useState(false)
+
+  // Wait for stores to hydrate before showing age gate
+  useEffect(() => {
+    setIsHydrated(true)
+  }, [])
 
   useEffect(() => {
-    setOpen(shouldShowAgeGate)
-  }, [isVerified, sessionVerified, isStudioPage, isExcludedPage])
+    if (isHydrated) {
+      setOpen(shouldShowAgeGate)
+    }
+  }, [isHydrated, isVerified, sessionVerified, isStudioPage, isExcludedPage])
 
   const handleVerify = () => {
     if (hasConsented) {
@@ -46,6 +54,11 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
       setOpen(true)
     }
   }, [hasConsented])
+
+  // Don't render anything until hydrated to prevent flash
+  if (!isHydrated) {
+    return <section className='bg-brand-action'>{children}</section>
+  }
 
   return (
     <section className='bg-brand-action'>
