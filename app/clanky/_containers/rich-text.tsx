@@ -22,12 +22,12 @@ export const RichText = {
 
   block: {
     normal: ({ children }: PropsWithChildren) => (
-      <p className='text-zinc-800 font-stabil text-justify text-lg mb-2'>
+      <p className='text-zinc-800 font-stabil !text-justify text-lg mb-4 !leading-[1.15]'>
         {children}
       </p>
     ),
     h1: ({ children }: PropsWithChildren) => (
-      <h1 className='mt-10 mb-4 text-4xl xl:text-5xl font-bold font-labil '>
+      <h1 className='mt-10 mb-4 text-4xl xl:text-5xl font-bold font-labil'>
         {children}
       </h1>
     ),

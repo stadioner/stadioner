@@ -22,7 +22,7 @@ export const Post = ({ post }: Props) => {
   // Add back proper styling and structure
   return (
     <section>
-      <Container className='!max-w-5xl'>
+      <Container className='!max-w-3xl'>
         <div className='flex items-center gap-10 mb-2'>
           <div className='flex gap-2'>
             {post.categories &&
