@@ -166,7 +166,7 @@ export const Posts = ({ posts, categories, language }: PostsProps) => {
                     className='absolute inset-0 object-cover hover:scale-[102%] transition aspect-square overflow-hidden'
                   />
 
-                  <div className='absolute left-0 bottom-0 flex flex-col gap-1'>
+                  <div className='absolute left-0 top-0 flex flex-col gap-1'>
                     {post.categories &&
                       post.categories.map((category, index) => (
                         <p
