@@ -1,7 +1,6 @@
 import { urlFor } from '@/sanity/lib/image'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
-import type {} from '@portabletext/react'
 
 export const RichText = {
   types: {
