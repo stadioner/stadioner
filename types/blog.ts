@@ -6,16 +6,7 @@ export interface Category {
   slug: {
     current: string
   }
-  description?: string
-  color?: string
   language: string
-}
-
-export interface Author {
-  _id: string
-  name: string
-  image: string
-  bio?: string
 }
 
 export interface SEO {
@@ -32,7 +23,6 @@ export interface Post {
   }
   language: string
   excerpt?: string
-  author: Author
   mainImage: {
     asset: {
       _ref: string

@@ -85,7 +85,6 @@ export const Posts = ({ posts, categories, language }: PostsProps) => {
                       ? 'bg-brand-action text-brand-primary border-brand-action shadow-lg'
                       : 'text-brand-action border-brand-action hover:bg-brand-action/10'
                   }`}
-                style={cat.color ? { borderColor: cat.color } : {}}
                 title={
                   postCount === 0
                     ? 'No posts in this category'
@@ -172,11 +171,6 @@ export const Posts = ({ posts, categories, language }: PostsProps) => {
                         <p
                           key={category._id || `category-${index}`}
                           className='text-sm bg-brand-action p-1 text-brand-primary'
-                          style={
-                            category.color
-                              ? { backgroundColor: category.color }
-                              : {}
-                          }
                         >
                           {category.title}
                         </p>

@@ -7,11 +7,6 @@ export const postsByLanguageQuery = groq`
     title,
     slug,
     language,
-    excerpt,
-    author->{
-      name,
-      image
-    },
     mainImage,
     publishedAt,
     featured,
@@ -19,7 +14,6 @@ export const postsByLanguageQuery = groq`
       _id,
       title,
       slug,
-      color
     },
     body,
     seo
@@ -32,12 +26,6 @@ export const postBySlugQuery = groq`
     title,
     slug,
     language,
-    excerpt,
-    author->{
-      name,
-      image,
-      bio
-    },
     mainImage,
     publishedAt,
     featured,
@@ -45,8 +33,6 @@ export const postBySlugQuery = groq`
       _id,
       title,
       slug,
-      color,
-      description
     },
     body,
     seo
@@ -69,18 +55,12 @@ export const featuredPostsQuery = groq`
     title,
     slug,
     language,
-    excerpt,
-    author->{
-      name,
-      image
-    },
     mainImage,
     publishedAt,
     categories[]->{
       _id,
       title,
       slug,
-      color
     }
   }
 `
@@ -91,18 +71,12 @@ export const relatedPostsQuery = groq`
     title,
     slug,
     language,
-    excerpt,
-    author->{
-      name,
-      image
-    },
     mainImage,
     publishedAt,
     categories[]->{
       _id,
       title,
       slug,
-      color
     }
   }
 `
@@ -113,11 +87,6 @@ export const postsByCategoryQuery = groq`
     title,
     slug,
     language,
-    excerpt,
-    author->{
-      name,
-      image
-    },
     mainImage,
     publishedAt,
     featured,
@@ -125,7 +94,6 @@ export const postsByCategoryQuery = groq`
       _id,
       title,
       slug,
-      color
     }
   }
 `
@@ -140,7 +108,6 @@ export const postsPathsByLanguageQuery = groq`
 export const PostsQuery = groq`
     *[_type=='post'] {
         ...,
-        author->,
         categories[]->
     }
 `
@@ -154,7 +121,6 @@ export const PostsPathsQuery = groq`
 export const PostQuery = groq`
     *[_type == "post" && slug.current == $slug][0]{
         ...,
-        author->,
         categories[]->
     }
 `

@@ -31,9 +31,6 @@ export const Post = ({ post }: Props) => {
                 <span
                   key={category._id || category.title}
                   className='bg-brand-action py-1 px-2 w-min whitespace-nowrap text-brand-primary text-sm'
-                  style={
-                    category.color ? { backgroundColor: category.color } : {}
-                  }
                 >
                   {typeof category.title === 'string'
                     ? category.title
