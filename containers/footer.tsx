@@ -212,11 +212,11 @@ export const Footer = () => {
             </h4>
             <p className='text-sm text-brand-action/80'>
               {language === 'cs' &&
-                'Přihlaste se k odběru našeho newsletteru a získejte nejnovější informace o našich produktech a akcích.'}
+                'Přihlaste se k odběru našeho newsletteru a získejte jako první informace o našich produktech, akcích apod.'}
               {language === 'en' &&
-                'Subscribe to our newsletter and get the latest information about our products and events.'}
+                'Sign up for our newsletter and be the first to receive information about our products, events, etc.'}
               {language === 'de' &&
-                'Abonnieren Sie unseren Newsletter und erhalten Sie die neuesten Informationen über unsere Produkte und Veranstaltungen.'}
+                'Abonnieren Sie unseren Newsletter und erhalten Sie als Erste Informationen über unsere Produkte, Aktionen usw.'}
             </p>
 
             <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
