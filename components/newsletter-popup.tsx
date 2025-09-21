@@ -29,10 +29,10 @@ export const NewsletterPopup = () => {
     const closeCount = localStorage.getItem('newsletter-popup-close-count')
     if (closeCount && parseInt(closeCount) >= 2) return
 
-    // Show popup after 1 second
+    // Show popup after 10 seconds
     const timer = setTimeout(() => {
       setIsVisible(true)
-    }, 11000)
+    }, 10000)
 
     return () => clearTimeout(timer)
   }, [])
@@ -126,7 +126,8 @@ export const NewsletterPopup = () => {
       <Container className='w-full'>
         <Border background>
           <div className='bg-brand-action'>
-            <div className='px-4 py-3'>
+            {/* Mobile layout */}
+            <div className='px-4 py-3 lg:hidden'>
               {/* Header with close button */}
               <div className='flex items-start justify-between mb-3'>
                 <h3 className='text-brand-primary text-lg font-semibold pr-2'>
@@ -187,10 +188,7 @@ export const NewsletterPopup = () => {
               </p>
 
               {/* Form */}
-              <form
-                onSubmit={handleSubmit}
-                className='flex flex-col sm:flex-row gap-3'
-              >
+              <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
                 <input
                   type='email'
                   value={email}
@@ -205,14 +203,14 @@ export const NewsletterPopup = () => {
                           : 'Váš email'
                   }
                   required
-                  className='px-3 py-2 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action focus:outline-none focus:ring-2 focus:ring-brand-action/50 flex-1 min-w-0'
+                  className='px-3 py-2 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-full'
                 />
                 <Button
                   type='submit'
                   disabled={isSubmitting}
                   variant='secondary'
                   size='sm'
-                  className='whitespace-nowrap sm:w-auto w-full'
+                  className='w-full'
                 >
                   {isSubmitting
                     ? language === 'cs'
@@ -229,6 +227,112 @@ export const NewsletterPopup = () => {
                         : language === 'de'
                           ? 'Abonnieren'
                           : 'Přihlásit se'}
+                </Button>
+              </form>
+            </div>
+
+            {/* Desktop layout - original */}
+            <div className='hidden lg:flex items-center justify-between px-4 py-3'>
+              <div className='flex-1'>
+                <h3 className='text-brand-primary text-lg font-semibold mb-1'>
+                  {language === 'cs' &&
+                    'Přihlaste se k odběru našeho newsletteru'}
+                  {language === 'en' && 'Subscribe to our newsletter'}
+                  {language === 'de' && 'Abonnieren Sie unseren Newsletter'}
+                </h3>
+                <p className='text-brand-primary/80 text-sm'>
+                  {language === 'cs' && (
+                    <>
+                      Získejte jako první informace o našich produktech, akcích
+                      apod.{' '}
+                      <Link
+                        href='/gdpr'
+                        className='underline hover:text-brand-primary'
+                      >
+                        Ochrana osobních údajů
+                      </Link>
+                    </>
+                  )}
+                  {language === 'en' && (
+                    <>
+                      Be the first to receive information about our products,
+                      events, etc.{' '}
+                      <Link
+                        href='/gdpr'
+                        className='underline hover:text-brand-primary'
+                      >
+                        Personal Data Protection
+                      </Link>
+                    </>
+                  )}
+                  {language === 'de' && (
+                    <>
+                      Erhalten Sie als Erster Informationen über unsere
+                      Produkte, Aktionen usw.{' '}
+                      <Link
+                        href='/gdpr'
+                        className='underline hover:text-brand-primary'
+                      >
+                        Datenschutz
+                      </Link>
+                    </>
+                  )}
+                </p>
+              </div>
+
+              <form
+                onSubmit={handleSubmit}
+                className='flex items-center gap-3 ml-6'
+              >
+                <div className='relative'>
+                  <input
+                    type='email'
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder={
+                      language === 'cs'
+                        ? 'Váš email'
+                        : language === 'en'
+                          ? 'Your email'
+                          : language === 'de'
+                            ? 'Ihre E-Mail'
+                            : 'Váš email'
+                    }
+                    required
+                    className='px-3 py-2 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-64'
+                  />
+                </div>
+                <Button
+                  type='submit'
+                  disabled={isSubmitting}
+                  variant='secondary'
+                  size='sm'
+                  className='whitespace-nowrap'
+                >
+                  {isSubmitting
+                    ? language === 'cs'
+                      ? 'Odesílám...'
+                      : language === 'en'
+                        ? 'Sending...'
+                        : language === 'de'
+                          ? 'Sende...'
+                          : 'Odesílám...'
+                    : language === 'cs'
+                      ? 'Přihlásit se'
+                      : language === 'en'
+                        ? 'Subscribe'
+                        : language === 'de'
+                          ? 'Abonnieren'
+                          : 'Přihlásit se'}
+                </Button>
+                <Button
+                  type='button'
+                  onClick={handleClose}
+                  variant='ghost'
+                  size='icon'
+                  className='text-brand-primary hover:bg-brand-primary/10 hover:text-brand-primary'
+                >
+                  <X className='h-4 w-4' />
                 </Button>
               </form>
             </div>
