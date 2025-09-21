@@ -23,7 +23,7 @@ const caladea = Caladea({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Stadioner - Pivovar Kout na Šumavě',
+    default: 'Pivovar Kout na Šumavě',
     template: '%s | Stadioner',
   },
   description:
