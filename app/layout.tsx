@@ -8,6 +8,7 @@ import { AgeGate } from '@/components/age-gate'
 import { CookieConsent } from '@/components/cookie-consent'
 import { CookieManager } from '@/components/cookie-manager'
 import { NewsletterPopup } from '@/components/newsletter-popup'
+import { Analytics } from '@vercel/analytics/next'
 
 const mohave = Mohave({
   variable: '--font-mohave',
@@ -108,6 +109,8 @@ export default function RootLayout({
           caladea.variable
         )}
       >
+        <Analytics />
+
         <CookieManager />
         <NewsletterPopup />
         <Navbar />
