@@ -4,15 +4,68 @@ import { Container } from '@/components/container'
 import { useLanguage } from '@/store/use-language'
 import { ExternalLinkIcon, FacebookIcon, InstagramIcon } from 'lucide-react'
 import Link from 'next/link'
+import { useState } from 'react'
+import { Button } from '@/components/ui/button'
 
 export const Footer = () => {
   const { language } = useLanguage()
+  const [email, setEmail] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [message, setMessage] = useState('')
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+    setMessage('')
+
+    try {
+      const formData = new FormData()
+      formData.append('EMAIL', email)
+      formData.append('b_0fe24a4d8159780e91fdf8f8d_fc6d3b1ef6', '')
+      formData.append('f_id', '007877eef0')
+
+      await fetch(
+        'https://stadioner.us20.list-manage.com/subscribe/post?u=0fe24a4d8159780e91fdf8f8d&id=fc6d3b1ef6&f_id=007877eef0',
+        {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors',
+        }
+      )
+
+      const successMessage =
+        language === 'cs'
+          ? 'Děkujeme za přihlášení k odběru!'
+          : language === 'en'
+            ? 'Thank you for subscribing!'
+            : language === 'de'
+              ? 'Vielen Dank für Ihr Abonnement!'
+              : 'Děkujeme za přihlášení k odběru!'
+
+      setMessage(successMessage)
+      setEmail('')
+    } catch (error) {
+      const successMessage =
+        language === 'cs'
+          ? 'Děkujeme za přihlášení k odběru!'
+          : language === 'en'
+            ? 'Thank you for subscribing!'
+            : language === 'de'
+              ? 'Vielen Dank für Ihr Abonnement!'
+              : 'Děkujeme za přihlášení k odběru!'
+
+      setMessage(successMessage)
+      setEmail('')
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
 
   return (
     <footer className='bg-brand-secondary pt-20 pb-10'>
       <Container>
-        <div className='grid grid-cols-2 md:grid-cols-3 gap-x-8 gap-y-20 md:gap-10'>
-          <div className='grid text-xl'>
+        <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20 md:gap-10 lg:gap-12'>
+          <div className='grid text-xl gap-2'>
             <h4 className='text-3xl font-bold text-brand-action'>
               {language === 'cs' && 'Odkazy'}
               {language === 'en' && 'Links'}
@@ -59,7 +112,7 @@ export const Footer = () => {
               {language === 'de' && 'GDPR'}
             </Link>
           </div>
-          <div className='flex flex-col justify-self-center text-xl'>
+          <div className='flex flex-col text-xl gap-2'>
             <h4 className='text-3xl font-bold text-brand-action'>
               {language === 'cs' && 'Produkty'}
               {language === 'en' && 'Products'}
@@ -99,7 +152,7 @@ export const Footer = () => {
               {language === 'de' && 'Quellwasser (Still)'}
             </Link>
           </div>
-          <div className='grid justify-between md:justify-self-end gap-4 text-xl'>
+          <div className='flex flex-col text-xl gap-4'>
             <div>
               <h4 className='text-3xl font-bold text-brand-action'>
                 {language === 'cs' && 'Adresa'}
@@ -148,6 +201,106 @@ export const Footer = () => {
                 </svg>
               </Link>
             </div>
+          </div>
+
+          {/* Newsletter Section */}
+          <div className='flex flex-col gap-4 text-xl'>
+            <h4 className='text-3xl font-bold text-brand-action'>
+              {language === 'cs' && 'Newsletter'}
+              {language === 'en' && 'Newsletter'}
+              {language === 'de' && 'Newsletter'}
+            </h4>
+            <p className='text-sm text-brand-action/80'>
+              {language === 'cs' &&
+                'Přihlaste se k odběru našeho newsletteru a získejte nejnovější informace o našich produktech a akcích.'}
+              {language === 'en' &&
+                'Subscribe to our newsletter and get the latest information about our products and events.'}
+              {language === 'de' &&
+                'Abonnieren Sie unseren Newsletter und erhalten Sie die neuesten Informationen über unsere Produkte und Veranstaltungen.'}
+            </p>
+
+            <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
+              <input
+                type='email'
+                value={email}
+                onChange={e => setEmail(e.target.value)}
+                placeholder={
+                  language === 'cs'
+                    ? 'Váš email'
+                    : language === 'en'
+                      ? 'Your email'
+                      : language === 'de'
+                        ? 'Ihre E-Mail'
+                        : 'Váš email'
+                }
+                required
+                className='px-3 py-2 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action focus:outline-none focus:ring-2 focus:ring-brand-action/50'
+              />
+              <Button
+                type='submit'
+                disabled={isSubmitting}
+                variant='green'
+                size='sm'
+                className='w-fit'
+              >
+                {isSubmitting
+                  ? language === 'cs'
+                    ? 'Odesílám...'
+                    : language === 'en'
+                      ? 'Sending...'
+                      : language === 'de'
+                        ? 'Sende...'
+                        : 'Odesílám...'
+                  : language === 'cs'
+                    ? 'Přihlásit se'
+                    : language === 'en'
+                      ? 'Subscribe'
+                      : language === 'de'
+                        ? 'Abonnieren'
+                        : 'Přihlásit se'}
+              </Button>
+
+              {message && (
+                <p className='text-sm text-brand-action'>{message}</p>
+              )}
+
+              <p className='text-xs text-brand-action/60'>
+                {language === 'cs' && (
+                  <>
+                    Odesláním souhlasíte s{' '}
+                    <Link
+                      href='/gdpr'
+                      className='underline hover:text-brand-action'
+                    >
+                      ochranou osobních údajů
+                    </Link>
+                  </>
+                )}
+                {language === 'en' && (
+                  <>
+                    By submitting you agree to our{' '}
+                    <Link
+                      href='/gdpr'
+                      className='underline hover:text-brand-action'
+                    >
+                      personal data protection
+                    </Link>
+                  </>
+                )}
+                {language === 'de' && (
+                  <>
+                    Mit der Übermittlung stimmen Sie unserem{' '}
+                    <Link
+                      href='/gdpr'
+                      className='underline hover:text-brand-action'
+                    >
+                      Datenschutz
+                    </Link>{' '}
+                    zu
+                  </>
+                )}
+              </p>
+            </form>
           </div>
         </div>
 
