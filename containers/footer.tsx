@@ -150,7 +150,14 @@ export const Footer = () => {
           &copy; {new Date().getFullYear()} Stadioner -{' '}
           {language === 'cs' && 'Všechna práva vyhrazena'}
           {language === 'en' && 'All rights reserved'}
-          {language === 'de' && 'Alle Rechte vorbehalten'}
+          {language === 'de' && 'Alle Rechte vorbehalten'}.{' '}
+          <br className='md:hidden' />
+          {language === 'cs' && 'Vytvořil'}
+          {language === 'en' && 'Created by'}
+          {language === 'de' && 'Erstellt von'}{' '}
+          <Link href='https://baudys.dev' target='_blank' className='underline'>
+            Daniel Anthony Baudyš
+          </Link>
         </p>
       </Container>
     </footer>
