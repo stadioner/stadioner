@@ -7,6 +7,7 @@ import { Footer } from '@/containers/footer'
 import { AgeGate } from '@/components/age-gate'
 import { CookieConsent } from '@/components/cookie-consent'
 import { CookieManager } from '@/components/cookie-manager'
+import { NewsletterPopup } from '@/components/newsletter-popup'
 
 const mohave = Mohave({
   variable: '--font-mohave',
@@ -108,6 +109,7 @@ export default function RootLayout({
         )}
       >
         <CookieManager />
+        <NewsletterPopup />
         <Navbar />
         <AgeGate>
           {children}

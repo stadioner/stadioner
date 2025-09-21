@@ -7,12 +7,14 @@ export const Border = ({
   background,
   backgroundLight,
   className,
+  reverse,
 }: {
   children: ReactNode
   rounded?: boolean
   background?: boolean
   backgroundLight?: boolean
   className?: string
+  reverse?: boolean
 }) => {
   return (
     <div
@@ -21,6 +23,7 @@ export const Border = ({
         rounded && 'rounded-full',
         background && 'bg-brand-secondary',
         backgroundLight && 'bg-brand-primary',
+        reverse && 'border-brand-secondary',
         className
       )}
     >
@@ -29,7 +32,8 @@ export const Border = ({
           'border-[1.5px] border-brand-action h-full',
           rounded && 'rounded-full',
           background && 'bg-brand-secondary',
-          backgroundLight && 'bg-brand-primary'
+          backgroundLight && 'bg-brand-primary',
+          reverse && 'border-brand-secondary'
         )}
       >
         {children}

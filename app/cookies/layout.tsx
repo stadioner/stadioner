@@ -2,7 +2,7 @@ import { PropsWithChildren } from 'react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Informace o cookies',
+  title: 'Cookies',
   description:
     'Informace o používání cookies na webových stránkách pivovaru Stadioner. Zjistěte, jaké cookies používáme a jak je můžete spravovat.',
   keywords: [

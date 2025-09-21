@@ -53,6 +53,11 @@ export const Footer = () => {
               {language === 'en' && 'Cookies'}
               {language === 'de' && 'Cookies'}
             </Link>
+            <Link href='/gdpr'>
+              {language === 'cs' && 'GDPR'}
+              {language === 'en' && 'GDPR'}
+              {language === 'de' && 'GDPR'}
+            </Link>
           </div>
           <div className='flex flex-col justify-self-center text-xl'>
             <h4 className='text-3xl font-bold text-brand-action'>
