@@ -7,7 +7,7 @@ import { Products } from '@/containers/products'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Stadioner - Pivovar Kout na Šumavě',
+  title: 'Pivovar Kout na Šumavě',
   description:
     'Tradiční pivovar Stadioner v Koutě na Šumavě. Řemeslná piva, limonády a voda ze šumavských pramenů. Navštivte nás nebo najděte naše produkty v Plzeňském kraji.',
   keywords: [
@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     'Plzeňský kraj',
   ],
   openGraph: {
-    title: 'Stadioner - Pivovar Kout na Šumavě',
+    title: 'Pivovar Kout na Šumavě',
     description:
       'Tradiční pivovar Stadioner v Koutě na Šumavě. Řemeslná piva, limonády a voda ze šumavských pramenů.',
     type: 'website',

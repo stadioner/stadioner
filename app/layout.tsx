@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     locale: 'cs_CZ',
     url: 'https://stadioner.cz',
     siteName: 'Stadioner',
-    title: 'Stadioner - Pivovar Kout na Šumavě',
+    title: 'Pivovar Kout na Šumavě',
     description:
       'Tradiční pivovar Stadioner v Koutě na Šumavě. Řemeslná piva, limonády a voda ze šumavských pramenů.',
     images: [
