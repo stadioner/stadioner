@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const title = post.seo?.metaTitle || post.title
-  const description = post.seo?.metaDescription || post.excerpt || ''
+  const description = post.seo?.metaDescription || ''
   const keywords = post.seo?.keywords || []
   const imageUrl = post.mainImage
     ? createImageUrlBuilder({ projectId, dataset })

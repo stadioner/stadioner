@@ -402,7 +402,7 @@ export default function RozcestnikPage() {
                 'Brauchen Sie etwas Spezifisches? Kontaktieren Sie uns direkt.'}
             </p>
             <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-              <Button asChild variant='green' size='lg'>
+              <Button asChild variant='secondary' size='lg'>
                 <Link
                   href='mailto:info@stadioner.cz'
                   className='flex items-center gap-2'
@@ -411,12 +411,7 @@ export default function RozcestnikPage() {
                   info@stadioner.cz
                 </Link>
               </Button>
-              <Button
-                asChild
-                variant='outline'
-                size='lg'
-                className='border-brand-action text-brand-action !hover:bg-brand-action !hover:text-brand-primary'
-              >
+              <Button asChild variant='green' size='lg'>
                 <Link
                   href='tel:+420601535416'
                   className='flex items-center gap-2'
