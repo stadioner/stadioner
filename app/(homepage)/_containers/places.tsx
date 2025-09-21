@@ -18,17 +18,17 @@ export const Places = () => {
       <Container>
         <div className='pb-6'>
           <h2 className='text-brand-action text-3xl md:text-4xl lg:text-6xl font-bold flex-nowrap text-nowrap'>
-            {language === 'cs' && 'Nejsme jen v Koutě na Šumavě'}
-            {language === 'en' && 'We are not only in Kout na Šumavě'}
-            {language === 'de' && 'Wir sind nicht nur in Kout na Šumavě'}
+            {language === 'cs' && 'Brzy nebudeme jen v Koutě na Šumavě'}
+            {language === 'en' && 'Soon we will not be only in Kout na Šumavě'}
+            {language === 'de' && 'Bald sind wir nicht nur in Kout na Šumavě'}
           </h2>
           <p className='max-w-[100ch]'>
             {language === 'cs' &&
-              'Naše hlavní výdejní místo najdete v pivovaru STADIONER v Koutě na Šumavě. Zde si můžete přímo zakoupit naše produkty nebo vrátit prázdné lahve. Kromě toho jsou naše produkty k dostání i v řadě restaurací, hospod a obchodů napříč Plzeňským krajem.'}
+              'Pivovar STADIONER v Koutě na Šumavě je naše domovské místo, kde se připravují naše prémiová piva a limonády. Již brzy si budete moci zakoupit naše produkty přímo v pivovaru. Plánujeme rozšíření prodeje do restaurací a obchodů napříč Plzeňským krajem.'}
             {language === 'en' &&
-              'Our main distribution point is located at the STADIONER brewery in Kout na Šumavě. Here you can purchase our products directly or return empty bottles. In addition, our products are available in a number of restaurants, pubs, and shops across the Plzeň Region.'}
+              'The STADIONER brewery in Kout na Šumavě is our home base, where our premium beers and soft drinks are prepared. Soon you will be able to purchase our products directly at the brewery. We plan to expand sales to restaurants and shops across the Plzeň Region.'}
             {language === 'de' &&
-              'Unsere Hauptverkaufsstelle befindet sich in der Brauerei STADIONER in Kout na Šumavě. Hier können Sie unsere Produkte direkt kaufen oder leere Flaschen zurückgeben. Darüber hinaus sind unsere Produkte auch in einer Reihe von Restaurants, Gaststätten und Geschäften in der gesamten Region Pilsen erhältlich.'}
+              'Die Brauerei STADIONER in Kout na Šumavě ist unser Stammsitz, wo unsere Premium-Biere und Softdrinks hergestellt werden. Bald werden Sie unsere Produkte direkt in der Brauerei kaufen können. Wir planen die Erweiterung des Verkaufs in Restaurants und Geschäfte in der gesamten Region Pilsen.'}
           </p>
         </div>
 

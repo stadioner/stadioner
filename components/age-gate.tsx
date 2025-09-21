@@ -64,7 +64,7 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
   return (
     <section className='bg-brand-action'>
       {open && (
-        <div className='fixed inset-0 z-[1002] flex items-center justify-center'>
+        <div className='fixed inset-0 z-[1000] flex items-center justify-center'>
           {/* Custom overlay that doesn't block navbar */}
           <div className='absolute inset-0 bg-black/50' />
           <div className='relative z-[1000] max-w-md w-full mx-4'>

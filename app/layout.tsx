@@ -112,9 +112,9 @@ export default function RootLayout({
         <Analytics />
 
         <CookieManager />
-        <NewsletterPopup />
         <Navbar />
         <AgeGate>
+          <NewsletterPopup />
           {children}
           <Footer />
           <CookieConsent />
