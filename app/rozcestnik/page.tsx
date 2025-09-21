@@ -332,26 +332,26 @@ export default function RozcestnikPage() {
                 <h2 className='text-2xl md:text-3xl font-bold text-brand-action border-b-2 border-brand-action/20 pb-2'>
                   {getCategoryTitle(category)}
                 </h2>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 items-stretch'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr'>
                   {categoryLinks.map((link, index) => (
-                    <div key={index} className='h-full'>
-                      <Border>
-                        <div className='p-6 h-full flex flex-col group hover:bg-brand-secondary/20 transition-colors'>
-                          <div className='flex items-start gap-4 mb-4'>
+                    <div key={index} className='h-full min-h-0'>
+                      <Border className='h-full'>
+                        <div className='p-6 h-full flex flex-col group hover:bg-brand-secondary/20 transition-colors min-h-0'>
+                          <div className='flex items-start gap-4 mb-4 flex-1'>
                             <div className='p-2 rounded-lg bg-brand-action text-brand-primary flex-shrink-0'>
                               {link.icon}
                             </div>
-                            <div className='flex-1 min-w-0'>
-                              <h3 className='text-lg font-semibold text-brand-action mb-1'>
+                            <div className='flex-1 min-w-0 flex flex-col'>
+                              <h3 className='text-lg font-semibold text-brand-action mb-2'>
                                 {link.title}
                               </h3>
-                              <p className='text-sm text-brand-action/70 leading-relaxed min-h-[3.5rem]'>
+                              <p className='text-sm text-brand-action/70 leading-relaxed flex-1'>
                                 {link.description}
                               </p>
                             </div>
                           </div>
 
-                          <div className='mt-auto'>
+                          <div className='mt-4'>
                             <Button
                               asChild
                               variant='green'
