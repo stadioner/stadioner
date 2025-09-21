@@ -13,12 +13,18 @@ export const CookieConsent = () => {
   const { language } = useLanguage()
   const {
     hasConsented,
+    isHydrated,
     setConsented,
     cookiePreferences,
     setCookiePreferences,
   } = useCookieConsent()
   const [sessionDeclined, setSessionDeclined] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
+
+  // Don't render until hydrated to prevent flash
+  if (!isHydrated) {
+    return null
+  }
 
   if (hasConsented || sessionDeclined) {
     return null

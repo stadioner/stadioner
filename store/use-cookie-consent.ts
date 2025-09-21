@@ -5,6 +5,7 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 
 interface CookieConsentStore {
   hasConsented: boolean
+  isHydrated: boolean
   cookiePreferences: {
     essential: boolean
     functional: boolean
@@ -16,12 +17,14 @@ interface CookieConsentStore {
     preferences: Partial<CookieConsentStore['cookiePreferences']>
   ) => void
   resetPreferences: () => void
+  setHydrated: (hydrated: boolean) => void
 }
 
 export const useCookieConsent = create(
   persist<CookieConsentStore>(
     set => ({
       hasConsented: false,
+      isHydrated: false,
       cookiePreferences: {
         essential: true, // Always true, can't be disabled
         functional: false,
@@ -45,6 +48,9 @@ export const useCookieConsent = create(
             marketing: false,
           },
         })
+      },
+      setHydrated: (hydrated: boolean) => {
+        set({ isHydrated: hydrated })
       },
     }),
     {
@@ -73,6 +79,9 @@ export const useCookieConsent = create(
         }
         return localStorage
       }),
+      onRehydrateStorage: () => state => {
+        state?.setHydrated(true)
+      },
     }
   )
 )
