@@ -15,16 +15,13 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
   const [sessionVerified, setSessionVerified] = useState(false)
   const [isHydrated, setIsHydrated] = useState(false)
   const pathname = usePathname()
-  const isStudioPage = pathname?.startsWith('/studio')
   const isExcludedPage =
     pathname === '/rozcestnik' ||
     pathname === '/qr' ||
-    pathname?.startsWith('/en/rozcestnik') ||
-    pathname?.startsWith('/de/rozcestnik') ||
-    pathname?.startsWith('/en/qr') ||
-    pathname?.startsWith('/de/qr')
-  const shouldShowAgeGate =
-    !(isVerified || sessionVerified) && !isStudioPage && !isExcludedPage
+    pathname === '/studio' ||
+    pathname === '/newsletter'
+
+  const shouldShowAgeGate = !(isVerified || sessionVerified) && !isExcludedPage
 
   const [open, setOpen] = useState(false)
 
@@ -37,7 +34,7 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
     if (isHydrated) {
       setOpen(shouldShowAgeGate)
     }
-  }, [isHydrated, isVerified, sessionVerified, isStudioPage, isExcludedPage])
+  }, [isHydrated, isVerified, sessionVerified, isExcludedPage])
 
   const handleVerify = () => {
     if (hasConsented) {
@@ -92,8 +89,7 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       )}
-      {(isVerified || sessionVerified || isStudioPage || isExcludedPage) &&
-        children}
+      {(isVerified || sessionVerified || isExcludedPage) && children}
     </section>
   )
 }
