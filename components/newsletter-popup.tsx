@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { X } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
@@ -11,12 +12,18 @@ import { cn } from '@/lib/utils'
 
 export const NewsletterPopup = () => {
   const { language } = useLanguage()
+  const pathname = usePathname()
   const [isVisible, setIsVisible] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
 
   useEffect(() => {
+    // Don't show popup on newsletter or studio pages
+    if (pathname === '/newsletter' || pathname.startsWith('/studio')) {
+      return
+    }
+
     // Check if user has already dismissed the popup permanently
     const hasSeenPopup = localStorage.getItem('newsletter-popup-dismissed')
     if (hasSeenPopup) return
@@ -35,7 +42,7 @@ export const NewsletterPopup = () => {
     }, 10000)
 
     return () => clearTimeout(timer)
-  }, [])
+  }, [pathname])
 
   const handleClose = () => {
     setIsVisible(false)
