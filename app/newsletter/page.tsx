@@ -73,7 +73,7 @@ export default function NewsletterPage() {
   }
 
   return (
-    <div className='min-h-screen bg-brand-secondary pt-32 pb-20'>
+    <div className='min-h-screen bg-brand-secondary pt-32'>
       <Container>
         <div className='max-w-3xl mx-auto'>
           <Border background>
