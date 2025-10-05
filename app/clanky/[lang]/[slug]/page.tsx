@@ -9,6 +9,8 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import createImageUrlBuilder from '@sanity/image-url'
 import { dataset, projectId } from '@/sanity/env'
+import { Sidebar } from '../../_containers/sidebar'
+import { Container } from '@/components/container'
 
 interface Props {
   params: Promise<{ lang: string; slug: string }>
@@ -108,7 +110,10 @@ export default async function Page({ params }: Props) {
 
   return (
     <main className='bg-brand-primary pt-32 md:pt-40 pb-20'>
-      <Post post={post} />
+      <Container className='lg:grid grid-cols-[2fr_1fr] gap-10 relative'>
+        <Post post={post} />
+        <Sidebar language={lang as SupportedLanguage} />
+      </Container>
     </main>
   )
 }

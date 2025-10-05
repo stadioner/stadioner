@@ -81,6 +81,22 @@ export const relatedPostsQuery = groq`
   }
 `
 
+export const recentPostsQuery = groq`
+  *[_type == "post" && language == $language] | order(publishedAt desc) [0...$limit] {
+    _id,
+    title,
+    slug,
+    language,
+    mainImage,
+    publishedAt,
+    categories[]->{
+      _id,
+      title,
+      slug,
+    }
+  }
+`
+
 export const postsByCategoryQuery = groq`
   *[_type == "post" && language == $language && $categoryId in categories[]._ref] | order(publishedAt desc) {
     _id,
