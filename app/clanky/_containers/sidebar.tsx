@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { Border } from '@/components/border'
 import { urlFor } from '@/sanity/lib/image'
 import { Facebook, Instagram } from 'lucide-react'
+import { NewsletterMiniForm } from '@/app/clanky/_containers/newsletter-mini-form'
 
 interface SidebarProps {
   language: SupportedLanguage
@@ -15,16 +16,19 @@ const t = {
     followUs: 'Sledujte nás',
     recent: 'Nejnovější články',
     more: 'Všechny články',
+    newsletter: 'Newsletter',
   },
   en: {
     followUs: 'Follow us',
     recent: 'Recent posts',
     more: 'All articles',
+    newsletter: 'Newsletter',
   },
   de: {
     followUs: 'Folgen Sie uns',
     recent: 'Neueste Beiträge',
     more: 'Alle Artikel',
+    newsletter: 'Newsletter',
   },
 } as const
 
@@ -35,7 +39,7 @@ export const Sidebar = async ({ language }: SidebarProps) => {
   })
 
   return (
-    <Border>
+    <Border className='h-min lg:sticky lg:top-28 self-start lg:max-h-[calc(100vh-6rem)] lg:overflow-hidden'>
       <section className='space-y-8 p-2'>
         <div>
           <h3 className='text-brand-action font-bold text-xl mb-3'>
@@ -85,6 +89,13 @@ export const Sidebar = async ({ language }: SidebarProps) => {
               {t[language].more}
             </Link>
           </div>
+        </div>
+
+        <div>
+          <h3 className='text-brand-action font-bold text-xl mb-3'>
+            {t[language].newsletter}
+          </h3>
+          <NewsletterMiniForm />
         </div>
 
         <div>
