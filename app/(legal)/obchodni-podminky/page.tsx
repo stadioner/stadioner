@@ -1,4 +1,5 @@
 import { Container } from '@/components/container'
+import Link from 'next/link'
 
 export default function TermsPage() {
   return (
@@ -9,7 +10,7 @@ export default function TermsPage() {
             Obchodní podmínky
           </h1>
           <p className='text-gray-600 mb-8'>
-            Poslední aktualizace: 1. listopadu 2025
+            Poslední aktualizace: 1. října 2025
           </p>
 
           <div className='space-y-8'>
@@ -26,37 +27,47 @@ export default function TermsPage() {
                 <p className='text-gray-700'>
                   <strong>Prodávající:</strong>
                 </p>
-                <p className='text-gray-700'>Stadioner s.r.o.</p>
                 <p className='text-gray-700'>
-                  Sídlo: [Vyplňte adresu sídla společnosti]
+                  STADIONER PIVOVAR KOUT NA ŠUMAVĚ s.r.o.
                 </p>
-                <p className='text-gray-700'>IČO: [Vyplňte IČO]</p>
-                <p className='text-gray-700'>DIČ: [Vyplňte DIČ]</p>
                 <p className='text-gray-700'>
-                  Zapsána v obchodním rejstříku vedeném u [Vyplňte příslušný
-                  soud], oddíl [Vyplňte], vložka [Vyplňte]
+                  Sídlo: Kout na Šumavě 2, 345 02 Kout na Šumavě
+                </p>
+                <p className='text-gray-700'>IČO: 22478566</p>
+                <p className='text-gray-700'>DIČ: CZ22478566</p>
+                <p className='text-gray-700'>
+                  Spisová značka: C 46196/KSPL Krajský soud v Plzni Datová
+                  schránka: ff59ze2
                 </p>
                 <div className='mt-2'>
                   <p className='text-gray-700'>
                     <strong>Kontaktní údaje:</strong>
                   </p>
                   <p className='text-gray-700'>
-                    Doručovací adresa: [Vyplňte doručovací adresu]
+                    Doručovací adresa: Kout na Šumavě 2, 345 02 Kout na Šumavě
                   </p>
-                  <p className='text-gray-700'>E‑mail: eshop@stadioner.cz</p>
                   <p className='text-gray-700'>
-                    Telefon: [Vyplňte telefonní číslo]
+                    E‑mail:{' '}
+                    <Link href='mailto:eshop@stadioner.cz'>
+                      eshop@stadioner.cz
+                    </Link>
+                    .cz
                   </p>
-                  <p className='text-gray-700'>Web: https://stadioner.cz</p>
+                  <p className='text-gray-700'>Telefon: +420 721 980 257]</p>
+                  <p className='text-gray-700'>
+                    Web:
+                    <Link href='https://stadioner.cz'> stadioner.cz</Link>
+                  </p>
                 </div>
               </div>
               <p className='text-gray-700 leading-relaxed mt-4'>
                 Tyto obchodní podmínky upravují vzájemná práva a povinnosti
                 prodávajícího a kupujícího při nákupu zboží prostřednictvím
-                internetového obchodu na adrese https://stadioner.cz. Ustanovení
-                obchodních podmínek jsou nedílnou součástí kupní smlouvy.
-                Odchylná ujednání v kupní smlouvě mají přednost před těmito
-                podmínkami.
+                internetového obchodu na adrese
+                <Link href='https://stadioner.cz'> stadioner.cz</Link>.
+                Ustanovení obchodních podmínek jsou nedílnou součástí kupní
+                smlouvy. Odchylná ujednání v kupní smlouvě mají přednost před
+                těmito podmínkami.
               </p>
               <p className='text-gray-700 leading-relaxed'>
                 Tyto obchodní podmínky a kupní smlouva se uzavírají v českém
@@ -113,27 +124,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className='text-2xl font-bold text-brand-action mb-4'>
-                IV. Zákaznický účet
-              </h2>
-              <ul className='list-disc list-inside space-y-2 text-gray-700'>
-                <li>
-                  Registrací získáte přístup k zákaznickému účtu pro rychlejší
-                  nákupy.
-                </li>
-                <li>Udržujte své údaje aktuální a pravdivé.</li>
-                <li>
-                  Přístup chraňte – prodávající neodpovídá za zneužití třetími
-                  osobami.
-                </li>
-                <li>
-                  Účet může být zrušen při nečinnosti nebo porušení povinností.
-                </li>
-              </ul>
-            </section>
-
-            <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
-                V. Platební podmínky a dodání zboží
+                IV. Platební podmínky a dodání zboží
               </h2>
               <ul className='list-disc list-inside space-y-2 text-gray-700'>
                 <li>
@@ -156,7 +147,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className='text-2xl font-bold text-brand-action mb-4'>
-                VI. Odstoupení od smlouvy (spotřebitel)
+                V. Odstoupení od smlouvy (spotřebitel)
               </h2>
               <p className='text-gray-700 mb-2'>
                 Máte právo odstoupit bez udání důvodu do 14 dní od převzetí.
@@ -181,7 +172,7 @@ export default function TermsPage() {
 
             <section>
               <h2 className='text-2xl font-bold text-brand-action mb-4'>
-                VII. Práva z vadného plnění
+                VI. Práva z vadného plnění
               </h2>
               <ul className='list-disc list-inside space-y-2 text-gray-700'>
                 <li>
@@ -193,76 +184,68 @@ export default function TermsPage() {
                   vadě.
                 </li>
                 <li>
-                  Reklamace: e‑mail eshop@stadioner.cz; vyřízení bezodkladně,
-                  nejpozději do 30 dní.
+                  Reklamace: e‑mail{' '}
+                  <Link href='mailto:eshop@stadioner.cz'>
+                    eshop@stadioner.cz
+                  </Link>
+                  ; vyřízení bezodkladně, nejpozději do 30 dní.
                 </li>
               </ul>
             </section>
 
             <section>
               <h2 className='text-2xl font-bold text-brand-action mb-4'>
-                VIII. Zvláštní ustanovení pro dárkové poukazy
-              </h2>
-              <ul className='list-disc list-inside space-y-2 text-gray-700'>
-                <li>
-                  Poukaz lze uplatnit pouze v e‑shopu https://stadioner.cz (mimo
-                  dárkové poukazy).
-                </li>
-                <li>
-                  Poukaz je zasílán elektronicky (PDF) do 24 hodin od připsání
-                  platby, případně poštou.
-                </li>
-                <li>
-                  Spotřebitel může odstoupit do 14 dní, nebyl‑li poukaz
-                  uplatněn.
-                </li>
-                <li>
-                  Platnost poukazu je 12 měsíců od zaslání; minimální hodnota
-                  nákupu musí odpovídat hodnotě poukazu.
-                </li>
-              </ul>
-            </section>
-
-            <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
-                IX. Doručování
+                VII. Doručování
               </h2>
               <p className='text-gray-700'>
                 Korespondence probíhá elektronicky na adresy uvedené v
                 objednávce nebo zákaznickém účtu kupujícího, případně na e‑mail
-                prodávajícího eshop@stadioner.cz.
+                prodávajícího{' '}
+                <Link href='mailto:eshop@stadioner.cz'>eshop@stadioner.cz</Link>
+                .
               </p>
             </section>
 
             <section>
               <h2 className='text-2xl font-bold text-brand-action mb-4'>
-                X. Osobní údaje
+                VIII. Osobní údaje
               </h2>
               <p className='text-gray-700'>
-                Osobní údaje jsou zpracovávány v souladu s GDPR a zákonem č.
-                110/2019 Sb. Podrobnosti viz „Ochrana osobních údajů“ na webu.
+                Osobní údaje jsou zpracovávány v souladu s
+                <Link href='/gdpr'> GDPR </Link>a zákonem č. 110/2019 Sb.
+                Podrobnosti viz „Ochrana osobních údajů“ na webu.
               </p>
             </section>
 
             <section>
               <h2 className='text-2xl font-bold text-brand-action mb-4'>
-                XI. Mimosoudní řešení sporů
+                IX. Mimosoudní řešení sporů
               </h2>
               <ul className='list-disc list-inside space-y-2 text-gray-700'>
                 <li>
-                  ČOI: Štěpánská 567/15, 120 00 Praha 2, https://adr.coi.cz/cs
+                  ČOI: Štěpánská 567/15, 120 00 Praha 2,{' '}
+                  <Link href='https://adr.coi.cz/cs'>
+                    https://adr.coi.cz/cs
+                  </Link>
                 </li>
-                <li>Online řešení sporů: http://ec.europa.eu/consumers/odr</li>
                 <li>
-                  Evropské spotřebitelské centrum:
-                  http://www.evropskyspotrebitel.cz
+                  Online řešení sporů:{' '}
+                  <Link href='http://ec.europa.eu/consumers/odr'>
+                    http://ec.europa.eu/consumers/odr
+                  </Link>
+                </li>
+                <li>
+                  Evropské spotřebitelské centrum:{' '}
+                  <Link href='http://www.evropskyspotrebitel.cz'>
+                    http://www.evropskyspotrebitel.cz
+                  </Link>
                 </li>
               </ul>
             </section>
 
             <section>
               <h2 className='text-2xl font-bold text-brand-action mb-4'>
-                XII. Závěrečná ustanovení
+                X. Závěrečná ustanovení
               </h2>
               <ul className='list-disc list-inside space-y-2 text-gray-700 mb-2'>
                 <li>Vztah se řídí právem České republiky.</li>
@@ -292,7 +275,7 @@ export default function TermsPage() {
                 </li>
               </ul>
               <p className='text-gray-700 font-semibold'>
-                Tyto obchodní podmínky nabývají účinnosti dnem [1. 11. 2025].
+                Tyto obchodní podmínky nabývají účinnosti dnem 1. 10. 2025.
               </p>
             </section>
 
@@ -301,8 +284,9 @@ export default function TermsPage() {
                 Příloha: Vzorový formulář pro odstoupení od smlouvy
               </h2>
               <p className='text-gray-700 mb-2'>
-                Vyplňte a odešlete na e‑mail eshop@stadioner.cz nebo na
-                doručovací adresu prodávajícího.
+                Vyplňte a odešlete na e‑mail{' '}
+                <Link href='mailto:eshop@stadioner.cz'>eshop@stadioner.cz</Link>{' '}
+                nebo na doručovací adresu prodávajícího.
               </p>
               <ul className='list-disc list-inside space-y-2 text-gray-700'>
                 <li>

@@ -9,7 +9,7 @@ export default function GdprPage() {
   const content = {
     cs: {
       title: 'Ochrana osobních údajů',
-      lastUpdated: 'Poslední aktualizace: 25. května 2018',
+      lastUpdated: 'Poslední aktualizace: 17. ledna 2025',
       intro:
         'Tyto podmínky ochrany osobních údajů se vztahují na zpracování osobních údajů v rámci provozování pivovaru Stadioner.',
       basicProvisions: {
@@ -113,7 +113,7 @@ export default function GdprPage() {
           'S těmito podmínkami souhlasíte zaškrtnutím souhlasu prostřednictvím internetového formuláře. Zaškrtnutím souhlasu potvrzujete, že jste seznámen/a s podmínkami ochrany osobních údajů a že je v celém rozsahu přijímáte.',
           'Správce je oprávněn tyto podmínky změnit. Novou verzi podmínek ochrany osobních údajů zveřejní na svých internetových stránkách, případně Vám zašle novou verzi těchto podmínek na e-mailovou adresu, kterou jste správci poskytl/a.',
         ],
-        effectiveDate: 'Tyto podmínky nabývají účinnosti dnem 25.5.2018.',
+        effectiveDate: 'Tyto podmínky nabývají účinnosti dnem 17.1.2025.',
       },
     },
     en: {
@@ -223,7 +223,7 @@ export default function GdprPage() {
           'You agree to these conditions by checking the consent through the internet form. By checking the consent, you confirm that you are familiar with the personal data protection conditions and that you accept them in full.',
           'The controller is entitled to change these conditions. The new version of the personal data protection conditions will be published on its website, or will send you a new version of these conditions to the email address you provided to the controller.',
         ],
-        effectiveDate: 'These conditions take effect on May 25, 2018.',
+        effectiveDate: 'These conditions take effect on January 17, 2025.',
       },
     },
     de: {
@@ -336,7 +336,7 @@ export default function GdprPage() {
           'Sie stimmen diesen Bedingungen durch Ankreuzen der Einwilligung über das Internet-Formular zu. Durch das Ankreuzen der Einwilligung bestätigen Sie, dass Sie mit den Datenschutzbestimmungen vertraut sind und diese vollständig akzeptieren.',
           'Der Verantwortliche ist berechtigt, diese Bedingungen zu ändern. Die neue Version der Datenschutzbestimmungen wird auf seiner Website veröffentlicht oder sendet Ihnen eine neue Version dieser Bedingungen an die E-Mail-Adresse, die Sie dem Verantwortlichen mitgeteilt haben.',
         ],
-        effectiveDate: 'Diese Bedingungen treten am 25. Mai 2018 in Kraft.',
+        effectiveDate: 'Diese Bedingungen treten am 17. Januar 2025 in Kraft.',
       },
     },
   }
