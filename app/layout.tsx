@@ -9,6 +9,7 @@ import { CookieConsent } from '@/components/cookie-consent'
 import { CookieManager } from '@/components/cookie-manager'
 import { NewsletterPopup } from '@/components/newsletter-popup'
 import { Analytics } from '@vercel/analytics/next'
+import { Toaster } from '@/components/ui/sonner'
 
 const mohave = Mohave({
   variable: '--font-mohave',
@@ -110,6 +111,7 @@ export default function RootLayout({
         )}
       >
         <Analytics />
+        <Toaster />
 
         <CookieManager />
         <Navbar />

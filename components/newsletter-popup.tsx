@@ -20,7 +20,7 @@ export const NewsletterPopup = () => {
 
   useEffect(() => {
     // Don't show popup on newsletter or studio pages
-    if (pathname === '/newsletter' || pathname.startsWith('/studio')) {
+    if (pathname === '/newsletter' || pathname.includes('/studio')) {
       return
     }
 

@@ -8,6 +8,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { Switch } from '@/components/ui/switch'
 import { ChevronDown, ChevronUp } from 'lucide-react'
+import { usePathname } from 'next/navigation'
 
 export const CookieConsent = () => {
   const { language } = useLanguage()
@@ -20,9 +21,15 @@ export const CookieConsent = () => {
   } = useCookieConsent()
   const [sessionDeclined, setSessionDeclined] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
+  const pathname = usePathname()
 
   // Don't render until hydrated to prevent flash
   if (!isHydrated) {
+    return null
+  }
+
+  // Don't show cookie consent on studio pages
+  if (pathname.includes('/studio')) {
     return null
   }
 

@@ -18,7 +18,7 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
   const isExcludedPage =
     pathname === '/rozcestnik' ||
     pathname === '/qr' ||
-    pathname === '/studio' ||
+    pathname.includes('/studio') ||
     pathname === '/newsletter'
 
   const shouldShowAgeGate = !(isVerified || sessionVerified) && !isExcludedPage
