@@ -136,3 +136,28 @@
     animation-timing-function: ease-out;
   }
 }
+
+/* Custom Toast Styling with Border Component */
+.custom-toast {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.custom-toast [data-sonner-toast] {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}
+
+.custom-toast [data-sonner-toast] > div {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-shadow: none !important;
+}

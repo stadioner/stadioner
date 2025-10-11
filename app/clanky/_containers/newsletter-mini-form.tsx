@@ -6,13 +6,14 @@ import { useLanguage } from '@/store/use-language'
 import { cn } from '@/lib/utils'
 import type { SupportedLanguage } from '@/types/blog'
 import Link from 'next/link'
+import { useToast } from '@/components/custom-toast'
 
 export const NewsletterMiniForm = () => {
   const { language } = useLanguage()
   const lang = language as SupportedLanguage
+  const { showToast } = useToast()
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [message, setMessage] = useState('')
 
   const placeholders: Record<SupportedLanguage, string> = {
     cs: 'Váš email',
@@ -24,10 +25,17 @@ export const NewsletterMiniForm = () => {
     {
       cs: {
         submit: 'Přihlásit se',
-        success: 'Děkujeme za přihlášení k odběru!',
+        success: 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!',
       },
-      en: { submit: 'Subscribe', success: 'Thank you for subscribing!' },
-      de: { submit: 'Abonnieren', success: 'Vielen Dank für Ihr Abonnement!' },
+      en: {
+        submit: 'Subscribe',
+        success: 'Please check your email and confirm your subscription!',
+      },
+      de: {
+        submit: 'Abonnieren',
+        success:
+          'Bitte überprüfen Sie Ihre E-Mail und bestätigen Sie Ihr Abonnement!',
+      },
     } as const
 
   const copy: Record<
@@ -54,7 +62,6 @@ export const NewsletterMiniForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setMessage('')
 
     try {
       const formData = new FormData()
@@ -67,13 +74,13 @@ export const NewsletterMiniForm = () => {
         { method: 'POST', body: formData, mode: 'no-cors' }
       )
 
-      setMessage(labels[lang].success)
+      showToast(labels[lang].success, 'success')
       setEmail('')
       if (typeof window !== 'undefined') {
         localStorage.setItem('newsletter-subscribed', 'true')
       }
     } catch (err) {
-      setMessage(labels[lang].success)
+      showToast(labels[lang].success, 'success')
       setEmail('')
       if (typeof window !== 'undefined') {
         localStorage.setItem('newsletter-subscribed', 'true')
@@ -105,9 +112,6 @@ export const NewsletterMiniForm = () => {
       >
         {isSubmitting ? '…' : labels[lang].submit}
       </Button>
-      {message && (
-        <div className={cn('text-xs', 'text-brand-action')}>{message}</div>
-      )}
       <p className='text-[11px] text-brand-action/70'>
         {copy[lang].gdprPrefix}{' '}
         <Link href='/gdpr' className='underline hover:text-brand-action'>

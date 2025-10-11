@@ -6,17 +6,17 @@ import { ExternalLinkIcon, FacebookIcon, InstagramIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/components/custom-toast'
 
 export const Footer = () => {
   const { language } = useLanguage()
+  const { showToast } = useToast()
   const [email, setEmail] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [message, setMessage] = useState('')
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setMessage('')
 
     try {
       const formData = new FormData()
@@ -35,26 +35,26 @@ export const Footer = () => {
 
       const successMessage =
         language === 'cs'
-          ? 'Děkujeme za přihlášení k odběru!'
+          ? 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
           : language === 'en'
-            ? 'Thank you for subscribing!'
+            ? 'Please check your email and confirm your subscription!'
             : language === 'de'
-              ? 'Vielen Dank für Ihr Abonnement!'
-              : 'Děkujeme za přihlášení k odběru!'
+              ? 'Bitte überprüfen Sie Ihre E-Mail und bestätigen Sie Ihr Abonnement!'
+              : 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
 
-      setMessage(successMessage)
+      showToast(successMessage, 'success')
       setEmail('')
     } catch (error) {
       const successMessage =
         language === 'cs'
-          ? 'Děkujeme za přihlášení k odběru!'
+          ? 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
           : language === 'en'
-            ? 'Thank you for subscribing!'
+            ? 'Please check your email and confirm your subscription!'
             : language === 'de'
-              ? 'Vielen Dank für Ihr Abonnement!'
-              : 'Děkujeme za přihlášení k odběru!'
+              ? 'Bitte überprüfen Sie Ihre E-Mail und bestätigen Sie Ihr Abonnement!'
+              : 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
 
-      setMessage(successMessage)
+      showToast(successMessage, 'success')
       setEmail('')
     } finally {
       setIsSubmitting(false)
@@ -259,10 +259,6 @@ export const Footer = () => {
                         ? 'Abonnieren'
                         : 'Přihlásit se'}
               </Button>
-
-              {message && (
-                <p className='text-sm text-brand-action'>{message}</p>
-              )}
 
               <p className='text-xs text-brand-action/60'>
                 {language === 'cs' && (

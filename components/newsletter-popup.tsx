@@ -5,18 +5,18 @@ import { X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
-import { Border } from '@/components/border'
 import { Container } from '@/components/container'
 import { useLanguage } from '@/store/use-language'
-import { cn } from '@/lib/utils'
+import { useToast } from './custom-toast'
+import { Border } from './border'
 
 export const NewsletterPopup = () => {
   const { language } = useLanguage()
   const pathname = usePathname()
+  const { showToast } = useToast()
   const [isVisible, setIsVisible] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
 
   useEffect(() => {
     // Don't show popup on newsletter or studio pages
@@ -63,7 +63,6 @@ export const NewsletterPopup = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
-    setMessage('')
 
     try {
       const formData = new FormData()
@@ -84,14 +83,14 @@ export const NewsletterPopup = () => {
       // Mailchimp will handle the subscription on their end
       const successMessage =
         language === 'cs'
-          ? 'Děkujeme za přihlášení k odběru!'
+          ? 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
           : language === 'en'
-            ? 'Thank you for subscribing!'
+            ? 'Please check your email and confirm your subscription!'
             : language === 'de'
-              ? 'Vielen Dank für Ihr Abonnement!'
-              : 'Děkujeme za přihlášení k odběru!'
+              ? 'Bitte überprüfen Sie Ihre E-Mail und bestätigen Sie Ihr Abonnement!'
+              : 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
 
-      setMessage(successMessage)
+      showToast(successMessage, 'success')
       setEmail('')
 
       // Mark user as subscribed to prevent popup from showing again
@@ -105,14 +104,14 @@ export const NewsletterPopup = () => {
       // So we show success message
       const successMessage =
         language === 'cs'
-          ? 'Děkujeme za přihlášení k odběru!'
+          ? 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
           : language === 'en'
-            ? 'Thank you for subscribing!'
+            ? 'Please check your email and confirm your subscription!'
             : language === 'de'
-              ? 'Vielen Dank für Ihr Abonnement!'
-              : 'Děkujeme za přihlášení k odběru!'
+              ? 'Bitte überprüfen Sie Ihre E-Mail und bestätigen Sie Ihr Abonnement!'
+              : 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
 
-      setMessage(successMessage)
+      showToast(successMessage, 'success')
       setEmail('')
 
       // Mark user as subscribed to prevent popup from showing again
@@ -343,20 +342,6 @@ export const NewsletterPopup = () => {
                 </Button>
               </form>
             </div>
-            {message && (
-              <div
-                className={cn(
-                  'px-4 pb-2 text-sm',
-                  message.includes('Děkujeme') ||
-                    message.includes('Thank you') ||
-                    message.includes('Vielen Dank')
-                    ? 'text-brand-primary'
-                    : 'text-red-600'
-                )}
-              >
-                {message}
-              </div>
-            )}
           </div>
         </Border>
       </Container>
