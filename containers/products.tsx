@@ -650,7 +650,7 @@ export const Products = ({
                     transition={{ duration: 0.5 }}
                     className='max-h-[300px] drop-shadow-2xl animate-bottle relative z-10'
                   />
-                  <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-8 bg-black/20 rounded-full blur-sm animate-bottle-shadow'></div>
+                  <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-40 h-8 bg-black/80 rounded-full blur-lg animate-bottle-shadow' />
                 </div>
               </AnimatePresence>
             </div>
@@ -737,7 +737,7 @@ export const Products = ({
                     transition={{ duration: 0.5 }}
                     className='max-h-[470px] drop-shadow-2xl animate-bottle relative z-10'
                   />
-                  <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 h-10 bg-black/20 rounded-full blur-sm animate-bottle-shadow'></div>
+                  <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-56 h-14 bg-black/60 rounded-full blur-lg animate-bottle-shadow' />
                 </div>
               </AnimatePresence>
             </div>
