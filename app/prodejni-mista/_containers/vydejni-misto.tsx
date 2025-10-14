@@ -11,18 +11,9 @@ export const VydejniMisto = () => {
   return (
     <section className='bg-brand-primary'>
       <RippedPaperSVG flip />
-      <div
-        className='bg-brand-action 
-      py-12'
-      >
-        <Container
-          className='grid 
-        md:grid-cols-2 gap-6'
-        >
-          <div
-            className='flex flex-col 
-          justify-between'
-          >
+      <div className='bg-brand-action py-12'>
+        <Container className='grid md:grid-cols-2 gap-10'>
+          <div className='flex flex-col justify-between'>
             <div>
               <div>
                 <h2 className='text-brand-primary text-3xl md:text-4xl lg:text-6xl font-bold flex-nowrap text-nowrap'>
@@ -80,8 +71,39 @@ export const VydejniMisto = () => {
                     </>
                   )}
                 </p>
-
                 <div
+                  className='mt-3 
+                text-sm text-zinc-200'
+                >
+                  {language === 'cs' && (
+                    <p>Zálohy: lahev 5 Kč, bedna 100 Kč, sud 1500 Kč.</p>
+                  )}
+                  {language === 'en' && (
+                    <p>Deposits: bottle 5 CZK, crate 100 CZK, keg 1500 CZK.</p>
+                  )}
+                  {language === 'de' && (
+                    <p>Pfand: Flasche 5 CZK, Kiste 100 CZK, Fass 1500 CZK.</p>
+                  )}
+                </div>
+
+                <div className='border-t border-zinc-600 pt-4'>
+                  <h4 className='font-semibold text-brand-primary mb-2 text-xl'>
+                    {language === 'cs' && 'Otevření 28. října'}
+                    {language === 'en' && ''}
+                    {language === 'de' && ''}
+                  </h4>
+                  <p>
+                    Na co se můžete v tento den těšit (od 9:00 do 19:00)?
+                    <br />
+                    🎶 živá kapela
+                    <br />
+                    🍴 catering
+                    <br />
+                    🍺 a samozřejmě naše produkty
+                  </p>
+                </div>
+
+                {/* <div
                   className='border-t 
                 border-zinc-600 pt-4'
                 >
@@ -152,17 +174,17 @@ export const VydejniMisto = () => {
                       </span>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
             <a
-              href='tel:'
+              href='tel:+420721980257'
               className='text-brand-primary 
               flex gap-1 items-center mt-8 
               md:mt-10'
             >
               <PhoneIcon size={16} />
-              +420 111 222 333
+              +420 721 980 257
             </a>
           </div>
           <img
@@ -173,7 +195,7 @@ export const VydejniMisto = () => {
           />
         </Container>
       </div>
-      <RippedPaperSVG />
+      {/* <RippedPaperSVG /> */}
     </section>
   )
 }

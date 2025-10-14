@@ -30,8 +30,8 @@ export default function ProdejniMistaPage() {
   return (
     <>
       <Intro />
-      {/* <VydejniMisto />
-      <PojizdnaProdejna /> */}
+      <VydejniMisto />
+      {/* <PojizdnaProdejna /> */}
     </>
   )
 }
