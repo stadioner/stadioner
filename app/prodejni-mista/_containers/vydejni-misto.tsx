@@ -177,7 +177,7 @@ export const VydejniMisto = () => {
                 </div> */}
               </div>
             </div>
-            <a
+            {/* <a
               href='tel:+420721980257'
               className='text-brand-primary 
               flex gap-1 items-center mt-8 
@@ -185,7 +185,7 @@ export const VydejniMisto = () => {
             >
               <PhoneIcon size={16} />
               +420 721 980 257
-            </a>
+            </a> */}
           </div>
           <img
             src='/vydejni-misto.webp'
