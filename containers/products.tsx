@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useLanguage } from '@/store/use-language'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter, useSearchParams } from 'next/navigation'
+import Link from 'next/link'
 import { Container } from '@/components/container'
 import { RippedPaperSVG } from '@/components/ripped-paper-svg'
 import { cn } from '@/lib/utils'
@@ -14,6 +15,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@/components/ui/dialog'
+import { Button } from '@/components/ui/button'
 
 // Typ produktu
 interface Product {
@@ -22,6 +24,7 @@ interface Product {
   category: string
   categoryLabel: string
   slug: string
+  url: string
   description: string
   stats: { label: string; value: string }[]
   image: string
@@ -37,6 +40,7 @@ const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'profesor-dvanactka',
+    url: 'https://eshop.stadioner.cz/products/profesor-dvanactka-lahev',
     description:
       'Pivo Profesor 12 je ideální volbou pro ty, kdo hledají poctivé, nekompromisní pivo bez zbytečných úprav. Je nefiltrované a nepasterizované, takže si zachovává přirozenou chuť a charakter skutečného českého ležáku. Perfektně se hodí ke grilovaným masům, sýrům i jen tak k posezení s přáteli.',
     stats: [
@@ -76,6 +80,7 @@ const limosCs: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonáda',
     slug: 'limonada-citron',
+    url: 'https://eshop.stadioner.cz/products/limonada-citron-lahev',
     description:
       'Citronová limonáda Stadioner je svěží nealkoholický nápoj vyráběný z pramenité vody z šumavských lesů. Vyniká příjemně kyselou chutí citronu, která osvěží v každé situaci – ať už při práci, sportu nebo odpočinku. Díky pečlivě zvolenému složení bez zbytečných konzervantů je limonáda lehká, přírodní a vyvážená.',
     stats: [
@@ -94,6 +99,7 @@ const limosCs: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonáda',
     slug: 'limonada-pomeranc',
+    url: 'https://eshop.stadioner.cz/products/limonada-pomeranc-lahev',
     description:
       'Pomerančová limonáda Stadioner je sladší nealkoholický nápoj s výraznou ovocnou chutí, vyráběný z pramenité vody z šumavských lesů. Díky jemnému sycení a přírodnímu aroma nabízí osvěžení, které potěší v horkých dnech i při odpočinku. Bez zbytečných konzervantů a umělých barviv.',
     stats: [
@@ -112,6 +118,7 @@ const limosCs: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonáda',
     slug: 'cola-mix',
+    url: 'https://eshop.stadioner.cz/products/cola-mix-lahev',
     description:
       'Cola mix Stadioner spojuje tradiční colovou chuť s osvěžujícím citronovým nádechem. Vyrábí se z pramenité vody z šumavských lesů a je jemně sycená pro ideální pitelný zážitek. Perfektní volba pro milovníky coly, kteří chtějí něco neobvyklého, ale přitom známého.',
     stats: [
@@ -128,11 +135,12 @@ const limosCs: Product[] = [
 
 const watersCs: Product[] = [
   {
-    name: 'Pramenitá voda (Sycená)',
+    name: 'Pramenitá voda (Perlivá)',
     subtitle: 'Čistá voda z šumavských pramenů',
     category: 'voda',
     categoryLabel: 'Voda',
-    slug: 'pramenita-voda-sycena',
+    slug: 'pramenita-voda-perliva',
+    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-perliva-lahev',
     description:
       'Pramenitá voda Stadioner pochází z čistých šumavských pramenů. Je přirozeně čistá, bez přidaných látek a minerálů. Ideální pro každodenní pití, sportovní aktivity nebo jako základ pro přípravu nápojů. Balená ve vratných obalech pro šetrnost k životnímu prostředí.',
     stats: [
@@ -141,16 +149,17 @@ const watersCs: Product[] = [
       { label: 'SLOŽENÍ', value: 'Přírodní' },
       { label: 'BALENÍ', value: 'Vratný obal' },
     ],
-    image: '/products/voda/sycena/bottle.webp',
-    icon: '/products/voda/sycena/icon.svg',
-    ingredients: '/products/voda/sycena/etiq.webp',
+    image: '/products/voda/perliva/bottle.webp',
+    icon: '/products/voda/perliva/icon.svg',
+    ingredients: '/products/voda/perliva/etiq.webp',
   },
   {
-    name: 'Pramenitá voda (Nesycená)',
+    name: 'Pramenitá voda (Neperlivá)',
     subtitle: 'Čistá voda z šumavských pramenů',
     category: 'voda',
     categoryLabel: 'Voda',
-    slug: 'pramenita-voda-nesycena',
+    slug: 'pramenita-voda-neperliva',
+    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-neperliva-lahev',
     description:
       'Pramenitá voda Stadioner pochází z čistých šumavských pramenů. Je přirozeně čistá, bez přidaných látek a minerálů, a díky své jemné chuti je ideální pro každodenní pití. Vhodná k hydrataci během dne, sportu i k přípravě jídel či nápojů. Balená ve vratných obalech pro šetrnost k životnímu prostředí.',
     stats: [
@@ -159,9 +168,9 @@ const watersCs: Product[] = [
       { label: 'SLOŽENÍ', value: 'Přírodní' },
       { label: 'BALENÍ', value: 'Vratný obal' },
     ],
-    image: '/products/voda/nesycena/bottle.webp',
-    icon: '/products/voda/nesycena/icon.svg',
-    ingredients: '/products/voda/nesycena/etiq.webp',
+    image: '/products/voda/neperliva/bottle.webp',
+    icon: '/products/voda/neperliva/icon.svg',
+    ingredients: '/products/voda/neperliva/etiq.webp',
   },
 ]
 
@@ -173,6 +182,7 @@ const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'profesor-dvanactka',
+    url: 'https://eshop.stadioner.cz/products/profesor-dvanactka-lahev',
     description:
       'Professor 12 is the perfect choice for those who seek an honest, uncompromising beer without unnecessary tweaks. Unfiltered and unpasteurized, it preserves the natural taste and character of a true Czech lager. Perfect with grilled meats, cheeses, or just for a relaxed evening with friends.',
     stats: [
@@ -212,6 +222,7 @@ const limosEn: Product[] = [
     category: 'limo',
     categoryLabel: 'Lemonade',
     slug: 'limonada-citron',
+    url: 'https://eshop.stadioner.cz/products/limonada-citron-lahev',
     description:
       'Stadioner Lemon Lemonade is a refreshing non-alcoholic drink made from spring water from the Šumava forests. It features a pleasantly tart lemon taste that refreshes in any situation—at work, during sports, or while relaxing. Carefully balanced without unnecessary preservatives.',
     stats: [
@@ -230,6 +241,7 @@ const limosEn: Product[] = [
     category: 'limo',
     categoryLabel: 'Lemonade',
     slug: 'limonada-pomeranc',
+    url: 'https://eshop.stadioner.cz/products/limonada-pomeranc-lahev',
     description:
       'Stadioner Orange Lemonade is a sweeter non-alcoholic drink with a pronounced fruity taste, made from spring water from the Šumava forests. Gently carbonated and naturally flavored for a pleasant refreshment.',
     stats: [
@@ -248,6 +260,7 @@ const limosEn: Product[] = [
     category: 'limo',
     categoryLabel: 'Lemonade',
     slug: 'cola-mix',
+    url: 'https://eshop.stadioner.cz/products/cola-mix-lahev',
     description:
       'Stadioner Cola mix combines the traditional cola taste with a refreshing lemon note. Made from spring water from the Šumava forests and gently carbonated for ideal drinkability.',
     stats: [
@@ -268,7 +281,8 @@ const watersEn: Product[] = [
     subtitle: 'Pure water from Šumava springs',
     category: 'voda',
     categoryLabel: 'Water',
-    slug: 'pramenita-voda-sycena',
+    slug: 'pramenita-voda-perliva',
+    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-perliva-lahev',
     description:
       'Stadioner spring water comes from the pristine springs of the Šumava mountains. Naturally pure, without added substances or minerals. Ideal for everyday drinking, sports, or as a base for beverages. Packed in returnable bottles for sustainability.',
     stats: [
@@ -277,16 +291,17 @@ const watersEn: Product[] = [
       { label: 'COMPOSITION', value: 'Natural' },
       { label: 'PACKAGING', value: 'Returnable bottle' },
     ],
-    image: '/products/voda/sycena/bottle.webp',
-    icon: '/products/voda/sycena/icon.svg',
-    ingredients: '/products/voda/sycena/etiq.webp',
+    image: '/products/voda/perliva/bottle.webp',
+    icon: '/products/voda/perliva/icon.svg',
+    ingredients: '/products/voda/perliva/etiq.webp',
   },
   {
     name: 'Spring water (Still)',
     subtitle: 'Pure water from Šumava springs',
     category: 'voda',
     categoryLabel: 'Water',
-    slug: 'pramenita-voda-nesycena',
+    slug: 'pramenita-voda-neperliva',
+    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-neperliva-lahev',
     description:
       'Stadioner spring water comes from clean Šumava springs. Naturally pure and with a gentle taste, ideal for everyday hydration, sports, and cooking. Packed in returnable bottles to be kind to the environment.',
     stats: [
@@ -295,9 +310,9 @@ const watersEn: Product[] = [
       { label: 'COMPOSITION', value: 'Natural' },
       { label: 'PACKAGING', value: 'Returnable bottle' },
     ],
-    image: '/products/voda/nesycena/bottle.webp',
-    icon: '/products/voda/nesycena/icon.svg',
-    ingredients: '/products/voda/nesycena/etiq.webp',
+    image: '/products/voda/neperliva/bottle.webp',
+    icon: '/products/voda/neperliva/icon.svg',
+    ingredients: '/products/voda/neperliva/etiq.webp',
   },
 ]
 
@@ -309,6 +324,7 @@ const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'profesor-dvanactka',
+    url: 'https://eshop.stadioner.cz/products/profesor-dvanactka-lahev',
     description:
       'Professor 12 ist die ideale Wahl für alle, die ein ehrliches, kompromissloses Bier ohne unnötige Zusätze suchen. Ungefiltert und unpasteurisiert bewahrt es den natürlichen Geschmack und Charakter eines echten tschechischen Lagers. Perfekt zu Gegrilltem, Käse oder einfach zum gemütlichen Beisammensein.',
     stats: [
@@ -348,6 +364,7 @@ const limosDe: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonade',
     slug: 'limonada-citron',
+    url: 'https://eshop.stadioner.cz/products/limonada-citron-lahev',
     description:
       'Die Zitronenlimonade von Stadioner ist ein erfrischendes alkoholfreies Getränk aus Quellwasser des Böhmerwalds. Angenehm säuerlich und ideal zum Arbeiten, Sport oder Entspannen. Ohne unnötige Konservierungsstoffe – leicht, natürlich und ausgewogen.',
     stats: [
@@ -366,6 +383,7 @@ const limosDe: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonade',
     slug: 'limonada-pomeranc',
+    url: 'https://eshop.stadioner.cz/products/limonada-pomeranc-lahev',
     description:
       'Die Orangenlimonade von Stadioner ist ein süßer, fruchtiger Durstlöscher aus Quellwasser des Böhmerwalds. Sanft kohlensäurehaltig mit natürlichem Aroma – ideal zur Erfrischung.',
     stats: [
@@ -384,6 +402,7 @@ const limosDe: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonade',
     slug: 'cola-mix',
+    url: 'https://eshop.stadioner.cz/products/cola-mix-lahev',
     description:
       'Stadioner Cola Mix verbindet den traditionellen Cola-Geschmack mit einer erfrischenden Zitronennote. Aus Quellwasser des Böhmerwalds und sanft kohlensäurehaltig – ideal trinkbar.',
     stats: [
@@ -404,7 +423,8 @@ const watersDe: Product[] = [
     subtitle: 'Reines Wasser aus Böhmerwaldquellen',
     category: 'voda',
     categoryLabel: 'Wasser',
-    slug: 'pramenita-voda-sycena',
+    slug: 'pramenita-voda-perliva',
+    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-perliva-lahev',
     description:
       'Das Quellwasser von Stadioner stammt aus sauberen Quellen des Böhmerwalds. Natürlich rein, ohne Zusatzstoffe oder Mineralien. Ideal für den täglichen Genuss, Sport oder als Basis für Getränke. In Mehrwegflaschen für mehr Nachhaltigkeit.',
     stats: [
@@ -413,16 +433,17 @@ const watersDe: Product[] = [
       { label: 'ZUSAMMENSETZUNG', value: 'Natürlich' },
       { label: 'VERPACKUNG', value: 'Mehrwegflasche' },
     ],
-    image: '/products/voda/sycena/bottle.webp',
-    icon: '/products/voda/sycena/icon.svg',
-    ingredients: '/products/voda/sycena/etiq.webp',
+    image: '/products/voda/perliva/bottle.webp',
+    icon: '/products/voda/perliva/icon.svg',
+    ingredients: '/products/voda/perliva/etiq.webp',
   },
   {
     name: 'Quellwasser (Still)',
     subtitle: 'Reines Wasser aus Böhmerwaldquellen',
     category: 'voda',
     categoryLabel: 'Wasser',
-    slug: 'pramenita-voda-nesycena',
+    slug: 'pramenita-voda-neperliva',
+    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-neperliva-lahev',
     description:
       'Stadioner Quellwasser stammt aus reinen Böhmerwaldquellen. Natürlich rein, mit sanftem Geschmack – ideal für tägliche Hydration, Sport und Kochen. In Mehrwegflaschen für die Umwelt.',
     stats: [
@@ -431,9 +452,9 @@ const watersDe: Product[] = [
       { label: 'ZUSAMMENSETZUNG', value: 'Natürlich' },
       { label: 'VERPACKUNG', value: 'Mehrwegflasche' },
     ],
-    image: '/products/voda/nesycena/bottle.webp',
-    icon: '/products/voda/nesycena/icon.svg',
-    ingredients: '/products/voda/nesycena/etiq.webp',
+    image: '/products/voda/neperliva/bottle.webp',
+    icon: '/products/voda/neperliva/icon.svg',
+    ingredients: '/products/voda/neperliva/etiq.webp',
   },
 ]
 
@@ -480,12 +501,24 @@ export const Products = ({
         : categoriesDe
 
   const uiLabels = {
-    cs: { composition: 'Složení', compositionTitle: 'Složení a Alergeny' },
+    cs: {
+      composition: 'Složení',
+      compositionTitle: 'Složení a Alergeny',
+      depositNote: 'Lahve jsou zálohované.',
+      buy: 'Koupit',
+    },
     en: {
       composition: 'Ingredients',
       compositionTitle: 'Ingredients & Allergens',
+      depositNote: 'Bottles are subject to a deposit.',
+      buy: 'Buy',
     },
-    de: { composition: 'Zutaten', compositionTitle: 'Zutaten & Allergene' },
+    de: {
+      composition: 'Zutaten',
+      compositionTitle: 'Zutaten & Allergene',
+      depositNote: 'Die Flaschen sind pfandpflichtig.',
+      buy: 'Kaufen',
+    },
   } as const
   const labels = uiLabels[activeLang as 'cs' | 'en' | 'de']
   const router = useRouter()
@@ -636,7 +669,7 @@ export const Products = ({
             </button>
           </div>
 
-          <div className='flex flex-col md:grid md:grid-cols-[1.6fr_1fr] gap-8 items-stretch mt-6 sm:mt-12'>
+          <div className='flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 items-stretch mt-6 sm:mt-12'>
             <div className='flex-1 md:hidden flex items-center justify-center relative'>
               <AnimatePresence mode='wait'>
                 <div className='relative'>
@@ -673,24 +706,26 @@ export const Products = ({
                       {product.name}
                     </motion.h2>
                   </AnimatePresence>
-                  <Dialog>
-                    <DialogTrigger className='border border-brand-primary text-brand-primary font-bold py-1 px-3 mb-2 cursor-pointer hover:opacity-90 transition hover:bg-brand-primary hover:text-brand-action self-end'>
-                      {labels.composition}
-                    </DialogTrigger>
-                    <DialogContent className='bg-brand-primary h-[500px]'>
-                      <DialogHeader>
-                        <DialogTitle className='text-brand-action text-2xl'>
-                          {labels.compositionTitle}
-                        </DialogTitle>
-                      </DialogHeader>
+                  <div className='flex items-center gap-2'>
+                    <Dialog>
+                      <DialogTrigger className='border border-brand-primary text-brand-primary font-bold py-1 px-3 mb-2 cursor-pointer hover:opacity-90 transition hover:bg-brand-primary hover:text-brand-action self-end'>
+                        {labels.composition}
+                      </DialogTrigger>
+                      <DialogContent className='bg-brand-primary h-[500px]'>
+                        <DialogHeader>
+                          <DialogTitle className='text-brand-action text-2xl'>
+                            {labels.compositionTitle}
+                          </DialogTitle>
+                        </DialogHeader>
 
-                      <img
-                        src={product.ingredients}
-                        alt='ingredients'
-                        className='max-h-[400px]'
-                      />
-                    </DialogContent>
-                  </Dialog>
+                        <img
+                          src={product.ingredients}
+                          alt='ingredients'
+                          className='max-h-[400px]'
+                        />
+                      </DialogContent>
+                    </Dialog>
+                  </div>
                 </div>
                 <AnimatePresence mode='wait'>
                   <motion.p
@@ -720,6 +755,20 @@ export const Products = ({
                       </div>
                     )
                   )}
+                </div>
+                <div className='grid place-self-end'>
+                  <Button asChild variant={'shop'}>
+                    <Link
+                      href={product.url}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                    >
+                      {labels.buy}
+                    </Link>
+                  </Button>
+                  <p className='text-xs text-zinc-400 mt-1'>
+                    {labels.depositNote}
+                  </p>
                 </div>
               </div>
             </div>

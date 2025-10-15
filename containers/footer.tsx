@@ -141,12 +141,12 @@ export const Footer = () => {
               {language === 'en' && 'Cola mix'}
               {language === 'de' && 'Cola Mix'}
             </Link>
-            <Link href='/produkty/?produkt=pramenita-voda-sycena&kategorie=voda'>
+            <Link href='/produkty/?produkt=pramenita-voda-perliva&kategorie=voda'>
               {language === 'cs' && 'Pramenitá voda (Sycená)'}
               {language === 'en' && 'Spring water (Sparkling)'}
               {language === 'de' && 'Quellwasser (Kohlensäurehaltig)'}
             </Link>
-            <Link href='/produkty/?produkt=pramenita-voda-nesycena&kategorie=voda'>
+            <Link href='/produkty/?produkt=pramenita-voda-neperliva&kategorie=voda'>
               {language === 'cs' && 'Pramenitá voda (Nesycená)'}
               {language === 'en' && 'Spring water (Still)'}
               {language === 'de' && 'Quellwasser (Still)'}
