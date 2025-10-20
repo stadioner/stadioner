@@ -83,7 +83,7 @@ const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'jedenactka-experiment',
-    url: 'https://eshop.stadioner.cz/products/jedenactka-experiment-sud-30l',
+    url: 'https://eshop.stadioner.cz/products/experiment-11-sud-30l',
     description:
       'Experimentální jedenáctka s moderním chmelením dostupná exkluzivně v sudech. Ideální pro podniky a akce – čerstvá, na výčepu nejlepší.',
     stats: [
@@ -244,7 +244,7 @@ const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'jedenactka-experiment',
-    url: 'https://eshop.stadioner.cz/products/jedenactka-experiment-sud-30l',
+    url: 'https://eshop.stadioner.cz/products/experiment-11-sud-30l',
     description:
       'An experimental 11° lager with modern hopping, available exclusively in kegs. Perfect for venues and events – best enjoyed fresh on tap.',
     stats: [
@@ -405,7 +405,7 @@ const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'jedenactka-experiment',
-    url: 'https://eshop.stadioner.cz/products/jedenactka-experiment-sud-30l',
+    url: 'https://eshop.stadioner.cz/products/experiment-11-sud-30l',
     description:
       'Experimentelles 11° Lager mit modernem Hopfen, ausschließlich in Fässern erhältlich. Ideal für Gastronomie und Events – frisch vom Fass am besten.',
     stats: [
