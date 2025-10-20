@@ -833,16 +833,16 @@ export const Products = ({
           </div>
 
           {/* Navigation arrows and product icons */}
-          <div className='flex items-center justify-center gap-4 mt-6'>
+          <div className='flex items-center justify-center gap-2 sm:gap-4 mt-3 sm:mt-6'>
             <button
               onClick={handlePrev}
-              className='size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+              className='size-8 sm:size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
               aria-label='Previous product'
             >
               &#8592;
             </button>
 
-            <div className='flex gap-2'>
+            <div className='flex gap-1 sm:gap-2'>
               {filteredProducts.map((p: Product, idx: number) => (
                 <motion.button
                   key={p.name}
@@ -860,7 +860,7 @@ export const Products = ({
                   <img
                     src={p.icon}
                     alt={p.name}
-                    className='size-12 md:size-14 object-cover rounded-full'
+                    className='size-10 sm:size-12 md:size-14 object-cover rounded-full'
                   />
                 </motion.button>
               ))}
@@ -869,14 +869,14 @@ export const Products = ({
             <button
               onClick={handleNext}
               aria-label='Next product'
-              className='size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+              className='size-8 sm:size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
             >
               &#8594;
             </button>
           </div>
 
           {/* Packaging Selector (below flavor icons) */}
-          <div className='flex justify-center mt-4'>
+          <div className='flex justify-center mt-2 sm:mt-4'>
             <Popover open={packagingOpen} onOpenChange={setPackagingOpen}>
               <PopoverTrigger asChild>
                 <button
@@ -913,7 +913,7 @@ export const Products = ({
             </Popover>
           </div>
 
-          <div className='flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 items-stretch mt-6 sm:mt-12'>
+          <div className='flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-4 sm:gap-8 items-stretch mt-4 sm:mt-6 md:mt-12'>
             <div className='flex-1 md:hidden flex items-center justify-center relative'>
               <AnimatePresence mode='wait'>
                 <div className='relative'>
@@ -925,19 +925,19 @@ export const Products = ({
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -40 }}
                     transition={{ duration: 0.5 }}
-                    className='max-h-[300px] drop-shadow-2xl animate-bottle relative z-10'
+                    className='max-h-[200px] sm:max-h-[300px] drop-shadow-2xl animate-bottle relative z-10'
                   />
-                  <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-40 h-8 bg-black/80 rounded-full blur-lg animate-bottle-shadow' />
+                  <div className='absolute bottom-0 left-1/2 transform -translate-x-1/2 w-32 sm:w-40 h-6 sm:h-8 bg-black/80 rounded-full blur-lg animate-bottle-shadow' />
                 </div>
               </AnimatePresence>
             </div>
             {/* Left: Info & Navigation */}
             <div className='flex-1 flex flex-col justify-center'>
-              <div className='mb-8'>
-                <p className='uppercase tracking-widest text-xs text-zinc-300 mb-2'>
+              <div className='mb-4 sm:mb-8'>
+                <p className='uppercase tracking-widest text-xs text-zinc-300 mb-1 sm:mb-2'>
                   {product.subtitle}
                 </p>
-                <div className='flex items-center justify-between mb-4'>
+                <div className='flex items-center justify-between mb-2 sm:mb-4'>
                   <AnimatePresence mode='wait'>
                     <motion.h2
                       key={product.name}
@@ -945,14 +945,14 @@ export const Products = ({
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -20 }}
                       transition={{ duration: 0.4 }}
-                      className='text-3xl md:text-6xl font-bold text-brand-primary'
+                      className='text-2xl sm:text-3xl md:text-6xl font-bold text-brand-primary'
                     >
                       {product.name}
                     </motion.h2>
                   </AnimatePresence>
                   <div className='flex items-center gap-2'>
                     <Dialog>
-                      <DialogTrigger className='border border-brand-primary text-brand-primary font-bold py-1 px-3 mb-2 cursor-pointer hover:opacity-90 transition hover:bg-brand-primary hover:text-brand-action self-end'>
+                      <DialogTrigger className='border border-brand-primary text-brand-primary font-bold py-1 px-2 sm:px-3 mb-2 cursor-pointer hover:opacity-90 transition hover:bg-brand-primary hover:text-brand-action self-end text-xs sm:text-sm'>
                         {labels.composition}
                       </DialogTrigger>
                       <DialogContent className='bg-brand-primary h-[500px]'>
@@ -978,22 +978,22 @@ export const Products = ({
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4, delay: 0.1 }}
-                    className='text-zinc-200 mb-8 max-w-lg hidden sm:block'
+                    className='text-zinc-200 mb-4 sm:mb-8 max-w-lg hidden sm:block'
                   >
                     {product.description}
                   </motion.p>
                 </AnimatePresence>
-                <div className='flex justify-between border-t border-zinc-600 pt-6 mb-6'>
+                <div className='flex justify-between border-t border-zinc-600 pt-3 sm:pt-6 mb-3 sm:mb-6'>
                   {product.stats.map(
                     (stat: { label: string; value: string }) => (
                       <div
                         key={stat.label}
-                        className='flex flex-col items-center min-w-[90px]'
+                        className='flex flex-col items-center min-w-[70px] sm:min-w-[90px]'
                       >
                         <span className='text-xs text-zinc-400'>
                           {stat.label}
                         </span>
-                        <span className='text-lg font-bold text-brand-primary'>
+                        <span className='text-sm sm:text-lg font-bold text-brand-primary'>
                           {stat.value}
                         </span>
                       </div>
