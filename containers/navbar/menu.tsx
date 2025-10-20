@@ -45,11 +45,11 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
           setIsOpen={setIsOpen}
           label={
             language === 'cs'
-              ? 'Produkty'
+              ? 'Produkty / E-shop'
               : language === 'en'
-                ? 'Products'
+                ? 'Products / E-shop'
                 : language === 'de'
-                  ? 'Produkte'
+                  ? 'Produkte / E-shop'
                   : ''
           }
           href='/produkty'
