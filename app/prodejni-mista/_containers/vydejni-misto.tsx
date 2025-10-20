@@ -3,7 +3,6 @@
 import { Container } from '@/components/container'
 import { RippedPaperSVG } from '@/components/ripped-paper-svg'
 import { useLanguage } from '@/store/use-language'
-import { PhoneIcon } from 'lucide-react'
 
 export const VydejniMisto = () => {
   const { language } = useLanguage()
@@ -195,7 +194,7 @@ export const VydejniMisto = () => {
           />
         </Container>
       </div>
-      {/* <RippedPaperSVG /> */}
+      <RippedPaperSVG />
     </section>
   )
 }

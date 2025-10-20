@@ -21,9 +21,9 @@ export const Intro = () => {
         <section>
           <div className='pb-6'>
             <h2 className='text-brand-action text-3xl md:text-4xl lg:text-6xl font-bold'>
-              {language === 'cs' && 'Již brzy začne prodej'}
-              {language === 'en' && 'Sales starting soon'}
-              {language === 'de' && 'Verkauf startet bald'}
+              {language === 'cs' && 'Spustili jsme prodej'}
+              {language === 'en' && 'We have launched sales'}
+              {language === 'de' && 'Wir haben den Verkauf gestartet'}
             </h2>
             <p className='max-w-[100ch]'>
               {language === 'cs' && (
@@ -35,7 +35,17 @@ export const Intro = () => {
                   <Link href='/newsletter' className='underline font-bold'>
                     newsletteru
                   </Link>{' '}
-                  a buďte první, kdo se dozví o všech novinkách.
+                  a buďte první, kdo se dozví o všech novinkách. Mezitím si
+                  můžete zboží rezervovat na našem{' '}
+                  <Link
+                    href='https://eshop.stadioner.cz'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='underline font-bold'
+                  >
+                    e‑shopu
+                  </Link>{' '}
+                  a vyzvednout na výdejním místě.
                 </>
               )}
               {language === 'en' && (
@@ -46,7 +56,17 @@ export const Intro = () => {
                   <Link href='/newsletter' className='underline font-bold'>
                     newsletter
                   </Link>{' '}
-                  and be the first to hear about all updates.
+                  and be the first to hear about all updates. In the meantime,
+                  you can reserve goods on our{' '}
+                  <Link
+                    href='https://eshop.stadioner.cz'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='underline font-bold'
+                  >
+                    e‑shop
+                  </Link>{' '}
+                  and pick them up at the pickup point.
                 </>
               )}
               {language === 'de' && (
@@ -58,7 +78,17 @@ export const Intro = () => {
                   <Link href='/newsletter' className='underline font-bold'>
                     Newsletter
                   </Link>{' '}
-                  und erfahren Sie als Erste alle Neuigkeiten.
+                  und erfahren Sie als Erste alle Neuigkeiten. In der
+                  Zwischenzeit können Sie die Ware in unserem{' '}
+                  <Link
+                    href='https://eshop.stadioner.cz'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className='underline font-bold'
+                  >
+                    E‑Shop
+                  </Link>{' '}
+                  reservieren und an der Abholstelle entgegennehmen.
                 </>
               )}
             </p>
