@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useLanguage } from '@/store/use-language'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useRouter, useSearchParams } from 'next/navigation'
@@ -16,6 +16,12 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Button } from '@/components/ui/button'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { Command, CommandGroup, CommandItem } from '@/components/ui/command'
 
 // Typ produktu
 interface Product {
@@ -71,6 +77,25 @@ const beersCs: Product[] = [
   //     icon: '/products/pivo/jedenactka/icon.svg',
   //     ingredients: '/products/limo/citron/etiq.webp',
   //   },
+  {
+    name: 'Experiment jedenáctka',
+    subtitle: 'Limitovaný speciál na čep – pouze sudy',
+    category: 'pivo',
+    categoryLabel: 'Pivo',
+    slug: 'jedenactka-experiment',
+    url: 'https://eshop.stadioner.cz/products/jedenactka-experiment-sud-30l',
+    description:
+      'Experimentální jedenáctka s moderním chmelením dostupná exkluzivně v sudech. Ideální pro podniky a akce – čerstvá, na výčepu nejlepší.',
+    stats: [
+      { label: 'TYP', value: 'Světlý ležák' },
+      { label: 'ABV', value: '4.5%' },
+      { label: 'STUPEŇ', value: '11°' },
+      { label: 'DOSTUPNOST', value: 'Pouze sudy' },
+    ],
+    image: '/products/pivo/jedenactka-experiment/barrel-30.webp',
+    icon: '/products/blank-circle-beige.svg',
+    ingredients: '/products/pivo/jedenactka-experiment/barrel-30.webp',
+  },
 ]
 
 const limosCs: Product[] = [
@@ -140,7 +165,7 @@ const watersCs: Product[] = [
     category: 'voda',
     categoryLabel: 'Voda',
     slug: 'pramenita-voda-perliva',
-    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-perliva-lahev',
+    url: 'https://eshop.stadioner.cz/products/pramenita-voda-perliva-lahev',
     description:
       'Pramenitá voda Stadioner pochází z čistých šumavských pramenů. Je přirozeně čistá, bez přidaných látek a minerálů. Ideální pro každodenní pití, sportovní aktivity nebo jako základ pro přípravu nápojů. Balená ve vratných obalech pro šetrnost k životnímu prostředí.',
     stats: [
@@ -159,7 +184,7 @@ const watersCs: Product[] = [
     category: 'voda',
     categoryLabel: 'Voda',
     slug: 'pramenita-voda-neperliva',
-    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-neperliva-lahev',
+    url: 'https://eshop.stadioner.cz/products/pramenita-voda-neperliva-lahev',
     description:
       'Pramenitá voda Stadioner pochází z čistých šumavských pramenů. Je přirozeně čistá, bez přidaných látek a minerálů, a díky své jemné chuti je ideální pro každodenní pití. Vhodná k hydrataci během dne, sportu i k přípravě jídel či nápojů. Balená ve vratných obalech pro šetrnost k životnímu prostředí.',
     stats: [
@@ -213,6 +238,25 @@ const beersEn: Product[] = [
   //     icon: '/products/pivo/jedenactka/icon.svg',
   //     ingredients: '/products/limo/citron/etiq.webp',
   //   },
+  {
+    name: 'Experiment Eleven',
+    subtitle: 'Limited special on tap – kegs only',
+    category: 'pivo',
+    categoryLabel: 'Beer',
+    slug: 'jedenactka-experiment',
+    url: 'https://eshop.stadioner.cz/products/jedenactka-experiment-sud-30l',
+    description:
+      'An experimental 11° lager with modern hopping, available exclusively in kegs. Perfect for venues and events – best enjoyed fresh on tap.',
+    stats: [
+      { label: 'TYPE', value: 'Pale lager' },
+      { label: 'ABV', value: '4.5%' },
+      { label: 'DEGREE', value: '11°' },
+      { label: 'AVAILABILITY', value: 'Kegs only' },
+    ],
+    image: '/products/pivo/jedenactka-experiment/barrel-30.webp',
+    icon: '/products/blank-circle-beige.svg',
+    ingredients: '/products/pivo/jedenactka-experiment/barrel-30.webp',
+  },
 ]
 
 const limosEn: Product[] = [
@@ -282,7 +326,7 @@ const watersEn: Product[] = [
     category: 'voda',
     categoryLabel: 'Water',
     slug: 'pramenita-voda-perliva',
-    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-perliva-lahev',
+    url: 'https://eshop.stadioner.cz/products/pramenita-voda-perliva-lahev',
     description:
       'Stadioner spring water comes from the pristine springs of the Šumava mountains. Naturally pure, without added substances or minerals. Ideal for everyday drinking, sports, or as a base for beverages. Packed in returnable bottles for sustainability.',
     stats: [
@@ -301,7 +345,7 @@ const watersEn: Product[] = [
     category: 'voda',
     categoryLabel: 'Water',
     slug: 'pramenita-voda-neperliva',
-    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-neperliva-lahev',
+    url: 'https://eshop.stadioner.cz/products/pramenita-voda-neperliva-lahev',
     description:
       'Stadioner spring water comes from clean Šumava springs. Naturally pure and with a gentle taste, ideal for everyday hydration, sports, and cooking. Packed in returnable bottles to be kind to the environment.',
     stats: [
@@ -355,6 +399,25 @@ const beersDe: Product[] = [
   //     icon: '/products/pivo/jedenactka/icon.svg',
   //     ingredients: '/products/limo/citron/etiq.webp',
   //   },
+  {
+    name: 'Experiment Elfer',
+    subtitle: 'Limitierter Spezial – nur Fässer',
+    category: 'pivo',
+    categoryLabel: 'Bier',
+    slug: 'jedenactka-experiment',
+    url: 'https://eshop.stadioner.cz/products/jedenactka-experiment-sud-30l',
+    description:
+      'Experimentelles 11° Lager mit modernem Hopfen, ausschließlich in Fässern erhältlich. Ideal für Gastronomie und Events – frisch vom Fass am besten.',
+    stats: [
+      { label: 'TYP', value: 'Helles Lager' },
+      { label: 'ABV', value: '4.5%' },
+      { label: 'GRAD', value: '11°' },
+      { label: 'VERFÜGBARKEIT', value: 'Nur Fässer' },
+    ],
+    image: '/products/pivo/jedenactka-experiment/barrel-30.webp',
+    icon: '/products/blank-circle-beige.svg',
+    ingredients: '/products/pivo/jedenactka-experiment/barrel-30.webp',
+  },
 ]
 
 const limosDe: Product[] = [
@@ -424,7 +487,7 @@ const watersDe: Product[] = [
     category: 'voda',
     categoryLabel: 'Wasser',
     slug: 'pramenita-voda-perliva',
-    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-perliva-lahev',
+    url: 'https://eshop.stadioner.cz/products/pramenita-voda-perliva-lahev',
     description:
       'Das Quellwasser von Stadioner stammt aus sauberen Quellen des Böhmerwalds. Natürlich rein, ohne Zusatzstoffe oder Mineralien. Ideal für den täglichen Genuss, Sport oder als Basis für Getränke. In Mehrwegflaschen für mehr Nachhaltigkeit.',
     stats: [
@@ -443,7 +506,7 @@ const watersDe: Product[] = [
     category: 'voda',
     categoryLabel: 'Wasser',
     slug: 'pramenita-voda-neperliva',
-    url: 'https://eshop.stadioner.cz/produkt/pramenita-voda-neperliva-lahev',
+    url: 'https://eshop.stadioner.cz/products/pramenita-voda-neperliva-lahev',
     description:
       'Stadioner Quellwasser stammt aus reinen Böhmerwaldquellen. Natürlich rein, mit sanftem Geschmack – ideal für tägliche Hydration, Sport und Kochen. In Mehrwegflaschen für die Umwelt.',
     stats: [
@@ -506,18 +569,39 @@ export const Products = ({
       compositionTitle: 'Složení a Alergeny',
       depositNote: 'Lahve jsou zálohované.',
       buy: 'Koupit',
+      packaging: 'Balení',
+      selectPackaging: 'Vyberte balení...',
+      bottle: 'Lahev',
+      crate: 'Bedna',
+      barrel: 'Sud',
+      barrel30: 'Sud 30 l',
+      barrel50: 'Sud 50 l',
     },
     en: {
       composition: 'Ingredients',
       compositionTitle: 'Ingredients & Allergens',
       depositNote: 'Bottles are subject to a deposit.',
       buy: 'Buy',
+      packaging: 'Packaging',
+      selectPackaging: 'Select packaging...',
+      bottle: 'Bottle',
+      crate: 'Crate',
+      barrel: 'Keg',
+      barrel30: 'Keg 30 l',
+      barrel50: 'Keg 50 l',
     },
     de: {
       composition: 'Zutaten',
       compositionTitle: 'Zutaten & Allergene',
       depositNote: 'Die Flaschen sind pfandpflichtig.',
       buy: 'Kaufen',
+      packaging: 'Verpackung',
+      selectPackaging: 'Verpackung auswählen...',
+      bottle: 'Flasche',
+      crate: 'Kiste',
+      barrel: 'Fass',
+      barrel30: 'Fass 30 l',
+      barrel50: 'Fass 50 l',
     },
   } as const
   const labels = uiLabels[activeLang as 'cs' | 'en' | 'de']
@@ -525,6 +609,16 @@ export const Products = ({
   const searchParams = useSearchParams()
   const [selectedCategory, setSelectedCategory] = useState('pivo')
   const [current, setCurrent] = useState(0)
+  const [packagingOpen, setPackagingOpen] = useState(false)
+
+  type PackagingKey = 'bottle' | 'crate' | 'barrel30' | 'barrel50'
+  type PackagingAvailability = Record<PackagingKey, boolean>
+  const [availabilityBySlug, setAvailabilityBySlug] = useState<
+    Record<string, PackagingAvailability>
+  >({})
+  const [selectedPackagingBySlug, setSelectedPackagingBySlug] = useState<
+    Record<string, PackagingKey>
+  >({})
 
   // Vždy aktuální pole produktů podle kategorie
   const filteredProducts = productMap[selectedCategory] || []
@@ -593,6 +687,118 @@ export const Products = ({
   if (!product) {
     return null
   }
+
+  const deriveVariantUrls = (baseImagePath: string) => {
+    // Normalize directory regardless of which variant the base uses
+    const baseDir = baseImagePath.replace(
+      /(bottle|crate|barrel-30|barrel-50)\.webp$/,
+      ''
+    )
+    return {
+      bottle: `${baseDir}bottle.webp`,
+      crate: `${baseDir}crate.webp`,
+      barrel30: `${baseDir}barrel-30.webp`,
+      barrel50: `${baseDir}barrel-50.webp`,
+    }
+  }
+
+  const productVariantUrls = useMemo(
+    () => deriveVariantUrls(product.image),
+    [product.image]
+  )
+
+  useEffect(() => {
+    // probe image availability for current product once
+    const slug = product.slug
+    if (availabilityBySlug[slug]) return
+
+    const urls = deriveVariantUrls(product.image)
+    const keys: PackagingKey[] = ['bottle', 'crate', 'barrel30', 'barrel50']
+
+    const checkImage = (url: string) =>
+      new Promise<boolean>(resolve => {
+        const img = new Image()
+        img.onload = () => resolve(true)
+        img.onerror = () => resolve(false)
+        img.src = url
+      })
+
+    Promise.all(keys.map(k => checkImage(urls[k]))).then(results => {
+      const nextAvailability: PackagingAvailability = {
+        bottle: results[0],
+        crate: results[1],
+        barrel30: results[2],
+        barrel50: results[3],
+      }
+      setAvailabilityBySlug(prev => ({ ...prev, [slug]: nextAvailability }))
+      // default selection: bottle if available, else first available
+      const defaultKey = (
+        ['bottle', 'crate', 'barrel30', 'barrel50'] as PackagingKey[]
+      ).find(key => nextAvailability[key]) as PackagingKey | undefined
+      if (defaultKey) {
+        setSelectedPackagingBySlug(prev => ({ ...prev, [slug]: defaultKey }))
+      }
+    })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [product.slug, product.image])
+
+  const availability = availabilityBySlug[product.slug]
+  const selectedPackaging: PackagingKey =
+    selectedPackagingBySlug[product.slug] || 'bottle'
+  const packagingOptions: {
+    key: PackagingKey
+    label: string
+    url: string
+    available: boolean
+  }[] = (
+    [
+      { key: 'bottle', label: labels.bottle, url: productVariantUrls.bottle },
+      { key: 'crate', label: labels.crate, url: productVariantUrls.crate },
+      {
+        key: 'barrel30',
+        label: labels.barrel30,
+        url: productVariantUrls.barrel30,
+      },
+      {
+        key: 'barrel50',
+        label: labels.barrel50,
+        url: productVariantUrls.barrel50,
+      },
+    ] as const
+  ).map(opt => ({
+    ...opt,
+    available: availability ? availability[opt.key] : opt.key === 'bottle',
+  }))
+
+  const displayedImage =
+    packagingOptions.find(o => o.key === selectedPackaging)?.url ||
+    product.image
+  const selectedPackagingLabel =
+    packagingOptions.find(o => o.key === selectedPackaging)?.label ||
+    labels.packaging
+
+  const deriveBuyUrlForPackaging = (baseUrl: string, pkg: PackagingKey) => {
+    // Prefer Czech suffixes present in current data. Also handle English fallbacks if needed.
+    const mapCz: Record<PackagingKey, string> = {
+      bottle: 'lahev',
+      crate: 'bedna',
+      barrel30: 'sud-30l',
+      barrel50: 'sud-50l',
+    }
+
+    // If URL already contains cz suffix
+    if (/-lahev$/.test(baseUrl)) {
+      return baseUrl.replace(/-lahev$/, `-${mapCz[pkg]}`)
+    }
+    if (/-bedna$/.test(baseUrl) || /-sud-(30|50)$/.test(baseUrl)) {
+      return baseUrl.replace(/-(lahev|bedna|sud-(30|50))$/, `-${mapCz[pkg]}`)
+    }
+
+    // Fallback: append suffix
+    return `${baseUrl}-${mapCz[pkg]}`
+  }
+
+  const buyUrl = deriveBuyUrlForPackaging(product.url, selectedPackaging)
 
   return (
     <section className={cn('relative', !hScreen && 'bg-brand-secondary')}>
@@ -669,13 +875,51 @@ export const Products = ({
             </button>
           </div>
 
+          {/* Packaging Selector (below flavor icons) */}
+          <div className='flex justify-center mt-4'>
+            <Popover open={packagingOpen} onOpenChange={setPackagingOpen}>
+              <PopoverTrigger asChild>
+                <button
+                  className='border border-brand-primary text-brand-primary font-medium py-1 px-3 cursor-pointer hover:opacity-90 transition hover:bg-brand-primary hover:text-brand-action inline-flex items-center gap-2'
+                  aria-label={selectedPackagingLabel}
+                >
+                  <span>{selectedPackagingLabel}</span>
+                  <span aria-hidden>▾</span>
+                </button>
+              </PopoverTrigger>
+              <PopoverContent className='p-0 w-56 bg-zinc-900 border-zinc-700'>
+                <Command>
+                  <CommandGroup>
+                    {packagingOptions
+                      .filter(o => o.available)
+                      .map(option => (
+                        <CommandItem
+                          key={option.key}
+                          value={option.key}
+                          onSelect={() => {
+                            setSelectedPackagingBySlug(prev => ({
+                              ...prev,
+                              [product.slug]: option.key,
+                            }))
+                            setPackagingOpen(false)
+                          }}
+                        >
+                          {option.label}
+                        </CommandItem>
+                      ))}
+                  </CommandGroup>
+                </Command>
+              </PopoverContent>
+            </Popover>
+          </div>
+
           <div className='flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-8 items-stretch mt-6 sm:mt-12'>
             <div className='flex-1 md:hidden flex items-center justify-center relative'>
               <AnimatePresence mode='wait'>
                 <div className='relative'>
                   <motion.img
-                    key={product.image}
-                    src={product.image}
+                    key={displayedImage}
+                    src={displayedImage}
                     alt={product.name}
                     initial={{ opacity: 0, x: 40 }}
                     animate={{ opacity: 1, x: 0 }}
@@ -759,7 +1003,7 @@ export const Products = ({
                 <div className='grid place-self-end'>
                   <Button asChild variant={'shop'}>
                     <Link
-                      href={product.url}
+                      href={buyUrl}
                       target='_blank'
                       rel='noopener noreferrer'
                     >
@@ -777,8 +1021,8 @@ export const Products = ({
               <AnimatePresence mode='wait'>
                 <div className='relative'>
                   <motion.img
-                    key={product.image}
-                    src={product.image}
+                    key={displayedImage}
+                    src={displayedImage}
                     alt={product.name}
                     initial={{ opacity: 0, x: 40 }}
                     animate={{ opacity: 1, x: 0 }}
