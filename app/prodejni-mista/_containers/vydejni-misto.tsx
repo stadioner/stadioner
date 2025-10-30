@@ -188,7 +188,7 @@ export const VydejniMisto = () => {
           />
         </Container>
       </div>
-      {/* <RippedPaperSVG /> */}
+      <RippedPaperSVG />
     </section>
   )
 }

@@ -28,15 +28,13 @@ export const Intro = () => {
             <p className='max-w-[100ch]'>
               {language === 'cs' && (
                 <>
-                  Již brzy si budete moci zakoupit naše produkty přímo v
-                  pivovaru. Plánujeme rozšíření prodeje do restaurací a obchodů
-                  napříč Plzeňským krajem. Nenechte si to ujít! Přihlaste se k
-                  našemu{' '}
+                  Naše produkty si nyní můžete zakoupit přímo v pivovaru. Prodej
+                  postupně rozšiřujeme do restaurací a obchodů napříč Plzeňským
+                  krajem. Nepropásněte novinky – přihlaste se k našemu{' '}
                   <Link href='/newsletter' className='underline font-bold'>
                     newsletteru
-                  </Link>{' '}
-                  a buďte první, kdo se dozví o všech novinkách. Mezitím si
-                  můžete zboží rezervovat na našem{' '}
+                  </Link>
+                  . Zboží si můžete také rezervovat na našem{' '}
                   <Link
                     href='https://eshop.stadioner.cz'
                     target='_blank'
@@ -50,14 +48,13 @@ export const Intro = () => {
               )}
               {language === 'en' && (
                 <>
-                  Soon you will be able to purchase our products directly at the
-                  brewery. We plan to expand sales to restaurants and shops
-                  across the Plzeň Region. Don’t miss out! Subscribe to our{' '}
+                  You can now purchase our products directly at the brewery. We
+                  are gradually expanding sales to restaurants and shops across
+                  the Plzeň Region. Stay in the loop — subscribe to our{' '}
                   <Link href='/newsletter' className='underline font-bold'>
                     newsletter
-                  </Link>{' '}
-                  and be the first to hear about all updates. In the meantime,
-                  you can reserve goods on our{' '}
+                  </Link>
+                  . You can also reserve goods on our{' '}
                   <Link
                     href='https://eshop.stadioner.cz'
                     target='_blank'
@@ -71,15 +68,14 @@ export const Intro = () => {
               )}
               {language === 'de' && (
                 <>
-                  Bald können Sie unsere Produkte direkt in der Brauerei kaufen.
-                  Wir planen den Verkauf auf Restaurants und Geschäfte im
-                  gesamten Bezirk Pilsen auszuweiten. Verpassen Sie nichts!
-                  Abonnieren Sie unseren{' '}
+                  Unsere Produkte können Sie jetzt direkt in der Brauerei
+                  kaufen. Wir erweitern den Verkauf nach und nach auf
+                  Restaurants und Geschäfte im gesamten Bezirk Pilsen. Bleiben
+                  Sie auf dem Laufenden – abonnieren Sie unseren{' '}
                   <Link href='/newsletter' className='underline font-bold'>
                     Newsletter
-                  </Link>{' '}
-                  und erfahren Sie als Erste alle Neuigkeiten. In der
-                  Zwischenzeit können Sie die Ware in unserem{' '}
+                  </Link>
+                  . Sie können die Ware auch in unserem{' '}
                   <Link
                     href='https://eshop.stadioner.cz'
                     target='_blank'
@@ -88,7 +84,7 @@ export const Intro = () => {
                   >
                     E‑Shop
                   </Link>{' '}
-                  reservieren und an der Abholstelle entgegennehmen.
+                  reservieren und am Abholpunkt abholen.
                 </>
               )}
             </p>
