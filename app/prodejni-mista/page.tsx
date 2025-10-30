@@ -28,9 +28,9 @@ export const metadata: Metadata = {
 
 export default function ProdejniMistaPage() {
   return (
-    <main className='pt-36 bg-brand-primary'>
-      <VydejniMisto />
+    <main>
       <Intro />
+      <VydejniMisto />
       {/* <PojizdnaProdejna /> */}
     </main>
   )

@@ -84,25 +84,19 @@ export const VydejniMisto = () => {
                     <p>Pfand: Flasche 5 CZK, Kiste 100 CZK, Fass 1500 CZK.</p>
                   )}
                 </div>
-
-                <div className='border-t border-zinc-600 pt-4'>
-                  <h4 className='font-semibold text-brand-primary mb-2 text-xl'>
-                    {language === 'cs' && 'Otevření 28. října'}
-                    {language === 'en' && ''}
-                    {language === 'de' && ''}
-                  </h4>
-                  <p>
-                    Na co se můžete v tento den těšit (od 9:00 do 19:00)?
-                    <br />
-                    🎶 živá kapela
-                    <br />
-                    🍴 catering
-                    <br />
-                    🍺 a samozřejmě naše produkty
-                  </p>
+                <div className='text-sm text-zinc-200'>
+                  {language === 'cs' && (
+                    <p>Platba možná na místě v hotovosti i kartou.</p>
+                  )}
+                  {language === 'en' && (
+                    <p>Payment possible on site by cash or card.</p>
+                  )}
+                  {language === 'de' && (
+                    <p>Zahlung vor Ort in bar oder mit Karte möglich.</p>
+                  )}
                 </div>
 
-                {/* <div
+                <div
                   className='border-t 
                 border-zinc-600 pt-4'
                 >
@@ -133,7 +127,7 @@ export const VydejniMisto = () => {
                         className='font-medium
                       '
                       >
-                        9:00 - 17:00
+                        9:00 - 11:30 | 12:30 - 16:00
                       </span>
                     </div>
                     <div
@@ -150,7 +144,7 @@ export const VydejniMisto = () => {
                         className='font-medium
                       '
                       >
-                        9:00 - 15:00
+                        9:00 - 12:00
                       </span>
                     </div>
                     <div
@@ -173,7 +167,7 @@ export const VydejniMisto = () => {
                       </span>
                     </div>
                   </div>
-                </div> */}
+                </div>
               </div>
             </div>
             {/* <a
@@ -194,7 +188,7 @@ export const VydejniMisto = () => {
           />
         </Container>
       </div>
-      <RippedPaperSVG />
+      {/* <RippedPaperSVG /> */}
     </section>
   )
 }
