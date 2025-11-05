@@ -48,7 +48,7 @@ const beersCs: Product[] = [
     slug: 'profesor-dvanactka',
     url: 'https://eshop.stadioner.cz/products/profesor-dvanactka-lahev',
     description:
-      'Pivo Profesor 12 je ideální volbou pro ty, kdo hledají poctivé, nekompromisní pivo bez zbytečných úprav. Je nefiltrované a nepasterizované, takže si zachovává přirozenou chuť a charakter skutečného českého ležáku. Perfektně se hodí ke grilovaným masům, sýrům i jen tak k posezení s přáteli.',
+      'Pivo Profesor 12 je ideální volbou pro ty, kdo hledají poctivé, nekompromisní pivo bez zbytečných úprav. Je nefiltrované, takže si zachovává přirozenou chuť a charakter skutečného českého ležáku. Perfektně se hodí ke grilovaným masům, sýrům i jen tak k posezení s přáteli.',
     stats: [
       { label: 'TYP', value: 'Ležák světlý' },
       { label: 'ABV', value: '5.1%' },
@@ -209,7 +209,7 @@ const beersEn: Product[] = [
     slug: 'profesor-dvanactka',
     url: 'https://eshop.stadioner.cz/products/profesor-dvanactka-lahev',
     description:
-      'Professor 12 is the perfect choice for those who seek an honest, uncompromising beer without unnecessary tweaks. Unfiltered and unpasteurized, it preserves the natural taste and character of a true Czech lager. Perfect with grilled meats, cheeses, or just for a relaxed evening with friends.',
+      'Professor 12 is the perfect choice for those who seek an honest, uncompromising beer without unnecessary tweaks. Unfiltered, it preserves the natural taste and character of a true Czech lager. Perfect with grilled meats, cheeses, or just for a relaxed evening with friends.',
     stats: [
       { label: 'TYPE', value: 'Pale lager' },
       { label: 'ABV', value: '5.1%' },
@@ -370,7 +370,7 @@ const beersDe: Product[] = [
     slug: 'profesor-dvanactka',
     url: 'https://eshop.stadioner.cz/products/profesor-dvanactka-lahev',
     description:
-      'Professor 12 ist die ideale Wahl für alle, die ein ehrliches, kompromissloses Bier ohne unnötige Zusätze suchen. Ungefiltert und unpasteurisiert bewahrt es den natürlichen Geschmack und Charakter eines echten tschechischen Lagers. Perfekt zu Gegrilltem, Käse oder einfach zum gemütlichen Beisammensein.',
+      'Professor 12 ist die ideale Wahl für alle, die ein ehrliches, kompromissloses Bier ohne unnötige Zusätze suchen. Ungefiltert bewahrt es den natürlichen Geschmack und Charakter eines echten tschechischen Lagers. Perfekt zu Gegrilltem, Käse oder einfach zum gemütlichen Beisammensein.',
     stats: [
       { label: 'TYP', value: 'Helles Lager' },
       { label: 'ABV', value: '5.1%' },
