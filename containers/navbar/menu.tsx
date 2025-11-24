@@ -73,6 +73,20 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
           setIsOpen={setIsOpen}
           label={
             language === 'cs'
+              ? 'Pro Firmy'
+              : language === 'en'
+                ? 'For Companies'
+                : language === 'de'
+                  ? 'Für Unternehmen'
+                  : ''
+          }
+          href='/pro-firmy'
+        />
+        <NavItem
+          phone
+          setIsOpen={setIsOpen}
+          label={
+            language === 'cs'
               ? 'Články'
               : language === 'en'
                 ? 'Articles'

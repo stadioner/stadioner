@@ -56,6 +56,18 @@ export const Navbar = () => {
                     }
                     href='/prodejni-mista'
                   />
+                  <NavItem
+                    label={
+                      language === 'cs'
+                        ? 'Pro Firmy'
+                        : language === 'en'
+                          ? 'For Companies'
+                          : language === 'de'
+                            ? 'Für Unternehmen'
+                            : ''
+                    }
+                    href='/pro-firmy'
+                  />
                 </ul>
               </div>
 
