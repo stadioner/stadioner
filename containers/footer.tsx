@@ -118,14 +118,19 @@ export const Footer = () => {
               {language === 'en' && 'Products'}
               {language === 'de' && 'Produkte'}
             </h4>
-            <Link href='/produkty?produkt=profesor-dvanactka&kategorie=pivo'>
-              {language === 'cs' && 'Profesor dvanáctka'}
-              {language === 'en' && 'Professor 12'}
-              {language === 'de' && 'Professor 12'}
+            <Link href='/produkty?produkt=pozarnik-10&kategorie=pivo'>
+              Požárník 10
             </Link>
-            {/* <Link href='/produkty?produkt=koutska-jedenactka&kategorie=pivo'>
-              Koutská Jedenáctka
-            </Link> */}
+            <Link href='/produkty?produkt=experiment-11&kategorie=pivo'>
+              Experiment 11
+            </Link>
+            <Link href='/produkty?produkt=profesor-12&kategorie=pivo'>
+              Profesor 12
+            </Link>
+            <Link href='/produkty?produkt=safar-15&kategorie=pivo'>
+              Šafář 15
+            </Link>
+
             <Link href='/produkty?produkt=limonada-pomeranc&kategorie=limo'>
               {language === 'cs' && 'Limonáda pomeranč'}
               {language === 'en' && 'Orange Lemonade'}
@@ -186,19 +191,6 @@ export const Footer = () => {
                 target='_blank'
               >
                 <InstagramIcon size={25} className='stroke-brand-action' />
-              </Link>
-              <Link href='https://www.tiktok.com/@stadioner.cz' target='_blank'>
-                <svg
-                  width={25}
-                  height={25}
-                  viewBox='0 0 24 24'
-                  fill='none'
-                  stroke='currentColor'
-                  strokeWidth={2}
-                  className='stroke-brand-action'
-                >
-                  <path d='M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z' />
-                </svg>
               </Link>
             </div>
           </div>
