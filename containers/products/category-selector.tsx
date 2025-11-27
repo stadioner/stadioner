@@ -1,10 +1,12 @@
 import { cn } from '@/lib/utils'
 import type { Category } from '@/types/products'
 
+type CategoryKey = 'pivo' | 'limo' | 'voda'
+
 interface CategorySelectorProps {
   categories: Category[]
-  selectedCategory: string
-  onCategoryChange: (category: string) => void
+  selectedCategory: CategoryKey
+  onCategoryChange: (category: CategoryKey) => void
 }
 
 export const CategorySelector = ({
@@ -18,7 +20,7 @@ export const CategorySelector = ({
         {categories.map(category => (
           <button
             key={category.id}
-            onClick={() => onCategoryChange(category.id)}
+            onClick={() => onCategoryChange(category.id as CategoryKey)}
             className={cn(
               'px-6 py-2 text-sm font-medium transition-all duration-200 cursor-pointer',
               selectedCategory === category.id

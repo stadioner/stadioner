@@ -1,13 +1,20 @@
 import { useState, useEffect, useMemo } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import type { Product, PackagingKey, PackagingAvailability, Language } from '@/types/products'
+import type {
+  Product,
+  PackagingKey,
+  PackagingAvailability,
+  Language,
+} from '@/types/products'
 import { getProductMap } from '@/lib/products/data'
 import { deriveVariantUrls, checkImageAvailability } from '@/lib/products/utils'
+
+type CategoryKey = 'pivo' | 'limo' | 'voda'
 
 export const useProducts = (activeLang: Language) => {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const [selectedCategory, setSelectedCategory] = useState('pivo')
+  const [selectedCategory, setSelectedCategory] = useState<CategoryKey>('pivo')
   const [current, setCurrent] = useState(0)
   const [availabilityBySlug, setAvailabilityBySlug] = useState<
     Record<string, PackagingAvailability>
@@ -21,15 +28,15 @@ export const useProducts = (activeLang: Language) => {
 
   useEffect(() => {
     const productSlug = searchParams.get('produkt')
-    const categoryParam = searchParams.get('kategorie')
+    const categoryParam = searchParams.get('kategorie') as CategoryKey | null
 
-    if (categoryParam && productMap[categoryParam]) {
+    if (categoryParam && categoryParam in productMap) {
       setSelectedCategory(categoryParam)
     }
 
     let idx = 0
     if (productSlug) {
-      const targetCategory = categoryParam || selectedCategory
+      const targetCategory = (categoryParam || selectedCategory) as CategoryKey
       const foundIdx = (productMap[targetCategory] || []).findIndex(
         (p: Product) => p.slug === productSlug
       )
@@ -40,8 +47,8 @@ export const useProducts = (activeLang: Language) => {
     setCurrent(idx)
   }, [searchParams, productMap, selectedCategory])
 
-  const updateURL = (productIndex: number, category?: string) => {
-    const targetCategory = category || selectedCategory
+  const updateURL = (productIndex: number, category?: CategoryKey) => {
+    const targetCategory = (category || selectedCategory) as CategoryKey
     const targetFilteredProducts = productMap[targetCategory] || []
     const safeIndex = Math.max(
       0,
@@ -55,7 +62,7 @@ export const useProducts = (activeLang: Language) => {
     router.push(`?${params.toString()}`, { scroll: false })
   }
 
-  const handleCategoryChange = (category: string) => {
+  const handleCategoryChange = (category: CategoryKey) => {
     setSelectedCategory(category)
     setCurrent(0)
     updateURL(0, category)
@@ -81,13 +88,13 @@ export const useProducts = (activeLang: Language) => {
   const product = filteredProducts[current] || filteredProducts[0]
 
   const productVariantUrls = useMemo(
-    () => product ? deriveVariantUrls(product.image, product.category) : null,
+    () => (product ? deriveVariantUrls(product.image, product.category) : null),
     [product?.image, product?.category]
   )
 
   useEffect(() => {
     if (!product || !productVariantUrls) return
-    
+
     const slug = product.slug
     if (availabilityBySlug[slug]) return
 
@@ -102,7 +109,9 @@ export const useProducts = (activeLang: Language) => {
         barrel50: results[3],
       }
       setAvailabilityBySlug(prev => ({ ...prev, [slug]: nextAvailability }))
-      const defaultKey = keys.find(key => nextAvailability[key]) as PackagingKey | undefined
+      const defaultKey = keys.find(key => nextAvailability[key]) as
+        | PackagingKey
+        | undefined
       if (defaultKey) {
         setSelectedPackagingBySlug(prev => ({ ...prev, [slug]: defaultKey }))
       }
@@ -125,4 +134,3 @@ export const useProducts = (activeLang: Language) => {
     handleSelect,
   }
 }
-
