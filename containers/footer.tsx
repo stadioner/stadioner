@@ -118,17 +118,17 @@ export const Footer = () => {
               {language === 'en' && 'Products'}
               {language === 'de' && 'Produkte'}
             </h4>
-            <Link href='/produkty?produkt=pozarnik-10&kategorie=pivo'>
-              Požárník 10
-            </Link>
-            <Link href='/produkty?produkt=experiment-11&kategorie=pivo'>
-              Experiment 11
+            <Link href='/produkty?produkt=safar-15&kategorie=pivo'>
+              Šafář 15
             </Link>
             <Link href='/produkty?produkt=profesor-12&kategorie=pivo'>
               Profesor 12
             </Link>
-            <Link href='/produkty?produkt=safar-15&kategorie=pivo'>
-              Šafář 15
+            <Link href='/produkty?produkt=experiment-11&kategorie=pivo'>
+              Experiment 11
+            </Link>
+            <Link href='/produkty?produkt=pozarnik-10&kategorie=pivo'>
+              Požárník 10
             </Link>
 
             <Link href='/produkty?produkt=limonada-pomeranc&kategorie=limo'>
