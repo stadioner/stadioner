@@ -12,7 +12,7 @@ export const beersCs: Product[] = [
     description:
       'Pivo Šafář 15 je mohutný patnáctistupňový speciál s hlubokou zlatou barvou a krémovou pěnou. Nabízí plné tělo, výraznou sladovou sladkost vyváženou pevnou hořkostí a dlouhým dozníváním. Ideální k vepřovému kolenu, kachně, tvrdým sýrům nebo k pořádnému posezení, kdy si chcete dopřát něco opravdu silného.',
     stats: [
-      { label: 'TYP', value: 'Světlý ležák' },
+      { label: 'TYP', value: 'Silné světlé' },
       { label: 'ABV', value: '6.5%' },
       { label: 'STUPEŇ', value: '15°' },
     ],
@@ -67,7 +67,7 @@ export const beersCs: Product[] = [
     description:
       'Pivo Požárník 10 je osvěžující, poctivý desetistupňový ležák pro každou příležitost. Lehčí tělo, příjemná hořkost a čistá chuť bez zbytečných efektů – přesně takové pivo, které hasí žízeň a zachraňuje večer. Výborně padne k pikantním křídýlkům, hranolkům nebo kdykoliv, když je potřeba rychle a spolehlivě „uhasit".',
     stats: [
-      { label: 'TYP', value: 'Světlý ležák' },
+      { label: 'TYP', value: 'Světlé výčepní' },
       { label: 'ABV', value: '4.2%' },
       { label: 'STUPEŇ', value: '10°' },
     ],
@@ -190,7 +190,7 @@ export const beersEn: Product[] = [
     description:
       'Šafář 15 beer is a powerful fifteen-degree special with a deep golden color and creamy foam. It offers a full body, pronounced malty sweetness balanced by firm bitterness and a long finish. Ideal with pork knuckle, duck, hard cheeses, or for a proper sit-down when you want to treat yourself to something really strong.',
     stats: [
-      { label: 'TYPE', value: 'Pale lager' },
+      { label: 'TYPE', value: 'Strong pale' },
       { label: 'ABV', value: '6.5%' },
       { label: 'DEGREE', value: '15°' },
     ],
@@ -245,7 +245,7 @@ export const beersEn: Product[] = [
     description:
       'Požárník 10 beer is a refreshing, honest ten-degree lager for any occasion. Lighter body, pleasant bitterness, and clean taste without unnecessary effects – exactly the kind of beer that quenches thirst and saves the evening. Perfect with spicy wings, fries, or whenever you need to quickly and reliably "put out the fire".',
     stats: [
-      { label: 'TYPE', value: 'Pale lager' },
+      { label: 'TYPE', value: 'Light tap beer' },
       { label: 'ABV', value: '4.2%' },
       { label: 'DEGREE', value: '10°' },
     ],
@@ -368,7 +368,7 @@ export const beersDe: Product[] = [
     description:
       'Šafář 15 Bier ist ein kräftiger Fünfzehn-Grad-Spezial mit tiefgoldener Farbe und cremiger Schaumkrone. Es bietet einen vollen Körper, ausgeprägte Malzsüße, ausgewogen durch feste Bittere und langen Abgang. Ideal zu Schweinshaxe, Ente, Hartkäse oder zum gemütlichen Beisammensein, wenn Sie sich etwas wirklich Starkes gönnen möchten.',
     stats: [
-      { label: 'TYP', value: 'Helles Lager' },
+      { label: 'TYP', value: 'Starkes Helles' },
       { label: 'ABV', value: '6.5%' },
       { label: 'GRAD', value: '15°' },
     ],
@@ -423,7 +423,7 @@ export const beersDe: Product[] = [
     description:
       'Požárník 10 Bier ist ein erfrischendes, ehrliches Zehn-Grad-Lager für jeden Anlass. Leichterer Körper, angenehme Bittere und sauberer Geschmack ohne unnötige Effekte – genau das Bier, das den Durst löscht und den Abend rettet. Perfekt zu pikanten Flügeln, Pommes oder wann immer man schnell und zuverlässig "löschen" muss.',
     stats: [
-      { label: 'TYP', value: 'Helles Lager' },
+      { label: 'TYP', value: 'Helles Schankbier' },
       { label: 'ABV', value: '4.2%' },
       { label: 'GRAD', value: '10°' },
     ],
