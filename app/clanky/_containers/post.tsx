@@ -38,7 +38,7 @@ export const Post = ({ post }: Props) => {
         </div>
       </div>
 
-      <h1 className='md:mb-10 mb-6 text-5xl font-black lg:text-6xl text-brand-action'>
+      <h1 className='md:mb-10 mb-6 text-5xl font-black lg:text-6xl text-brand-action py-2 mt-2'>
         {typeof post.title === 'string' ? post.title : 'Untitled Post'}
       </h1>
 

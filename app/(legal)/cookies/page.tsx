@@ -91,7 +91,7 @@ export default function CookiesPage() {
           'Naše webové stránky mohou obsahovat cookies od třetích stran, jako jsou:',
         services: [
           'Google Analytics - pro analýzu návštěvnosti',
-          'Sociální sítě (Facebook, Instagram, TikTok) - pro sdílení obsahu',
+          'Sociální sítě (Facebook, Instagram) - pro sdílení obsahu',
           'Google Maps - pro zobrazení mapy',
         ],
       },
@@ -194,7 +194,7 @@ export default function CookiesPage() {
         content: 'Our website may contain cookies from third parties, such as:',
         services: [
           'Google Analytics - for traffic analysis',
-          'Social networks (Facebook, Instagram, TikTok) - for content sharing',
+          'Social networks (Facebook, Instagram) - for content sharing',
           'Google Maps - for map display',
         ],
       },
@@ -299,7 +299,7 @@ export default function CookiesPage() {
           'Unsere Website kann Cookies von Drittanbietern enthalten, wie z.B.:',
         services: [
           'Google Analytics - für Verkehrsanalyse',
-          'Soziale Netzwerke (Facebook, Instagram, TikTok) - für Content-Sharing',
+          'Soziale Netzwerke (Facebook, Instagram) - für Content-Sharing',
           'Google Maps - für Kartendarstellung',
         ],
       },
