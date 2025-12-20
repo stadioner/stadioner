@@ -157,13 +157,53 @@ export const VydejniMisto = () => {
                         {language === 'en' && 'Sunday'}
                         {language === 'de' && 'Sonntag'}
                       </span>
-                      <span
-                        className='font-medium
-                       text-zinc-400'
-                      >
-                        {language === 'cs' && 'Zavřeno'}
-                        {language === 'en' && 'Closed'}
-                        {language === 'de' && 'Geschlossen'}
+                      <span className='font-medium text-red-400'>
+                        {language === 'cs' && 'ZAVŘENO'}
+                        {language === 'en' && 'CLOSED'}
+                        {language === 'de' && 'GESCHLOSSEN'}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className='border-t border-zinc-600 pt-4 mt-4'>
+                  <h4 className='font-semibold text-brand-primary mb-2 text-xl'>
+                    {language === 'cs' && 'OTEVÍRACÍ DOBA BĚHEM SVÁTKŮ'}
+                    {language === 'en' && 'HOLIDAY OPENING HOURS'}
+                    {language === 'de' &&
+                      'ÖFFNUNGSZEITEN WÄHREND DER FEIERTAGE'}
+                  </h4>
+                  <div className='text-sm space-y-0.5'>
+                    <div className='flex justify-between items-center'>
+                      <span>22. 12.</span>
+                      <span className='font-medium'>9:00–16:00</span>
+                    </div>
+                    <div className='flex justify-between items-center'>
+                      <span>23. 12.</span>
+                      <span className='font-medium'>9:00–12:00</span>
+                    </div>
+                    <div className='flex justify-between items-center'>
+                      <span>24. – 28. 12.</span>
+                      <span className='font-medium text-red-400'>
+                        {language === 'cs' && 'ZAVŘENO'}
+                        {language === 'en' && 'CLOSED'}
+                        {language === 'de' && 'GESCHLOSSEN'}
+                      </span>
+                    </div>
+                    <div className='flex justify-between items-center'>
+                      <span>29. 12.</span>
+                      <span className='font-medium'>9:00–16:00</span>
+                    </div>
+                    <div className='flex justify-between items-center'>
+                      <span>30. 12.</span>
+                      <span className='font-medium'>9:00–12:00</span>
+                    </div>
+                    <div className='flex justify-between items-center'>
+                      <span>31. 12. – 4. 1.</span>
+                      <span className='font-medium text-red-400'>
+                        {language === 'cs' && 'ZAVŘENO'}
+                        {language === 'en' && 'CLOSED'}
+                        {language === 'de' && 'GESCHLOSSEN'}
                       </span>
                     </div>
                   </div>
