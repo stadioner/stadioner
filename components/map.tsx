@@ -126,7 +126,13 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
             icon={createImageIcon('/map/pivovar.svg')}
             popupContent={
               <>
-                <h3 className='text-lg font-bold'>Pivovar Stadioner</h3>
+                <Link
+                  href='https://stadioner.cz'
+                  target='_blank'
+                  className='text-lg font-bold underline'
+                >
+                  Pivovar Stadioner
+                </Link>
                 <p>Kout na Šumavě 2, 34502 Kout na Šumavě</p>
               </>
             }
@@ -136,7 +142,13 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
             icon={createImageIcon('/map/restaurace.svg')}
             popupContent={
               <>
-                <h3 className='text-lg font-bold'>Horská chata Koráb</h3>
+                <Link
+                  href='https://www.kdyne.cz/mesto/katalog-firem-a-sluzeb/ubytovani-a-stravovani/horska-chata-korab-0_118.html'
+                  target='_blank'
+                  className='text-lg font-bold underline'
+                >
+                  Horská chata Koráb
+                </Link>
                 <p>Koráb 466, 345 06 Kdyně</p>
               </>
             }
@@ -146,9 +158,13 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
             icon={createImageIcon('/map/limo.svg')}
             popupContent={
               <>
-                <h3 className='text-lg font-bold'>
+                <Link
+                  href='https://www.facebook.com/biodomazlice/?locale=cs_CZ'
+                  target='_blank'
+                  className='text-lg font-bold underline'
+                >
                   Bio Domažlice - zdravá výživa
-                </h3>
+                </Link>
                 <p>Hruškova 87, 344 01 Domažlice 1</p>
               </>
             }
@@ -158,8 +174,30 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
             icon={createImageIcon('/map/penzion.svg')}
             popupContent={
               <>
-                <h3 className='text-lg font-bold'>Hotel Hubertus</h3>
+                <Link
+                  href='https://www.hubertus.cz/cs/'
+                  target='_blank'
+                  className='text-lg font-bold'
+                >
+                  Hotel Hubertus
+                </Link>
                 <p>Mariánská 91, 345 22 Poběžovice</p>
+              </>
+            }
+          />
+          <CustomMarker
+            position={[49.505121015227374, 12.993390854842211]}
+            icon={createImageIcon('/map/penzion.svg')}
+            popupContent={
+              <>
+                <Link
+                  href='https://www.firmy.cz/detail/13118914-hospudka-v-roklince-blizejov.html'
+                  target='_blank'
+                  className='text-lg font-bold'
+                >
+                  Hospůdka V Roklince
+                </Link>
+                <p>Blížejov 171, 345 45 Blížejov</p>
               </>
             }
           />
