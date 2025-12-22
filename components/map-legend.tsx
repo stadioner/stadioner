@@ -7,7 +7,7 @@ export const MapLegend = () => {
   const { language } = useLanguage()
 
   return (
-    <div className='absolute top-5 right-5 z-[1000]'>
+    <div className='absolute top-0 right-0 z-[1000]'>
       <Border backgroundLight>
         <div className=' px-2 py-1'>
           <p className='flex items-center'>
