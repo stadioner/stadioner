@@ -35,7 +35,7 @@ export const ProductInfo = ({
   return (
     <div className='flex-1 flex flex-col justify-center'>
       <div className='mb-4 sm:mb-8'>
-        <p className='uppercase tracking-widest text-xs text-zinc-300 mb-1 sm:mb-2'>
+        <p className='uppercase tracking-widest text-xs text-zinc-300 mb-1 sm:mb-4'>
           {product.subtitle}
         </p>
         <div className='flex items-center justify-between mb-2 sm:mb-4'>
