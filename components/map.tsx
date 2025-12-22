@@ -91,8 +91,8 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
     center ??
     (flexible
       ? [49.49119659685226, 13.210585066693985]
-      : [49.9171208544799, 14.67178354882282])
-  const resolvedZoom = zoom ?? (flexible ? 8 : 7)
+      : [49.402084920025644, 13.00085318237539])
+  const resolvedZoom = zoom ?? (flexible ? 8 : 9)
   return (
     <MapContainer
       center={resolvedCenter}
@@ -128,6 +128,38 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
               <>
                 <h3 className='text-lg font-bold'>Pivovar Stadioner</h3>
                 <p>Kout na Šumavě 2, 34502 Kout na Šumavě</p>
+              </>
+            }
+          />
+          <CustomMarker
+            position={[49.39566567673913, 13.075090710544998]}
+            icon={createImageIcon('/map/restaurace.svg')}
+            popupContent={
+              <>
+                <h3 className='text-lg font-bold'>Horská chata Koráb</h3>
+                <p>Koráb 466, 345 06 Kdyně</p>
+              </>
+            }
+          />
+          <CustomMarker
+            position={[49.438417460830074, 12.928174312440982]}
+            icon={createImageIcon('/map/limo.svg')}
+            popupContent={
+              <>
+                <h3 className='text-lg font-bold'>
+                  Bio Domažlice - zdravá výživa
+                </h3>
+                <p>Hruškova 87, 344 01 Domažlice 1</p>
+              </>
+            }
+          />
+          <CustomMarker
+            position={[49.511170647523564, 12.800326393356466]}
+            icon={createImageIcon('/map/penzion.svg')}
+            popupContent={
+              <>
+                <h3 className='text-lg font-bold'>Hotel Hubertus</h3>
+                <p>Mariánská 91, 345 22 Poběžovice</p>
               </>
             }
           />
