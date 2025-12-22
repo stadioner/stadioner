@@ -187,7 +187,7 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
           />
           <CustomMarker
             position={[49.505121015227374, 12.993390854842211]}
-            icon={createImageIcon('/map/penzion.svg')}
+            icon={createImageIcon('/map/hospoda.svg')}
             popupContent={
               <>
                 <Link
