@@ -5,6 +5,7 @@ import { Intro } from './_containers/intro'
 import { About } from './_containers/about'
 import { Products } from '@/containers/products'
 import { Metadata } from 'next'
+import { OpeningHours } from './_containers/opening-hours'
 
 export const metadata: Metadata = {
   title: 'Pivovar Kout na Šumavě',
@@ -50,6 +51,7 @@ export default function HomePage() {
         <Products rippedPaper />
       </Suspense>
       <Places />
+      <OpeningHours />
     </main>
   )
 }
