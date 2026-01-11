@@ -20,23 +20,16 @@ export const VydejniMisto = () => {
                   {language === 'en' && 'Distribution Point'}
                   {language === 'de' && 'Verkaufsstelle'}
                 </h2>
-                <p
-                  className='text-zinc-100 
-                mt-1'
-                >
+                <p className='text-zinc-100 mt-1'>
                   Kout na Šumavě 2, 345 02 Kout na Šumavě
                 </p>
               </div>
               <img
                 src='/vydejni-misto.webp'
-                alt='Výdejní místo 
-                Stadioner (Kout na Šumavě)'
+                alt='Výdejní místo Stadioner (Kout na Šumavě)'
                 className='md:hidden py-4'
               />
-              <div
-                className='text-zinc-100 
-              md:mt-6 space-y-4'
-              >
+              <div className='text-zinc-100 md:mt-6 space-y-4'>
                 <p>
                   {language === 'cs' && (
                     <>
@@ -70,10 +63,8 @@ export const VydejniMisto = () => {
                     </>
                   )}
                 </p>
-                <div
-                  className='mt-3 
-                text-sm text-zinc-200'
-                >
+
+                <div className='mt-3 text-sm text-zinc-200'>
                   {language === 'cs' && (
                     <p>Zálohy: lahev 5 Kč, bedna 100 Kč, sud 1500 Kč.</p>
                   )}
@@ -84,6 +75,7 @@ export const VydejniMisto = () => {
                     <p>Pfand: Flasche 5 CZK, Kiste 100 CZK, Fass 1500 CZK.</p>
                   )}
                 </div>
+
                 <div className='text-sm text-zinc-200'>
                   {language === 'cs' && (
                     <p>Platba možná na místě v hotovosti i kartou.</p>
@@ -96,62 +88,54 @@ export const VydejniMisto = () => {
                   )}
                 </div>
 
-                <div
-                  className='border-t 
-                border-zinc-600 pt-4'
-                >
-                  <h4
-                    className='font-semibold 
-                  text-brand-primary mb-2 
-                  text-xl'
-                  >
-                    {language === 'cs' && 'Otevírací doba'}
-                    {language === 'en' && 'Opening Hours'}
-                    {language === 'de' && 'Öffnungszeiten'}
+                {/* --- OTEVÍRACÍ DOBA --- */}
+                <div className='border-t border-zinc-600 pt-4'>
+                  <h4 className='font-semibold text-brand-primary mb-2 text-xl'>
+                    {language === 'cs' && 'Otevírací doba (od 12. 1. 2026)'}
+                    {language === 'en' &&
+                      'Opening hours (from January 12, 2026)'}
+                    {language === 'de' && 'Öffnungszeiten (ab 12. 1. 2026)'}
                   </h4>
-                  <div
-                    className='text-sm 
-                  space-y-0.5'
-                  >
-                    <div
-                      className='flex 
-                    justify-between 
-                    items-center'
-                    >
+
+                  <div className='text-sm space-y-0.5'>
+                    {/* Po - St */}
+                    <div className='flex justify-between items-center'>
                       <span>
-                        {language === 'cs' && 'Pondělí - Pátek'}
-                        {language === 'en' && 'Monday - Friday'}
-                        {language === 'de' && 'Montag - Freitag'}
+                        {language === 'cs' && 'Pondělí - Středa'}
+                        {language === 'en' && 'Monday - Wednesday'}
+                        {language === 'de' && 'Montag - Mittwoch'}
                       </span>
-                      <span
-                        className='font-medium
-                      '
-                      >
-                        9:00 - 11:30 | 12:30 - 16:00
+                      <span className='font-medium text-red-400'>
+                        {language === 'cs' && 'ZAVŘENO'}
+                        {language === 'en' && 'CLOSED'}
+                        {language === 'de' && 'GESCHLOSSEN'}
                       </span>
                     </div>
-                    <div
-                      className='flex 
-                    justify-between 
-                    items-center'
-                    >
+
+                    {/* Čt - Pá */}
+                    <div className='flex justify-between items-center'>
+                      <span>
+                        {language === 'cs' && 'Čtvrtek - Pátek'}
+                        {language === 'en' && 'Thursday - Friday'}
+                        {language === 'de' && 'Donnerstag - Freitag'}
+                      </span>
+                      <span className='font-medium'>
+                        9:00 - 11:30 | 12:30 - 17:00
+                      </span>
+                    </div>
+
+                    {/* So */}
+                    <div className='flex justify-between items-center'>
                       <span>
                         {language === 'cs' && 'Sobota'}
                         {language === 'en' && 'Saturday'}
                         {language === 'de' && 'Samstag'}
                       </span>
-                      <span
-                        className='font-medium
-                      '
-                      >
-                        9:00 - 12:00
-                      </span>
+                      <span className='font-medium'>9:00 - 12:00</span>
                     </div>
-                    <div
-                      className='flex 
-                    justify-between 
-                    items-center'
-                    >
+
+                    {/* Ne */}
+                    <div className='flex justify-between items-center'>
                       <span>
                         {language === 'cs' && 'Neděle'}
                         {language === 'en' && 'Sunday'}
@@ -165,65 +149,12 @@ export const VydejniMisto = () => {
                     </div>
                   </div>
                 </div>
-
-                <div className='border-t border-zinc-600 pt-4 mt-4'>
-                  <h4 className='font-semibold text-brand-primary mb-2 text-xl'>
-                    {language === 'cs' && 'OTEVÍRACÍ DOBA BĚHEM SVÁTKŮ'}
-                    {language === 'en' && 'HOLIDAY OPENING HOURS'}
-                    {language === 'de' &&
-                      'ÖFFNUNGSZEITEN WÄHREND DER FEIERTAGE'}
-                  </h4>
-                  <div className='text-sm space-y-0.5'>
-                    <div className='flex justify-between items-center'>
-                      <span>22. 12.</span>
-                      <span className='font-medium'>9:00–16:00</span>
-                    </div>
-                    <div className='flex justify-between items-center'>
-                      <span>23. 12.</span>
-                      <span className='font-medium'>9:00–12:00</span>
-                    </div>
-                    <div className='flex justify-between items-center'>
-                      <span>24. – 28. 12.</span>
-                      <span className='font-medium text-red-400'>
-                        {language === 'cs' && 'ZAVŘENO'}
-                        {language === 'en' && 'CLOSED'}
-                        {language === 'de' && 'GESCHLOSSEN'}
-                      </span>
-                    </div>
-                    <div className='flex justify-between items-center'>
-                      <span>29. 12.</span>
-                      <span className='font-medium'>9:00–16:00</span>
-                    </div>
-                    <div className='flex justify-between items-center'>
-                      <span>30. 12.</span>
-                      <span className='font-medium'>9:00–12:00</span>
-                    </div>
-                    <div className='flex justify-between items-center'>
-                      <span>31. 12. – 4. 1.</span>
-                      <span className='font-medium text-red-400'>
-                        {language === 'cs' && 'ZAVŘENO'}
-                        {language === 'en' && 'CLOSED'}
-                        {language === 'de' && 'GESCHLOSSEN'}
-                      </span>
-                    </div>
-                  </div>
-                </div>
               </div>
             </div>
-            {/* <a
-              href='tel:+420721980257'
-              className='text-brand-primary 
-              flex gap-1 items-center mt-8 
-              md:mt-10'
-            >
-              <PhoneIcon size={16} />
-              +420 721 980 257
-            </a> */}
           </div>
           <img
-            src='/vydejni-misto.webp'
-            alt='Výdejní místo Stadioner 
-            (Kout na Šumavě)'
+            src='/vydejni-misto-zima.webp'
+            alt='Výdejní místo Stadioner (Kout na Šumavě)'
             className='hidden md:block'
           />
         </Container>
