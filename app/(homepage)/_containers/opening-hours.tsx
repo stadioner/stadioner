@@ -7,12 +7,14 @@ import { useLanguage } from '@/store/use-language'
 const translations = {
   cs: {
     title: 'Otevírací doba výdejního místa',
-    mon_wed: 'Pondělí – Středa',
-    thu_fri: 'Čtvrtek – Pátek',
+    mon: 'Pondělí',
+    tue_thu: 'Úterý – Čtvrtek',
+    fri: 'Pátek',
     sat: 'Sobota',
     sun: 'Neděle',
     closed: 'ZAVŘENO',
-    thu_fri_time: '9:00 – 11:30 | 12:30 – 17:00',
+    tue_thu_time: '14:00 – 17:00',
+    fri_time: '9:00 – 17:00',
     sat_time: '9:00 – 12:00',
     image_alt: 'Výdejní místo pivovaru Stadioner v zimě',
     address_title: 'Adresa',
@@ -21,12 +23,14 @@ const translations = {
   },
   en: {
     title: 'Pickup Point Opening Hours',
-    mon_wed: 'Monday – Wednesday',
-    thu_fri: 'Thursday – Friday',
+    mon: 'Monday',
+    tue_thu: 'Tuesday - Thursday',
+    fri: 'Friday',
     sat: 'Saturday',
     sun: 'Sunday',
     closed: 'CLOSED',
-    thu_fri_time: '9:00 – 11:30 | 12:30 – 17:00',
+    tue_thu_time: '14:00 – 17:00',
+    fri_time: '9:00 – 17:00',
     sat_time: '9:00 – 12:00',
     image_alt: 'Stadioner brewery pickup point in winter',
     address_title: 'Address',
@@ -35,12 +39,14 @@ const translations = {
   },
   de: {
     title: 'Öffnungszeiten der Abholstelle',
-    mon_wed: 'Montag – Mittwoch',
-    thu_fri: 'Donnerstag – Freitag',
+    mon: 'Montag',
+    tue_thu: 'Dienstag – Donnerstag',
+    fri: 'Freitag',
     sat: 'Samstag',
     sun: 'Sonntag',
     closed: 'GESCHLOSSEN',
-    thu_fri_time: '9:00 – 11:30 | 12:30 – 17:00',
+    tue_thu_time: '14:00 – 17:00',
+    fri_time: '9:00 – 17:00',
     sat_time: '9:00 – 12:00',
     image_alt: 'Abholstelle der Brauerei Stadioner im Winter',
     address_title: 'Adresse',
@@ -73,14 +79,20 @@ export const OpeningHours = () => {
             <div className='w-full space-y-4 text-lg md:text-xl'>
               {/* Mon - Wed */}
               <div className='border-brand-primary/20 flex items-center justify-between border-b pb-2'>
-                <span>{t.mon_wed}</span>
+                <span>{t.mon}</span>
                 <span className='text-red-400 font-bold'>{t.closed}</span>
               </div>
 
-              {/* Thu - Fri */}
+              {/* Tue - Thu */}
               <div className='border-brand-primary/20 flex items-center justify-between border-b pb-2'>
-                <span>{t.thu_fri}</span>
-                <span className='font-bold'>{t.thu_fri_time}</span>
+                <span>{t.tue_thu}</span>
+                <span className='font-bold'>{t.tue_thu_time}</span>
+              </div>
+
+                {/* Friday */}
+              <div className='border-brand-primary/20 flex items-center justify-between border-b pb-2'>
+                <span>{t.fri}</span>
+                <span className='font-bold'>{t.fri_time}</span>
               </div>
 
               {/* Sat */}
