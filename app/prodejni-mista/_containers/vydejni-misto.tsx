@@ -98,12 +98,12 @@ export const VydejniMisto = () => {
                   </h4>
 
                   <div className='text-sm space-y-0.5'>
-                    {/* Po - St */}
+                    {/* Po*/}
                     <div className='flex justify-between items-center'>
                       <span>
-                        {language === 'cs' && 'Pondělí - Středa'}
-                        {language === 'en' && 'Monday - Wednesday'}
-                        {language === 'de' && 'Montag - Mittwoch'}
+                        {language === 'cs' && 'Pondělí'}
+                        {language === 'en' && 'Monday'}
+                        {language === 'de' && 'Montag'}
                       </span>
                       <span className='font-medium text-red-400'>
                         {language === 'cs' && 'ZAVŘENO'}
@@ -111,16 +111,27 @@ export const VydejniMisto = () => {
                         {language === 'de' && 'GESCHLOSSEN'}
                       </span>
                     </div>
+                   {/* Út - Čt*/}
+                    <div className='flex justify-between items-center'>
+                      <span>
+                        {language === 'cs' && 'Útery - Čtvrtek'}
+                        {language === 'en' && 'Tuesday - Thursday '}
+                        {language === 'de' && 'Dienstag – Donnerstag'}
+                      </span>
+                      <span className='font-medium'>
+                       14:00 – 17:00
+                      </span>
+                    </div>
 
                     {/* Čt - Pá */}
                     <div className='flex justify-between items-center'>
                       <span>
-                        {language === 'cs' && 'Čtvrtek - Pátek'}
-                        {language === 'en' && 'Thursday - Friday'}
-                        {language === 'de' && 'Donnerstag - Freitag'}
+                        {language === 'cs' && 'Pátek'}
+                        {language === 'en' && 'Friday'}
+                        {language === 'de' && 'Freitag'}
                       </span>
                       <span className='font-medium'>
-                        9:00 - 11:30 | 12:30 - 17:00
+                       9:00 – 17:00
                       </span>
                     </div>
 
