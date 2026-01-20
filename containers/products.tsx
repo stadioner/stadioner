@@ -93,7 +93,7 @@ export const Products = ({
   const buyUrl = deriveBuyUrlForPackaging(product.url, selectedPackaging)
 
   // Products that are being prepared (not available for purchase)
-  const preparingProducts = ['experiment-11', 'profesor-12']
+  const preparingProducts = ['experiment-11']
   const isPreparing = preparingProducts.includes(product.slug)
 
   const handlePackagingChange = (key: PackagingKey) => {
