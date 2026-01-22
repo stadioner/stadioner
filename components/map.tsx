@@ -201,6 +201,38 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
               </>
             }
           />
+         <CustomMarker
+            position={[49.389308715547465, 12.913962920541469]}
+            icon={createImageIcon('/map/hospoda.svg')}
+            popupContent={
+              <>
+                <Link
+                  href='https://www.pelechy.cz/?view=article&id=64:hostinec&catid=42'
+                  target='_blank'
+                  className='text-lg font-bold'
+                >
+                 Hostinec Pelechy
+                </Link>
+                <p>Pelechy 27, 344 01 Pelechy</p>
+              </>
+            }
+          />
+          <CustomMarker
+            position={[50.084529904568846, 14.450910433845195]}
+            icon={createImageIcon('/map/hospoda.svg')}
+            popupContent={
+              <>
+                <Link
+                  href='https://www.firmy.cz/detail/12735594-pivni-lokal-ostry-praha-zizkov.html'
+                  target='_blank'
+                  className='text-lg font-bold'
+                >
+                 Pivní lokál Ostrý
+                </Link>
+                <p>Sladkovského náměstí 302/5, 130 00 Praha, Žižkov</p>
+              </>
+            }
+          />
         </>
       )}
     </MapContainer>
