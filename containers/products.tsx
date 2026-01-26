@@ -94,7 +94,10 @@ export const Products = ({
 
   // Products that are being prepared (not available for purchase)
   const preparingProducts = ['experiment-11']
-  const isPreparing = preparingProducts.includes(product.slug)
+  const isPreparing =
+    preparingProducts.includes(product.slug) ||
+    (product.slug === 'pozarnik-10' &&
+      (selectedPackaging === 'bottle' || selectedPackaging === 'crate'))
 
   const handlePackagingChange = (key: PackagingKey) => {
     setSelectedPackagingBySlug(prev => ({
