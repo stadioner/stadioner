@@ -30,7 +30,7 @@ export const Footer = () => {
           method: 'POST',
           body: formData,
           mode: 'no-cors',
-        }
+        },
       )
 
       const successMessage =
@@ -123,6 +123,9 @@ export const Footer = () => {
             </Link>
             <Link href='/produkty?produkt=profesor-12&kategorie=pivo'>
               Profesor 12
+            </Link>
+            <Link href='/produkty?produkt=hvozdar-12&kategorie=pivo'>
+              Hvozdář 12
             </Link>
             <Link href='/produkty?produkt=experiment-11&kategorie=pivo'>
               Experiment 11

@@ -40,6 +40,24 @@ export const beersCs: Product[] = [
     ingredients: '/products/pivo/12/etiq.webp',
   },
   {
+    name: 'Hvozdář 12°',
+    subtitle: 'Tmavý ležák s plnou chutí a karamelovými tóny',
+    category: 'pivo',
+    categoryLabel: 'Pivo',
+    slug: 'hvozdar-12',
+    url: 'https://eshop.stadioner.cz/products/hvozdar-12-lahev',
+    description:
+      'Hvozdář 12° je tmavý ležák, který vás překvapí svou vyváženou chutí. Kombinace pražených sladů dodává pivu nezaměnitelný karamelový nádech a temně mahagonovou barvu. Ideální volba pro milovníky tmavých piv, kteří hledají plný zážitek bez přehnané sladkosti.',
+    stats: [
+      { label: 'TYP', value: 'Tmavý ležák' },
+      { label: 'ABV', value: '5.1%' },
+      { label: 'STUPEŇ', value: '12°' },
+    ],
+    image: '/products/pivo/12-tmava/bottle.webp',
+    icon: '/products/pivo/12-tmava/icon.svg',
+    ingredients: '/products/pivo/12-tmava/etiq.webp',
+  },
+  {
     name: 'Experiment 11°',
     subtitle: 'Experimentální jedenáctka s moderním chmelením',
     category: 'pivo',
@@ -218,6 +236,24 @@ export const beersEn: Product[] = [
     ingredients: '/products/pivo/12/etiq.webp',
   },
   {
+    name: 'Hvozdář 12°',
+    subtitle: 'Dark lager with full flavor and caramel notes',
+    category: 'pivo',
+    categoryLabel: 'Beer',
+    slug: 'hvozdar-12',
+    url: 'https://eshop.stadioner.cz/products/hvozdar-12-lahev',
+    description:
+      'Hvozdář 12° is a dark lager that surprises with its balanced taste. The combination of roasted malts gives the beer a distinctive caramel touch and a dark mahogany color. An ideal choice for dark beer lovers looking for a full experience without excessive sweetness.',
+    stats: [
+      { label: 'TYPE', value: 'Dark lager' },
+      { label: 'ABV', value: '5.1%' },
+      { label: 'DEGREE', value: '12°' },
+    ],
+    image: '/products/pivo/12-tmava/bottle.webp',
+    icon: '/products/pivo/12-tmava/icon.svg',
+    ingredients: '/products/pivo/12-tmava/etiq.webp',
+  },
+  {
     name: 'Experiment 11°',
     subtitle: 'Experimental eleven-degree lager with modern hopping',
     category: 'pivo',
@@ -394,6 +430,24 @@ export const beersDe: Product[] = [
     image: '/products/pivo/12/bottle.webp',
     icon: '/products/pivo/12/icon.svg',
     ingredients: '/products/pivo/12/etiq.webp',
+  },
+  {
+    name: 'Hvozdář 12°',
+    subtitle: 'Dunkles Lager mit vollem Geschmack und Karamellnoten',
+    category: 'pivo',
+    categoryLabel: 'Bier',
+    slug: 'hvozdar-12',
+    url: 'https://eshop.stadioner.cz/products/hvozdar-12-lahev',
+    description:
+      'Hvozdář 12° ist ein dunkles Lagerbier, das mit seinem ausgewogenen Geschmack überrascht. Die Kombination aus geröstetem Malz verleiht dem Bier eine unverwechselbare Karamellnote und eine dunkelmahagonifarbene Farbe. Eine ideale Wahl für Liebhaber dunkler Biere, die ein volles Erlebnis ohne übermäßige Süße suchen.',
+    stats: [
+      { label: 'TYP', value: 'Dunkles Lager' },
+      { label: 'ABV', value: '5.1%' },
+      { label: 'GRAD', value: '12°' },
+    ],
+    image: '/products/pivo/12-tmava/bottle.webp',
+    icon: '/products/pivo/12-tmava/icon.svg',
+    ingredients: '/products/pivo/12-tmava/etiq.webp',
   },
   {
     name: 'Experiment 11°',
