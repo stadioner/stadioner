@@ -20,14 +20,14 @@ export const Navbar = () => {
     <>
       <nav
         className={cn(
-          'fixed left-0 right-0 top-7 z-[1001] md:grid items-center transition hidden'
+          'fixed left-0 right-0 top-7 z-[1001] md:grid items-center transition hidden',
         )}
       >
         <Container className='w-full'>
           <Border background>
             <div
               className={cn(
-                'flex justify-between items-center h-full w-full px-4 bg-brand-secondary shadow-sm py-2'
+                'flex justify-between items-center h-full w-full px-4 bg-brand-secondary shadow-sm py-2',
               )}
             >
               <div>
@@ -87,6 +87,18 @@ export const Navbar = () => {
                   <NavItem
                     label={
                       language === 'cs'
+                        ? 'Akce'
+                        : language === 'en'
+                          ? 'Events'
+                          : language === 'de'
+                            ? 'Veranstaltungen'
+                            : ''
+                    }
+                    href={`/akce`}
+                  />
+                  <NavItem
+                    label={
+                      language === 'cs'
                         ? 'Články'
                         : language === 'en'
                           ? 'Articles'
@@ -130,14 +142,14 @@ export const Navbar = () => {
 
       <nav
         className={cn(
-          'fixed left-0 right-0 top-5 z-[1001] mx-auto grid items-center transition md:hidden'
+          'fixed left-0 right-0 top-5 z-[1001] mx-auto grid items-center transition md:hidden',
         )}
       >
         <Container className='w-full'>
           <Border background>
             <div
               className={cn(
-                'flex justify-between items-center h-full w-full px-4 bg-brand-secondary shadow-sm py-1'
+                'flex justify-between items-center h-full w-full px-4 bg-brand-secondary shadow-sm py-1',
               )}
             >
               <LanguageSelector />
