@@ -6,7 +6,7 @@ import { Container } from '@/components/container'
 import { RippedPaperSVG } from '@/components/ripped-paper-svg'
 import { cn } from '@/lib/utils'
 import { categories, uiLabels } from '@/lib/products/constants'
-import { deriveBuyUrlForPackaging } from '@/lib/products/utils'
+
 import { useProducts } from '@/hooks/use-products'
 import { CategorySelector } from './products/category-selector'
 import { ProductNavigation } from './products/product-navigation'
@@ -91,7 +91,7 @@ export const Products = ({
     packagingOptions.find(o => o.key === selectedPackaging)?.label ||
     labels.packaging
 
-  const buyUrl = deriveBuyUrlForPackaging(product.url, selectedPackaging)
+  const buyUrl = product.url
 
   // Products that are being prepared (not available for purchase)
   const preparingProducts = ['experiment-11']
