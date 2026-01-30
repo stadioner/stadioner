@@ -43,7 +43,7 @@ export function KegNewsDialog() {
                 className='w-full sm:w-auto min-w-[140px] bg-brand-action text-brand-primary hover:bg-brand-action/90 uppercase font-bold tracking-wider'
               >
                 <a
-                  href='https://eshop.stadioner.cz/products/sud-10l'
+                  href='https://eshop.stadioner.cz/products/stadioner-soudek?variant=52910502084947'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -55,7 +55,7 @@ export function KegNewsDialog() {
                 className='w-full sm:w-auto min-w-[140px] bg-brand-action text-brand-primary hover:bg-brand-action/90 uppercase font-bold tracking-wider'
               >
                 <a
-                  href='https://eshop.stadioner.cz/products/sud-20l'
+                  href='https://eshop.stadioner.cz/products/stadioner-soudek?variant=52923374764371'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
