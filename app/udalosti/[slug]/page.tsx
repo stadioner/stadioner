@@ -19,6 +19,7 @@ import { format, parseISO } from 'date-fns'
 import { cs, enUS, de } from 'date-fns/locale'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
+import { Border } from '@/components/border'
 
 const eventRichTextComponents = {
   types: {
@@ -167,63 +168,65 @@ export default function EventPage() {
               ? 'Zurück zur Übersicht'
               : 'Back to events'}
         </Link>
-        <div className='bg-brand-primary border-brand-action/20 border'>
-          {/* Header Image */}
-          {event.mainImage && (
-            <div className='relative w-full aspect-video border-b border-brand-action/10 shrink-0 overflow-hidden max-h-[50vh]'>
-              <img
-                src={urlFor(event.mainImage)}
-                alt={event.title}
-                className='w-full h-full object-cover'
-              />
-            </div>
-          )}
+        <Border>
+          <div className='bg-brand-primary border-brand-action/20 border'>
+            {/* Header Image */}
+            {event.mainImage && (
+              <div className='relative w-full aspect-video border-b border-brand-action/10 shrink-0 overflow-hidden max-h-[50vh]'>
+                <img
+                  src={urlFor(event.mainImage)}
+                  alt={event.title}
+                  className='w-full h-full object-cover'
+                />
+              </div>
+            )}
 
-          <div className='p-6 md:p-10'>
-            <div className='mb-8 border-b border-brand-action/10 pb-8'>
-              <h1 className='text-3xl md:text-5xl font-bold text-brand-action mb-4 font-mohave uppercase'>
-                {event.title}
-              </h1>
-              <div className='flex flex-wrap gap-x-8 gap-y-3 text-brand-action/70 text-lg'>
-                <div className='flex items-center gap-2'>
-                  <CalendarIcon className='w-5 h-5 text-brand-action' />
-                  {format(parseISO(event.dateTime), 'PPP', {
-                    locale,
-                  })}
-                </div>
-                <div className='flex items-center gap-2'>
-                  <Clock className='w-5 h-5 text-brand-action' />
-                  {format(parseISO(event.dateTime), 'HH:mm')}
-                  {event.endDateTime &&
-                    ` - ${format(parseISO(event.endDateTime), 'HH:mm')}`}
-                </div>
-                {event.location && (
+            <div className='p-6 md:p-10'>
+              <div className='mb-8 border-b border-brand-action/10 pb-8'>
+                <h1 className='text-3xl md:text-5xl font-bold text-brand-action mb-4 font-mohave uppercase'>
+                  {event.title}
+                </h1>
+                <div className='flex flex-wrap gap-x-8 gap-y-3 text-brand-action/70 text-lg'>
                   <div className='flex items-center gap-2'>
-                    <MapPin className='w-5 h-5 text-brand-action' />
-                    {event.location}
+                    <CalendarIcon className='w-5 h-5 text-brand-action' />
+                    {format(parseISO(event.dateTime), 'PPP', {
+                      locale,
+                    })}
                   </div>
+                  <div className='flex items-center gap-2'>
+                    <Clock className='w-5 h-5 text-brand-action' />
+                    {format(parseISO(event.dateTime), 'HH:mm')}
+                    {event.endDateTime &&
+                      ` - ${format(parseISO(event.endDateTime), 'HH:mm')}`}
+                  </div>
+                  {event.location && (
+                    <div className='flex items-center gap-2'>
+                      <MapPin className='w-5 h-5 text-brand-action' />
+                      {event.location}
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className='prose prose-invert prose-lg max-w-none text-brand-action/80'>
+                {event.description ? (
+                  <PortableText
+                    value={event.description}
+                    components={eventRichTextComponents}
+                  />
+                ) : (
+                  <p className='text-brand-action/60 italic'>
+                    {language === 'cs'
+                      ? 'Bez popisu.'
+                      : language === 'de'
+                        ? 'Keine Beschreibung.'
+                        : 'No description.'}
+                  </p>
                 )}
               </div>
             </div>
-
-            <div className='prose prose-invert prose-lg max-w-none text-brand-action/80'>
-              {event.description ? (
-                <PortableText
-                  value={event.description}
-                  components={eventRichTextComponents}
-                />
-              ) : (
-                <p className='text-brand-action/60 italic'>
-                  {language === 'cs'
-                    ? 'Bez popisu.'
-                    : language === 'de'
-                      ? 'Keine Beschreibung.'
-                      : 'No description.'}
-                </p>
-              )}
-            </div>
           </div>
-        </div>
+        </Border>
       </div>
     </main>
   )

@@ -87,14 +87,14 @@ export const Navbar = () => {
                   <NavItem
                     label={
                       language === 'cs'
-                        ? 'Akce'
+                        ? 'Události'
                         : language === 'en'
                           ? 'Events'
                           : language === 'de'
                             ? 'Veranstaltungen'
                             : ''
                     }
-                    href={`/akce`}
+                    href={`/udalosti`}
                   />
                   <NavItem
                     label={

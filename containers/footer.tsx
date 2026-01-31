@@ -86,8 +86,8 @@ export const Footer = () => {
               {language === 'en' && 'Sales Locations'}
               {language === 'de' && 'Verkaufsstellen'}
             </Link>
-            <Link href='/akce'>
-              {language === 'cs' && 'Akce'}
+            <Link href='/udalosti'>
+              {language === 'cs' && 'Události'}
               {language === 'en' && 'Events'}
               {language === 'de' && 'Veranstaltungen'}
             </Link>

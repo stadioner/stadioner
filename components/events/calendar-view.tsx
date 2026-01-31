@@ -54,11 +54,11 @@ export function CalendarView() {
     <div className='max-w-4xl mx-auto'>
       <Border className='h-full p-2 md:p-4'>
         <div className='p-2 md:p-4 h-full bg-brand-action'>
-          <h3 className='text-2xl font-bold text-brand-primary mb-8 flex items-center justify-center gap-3 uppercase font-mohave tracking-widest'>
-            <CalendarIcon className='w-6 h-6 text-brand-primary' />
+          <h3 className='text-2xl font-bold text-brand-primary mb-8 flex items-start justify-center gap-3 uppercase font-mohave tracking-widest'>
+            <CalendarIcon className='w-7 h-7 text-brand-primary' />
             <span>
               {language === 'cs'
-                ? 'Nadcházející akce'
+                ? 'Nadcházející události'
                 : language === 'de'
                   ? 'Kommende Veranstaltungen'
                   : 'Upcoming Events'}
