@@ -142,7 +142,7 @@ export default function EventPage() {
             Event not found
           </div>
           <div className='text-center'>
-            <Link href='/akce'>
+            <Link href='/udalosti'>
               <Button variant='outline'>
                 <ArrowLeft className='mr-2 h-4 w-4' />
                 Zpět na kalendář
@@ -158,12 +158,12 @@ export default function EventPage() {
     <main className='bg-brand-primary pt-36 pb-20 min-h-screen'>
       <div className='max-w-4xl mx-auto px-4 md:px-8'>
         <Link
-          href='/akce'
+          href='/udalosti'
           className='inline-flex items-center text-brand-action/70 hover:text-brand-action mb-8 transition-colors'
         >
           <ArrowLeft className='mr-2 h-4 w-4' />
           {language === 'cs'
-            ? 'Zpět na přehled akcí'
+            ? 'Zpět na přehled událostí'
             : language === 'de'
               ? 'Zurück zur Übersicht'
               : 'Back to events'}
