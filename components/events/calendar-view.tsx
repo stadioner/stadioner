@@ -69,7 +69,7 @@ export function CalendarView() {
             {loading ? (
               <div className='text-brand-primary/50 text-center py-10'>
                 {language === 'cs'
-                  ? 'Načítám akce...'
+                  ? 'Načítám události...'
                   : language === 'de'
                     ? 'Laden...'
                     : 'Loading...'}
@@ -85,7 +85,7 @@ export function CalendarView() {
                     className='bg-transparent hover:bg-brand-primary/5 border border-brand-primary/20 transition-colors group'
                   >
                     <Link
-                      href={`/akce/${event.slug.current}`}
+                      href={`/udalosti/${event.slug.current}`}
                       className='block p-4'
                     >
                       <div className='flex gap-4 items-center'>
@@ -144,7 +144,7 @@ export function CalendarView() {
               <div className='text-center py-20 text-brand-primary/40'>
                 <p>
                   {language === 'cs'
-                    ? 'Žádné nadcházející akce.'
+                    ? 'Žádné nadcházející události.'
                     : language === 'de'
                       ? 'Keine bevorstehenden Veranstaltungen.'
                       : 'No upcoming events.'}
