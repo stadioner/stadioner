@@ -51,7 +51,7 @@ export function CalendarView() {
   }, [language])
 
   return (
-    <div className='max-w-4xl mx-auto'>
+    <div>
       <Border className='h-full'>
         <div className='p-2 md:p-4 h-full bg-brand-action'>
           <h3 className='text-2xl font-bold text-brand-primary mb-8 flex items-start justify-center gap-3 uppercase font-mohave tracking-widest'>

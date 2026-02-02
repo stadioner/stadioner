@@ -7,7 +7,7 @@ import { useLanguage } from '@/store/use-language'
 import { urlFor } from '@/sanity/lib/image'
 import Image from 'next/image'
 import { Container } from '@/components/container'
-import { notFound, useParams } from 'next/navigation'
+import { useParams } from 'next/navigation'
 import { PortableText } from '@portabletext/react'
 import {
   Calendar as CalendarIcon,
@@ -156,10 +156,10 @@ export default function EventPage() {
 
   return (
     <main className='bg-brand-primary pt-36 pb-20 min-h-screen'>
-      <div className='max-w-4xl mx-auto px-4 md:px-8'>
+      <Container>
         <Link
           href='/udalosti'
-          className='inline-flex items-center text-brand-action/70 hover:text-brand-action mb-8 transition-colors'
+          className='inline-flex items-center text-brand-action/70 hover:text-brand-action mb-2 transition-colors'
         >
           <ArrowLeft className='mr-2 h-4 w-4' />
           {language === 'cs'
@@ -227,7 +227,7 @@ export default function EventPage() {
             </div>
           </div>
         </Border>
-      </div>
+      </Container>
     </main>
   )
 }
