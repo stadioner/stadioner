@@ -140,3 +140,42 @@ export const PostQuery = groq`
         categories[]->
     }
 `
+
+export const eventsByLanguageQuery = groq`
+  *[_type == "event" && language == $language] | order(dateTime asc) {
+    _id,
+    title,
+    slug,
+    dateTime,
+    endDateTime,
+    location,
+    mainImage,
+    description
+  }
+`
+
+export const upcomingEventsQuery = groq`
+  *[_type == "event" && language == $language && dateTime >= now()] | order(dateTime asc) {
+    _id,
+    title,
+    slug,
+    dateTime,
+    endDateTime,
+    location,
+    mainImage,
+    description
+  }
+`
+
+export const eventBySlugQuery = groq`
+  *[_type == "event" && slug.current == $slug && language == $language][0] {
+    _id,
+    title,
+    slug,
+    dateTime,
+    endDateTime,
+    location,
+    mainImage,
+    description
+  }
+`

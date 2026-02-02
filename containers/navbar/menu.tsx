@@ -87,6 +87,20 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
           setIsOpen={setIsOpen}
           label={
             language === 'cs'
+              ? 'Události'
+              : language === 'en'
+                ? 'Events'
+                : language === 'de'
+                  ? 'Veranstaltungen'
+                  : ''
+          }
+          href={`/udalosti`}
+        />
+        <NavItem
+          phone
+          setIsOpen={setIsOpen}
+          label={
+            language === 'cs'
               ? 'Články'
               : language === 'en'
                 ? 'Articles'
