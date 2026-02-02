@@ -8,7 +8,9 @@ import { urlFor } from '@/sanity/lib/image'
 import Image from 'next/image'
 import { Container } from '@/components/container'
 import { useParams } from 'next/navigation'
-import { PortableText } from '@portabletext/react'
+import { PortableText, type PortableTextComponents } from '@portabletext/react'
+import { type SanityImageSource } from '@sanity/image-url/lib/types/types'
+import { type PortableTextBlock } from 'sanity'
 import {
   Calendar as CalendarIcon,
   MapPin,
@@ -21,9 +23,20 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Border } from '@/components/border'
 
-const eventRichTextComponents = {
+interface Event {
+  _id: string
+  title: string
+  slug: { current: string }
+  dateTime: string
+  endDateTime?: string
+  location?: string
+  mainImage?: SanityImageSource
+  description?: PortableTextBlock[]
+}
+
+const eventRichTextComponents: PortableTextComponents = {
   types: {
-    image: ({ value }: { value: any }) => (
+    image: ({ value }: { value: SanityImageSource }) => (
       <div className='relative w-full aspect-video my-6 overflow-hidden'>
         <Image
           src={urlFor(value)}
@@ -35,44 +48,50 @@ const eventRichTextComponents = {
     ),
   },
   block: {
-    normal: ({ children }: any) => (
+    normal: ({ children }) => (
       <p className='mb-4 text-brand-action/80 leading-relaxed'>{children}</p>
     ),
-    h1: ({ children }: any) => (
+    h1: ({ children }) => (
       <h1 className='text-3xl font-bold text-brand-action mt-8 mb-4'>
         {children}
       </h1>
     ),
-    h2: ({ children }: any) => (
+    h2: ({ children }) => (
       <h2 className='text-2xl font-bold text-brand-action mt-8 mb-4'>
         {children}
       </h2>
     ),
-    h3: ({ children }: any) => (
+    h3: ({ children }) => (
       <h3 className='text-xl font-bold text-brand-action mt-6 mb-3'>
         {children}
       </h3>
     ),
-    blockquote: ({ children }: any) => (
+    blockquote: ({ children }) => (
       <blockquote className='border-l-4 border-brand-action/50 pl-4 py-2 my-4 italic text-brand-action/70'>
         {children}
       </blockquote>
     ),
   },
   list: {
-    bullet: ({ children }: any) => (
+    bullet: ({ children }) => (
       <ul className='list-disc list-inside space-y-2 mb-4 text-brand-action/80'>
         {children}
       </ul>
     ),
-    number: ({ children }: any) => (
+    number: ({ children }) => (
       <ol className='list-decimal list-inside space-y-2 mb-4 text-brand-action/80'>
         {children}
       </ol>
     ),
   },
   marks: {
-    link: ({ children, value }: any) => (
+    link: ({
+      children,
+      value,
+    }: {
+      children?: React.ReactNode
+      value?: { href: string }
+    }) => (
       <a
         href={value?.href}
         target='_blank'
@@ -89,7 +108,7 @@ export default function EventPage() {
   const { language } = useLanguage()
   const params = useParams()
   const slug = params.slug as string
-  const [event, setEvent] = useState<any>(null)
+  const [event, setEvent] = useState<Event | null>(null)
   const [loading, setLoading] = useState(true)
 
   const locale = language === 'cs' ? cs : language === 'de' ? de : enUS

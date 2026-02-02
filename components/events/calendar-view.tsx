@@ -16,6 +16,8 @@ import { eventsByLanguageQuery } from '@/sanity/lib/queries'
 import { useLanguage } from '@/store/use-language'
 import { Border } from '@/components/border'
 import Link from 'next/link'
+import { type SanityImageSource } from '@sanity/image-url/lib/types/types'
+import { type PortableTextBlock } from 'sanity'
 
 interface Event {
   _id: string
@@ -24,8 +26,8 @@ interface Event {
   dateTime: string
   endDateTime?: string
   location?: string
-  mainImage?: any
-  description?: any
+  mainImage?: SanityImageSource
+  description?: PortableTextBlock[]
 }
 
 export function CalendarView() {
