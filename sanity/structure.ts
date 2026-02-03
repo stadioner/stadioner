@@ -22,12 +22,12 @@ export const structure: StructureResolver = S =>
                       .filter(`_type == "post" && language == "${lang.id}"`)
                       .defaultOrdering([
                         { field: 'publishedAt', direction: 'desc' },
-                      ])
-                  )
+                      ]),
+                  ),
               ),
               S.divider(),
               S.listItem().title('All Posts').child(S.documentTypeList('post')),
-            ])
+            ]),
         ),
 
       // Categories organized by language
@@ -43,18 +43,48 @@ export const structure: StructureResolver = S =>
                   .child(
                     S.documentList()
                       .title(`${lang.title} Categories`)
-                      .filter(`_type == "category" && language == "${lang.id}"`)
-                  )
+                      .filter(
+                        `_type == "category" && language == "${lang.id}"`,
+                      ),
+                  ),
               ),
               S.divider(),
               S.listItem()
                 .title('All Categories')
                 .child(S.documentTypeList('category')),
-            ])
+            ]),
+        ),
+
+      // Events organized by language
+      S.listItem()
+        .title('Events')
+        .child(
+          S.list()
+            .title('Events by Language')
+            .items([
+              ...languages.map(lang =>
+                S.listItem()
+                  .title(`${lang.flag} ${lang.title} Events`)
+                  .child(
+                    S.documentList()
+                      .title(`${lang.title} Events`)
+                      .filter(`_type == "event" && language == "${lang.id}"`)
+                      .defaultOrdering([
+                        { field: 'dateTime', direction: 'asc' },
+                      ]),
+                  ),
+              ),
+              S.divider(),
+              S.listItem()
+                .title('All Events')
+                .child(S.documentTypeList('event')),
+            ]),
         ),
 
       S.divider(),
       ...S.documentTypeListItems().filter(
-        item => item.getId() && !['post', 'category'].includes(item.getId()!)
+        item =>
+          item.getId() &&
+          !['post', 'category', 'event'].includes(item.getId()!),
       ),
     ])

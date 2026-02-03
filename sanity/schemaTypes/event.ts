@@ -50,6 +50,12 @@ export const eventType = defineType({
       title: 'Location',
     }),
     defineField({
+      name: 'isComingSoon',
+      type: 'boolean',
+      title: 'Coming Soon',
+      initialValue: false,
+    }),
+    defineField({
       name: 'mainImage',
       type: 'image',
       title: 'Main Image',

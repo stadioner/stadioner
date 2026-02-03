@@ -149,6 +149,7 @@ export const eventsByLanguageQuery = groq`
     dateTime,
     endDateTime,
     location,
+    isComingSoon,
     mainImage,
     description
   }
@@ -162,6 +163,7 @@ export const upcomingEventsQuery = groq`
     dateTime,
     endDateTime,
     location,
+    isComingSoon,
     mainImage,
     description
   }
@@ -175,7 +177,14 @@ export const eventBySlugQuery = groq`
     dateTime,
     endDateTime,
     location,
+    isComingSoon,
     mainImage,
     description
+  }
+`
+
+export const eventsPathsByLanguageQuery = groq`
+  *[_type == "event" && language == $language && defined(slug.current)][]{
+    "params": { "slug": slug.current }
   }
 `
