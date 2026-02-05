@@ -101,7 +101,7 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
       attributionControl={false}
       className={cn(
         'w-full',
-        flexible ? 'h-[300px] md:h-[400px]' : 'h-[400px] md:h-[500px] '
+        flexible ? 'h-[300px] md:h-[400px]' : 'h-[400px] md:h-[500px] ',
       )}
     >
       <Recenter center={resolvedCenter} zoom={resolvedZoom} />
@@ -201,7 +201,7 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
               </>
             }
           />
-         <CustomMarker
+          <CustomMarker
             position={[49.389308715547465, 12.913962920541469]}
             icon={createImageIcon('/map/hospoda.svg')}
             popupContent={
@@ -211,7 +211,7 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
                   target='_blank'
                   className='text-lg font-bold'
                 >
-                 Hostinec Pelechy
+                  Hostinec Pelechy
                 </Link>
                 <p>Pelechy 27, 344 01 Pelechy</p>
               </>
@@ -227,9 +227,25 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
                   target='_blank'
                   className='text-lg font-bold'
                 >
-                 Pivní lokál Ostrý
+                  Pivní lokál Ostrý
                 </Link>
                 <p>Sladkovského náměstí 302/5, 130 00 Praha, Žižkov</p>
+              </>
+            }
+          />
+          <CustomMarker
+            position={[50.0933570258205, 14.44776125216898]}
+            icon={createImageIcon('/map/pivoteka.svg')}
+            popupContent={
+              <>
+                <Link
+                  href='https://www.sedmstupnu.cz/'
+                  target='_blank'
+                  className='text-lg font-bold'
+                >
+                  sedm° | výčep | pivotéka
+                </Link>
+                <p>Sokolovská 73/63/186 00, 186 00 Karlín</p>
               </>
             }
           />
