@@ -108,6 +108,11 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
+  const eventEnd = new Date(event.endDateTime ?? event.dateTime)
+  if (eventEnd.getTime() < Date.now()) {
+    notFound()
+  }
+
   return (
     <main className='bg-brand-primary pt-32 md:pt-40 pb-20'>
       <Container>
