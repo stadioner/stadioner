@@ -98,7 +98,7 @@ export default function ProFirmyPage() {
     translations[language as keyof typeof translations] || translations.cs
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target
     setFormData(prev => ({ ...prev, [name]: value }))
