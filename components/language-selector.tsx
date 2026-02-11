@@ -70,33 +70,36 @@ export const LanguageSelector = () => {
                       setLanguage(value)
                       setOpen(false)
 
-                      // Handle blog page language switching
-                      if (pathname.startsWith('/clanky/')) {
+                      const handleLocalizedRoute = (basePath: '/clanky' | '/udalosti') => {
+                        if (!pathname.startsWith(`${basePath}/`)) return false
+
                         const currentLang = pathname.split('/')[2]
 
                         if (
                           currentLang &&
                           ['cs', 'en', 'de'].includes(currentLang)
                         ) {
-                          // Check if we're on a specific post (has slug)
                           const pathParts = pathname.split('/')
 
                           if (pathParts.length > 3) {
-                            // We're on a specific post, redirect to blog listing
-                            router.push(`/clanky/${value}`)
+                            // On detail page (slug), redirect to localized listing.
+                            router.push(`${basePath}/${value}`)
                           } else {
-                            // We're on the blog listing, just change language
                             const newPath = pathname.replace(
-                              `/clanky/${currentLang}`,
-                              `/clanky/${value}`
+                              `${basePath}/${currentLang}`,
+                              `${basePath}/${value}`
                             )
                             router.push(newPath)
                           }
                         } else {
-                          // If no language in URL, add it
-                          router.push(`/clanky/${value}`)
+                          router.push(`${basePath}/${value}`)
                         }
+
+                        return true
                       }
+
+                      if (handleLocalizedRoute('/clanky')) return
+                      if (handleLocalizedRoute('/udalosti')) return
                     }}
                     className='mb-2 cursor-pointer'
                   >
