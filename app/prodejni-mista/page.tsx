@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
-import { PojizdnaProdejna } from './_containers/pojizdna-prodejna'
-import { VydejniMisto } from './_containers/vydejni-misto'
-import { Intro } from './_containers/intro'
+import { VydejniMisto } from './_components/vydejni-misto'
+import { Intro } from './_components/intro'
 
 export const metadata: Metadata = {
   title: 'Prodejní místa - Kde koupit naše produkty',

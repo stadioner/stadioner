@@ -32,7 +32,7 @@ export interface Post {
   publishedAt: string
   featured: boolean
   categories: Category[]
-  body: TypedObject
+  body: TypedObject[]
   seo?: SEO
 }
 

@@ -1,6 +1,6 @@
 'use client'
 
-import { NavItem } from '@/components/nav-item'
+import { NavItem } from '@/components/layout/navbar/nav-item'
 import { useLanguage } from '@/store/use-language'
 import { motion } from 'framer-motion'
 
@@ -94,7 +94,7 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
                   ? 'Veranstaltungen'
                   : ''
           }
-          href={`/udalosti`}
+          href={`/udalosti/${language}`}
         />
         <NavItem
           phone
@@ -108,7 +108,7 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
                   ? 'Artikel'
                   : ''
           }
-          href='/clanky'
+          href={`/clanky/${language}`}
         />
         <NavItem
           phone

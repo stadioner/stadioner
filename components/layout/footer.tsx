@@ -4,62 +4,15 @@ import { Container } from '@/components/container'
 import { useLanguage } from '@/store/use-language'
 import { ExternalLinkIcon, FacebookIcon, InstagramIcon } from 'lucide-react'
 import Link from 'next/link'
-import { useState } from 'react'
 import { Button } from '@/components/ui/button'
-import { useToast } from '@/components/custom-toast'
+import { useNewsletterForm } from '@/hooks/use-newsletter-form'
 
 export const Footer = () => {
   const { language } = useLanguage()
-  const { showToast } = useToast()
-  const [email, setEmail] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    try {
-      const formData = new FormData()
-      formData.append('EMAIL', email)
-      formData.append('b_0fe24a4d8159780e91fdf8f8d_fc6d3b1ef6', '')
-      formData.append('f_id', '007877eef0')
-
-      await fetch(
-        'https://stadioner.us20.list-manage.com/subscribe/post?u=0fe24a4d8159780e91fdf8f8d&id=fc6d3b1ef6&f_id=007877eef0',
-        {
-          method: 'POST',
-          body: formData,
-          mode: 'no-cors',
-        },
-      )
-
-      const successMessage =
-        language === 'cs'
-          ? 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
-          : language === 'en'
-            ? 'Please check your email and confirm your subscription!'
-            : language === 'de'
-              ? 'Bitte überprüfen Sie Ihre E-Mail und bestätigen Sie Ihr Abonnement!'
-              : 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
-
-      showToast(successMessage, 'success')
-      setEmail('')
-    } catch (error) {
-      const successMessage =
-        language === 'cs'
-          ? 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
-          : language === 'en'
-            ? 'Please check your email and confirm your subscription!'
-            : language === 'de'
-              ? 'Bitte überprüfen Sie Ihre E-Mail und bestätigen Sie Ihr Abonnement!'
-              : 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
-
-      showToast(successMessage, 'success')
-      setEmail('')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+  const { email, setEmail, isSubmitting, submit, copy } = useNewsletterForm({
+    language,
+    markSubscribed: false,
+  })
 
   return (
     <footer className='bg-brand-secondary pt-20 pb-10'>
@@ -86,12 +39,12 @@ export const Footer = () => {
               {language === 'en' && 'Sales Locations'}
               {language === 'de' && 'Verkaufsstellen'}
             </Link>
-            <Link href='/udalosti'>
+            <Link href={`/udalosti/${language}`}>
               {language === 'cs' && 'Události'}
               {language === 'en' && 'Events'}
               {language === 'de' && 'Veranstaltungen'}
             </Link>
-            <Link href='/clanky'>
+            <Link href={`/clanky/${language}`}>
               {language === 'cs' && 'Články'}
               {language === 'en' && 'Articles'}
               {language === 'de' && 'Artikel'}
@@ -211,28 +164,15 @@ export const Footer = () => {
               {language === 'de' && 'Newsletter'}
             </h4>
             <p className='text-sm text-brand-action/80'>
-              {language === 'cs' &&
-                'Přihlaste se k odběru našeho newsletteru a získejte jako první informace o našich produktech, akcích apod.'}
-              {language === 'en' &&
-                'Sign up for our newsletter and be the first to receive information about our products, events, etc.'}
-              {language === 'de' &&
-                'Abonnieren Sie unseren Newsletter und erhalten Sie als Erste Informationen über unsere Produkte, Aktionen usw.'}
+              {copy.info}
             </p>
 
-            <form onSubmit={handleSubmit} className='flex flex-col gap-3'>
+            <form onSubmit={submit} className='flex flex-col gap-3'>
               <input
                 type='email'
                 value={email}
                 onChange={e => setEmail(e.target.value)}
-                placeholder={
-                  language === 'cs'
-                    ? 'Váš email'
-                    : language === 'en'
-                      ? 'Your email'
-                      : language === 'de'
-                        ? 'Ihre E-Mail'
-                        : 'Váš email'
-                }
+                placeholder={copy.placeholder}
                 required
                 className='px-3 py-2 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action focus:outline-none focus:ring-2 focus:ring-brand-action/50'
               />
@@ -243,58 +183,15 @@ export const Footer = () => {
                 size='sm'
                 className='w-fit'
               >
-                {isSubmitting
-                  ? language === 'cs'
-                    ? 'Odesílám...'
-                    : language === 'en'
-                      ? 'Sending...'
-                      : language === 'de'
-                        ? 'Sende...'
-                        : 'Odesílám...'
-                  : language === 'cs'
-                    ? 'Přihlásit se'
-                    : language === 'en'
-                      ? 'Subscribe'
-                      : language === 'de'
-                        ? 'Abonnieren'
-                        : 'Přihlásit se'}
+                {isSubmitting ? copy.submitting : copy.submit}
               </Button>
 
               <p className='text-xs text-brand-action/60'>
-                {language === 'cs' && (
-                  <>
-                    Odesláním souhlasíte s{' '}
-                    <Link
-                      href='/gdpr'
-                      className='underline hover:text-brand-action'
-                    >
-                      ochranou osobních údajů
-                    </Link>
-                  </>
-                )}
-                {language === 'en' && (
-                  <>
-                    By submitting you agree to our{' '}
-                    <Link
-                      href='/gdpr'
-                      className='underline hover:text-brand-action'
-                    >
-                      personal data protection
-                    </Link>
-                  </>
-                )}
-                {language === 'de' && (
-                  <>
-                    Mit der Übermittlung stimmen Sie unserem{' '}
-                    <Link
-                      href='/gdpr'
-                      className='underline hover:text-brand-action'
-                    >
-                      Datenschutz
-                    </Link>{' '}
-                    zu
-                  </>
-                )}
+                {copy.gdprPrefix}{' '}
+                <Link href='/gdpr' className='underline hover:text-brand-action'>
+                  {copy.gdprLink}
+                </Link>
+                {language === 'de' && ' zu'}
               </p>
             </form>
           </div>

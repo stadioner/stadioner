@@ -49,7 +49,9 @@ const CustomMarker = ({
       icon={icon}
       eventHandlers={{
         click: () => {
-          flexible ? map.setView(position, zoomLevel, { animate: true }) : null
+          if (flexible) {
+            map.setView(position, zoomLevel, { animate: true })
+          }
         },
       }}
     >
@@ -116,6 +118,7 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
             key={idx}
             position={m.position}
             icon={createImageIcon(m.iconUrl)}
+            popupContent={m.popupContent}
             flexible
           />
         ))

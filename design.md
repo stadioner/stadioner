@@ -4,7 +4,7 @@
 This document defines the current design system implemented in the Stadioner public web application and provides a consistency audit with standardization recommendations.
 
 Scope includes:
-- Public web UI in `app/`, `components/`, and `containers/`
+- Public web UI in `app/` and `components/`
 - Shared design primitives and Tailwind token usage
 - Interaction, motion, and accessibility baseline of the web frontend
 
@@ -23,8 +23,22 @@ Scope excludes:
 Architecture model:
 - Layer 1: Global tokens and base styles in `app/globals.css`
 - Layer 2: Reusable primitives (`Button`, `Border`, `Container`, `Dialog`, `Popover`, `Switch`, etc.)
-- Layer 3: Feature components in `components/` and `containers/`
+- Layer 3: Shared feature components in `components/**` and route-scoped components in `app/**/_components`
 - Layer 4: Route-level composition in `app/**/page.tsx`
+
+## Refactor Update (2026-02-13)
+Completed in this refactor cycle:
+- Removed legacy `containers/` layer and split composition into:
+  - shared shell/components: `components/layout/*`, `components/products/*`
+  - page-scoped composition: `app/**/_components/*`
+- Centralized newsletter submission flow into shared modules:
+  - `hooks/use-newsletter-form.ts`
+  - `lib/newsletter/copy.ts`
+  - `lib/newsletter/submit.ts`
+- Standardized Sanity data access through `sanity/lib/fetch.ts` with route tags and revalidation options.
+- Optimized content queries for listings/sitemap to avoid overfetching (`postsListByLanguageQuery`, `eventsListByLanguageQuery`, `postsForSitemapByLanguageQuery`).
+- Converted non-interactive content renderers to server components where possible (`app/clanky/_components/post.tsx`, `app/udalosti/[lang]/_components/event-detail.tsx`).
+- Replaced fragile nav active-state matching with exact/segment-based matching in `components/layout/navbar/nav-item.tsx`.
 
 ## Design Tokens
 
@@ -80,7 +94,7 @@ Declared as CSS variables and injected via Next font loader in `app/layout.tsx`.
 - Display: `text-5xl` to custom viewport values (e.g., `text-[23vw]`) on hero.
 - Section titles: `text-2xl` to `text-6xl`.
 - Body copy: usually `text-base`/`text-lg`; legal pages rely heavily on gray utility text.
-- Blog rich text uses `font-labil` and `font-stabil` in `app/clanky/_containers/rich-text.tsx`, but these font utilities are not defined in global tokens.
+- Blog rich text uses `font-labil` and `font-stabil` in `app/clanky/_components/rich-text.tsx`, but these font utilities are not defined in global tokens.
 
 ### Typography Intent by Context
 - Marketing/home sections: bold brand-forward typography, high contrast.
@@ -138,7 +152,7 @@ Typical route sections:
 
 ### Breakpoint Strategy
 - Mobile-first with progressive enhancement via `sm/md/lg/xl`.
-- Distinct mobile/desktop nav implementations in `containers/navbar/navbar.tsx`.
+- Distinct mobile/desktop nav implementations in `components/layout/navbar/navbar.tsx`.
 - Products and timeline content reflow across breakpoints with dedicated mobile variants.
 
 ## Core Components (Primitives)
@@ -190,7 +204,7 @@ Design notes:
 - Elevated z-index layering (`z-[1001]`, `z-[1002]`, `z-[1003]`)
 
 ### Active State
-- `NavItem` marks active route by `pathname.includes(href)` with `font-bold`
+- `NavItem` uses exact/segment matching (`pathname === href` or `pathname.startsWith(\`${href}/\`)`) to prevent false positives.
 
 ### Language Switching
 - Popover + command list
@@ -297,7 +311,7 @@ Common input classes across footer/newsletter/company forms:
 
 #### Finding 2
 - Severity: Medium
-- Affected files: `components/custom-toast.tsx`, `components/cookie-consent.tsx`, `app/(homepage)/_containers/opening-hours.tsx`
+- Affected files: `components/custom-toast.tsx`, `components/cookie-consent.tsx`, `app/(homepage)/_components/opening-hours.tsx`
 - Current behavior: Hardcoded status colors (`bg-red-600`, `bg-blue-600`, `text-red-400`) not mapped to semantic status tokens.
 - Target standard: Central status palette (`success`, `error`, `info`, `warning`) tied to design tokens.
 - Remediation: Add status token aliases in `app/globals.css` and replace hardcoded status classes.
@@ -307,7 +321,7 @@ Common input classes across footer/newsletter/company forms:
 
 #### Finding 3
 - Severity: High
-- Affected files: `app/clanky/_containers/rich-text.tsx`
+- Affected files: `app/clanky/_components/rich-text.tsx`
 - Current behavior: Uses `font-labil` and `font-stabil`, which are not defined in token system or root font imports.
 - Target standard: Use only declared typography tokens (`font-mohave`, `font-caladea`) or formally register additional fonts as tokens.
 - Remediation: Either (a) replace with existing tokens, or (b) add explicit font loading + token variables for these families and document their roles.
@@ -315,7 +329,7 @@ Common input classes across footer/newsletter/company forms:
 
 #### Finding 4
 - Severity: Medium
-- Affected files: `app/(homepage)/_containers/hero.tsx`, `app/clanky/_containers/post.tsx`, `app/udalosti/[lang]/_containers/event-detail.tsx`
+- Affected files: `app/(homepage)/_components/hero.tsx`, `app/clanky/_components/post.tsx`, `app/udalosti/[lang]/_components/event-detail.tsx`
 - Current behavior: Heading scales and casing conventions vary significantly by feature without a shared type ramp spec.
 - Target standard: Define a canonical heading scale (Display/H1/H2/H3/H4) with responsive sizes and casing guidance.
 - Remediation: Add a typography scale table and align major heading classes to predefined utilities.
@@ -325,15 +339,16 @@ Common input classes across footer/newsletter/company forms:
 
 #### Finding 5
 - Severity: Medium
-- Affected files: `containers/footer.tsx`, `components/newsletter-popup.tsx`, `app/newsletter/page.tsx`, `app/pro-firmy/page.tsx`, `app/clanky/_containers/newsletter-mini-form.tsx`
-- Current behavior: Newsletter and form input styles are repeated as inline class strings.
+- Affected files: `components/layout/footer.tsx`, `components/newsletter-popup.tsx`, `app/newsletter/page.tsx`, `app/pro-firmy/page.tsx`, `app/clanky/_components/newsletter-mini-form.tsx`
+- Current behavior: Newsletter submit logic and copy duplication were reduced via shared modules, but field styling primitives are still inline in multiple forms.
 - Target standard: Shared form field primitive(s) for input, textarea, field label, and helper text.
-- Remediation: Create reusable field components or utility variants and migrate repeated form style strings.
+- Remediation: Finalize shared field components or utility variants and migrate remaining repeated form style strings.
 - Migration priority: Next
+- Status: Partially resolved in 2026-02-13 refactor (logic/copy centralized).
 
 #### Finding 6
 - Severity: Low
-- Affected files: `containers/navbar/navbar.tsx`, `components/age-gate.tsx`, `components/custom-toast.tsx`, `app/udalosti/[lang]/_containers/events-page.tsx`
+- Affected files: `components/layout/navbar/navbar.tsx`, `components/age-gate.tsx`, `components/custom-toast.tsx`, `app/udalosti/[lang]/_components/events-page.tsx`
 - Current behavior: Similar card/frame treatments are implemented through repeated combinations around `Border` and custom inner wrappers.
 - Target standard: Extract semantic surface wrappers (`FramedCard`, `FramedSection`, `FramedModalBody`).
 - Remediation: Build small wrapper primitives around `Border` with consistent internal padding/surfaces.
@@ -351,25 +366,26 @@ Common input classes across footer/newsletter/company forms:
 
 #### Finding 8
 - Severity: Medium
-- Affected files: `containers/navbar/navbar.tsx`, `app/(homepage)/_containers/hero.tsx`, `app/(homepage)/_containers/opening-hours.tsx`
+- Affected files: `components/layout/navbar/navbar.tsx`, `app/(homepage)/_components/hero.tsx`, `app/(homepage)/_components/opening-hours.tsx`
 - Current behavior: Frequent raw `<img>` elements with varying quality of `alt` semantics and no optimization defaults.
 - Target standard: Prefer `next/image` for non-decorative images; document decorative image rules and alt strategy.
 - Remediation: Migrate key informative images to `next/image`; mark purely decorative imagery appropriately.
 - Migration priority: Next
 
 #### Finding 9
-- Severity: Medium
-- Affected files: `components/nav-item.tsx`, `containers/navbar/menu.tsx`
-- Current behavior: Active navigation state is computed by `pathname.includes(href)`, which can create false positives.
+- Severity: Low
+- Affected files: `components/layout/navbar/nav-item.tsx`, `components/layout/navbar/menu.tsx`
+- Current behavior: Active navigation state now uses exact/segment matching.
 - Target standard: Route-aware exact/segment matching utility for active states.
-- Remediation: Introduce dedicated active-route matcher and shared nav state policy.
-- Migration priority: Next
+- Remediation: Keep shared nav matcher centralized if additional nav variants are added.
+- Migration priority: Done
+- Status: Resolved in 2026-02-13 refactor.
 
 ### Category: Hardcoded Values
 
 #### Finding 10
 - Severity: Medium
-- Affected files: `containers/navbar/navbar.tsx`, `containers/navbar/menu.tsx`, `components/custom-toast.tsx`, `components/cookie-consent.tsx`, `components/age-gate.tsx`
+- Affected files: `components/layout/navbar/navbar.tsx`, `components/layout/navbar/menu.tsx`, `components/custom-toast.tsx`, `components/cookie-consent.tsx`, `components/age-gate.tsx`
 - Current behavior: Hardcoded z-index tiers (`z-[1000]`+), which are not tokenized and can collide over time.
 - Target standard: Define z-index scale tokens (`z-nav`, `z-overlay`, `z-modal`, `z-toast`, etc.) and map classes consistently.
 - Remediation: Add layering scale in design governance and replace literal z-index values.
@@ -448,8 +464,8 @@ Common input classes across footer/newsletter/company forms:
 - `components/container.tsx`
 - `components/border.tsx`
 - `components/custom-toast.tsx`
-- `components/nav-item.tsx`
-- `components/language-selector.tsx`
+- `components/layout/navbar/nav-item.tsx`
+- `components/layout/navbar/language-selector.tsx`
 - `components/ui/button.tsx`
 - `components/ui/dialog.tsx`
 - `components/ui/popover.tsx`
@@ -457,12 +473,12 @@ Common input classes across footer/newsletter/company forms:
 - `components/ui/switch.tsx`
 - `components/ui/separator.tsx`
 
-### Shared Shell and Feature Containers
-- `containers/navbar/navbar.tsx`
-- `containers/navbar/menu.tsx`
-- `containers/footer.tsx`
-- `containers/products.tsx`
-- `containers/products/*`
+### Shared Shell and Feature Components
+- `components/layout/navbar/navbar.tsx`
+- `components/layout/navbar/menu.tsx`
+- `components/layout/footer.tsx`
+- `components/products/index.tsx`
+- `components/products/*`
 
 ### Feature Components
 - `components/cookie-consent.tsx`
@@ -470,28 +486,28 @@ Common input classes across footer/newsletter/company forms:
 - `components/newsletter-popup.tsx`
 - `components/map.tsx`
 - `components/map-legend.tsx`
-- `components/keg-news-dialog.tsx`
+- `components/products/keg-news-dialog.tsx`
 
 ### Route and Content Screens (Public Web)
 - `app/(homepage)/page.tsx`
-- `app/(homepage)/_containers/hero.tsx`
-- `app/(homepage)/_containers/intro.tsx`
-- `app/(homepage)/_containers/about.tsx`
-- `app/(homepage)/_containers/opening-hours.tsx`
-- `app/(homepage)/_containers/places.tsx`
+- `app/(homepage)/_components/hero.tsx`
+- `app/(homepage)/_components/intro.tsx`
+- `app/(homepage)/_components/about.tsx`
+- `app/(homepage)/_components/opening-hours.tsx`
+- `app/(homepage)/_components/places.tsx`
 - `app/produkty/page.tsx`
 - `app/prodejni-mista/page.tsx`
 - `app/pro-firmy/page.tsx`
 - `app/newsletter/page.tsx`
 - `app/kontakt/page.tsx`
-- `app/udalosti/[lang]/_containers/events-page.tsx`
-- `app/udalosti/[lang]/_containers/event-detail.tsx`
+- `app/udalosti/[lang]/_components/events-page.tsx`
+- `app/udalosti/[lang]/_components/event-detail.tsx`
 - `app/historie/page.tsx`
-- `app/clanky/_containers/post.tsx`
-- `app/clanky/_containers/posts.tsx`
-- `app/clanky/_containers/sidebar.tsx`
-- `app/clanky/_containers/rich-text.tsx`
-- `app/clanky/_containers/newsletter-mini-form.tsx`
+- `app/clanky/_components/post.tsx`
+- `app/clanky/_components/posts.tsx`
+- `app/clanky/_components/sidebar.tsx`
+- `app/clanky/_components/rich-text.tsx`
+- `app/clanky/_components/newsletter-mini-form.tsx`
 - `app/(legal)/cookies/page.tsx`
 - `app/(legal)/gdpr/page.tsx`
 - `app/(legal)/obchodni-podminky/page.tsx`

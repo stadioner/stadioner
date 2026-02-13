@@ -1,11 +1,11 @@
-import { cachedClient } from '@/sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/fetch'
 import { recentPostsQuery } from '@/sanity/lib/queries'
 import { SupportedLanguage, Post } from '@/types/blog'
 import Link from 'next/link'
 import { Border } from '@/components/border'
 import { urlFor } from '@/sanity/lib/image'
 import { Facebook, Instagram } from 'lucide-react'
-import { NewsletterMiniForm } from '@/app/clanky/_containers/newsletter-mini-form'
+import { NewsletterMiniForm } from './newsletter-mini-form'
 
 interface SidebarProps {
   language: SupportedLanguage
@@ -33,9 +33,14 @@ const t = {
 } as const
 
 export const Sidebar = async ({ language }: SidebarProps) => {
-  const recentPosts: Post[] = await cachedClient(recentPostsQuery, {
-    language,
-    limit: 2,
+  const recentPosts = await sanityFetch<Post[]>({
+    query: recentPostsQuery,
+    params: {
+      language,
+      limit: 2,
+    },
+    tags: [`blog:recent:${language}`],
+    revalidate: 120,
   })
 
   return (

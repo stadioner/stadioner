@@ -1,75 +1,17 @@
 'use client'
 
-import { useState } from 'react'
 import { Container } from '@/components/container'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/store/use-language'
 import Link from 'next/link'
-import { useToast } from '@/components/custom-toast'
 import { Border } from '@/components/border'
+import { useNewsletterForm } from '@/hooks/use-newsletter-form'
 
 export default function NewsletterPage() {
   const { language } = useLanguage()
-  const { showToast } = useToast()
-  const [email, setEmail] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    try {
-      const formData = new FormData()
-      formData.append('EMAIL', email)
-      formData.append('b_0fe24a4d8159780e91fdf8f8d_fc6d3b1ef6', '')
-      formData.append('f_id', '007877eef0')
-
-      const response = await fetch(
-        'https://stadioner.us20.list-manage.com/subscribe/post?u=0fe24a4d8159780e91fdf8f8d&id=fc6d3b1ef6&f_id=007877eef0',
-        {
-          method: 'POST',
-          body: formData,
-          mode: 'no-cors', // This allows the request to work with Mailchimp
-        }
-      )
-
-      // With no-cors mode, we can't check response status, so we assume success
-      // Mailchimp will handle the subscription on their end
-      const successMessage =
-        language === 'cs'
-          ? 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
-          : language === 'en'
-            ? 'Please check your email and confirm your subscription!'
-            : language === 'de'
-              ? 'Bitte überprüfen Sie Ihre E-Mail und bestätigen Sie Ihr Abonnement!'
-              : 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
-
-      showToast(successMessage, 'success')
-      setEmail('')
-
-      // Mark user as subscribed to prevent popup from showing again
-      localStorage.setItem('newsletter-subscribed', 'true')
-    } catch (error) {
-      // Even if there's an error, Mailchimp might have processed the subscription
-      // So we show success message
-      const successMessage =
-        language === 'cs'
-          ? 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
-          : language === 'en'
-            ? 'Please check your email and confirm your subscription!'
-            : language === 'de'
-              ? 'Bitte überprüfen Sie Ihre E-Mail und bestätigen Sie Ihr Abonnement!'
-              : 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!'
-
-      showToast(successMessage, 'success')
-      setEmail('')
-
-      // Mark user as subscribed to prevent popup from showing again
-      localStorage.setItem('newsletter-subscribed', 'true')
-    } finally {
-      setIsSubmitting(false)
-    }
-  }
+  const { email, setEmail, isSubmitting, submit, copy } = useNewsletterForm({
+    language,
+  })
 
   return (
     <div className='min-h-screen bg-brand-secondary pt-32'>
@@ -80,29 +22,18 @@ export default function NewsletterPage() {
               {/* Header */}
               <div className='text-center mb-8'>
                 <h1 className='text-brand-primary text-3xl lg:text-4xl font-bold mb-4'>
-                  {language === 'cs' &&
-                    'Přihlaste se k odběru našeho newsletteru'}
-                  {language === 'en' && 'Subscribe to our newsletter'}
-                  {language === 'de' && 'Abonnieren Sie unseren Newsletter'}
+                  {copy.heading}
                 </h1>
               </div>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className='space-y-6'>
+              <form onSubmit={submit} className='space-y-6'>
                 <div>
                   <input
                     type='email'
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    placeholder={
-                      language === 'cs'
-                        ? 'Váš email'
-                        : language === 'en'
-                          ? 'Your email'
-                          : language === 'de'
-                            ? 'Ihre E-Mail'
-                            : 'Váš email'
-                    }
+                    placeholder={copy.placeholder}
                     required
                     className='px-4 py-3 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-full text-lg'
                   />
@@ -115,58 +46,18 @@ export default function NewsletterPage() {
                   size='lg'
                   className='w-full text-lg py-3'
                 >
-                  {isSubmitting
-                    ? language === 'cs'
-                      ? 'Odesílám...'
-                      : language === 'en'
-                        ? 'Sending...'
-                        : language === 'de'
-                          ? 'Sende...'
-                          : 'Odesílám...'
-                    : language === 'cs'
-                      ? 'Přihlásit se'
-                      : language === 'en'
-                        ? 'Subscribe'
-                        : language === 'de'
-                          ? 'Abonnieren'
-                          : 'Přihlásit se'}
+                  {isSubmitting ? copy.submitting : copy.submit}
                 </Button>
 
                 <p className='text-sm text-brand-primary/60 text-center'>
-                  {language === 'cs' && (
-                    <>
-                      Odesláním souhlasíte s{' '}
-                      <Link
-                        href='/gdpr'
-                        className='underline hover:text-brand-primary'
-                      >
-                        ochranou osobních údajů
-                      </Link>
-                    </>
-                  )}
-                  {language === 'en' && (
-                    <>
-                      By submitting you agree to our{' '}
-                      <Link
-                        href='/gdpr'
-                        className='underline hover:text-brand-primary'
-                      >
-                        personal data protection
-                      </Link>
-                    </>
-                  )}
-                  {language === 'de' && (
-                    <>
-                      Mit der Übermittlung stimmen Sie unserem{' '}
-                      <Link
-                        href='/gdpr'
-                        className='underline hover:text-brand-primary'
-                      >
-                        Datenschutz
-                      </Link>{' '}
-                      zu
-                    </>
-                  )}
+                  {copy.gdprPrefix}{' '}
+                  <Link
+                    href='/gdpr'
+                    className='underline hover:text-brand-primary'
+                  >
+                    {copy.gdprLink}
+                  </Link>
+                  {language === 'de' && ' zu'}
                 </p>
               </form>
 

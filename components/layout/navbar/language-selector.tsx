@@ -12,23 +12,23 @@ import { useState } from 'react'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
 import { useLanguage, useLanguageSync } from '@/store/use-language'
-import { Border } from './border'
+import { Border } from '@/components/border'
 import { usePathname, useRouter } from 'next/navigation'
+import {
+  isSupportedLanguage,
+  supportedLanguages,
+} from '@/lib/i18n/site-languages'
 
-const languages = [
-  {
-    value: 'cs',
-    src: '/flags/cs.webp',
-  },
-  {
-    value: 'en',
-    src: '/flags/en.webp',
-  },
-  {
-    value: 'de',
-    src: '/flags/de.webp',
-  },
-]
+const flagByLanguage = {
+  cs: '/flags/cs.webp',
+  en: '/flags/en.webp',
+  de: '/flags/de.webp',
+} as const
+
+const languages = supportedLanguages.map(value => ({
+  value,
+  src: flagByLanguage[value],
+}))
 
 export const LanguageSelector = () => {
   useLanguageSync()
@@ -70,15 +70,14 @@ export const LanguageSelector = () => {
                       setLanguage(value)
                       setOpen(false)
 
-                      const handleLocalizedRoute = (basePath: '/clanky' | '/udalosti') => {
+                      const handleLocalizedRoute = (
+                        basePath: '/clanky' | '/udalosti',
+                      ) => {
                         if (!pathname.startsWith(`${basePath}/`)) return false
 
                         const currentLang = pathname.split('/')[2]
 
-                        if (
-                          currentLang &&
-                          ['cs', 'en', 'de'].includes(currentLang)
-                        ) {
+                        if (currentLang && isSupportedLanguage(currentLang)) {
                           const pathParts = pathname.split('/')
 
                           if (pathParts.length > 3) {

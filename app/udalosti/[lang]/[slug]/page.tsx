@@ -1,32 +1,40 @@
-import { cachedClient } from '@/sanity/lib/client'
+import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   eventBySlugQuery,
   eventsPathsByLanguageQuery,
 } from '@/sanity/lib/queries'
-import { SupportedLanguage } from '@/types/blog'
+import { type SupportedLanguage } from '@/types/blog'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import createImageUrlBuilder from '@sanity/image-url'
 import { dataset, projectId } from '@/sanity/env'
 import { Container } from '@/components/container'
-import { EventDetail } from '../_containers/event-detail'
+import { EventDetail } from '../_components/event-detail'
+import {
+  isSupportedLanguage,
+  supportedLanguages,
+} from '@/lib/i18n/site-languages'
+import { type Event } from '@/types/event'
 
 interface Props {
   params: Promise<{ lang: string; slug: string }>
 }
 
-const supportedLanguages: SupportedLanguage[] = ['cs', 'en', 'de']
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params
 
-  if (!supportedLanguages.includes(lang as SupportedLanguage)) {
+  if (!isSupportedLanguage(lang)) {
     return {
       title: 'Event Not Found',
     }
   }
 
-  const event = await cachedClient(eventBySlugQuery, { slug, language: lang })
+  const event = await sanityFetch<Event | null>({
+    query: eventBySlugQuery,
+    params: { slug, language: lang },
+    tags: [`events:detail:${lang}:${slug}`],
+    revalidate: 60,
+  })
 
   if (!event) {
     return {
@@ -78,9 +86,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export async function generateStaticParams() {
   const allPaths = await Promise.all(
     supportedLanguages.map(async lang => {
-      const events = await cachedClient(eventsPathsByLanguageQuery, {
-        language: lang,
+      const events = await sanityFetch<{ params: { slug: string } }[]>({
+        query: eventsPathsByLanguageQuery,
+        params: { language: lang },
+        tags: [`events:paths:${lang}`],
+        revalidate: 300,
       })
+
       if (!Array.isArray(events)) return []
       return events.map((event: { params: { slug: string } }) => ({
         lang,
@@ -98,11 +110,16 @@ export const revalidate = 60
 export default async function Page({ params }: Props) {
   const { lang, slug } = await params
 
-  if (!supportedLanguages.includes(lang as SupportedLanguage)) {
+  if (!isSupportedLanguage(lang)) {
     notFound()
   }
 
-  const event = await cachedClient(eventBySlugQuery, { slug, language: lang })
+  const event = await sanityFetch<Event | null>({
+    query: eventBySlugQuery,
+    params: { slug, language: lang },
+    tags: [`events:detail:${lang}:${slug}`],
+    revalidate: 60,
+  })
 
   if (!event) {
     notFound()

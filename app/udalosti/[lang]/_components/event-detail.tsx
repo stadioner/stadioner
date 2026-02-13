@@ -1,5 +1,3 @@
-'use client'
-
 import { PortableText, type PortableTextComponents } from '@portabletext/react'
 import { type SanityImageSource } from '@sanity/image-url/lib/types/types'
 import {
@@ -16,6 +14,7 @@ import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
 import { Event } from '@/types/event'
 import { SupportedLanguage } from '@/types/blog'
+import { type ReactNode } from 'react'
 
 interface EventDetailProps {
   event: Event
@@ -77,7 +76,7 @@ const eventRichTextComponents: PortableTextComponents = {
       children,
       value,
     }: {
-      children?: React.ReactNode
+      children?: ReactNode
       value?: { href: string }
     }) => (
       <a

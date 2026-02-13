@@ -1,22 +1,48 @@
 import { groq } from 'next-sanity'
 
-// Language-specific queries
-export const postsByLanguageQuery = groq`
-  *[_type == "post" && language == $language] | order(publishedAt desc) {
+const postCategoryProjection = `
+  categories[]->{
     _id,
     title,
+    slug
+  }
+`
+
+const postListProjection = `
+  _id,
+  title,
+  slug,
+  language,
+  mainImage,
+  publishedAt,
+  featured,
+  excerpt,
+  ${postCategoryProjection}
+`
+
+const eventListProjection = `
+  _id,
+  title,
+  slug,
+  dateTime,
+  endDateTime,
+  location,
+  isComingSoon
+`
+
+// Language-specific queries
+export const postsByLanguageQuery = groq`
+  *[_type == "post" && language == $language] | order(publishedAt desc) {${postListProjection}}
+`
+
+export const postsListByLanguageQuery = groq`
+  *[_type == "post" && language == $language] | order(publishedAt desc) {${postListProjection}}
+`
+
+export const postsForSitemapByLanguageQuery = groq`
+  *[_type == "post" && language == $language && defined(slug.current)] | order(publishedAt desc) {
     slug,
-    language,
-    mainImage,
-    publishedAt,
-    featured,
-    categories[]->{
-      _id,
-      title,
-      slug,
-    },
-    body,
-    seo
+    publishedAt
   }
 `
 
@@ -29,11 +55,7 @@ export const postBySlugQuery = groq`
     mainImage,
     publishedAt,
     featured,
-    categories[]->{
-      _id,
-      title,
-      slug,
-    },
+    ${postCategoryProjection},
     body,
     seo
   }
@@ -51,66 +73,25 @@ export const categoriesByLanguageQuery = groq`
 
 export const featuredPostsQuery = groq`
   *[_type == "post" && language == $language && featured == true] | order(publishedAt desc) [0...$limit] {
-    _id,
-    title,
-    slug,
-    language,
-    mainImage,
-    publishedAt,
-    categories[]->{
-      _id,
-      title,
-      slug,
-    }
+    ${postListProjection}
   }
 `
 
 export const relatedPostsQuery = groq`
   *[_type == "post" && language == $language && _id != $postId && count(categories[@._ref in $categoryIds]) > 0] | order(publishedAt desc) [0...$limit] {
-    _id,
-    title,
-    slug,
-    language,
-    mainImage,
-    publishedAt,
-    categories[]->{
-      _id,
-      title,
-      slug,
-    }
+    ${postListProjection}
   }
 `
 
 export const recentPostsQuery = groq`
   *[_type == "post" && language == $language] | order(publishedAt desc) [0...$limit] {
-    _id,
-    title,
-    slug,
-    language,
-    mainImage,
-    publishedAt,
-    categories[]->{
-      _id,
-      title,
-      slug,
-    }
+    ${postListProjection}
   }
 `
 
 export const postsByCategoryQuery = groq`
   *[_type == "post" && language == $language && $categoryId in categories[]._ref] | order(publishedAt desc) {
-    _id,
-    title,
-    slug,
-    language,
-    mainImage,
-    publishedAt,
-    featured,
-    categories[]->{
-      _id,
-      title,
-      slug,
-    }
+    ${postListProjection}
   }
 `
 
@@ -142,31 +123,15 @@ export const PostQuery = groq`
 `
 
 export const eventsByLanguageQuery = groq`
-  *[_type == "event" && language == $language] | order(dateTime asc) {
-    _id,
-    title,
-    slug,
-    dateTime,
-    endDateTime,
-    location,
-    isComingSoon,
-    mainImage,
-    description
-  }
+  *[_type == "event" && language == $language] | order(dateTime asc) {${eventListProjection}}
+`
+
+export const eventsListByLanguageQuery = groq`
+  *[_type == "event" && language == $language] | order(dateTime asc) {${eventListProjection}}
 `
 
 export const upcomingEventsQuery = groq`
-  *[_type == "event" && language == $language && dateTime >= now()] | order(dateTime asc) {
-    _id,
-    title,
-    slug,
-    dateTime,
-    endDateTime,
-    location,
-    isComingSoon,
-    mainImage,
-    description
-  }
+  *[_type == "event" && language == $language && dateTime >= now()] | order(dateTime asc) {${eventListProjection}}
 `
 
 export const eventBySlugQuery = groq`

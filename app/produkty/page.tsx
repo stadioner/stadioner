@@ -1,4 +1,4 @@
-import { Products } from '@/containers/products'
+import { Products } from '@/components/products'
 import { Suspense } from 'react'
 import { Metadata } from 'next'
 
