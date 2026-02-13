@@ -8,13 +8,13 @@ import { cn } from '@/lib/utils'
 import { categories, uiLabels } from '@/lib/products/constants'
 
 import { useProducts } from '@/hooks/use-products'
-import { CategorySelector } from './products/category-selector'
-import { ProductNavigation } from './products/product-navigation'
-import { PackagingSelector } from './products/packaging-selector'
-import { ProductImage } from './products/product-image'
-import { ProductInfo } from './products/product-info'
+import { CategorySelector } from './category-selector'
+import { ProductNavigation } from './product-navigation'
+import { PackagingSelector } from './packaging-selector'
+import { ProductImage } from './product-image'
+import { ProductInfo } from './product-info'
 import type { PackagingKey, PackagingOption } from '@/types/products'
-import { KegNewsDialog } from '@/components/keg-news-dialog'
+import { KegNewsDialog } from '@/components/products/keg-news-dialog'
 
 export const Products = ({
   rippedPaper,
@@ -44,17 +44,15 @@ export const Products = ({
   const categoriesList = categories[activeLang]
   const labels = uiLabels[activeLang]
 
-  if (!product || !productVariantUrls) {
-    return null
-  }
-
-  const availability = availabilityBySlug[product.slug]
-  const selectedPackaging: PackagingKey =
-    selectedPackagingBySlug[product.slug] || 'bottle'
-
   const packagingOptions: PackagingOption[] = useMemo(
-    () =>
-      (
+    () => {
+      if (!product || !productVariantUrls) {
+        return []
+      }
+
+      const availability = availabilityBySlug[product.slug]
+
+      return (
         [
           {
             key: 'bottle' as PackagingKey,
@@ -80,9 +78,17 @@ export const Products = ({
       ).map(opt => ({
         ...opt,
         available: availability ? availability[opt.key] : opt.key === 'bottle',
-      })),
-    [productVariantUrls, labels, availability],
+      }))
+    },
+    [product, productVariantUrls, labels, availabilityBySlug],
   )
+
+  if (!product || !productVariantUrls) {
+    return null
+  }
+
+  const selectedPackaging: PackagingKey =
+    selectedPackagingBySlug[product.slug] || 'bottle'
 
   const displayedImage =
     packagingOptions.find(o => o.key === selectedPackaging)?.url ||

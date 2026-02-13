@@ -1,15 +1,18 @@
-import { cachedClient } from '@/sanity/lib/client'
-import { eventsByLanguageQuery } from '@/sanity/lib/queries'
-import { EventsPage } from './_containers/events-page'
-import { SupportedLanguage } from '@/types/blog'
+import { sanityFetch } from '@/sanity/lib/fetch'
+import { eventsListByLanguageQuery } from '@/sanity/lib/queries'
+import { EventsPage } from './_components/events-page'
+import { type SupportedLanguage } from '@/types/blog'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
+import {
+  isSupportedLanguage,
+  supportedLanguages,
+} from '@/lib/i18n/site-languages'
+import { type Event } from '@/types/event'
 
 interface Props {
   params: Promise<{ lang: string }>
 }
-
-const supportedLanguages: SupportedLanguage[] = ['cs', 'en', 'de']
 
 const languageNames = {
   cs: 'Události',
@@ -20,7 +23,7 @@ const languageNames = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params
 
-  if (!supportedLanguages.includes(lang as SupportedLanguage)) {
+  if (!isSupportedLanguage(lang)) {
     return {
       title: 'Events Not Found',
     }
@@ -62,11 +65,16 @@ export const revalidate = 60
 export default async function Page({ params }: Props) {
   const { lang } = await params
 
-  if (!supportedLanguages.includes(lang as SupportedLanguage)) {
+  if (!isSupportedLanguage(lang)) {
     notFound()
   }
 
-  const events = await cachedClient(eventsByLanguageQuery, { language: lang })
+  const events = await sanityFetch<Event[]>({
+    query: eventsListByLanguageQuery,
+    params: { language: lang },
+    tags: [`events:list:${lang}`],
+    revalidate: 60,
+  })
 
   return <EventsPage events={events} language={lang as SupportedLanguage} />
 }

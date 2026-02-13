@@ -1,6 +1,4 @@
-'use client'
-
-import { RichText } from '@/app/clanky/_containers/rich-text'
+import { RichText } from './rich-text'
 import { PortableText } from '@portabletext/react'
 import { Post as PostType } from '@/types/blog'
 

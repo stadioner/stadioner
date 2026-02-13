@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
-import { cachedClient } from '@/sanity/lib/client'
-import { postsByLanguageQuery } from '@/sanity/lib/queries'
+import { sanityFetch } from '@/sanity/lib/fetch'
+import { postsForSitemapByLanguageQuery } from '@/sanity/lib/queries'
+import { supportedLanguages } from '@/lib/i18n/site-languages'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://stadioner.cz'
@@ -46,33 +47,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ]
 
   // Blog pages for each language
-  const blogPages = []
-  const languages = ['cs', 'en', 'de']
+  const blogListingPages = supportedLanguages.map(lang => ({
+    url: `${baseUrl}/clanky/${lang}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.8,
+  }))
 
-  for (const lang of languages) {
-    blogPages.push({
-      url: `${baseUrl}/clanky/${lang}`,
-      lastModified: new Date(),
-      changeFrequency: 'daily' as const,
-      priority: 0.8,
-    })
+  const postsByLanguage = await Promise.all(
+    supportedLanguages.map(async lang => {
+      const posts = await sanityFetch<
+        {
+          slug: { current: string }
+          publishedAt?: string
+        }[]
+      >({
+        query: postsForSitemapByLanguageQuery,
+        params: { language: lang },
+        tags: [`blog:sitemap:${lang}`],
+        revalidate: 300,
+      }).catch(() => [])
 
-    // Get posts for this language
-    try {
-      const posts = await cachedClient(postsByLanguageQuery, { language: lang })
+      return posts.map(post => ({
+        url: `${baseUrl}/clanky/${lang}/${post.slug.current}`,
+        lastModified: new Date(post.publishedAt || new Date()),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+      }))
+    }),
+  )
 
-      for (const post of posts) {
-        blogPages.push({
-          url: `${baseUrl}/clanky/${lang}/${post.slug.current}`,
-          lastModified: new Date(post.publishedAt || new Date()),
-          changeFrequency: 'monthly' as const,
-          priority: 0.6,
-        })
-      }
-    } catch (error) {
-      console.error(`Error fetching posts for language ${lang}:`, error)
-    }
-  }
+  const blogPages = [...blogListingPages, ...postsByLanguage.flat()]
 
   return [...staticPages, ...blogPages]
 }

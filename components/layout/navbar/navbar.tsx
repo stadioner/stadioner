@@ -5,9 +5,9 @@ import { cn } from '@/lib/utils'
 import Link from 'next/link'
 import { useLanguage } from '@/store/use-language'
 import { AnimatePresence } from 'framer-motion'
-import { NavItem } from '../../components/nav-item'
+import { NavItem } from '@/components/layout/navbar/nav-item'
 import { Border } from '@/components/border'
-import { LanguageSelector } from '@/components/language-selector'
+import { LanguageSelector } from '@/components/layout/navbar/language-selector'
 import { Menu } from './menu'
 import { Container } from '@/components/container'
 
@@ -94,7 +94,7 @@ export const Navbar = () => {
                             ? 'Veranstaltungen'
                             : ''
                     }
-                    href={`/udalosti`}
+                    href={`/udalosti/${language}`}
                   />
                   <NavItem
                     label={

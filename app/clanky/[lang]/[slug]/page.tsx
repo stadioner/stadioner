@@ -1,33 +1,41 @@
-import { Post } from '../../_containers/post'
-import { cachedClient } from '@/sanity/lib/client'
+import { Post } from '../../_components/post'
+import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   postBySlugQuery,
   postsPathsByLanguageQuery,
 } from '@/sanity/lib/queries'
-import { SupportedLanguage } from '@/types/blog'
+import { type SupportedLanguage } from '@/types/blog'
 import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import createImageUrlBuilder from '@sanity/image-url'
 import { dataset, projectId } from '@/sanity/env'
-import { Sidebar } from '../../_containers/sidebar'
+import { Sidebar } from '../../_components/sidebar'
 import { Container } from '@/components/container'
+import {
+  isSupportedLanguage,
+  supportedLanguages,
+} from '@/lib/i18n/site-languages'
+import { type Post as BlogPost } from '@/types/blog'
 
 interface Props {
   params: Promise<{ lang: string; slug: string }>
 }
 
-const supportedLanguages: SupportedLanguage[] = ['cs', 'en', 'de']
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params
 
-  if (!supportedLanguages.includes(lang as SupportedLanguage)) {
+  if (!isSupportedLanguage(lang)) {
     return {
       title: 'Post Not Found',
     }
   }
 
-  const post = await cachedClient(postBySlugQuery, { slug, language: lang })
+  const post = await sanityFetch<BlogPost | null>({
+    query: postBySlugQuery,
+    params: { slug, language: lang },
+    tags: [`blog:post:${lang}:${slug}`],
+    revalidate: 60,
+  })
 
   if (!post) {
     return {
@@ -79,9 +87,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export async function generateStaticParams() {
   const allPaths = await Promise.all(
     supportedLanguages.map(async lang => {
-      const posts = await cachedClient(postsPathsByLanguageQuery, {
-        language: lang,
+      const posts = await sanityFetch<{ params: { slug: string } }[]>({
+        query: postsPathsByLanguageQuery,
+        params: { language: lang },
+        tags: [`blog:paths:${lang}`],
+        revalidate: 300,
       })
+
       return posts.map((post: { params: { slug: string } }) => ({
         lang,
         slug: post.params.slug,
@@ -98,11 +110,16 @@ export const revalidate = 60
 export default async function Page({ params }: Props) {
   const { lang, slug } = await params
 
-  if (!supportedLanguages.includes(lang as SupportedLanguage)) {
+  if (!isSupportedLanguage(lang)) {
     notFound()
   }
 
-  const post = await cachedClient(postBySlugQuery, { slug, language: lang })
+  const post = await sanityFetch<BlogPost | null>({
+    query: postBySlugQuery,
+    params: { slug, language: lang },
+    tags: [`blog:post:${lang}:${slug}`],
+    revalidate: 60,
+  })
 
   if (!post) {
     notFound()

@@ -1,11 +1,11 @@
 import { Suspense } from 'react'
-import { Hero } from './_containers/hero'
-import { Places } from './_containers/places'
-import { Intro } from './_containers/intro'
-import { About } from './_containers/about'
-import { Products } from '@/containers/products'
+import { Hero } from './_components/hero'
+import { Places } from './_components/places'
+import { Intro } from './_components/intro'
+import { About } from './_components/about'
+import { Products } from '@/components/products'
 import { Metadata } from 'next'
-import { OpeningHours } from './_containers/opening-hours'
+import { OpeningHours } from './_components/opening-hours'
 
 export const metadata: Metadata = {
   title: 'Pivovar Kout na Šumavě',

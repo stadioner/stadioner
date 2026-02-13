@@ -1,18 +1,21 @@
-import { cachedClient } from '@/sanity/lib/client'
-import {
-  postsByLanguageQuery,
-  categoriesByLanguageQuery,
-} from '@/sanity/lib/queries'
-import { BlogPage } from './_containers/blog-page'
-import { SupportedLanguage } from '@/types/blog'
-import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+import { Container } from '@/components/container'
+import { Posts } from '../_components/posts'
+import {
+  isSupportedLanguage,
+  supportedLanguages,
+} from '@/lib/i18n/site-languages'
+import { sanityFetch } from '@/sanity/lib/fetch'
+import {
+  categoriesByLanguageQuery,
+  postsListByLanguageQuery,
+} from '@/sanity/lib/queries'
+import { type Category, type Post, type SupportedLanguage } from '@/types/blog'
 
 interface Props {
   params: Promise<{ lang: string }>
 }
-
-const supportedLanguages: SupportedLanguage[] = ['cs', 'en', 'de']
 
 const languageNames = {
   cs: 'Články',
@@ -23,13 +26,13 @@ const languageNames = {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang } = await params
 
-  if (!supportedLanguages.includes(lang as SupportedLanguage)) {
+  if (!isSupportedLanguage(lang)) {
     return {
       title: 'Blog Not Found',
     }
   }
 
-  const title = `${languageNames[lang as keyof typeof languageNames]}`
+  const title = languageNames[lang]
   const description =
     lang === 'cs'
       ? 'Přečtěte si nejnovější články a novinky ze světa piva a gastronomie.'
@@ -59,26 +62,40 @@ export async function generateStaticParams() {
   }))
 }
 
-// Enable ISR with 60 second revalidation
 export const revalidate = 60
 
 export default async function Page({ params }: Props) {
   const { lang } = await params
 
-  if (!supportedLanguages.includes(lang as SupportedLanguage)) {
+  if (!isSupportedLanguage(lang)) {
     notFound()
   }
 
   const [posts, categories] = await Promise.all([
-    cachedClient(postsByLanguageQuery, { language: lang }),
-    cachedClient(categoriesByLanguageQuery, { language: lang }),
+    sanityFetch<Post[]>({
+      query: postsListByLanguageQuery,
+      params: { language: lang },
+      tags: [`blog:posts:${lang}`],
+      revalidate: 60,
+    }),
+    sanityFetch<Category[]>({
+      query: categoriesByLanguageQuery,
+      params: { language: lang },
+      tags: [`blog:categories:${lang}`],
+      revalidate: 300,
+    }),
   ])
 
   return (
-    <BlogPage
-      posts={posts}
-      categories={categories}
-      language={lang as SupportedLanguage}
-    />
+    <main className='bg-brand-primary pt-32 md:pt-40 pb-28'>
+      <Container>
+        <Posts
+          posts={posts}
+          categories={categories}
+          language={lang as SupportedLanguage}
+        />
+      </Container>
+    </main>
   )
 }
+
