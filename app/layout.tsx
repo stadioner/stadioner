@@ -10,6 +10,7 @@ import { CookieManager } from '@/components/cookie-manager'
 import { NewsletterPopup } from '@/components/newsletter-popup'
 import { Analytics } from '@vercel/analytics/next'
 import { ToastProvider } from '@/components/custom-toast'
+import { siteUrl } from '@/lib/seo/site'
 
 const mohave = Mohave({
   variable: '--font-mohave',
@@ -21,6 +22,8 @@ const caladea = Caladea({
   weight: '400',
   subsets: ['latin'],
 })
+
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION
 
 export const metadata: Metadata = {
   title: {
@@ -47,19 +50,14 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://stadioner.cz'),
+  metadataBase: new URL(siteUrl),
   alternates: {
     canonical: '/',
-    languages: {
-      cs: '/',
-      en: '/en',
-      de: '/de',
-    },
   },
   openGraph: {
     type: 'website',
     locale: 'cs_CZ',
-    url: 'https://stadioner.cz',
+    url: siteUrl,
     siteName: 'Stadioner',
     title: 'Pivovar Kout na Šumavě',
     description:
@@ -91,9 +89,11 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  verification: {
-    google: 'your-google-verification-code',
-  },
+  verification: googleSiteVerification
+    ? {
+        google: googleSiteVerification,
+      }
+    : undefined,
 }
 
 export default function RootLayout({
@@ -102,7 +102,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
+    <html lang='cs'>
       <body
         className={cn(
           'antialiased font-mohave bg-brand-action',

@@ -1,9 +1,14 @@
-'use client'
+import { type Metadata } from 'next'
+import { redirect } from 'next/navigation'
 
-import { useRouter } from 'next/navigation'
+export const metadata: Metadata = {
+  title: 'QR Redirect',
+  robots: {
+    index: false,
+    follow: false,
+  },
+}
 
 export default function QrPage() {
-  const router = useRouter()
-
-  router.push('/rozcestnik')
+  redirect('/rozcestnik')
 }

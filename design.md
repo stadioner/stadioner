@@ -39,6 +39,20 @@ Completed in this refactor cycle:
 - Optimized content queries for listings/sitemap to avoid overfetching (`postsListByLanguageQuery`, `eventsListByLanguageQuery`, `postsForSitemapByLanguageQuery`).
 - Converted non-interactive content renderers to server components where possible (`app/clanky/_components/post.tsx`, `app/udalosti/[lang]/_components/event-detail.tsx`).
 - Replaced fragile nav active-state matching with exact/segment-based matching in `components/layout/navbar/nav-item.tsx`.
+- Stabilized technical SEO layer with centralized helpers:
+  - `lib/seo/site.ts` for canonical site URL + locale defaults
+  - `lib/seo/alternates.ts` for canonical/hreflang generation on localized blog/event routes
+  - `lib/seo/schema.ts` for JSON-LD schema generation (Organization, WebSite, BlogPosting, Event)
+- Corrected global SEO signals in `app/layout.tsx`:
+  - root `<html lang='cs'>`
+  - removed global multilingual alternates outside localized sections
+  - Google site verification is now env-driven (`GOOGLE_SITE_VERIFICATION`)
+- Expanded crawl/index coverage:
+  - sitemap now includes static, legal, localized blog/event listing pages, and blog/event detail URLs
+  - robots policy keeps admin/studio blocked while allowing Next.js asset rendering
+- Added structured data output on homepage and localized article/event detail pages via JSON-LD script tags.
+- Replaced client QR navigation with server redirect and explicit noindex policy (`app/qr/page.tsx`).
+- Fixed SEO-critical internal links in `app/rozcestnik/page.tsx` to valid product slugs and existing routes.
 
 ## Design Tokens
 

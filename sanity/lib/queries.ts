@@ -46,6 +46,12 @@ export const postsForSitemapByLanguageQuery = groq`
   }
 `
 
+export const postLanguageVariantsBySlugQuery = groq`
+  *[_type == "post" && slug.current == $slug && language in $languages]{
+    language
+  }
+`
+
 export const postBySlugQuery = groq`
   *[_type == "post" && slug.current == $slug && language == $language][0] {
     _id,
@@ -151,5 +157,20 @@ export const eventBySlugQuery = groq`
 export const eventsPathsByLanguageQuery = groq`
   *[_type == "event" && language == $language && defined(slug.current)][]{
     "params": { "slug": slug.current }
+  }
+`
+
+export const eventsForSitemapByLanguageQuery = groq`
+  *[_type == "event" && language == $language && defined(slug.current)] | order(dateTime asc) {
+    slug,
+    dateTime,
+    endDateTime,
+    _updatedAt
+  }
+`
+
+export const eventLanguageVariantsBySlugQuery = groq`
+  *[_type == "event" && slug.current == $slug && language in $languages]{
+    language
   }
 `

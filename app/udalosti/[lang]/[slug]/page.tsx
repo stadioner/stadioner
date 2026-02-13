@@ -1,5 +1,6 @@
 import { sanityFetch } from '@/sanity/lib/fetch'
 import {
+  eventLanguageVariantsBySlugQuery,
   eventBySlugQuery,
   eventsPathsByLanguageQuery,
 } from '@/sanity/lib/queries'
@@ -15,9 +16,50 @@ import {
   supportedLanguages,
 } from '@/lib/i18n/site-languages'
 import { type Event } from '@/types/event'
+import { createLocalizedDetailAlternates } from '@/lib/seo/alternates'
+import {
+  localizedSeoLocales,
+  toAbsoluteUrl,
+  type LocalizedSeoLocale,
+} from '@/lib/seo/site'
+import {
+  buildEventSchema,
+  jsonLdToHtml,
+  portableTextToPlainText,
+} from '@/lib/seo/schema'
 
 interface Props {
   params: Promise<{ lang: string; slug: string }>
+}
+
+const imageUrlBuilder = createImageUrlBuilder({ projectId, dataset })
+
+const isLocalizedSeoLocale = (
+  locale: string,
+): locale is LocalizedSeoLocale => {
+  return localizedSeoLocales.includes(locale as LocalizedSeoLocale)
+}
+
+const getEventImageUrl = (event: Event) => {
+  if (!event.mainImage) {
+    return ''
+  }
+
+  return imageUrlBuilder.image(event.mainImage).width(1200).height(630).url()
+}
+
+const resolveEventAvailableLocales = async (slug: string) => {
+  const variants =
+    (await sanityFetch<{ language: string }[]>({
+      query: eventLanguageVariantsBySlugQuery,
+      params: { slug, languages: [...localizedSeoLocales] },
+      tags: [`events:variants:${slug}`],
+      revalidate: 300,
+    }).catch(() => [])) ?? []
+
+  return variants
+    .map(variant => variant.language)
+    .filter(isLocalizedSeoLocale)
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -43,25 +85,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 
   const title = event.title
-  // We can add logic to extract description from PortableText if needed, or use a specific SEO field if added to Event schema.
-  // For now using title.
-  const description = title
-
-  const imageUrl = event.mainImage
-    ? createImageUrlBuilder({ projectId, dataset })
-        .image(event.mainImage)
-        .width(1200)
-        .height(630)
-        .url()
-    : ''
+  const description = portableTextToPlainText(event.description) || title
+  const imageUrl = getEventImageUrl(event)
+  const availableLocales = await resolveEventAvailableLocales(slug)
+  const alternates = createLocalizedDetailAlternates(
+    'udalosti',
+    lang,
+    slug,
+    availableLocales,
+  )
+  const canonicalUrl = toAbsoluteUrl(alternates.canonical)
 
   return {
     title,
     description,
+    alternates,
     openGraph: {
       title,
       description,
       type: 'article',
+      url: canonicalUrl,
       publishedTime: event.dateTime,
       images: imageUrl
         ? [
@@ -130,11 +173,30 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
+  const description = portableTextToPlainText(event.description) || event.title
+  const imageUrl = getEventImageUrl(event) || undefined
+  const eventSchema = buildEventSchema({
+    name: event.title,
+    description,
+    url: toAbsoluteUrl(`/udalosti/${lang}/${encodeURIComponent(slug)}`),
+    startDate: event.dateTime,
+    endDate: event.endDateTime,
+    imageUrl,
+    location: event.location,
+    language: lang,
+  })
+
   return (
-    <main className='bg-brand-primary pt-32 md:pt-40 pb-20'>
-      <Container>
-        <EventDetail event={event} language={lang as SupportedLanguage} />
-      </Container>
-    </main>
+    <>
+      <main className='bg-brand-primary pt-32 md:pt-40 pb-20'>
+        <Container>
+          <EventDetail event={event} language={lang as SupportedLanguage} />
+        </Container>
+      </main>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={jsonLdToHtml(eventSchema)}
+      />
+    </>
   )
 }

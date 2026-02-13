@@ -12,6 +12,8 @@ import {
   postsListByLanguageQuery,
 } from '@/sanity/lib/queries'
 import { type Category, type Post, type SupportedLanguage } from '@/types/blog'
+import { createLocalizedListingAlternates } from '@/lib/seo/alternates'
+import { type LocalizedSeoLocale } from '@/lib/seo/site'
 
 interface Props {
   params: Promise<{ lang: string }>
@@ -39,10 +41,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : lang === 'en'
         ? 'Read the latest articles and news from the world of beer and gastronomy.'
         : 'Lesen Sie die neuesten Artikel und Nachrichten aus der Welt des Bieres und der Gastronomie.'
+  const alternates = createLocalizedListingAlternates(
+    'clanky',
+    lang as LocalizedSeoLocale,
+  )
 
   return {
     title,
     description,
+    alternates,
     openGraph: {
       title,
       description,
@@ -98,4 +105,3 @@ export default async function Page({ params }: Props) {
     </main>
   )
 }
-

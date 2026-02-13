@@ -2,7 +2,10 @@ import { PropsWithChildren } from 'react'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'Události',
+  title: {
+    default: 'Události',
+    template: '%s | Stadioner',
+  },
   description: 'Události v pivovaru Stadioner v Koutě na Šumavě.',
   keywords: [
     'události',

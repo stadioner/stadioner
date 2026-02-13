@@ -1,18 +1,8 @@
 User-agent: *
 Allow: /
 
-# Sitemap
-Sitemap: https://stadioner.cz/sitemap.xml
-
-# Disallow admin areas
 Disallow: /studio/
-Disallow: /api/
-Disallow: /_next/
 Disallow: /admin/
+Disallow: /api/
 
-# Allow important pages
-Allow: /clanky/
-Allow: /historie/
-Allow: /produkty/
-Allow: /kontakt/
-Allow: /prodejni-mista/
+Sitemap: https://stadioner.cz/sitemap.xml

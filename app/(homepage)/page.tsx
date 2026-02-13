@@ -6,6 +6,11 @@ import { About } from './_components/about'
 import { Products } from '@/components/products'
 import { Metadata } from 'next'
 import { OpeningHours } from './_components/opening-hours'
+import {
+  buildOrganizationSchema,
+  buildWebSiteSchema,
+  jsonLdToHtml,
+} from '@/lib/seo/schema'
 
 export const metadata: Metadata = {
   title: 'Pivovar Kout na Šumavě',
@@ -39,19 +44,32 @@ export const metadata: Metadata = {
 }
 
 export default function HomePage() {
-  return (
-    <main className='overflow-hidden'>
-      <Intro />
+  const organizationSchema = buildOrganizationSchema()
+  const websiteSchema = buildWebSiteSchema()
 
-      <Hero />
-      <About />
-      <Suspense
-        fallback={<div className='bg-brand-action py-8'>Loading...</div>}
-      >
-        <Products rippedPaper />
-      </Suspense>
-      <Places />
-      <OpeningHours />
-    </main>
+  return (
+    <>
+      <main className='overflow-hidden'>
+        <Intro />
+
+        <Hero />
+        <About />
+        <Suspense
+          fallback={<div className='bg-brand-action py-8'>Loading...</div>}
+        >
+          <Products rippedPaper />
+        </Suspense>
+        <Places />
+        <OpeningHours />
+      </main>
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={jsonLdToHtml(organizationSchema)}
+      />
+      <script
+        type='application/ld+json'
+        dangerouslySetInnerHTML={jsonLdToHtml(websiteSchema)}
+      />
+    </>
   )
 }

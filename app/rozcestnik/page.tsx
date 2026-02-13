@@ -12,7 +12,6 @@ import {
   MapPin,
   ExternalLink,
   Beer,
-  ShoppingCart,
   Calendar,
   FileText,
   Globe,
@@ -82,7 +81,7 @@ export default function RozcestnikPage() {
       {
         title: 'Pivo',
         description: 'Naše nefiltrované ležáky a speciály.',
-        href: '/produkty?produkt=profesor-dvanactka&kategorie=pivo',
+        href: '/produkty?produkt=profesor-12&kategorie=pivo',
         icon: <Beer size={24} />,
         category: 'products',
       },
@@ -96,7 +95,7 @@ export default function RozcestnikPage() {
       {
         title: 'Voda',
         description: 'Pramenitá voda sycená i nesycená.',
-        href: '/produkty?produkt=pramenita-voda-sycena&kategorie=voda',
+        href: '/produkty?produkt=pramenita-voda-perliva&kategorie=voda',
         icon: <GlassWater size={24} />,
         category: 'products',
       },
@@ -169,7 +168,7 @@ export default function RozcestnikPage() {
       {
         title: 'Beers',
         description: 'Our unfiltered lagers and specials.',
-        href: '/produkty?produkt=profesor-dvanactka&kategorie=pivo',
+        href: '/produkty?produkt=profesor-12&kategorie=pivo',
         icon: <Beer size={24} />,
         category: 'products',
       },
@@ -183,7 +182,7 @@ export default function RozcestnikPage() {
       {
         title: 'Water',
         description: 'Spring water, sparkling and still.',
-        href: '/produkty?produkt=pramenita-voda-sycena&kategorie=voda',
+        href: '/produkty?produkt=pramenita-voda-perliva&kategorie=voda',
         icon: <GlassWater size={24} />,
         category: 'products',
       },
@@ -235,7 +234,7 @@ export default function RozcestnikPage() {
       {
         title: 'Kontakt',
         description: 'Kontaktieren Sie uns für Bestellungen und Anfragen',
-        href: '/kontakt/de',
+        href: '/kontakt',
         icon: <Phone size={24} />,
         category: 'business',
       },
@@ -258,7 +257,7 @@ export default function RozcestnikPage() {
       {
         title: 'Bier',
         description: 'Unsere ungefilterten Lager und Spezialitäten.',
-        href: '/produkty?produkt=profesor-dvanactka&kategorie=pivo',
+        href: '/produkty?produkt=profesor-12&kategorie=pivo',
         icon: <Beer size={24} />,
         category: 'products',
       },
@@ -272,7 +271,7 @@ export default function RozcestnikPage() {
       {
         title: 'Wasser',
         description: 'Quellwasser, mit und ohne Kohlensäure.',
-        href: '/produkty?produkt=pramenita-voda-sycena&kategorie=voda',
+        href: '/produkty?produkt=pramenita-voda-perliva&kategorie=voda',
         icon: <GlassWater size={24} />,
         category: 'products',
       },
@@ -287,7 +286,7 @@ export default function RozcestnikPage() {
       {
         title: 'Blog',
         description: 'Artikel über die Brauerei, Rezepte und Veranstaltungen',
-        href: '/clanky',
+        href: '/clanky/de',
         icon: <FileText size={24} />,
         category: 'info',
       },

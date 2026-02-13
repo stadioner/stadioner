@@ -9,6 +9,8 @@ import {
   supportedLanguages,
 } from '@/lib/i18n/site-languages'
 import { type Event } from '@/types/event'
+import { createLocalizedListingAlternates } from '@/lib/seo/alternates'
+import { type LocalizedSeoLocale } from '@/lib/seo/site'
 
 interface Props {
   params: Promise<{ lang: string }>
@@ -36,10 +38,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       : lang === 'en'
         ? 'Upcoming events and actions.'
         : 'Kommende Veranstaltungen und Aktionen.'
+  const alternates = createLocalizedListingAlternates(
+    'udalosti',
+    lang as LocalizedSeoLocale,
+  )
 
   return {
     title,
     description,
+    alternates,
     openGraph: {
       title,
       description,

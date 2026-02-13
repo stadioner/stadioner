@@ -1,83 +1,113 @@
 import { MetadataRoute } from 'next'
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { postsForSitemapByLanguageQuery } from '@/sanity/lib/queries'
-import { supportedLanguages } from '@/lib/i18n/site-languages'
+import {
+  eventsForSitemapByLanguageQuery,
+  postsForSitemapByLanguageQuery,
+} from '@/sanity/lib/queries'
+import { localizedSeoLocales, toAbsoluteUrl } from '@/lib/seo/site'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = 'https://stadioner.cz'
+  const now = new Date()
 
-  // Static pages
+  const createEntry = (
+    path: string,
+    changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'],
+    priority: number,
+    lastModified: Date = now,
+  ): MetadataRoute.Sitemap[number] => ({
+    url: toAbsoluteUrl(path),
+    lastModified,
+    changeFrequency,
+    priority,
+  })
+
   const staticPages = [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/historie`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/produkty`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/kontakt`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/prodejni-mista`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly' as const,
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/cookies`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly' as const,
-      priority: 0.5,
-    },
+    createEntry('/', 'daily', 1),
+    createEntry('/historie', 'weekly', 0.8),
+    createEntry('/produkty', 'weekly', 0.9),
+    createEntry('/kontakt', 'weekly', 0.8),
+    createEntry('/prodejni-mista', 'weekly', 0.8),
+    createEntry('/newsletter', 'weekly', 0.7),
+    createEntry('/pro-firmy', 'weekly', 0.7),
+    createEntry('/rozcestnik', 'weekly', 0.6),
+    createEntry('/cookies', 'yearly', 0.3),
+    createEntry('/gdpr', 'yearly', 0.3),
+    createEntry('/obchodni-podminky', 'yearly', 0.3),
   ]
 
-  // Blog pages for each language
-  const blogListingPages = supportedLanguages.map(lang => ({
-    url: `${baseUrl}/clanky/${lang}`,
-    lastModified: new Date(),
-    changeFrequency: 'daily' as const,
-    priority: 0.8,
-  }))
+  const blogListingPages = localizedSeoLocales.map(lang =>
+    createEntry(`/clanky/${lang}`, 'daily', 0.7),
+  )
+
+  const eventListingPages = localizedSeoLocales.map(lang =>
+    createEntry(`/udalosti/${lang}`, 'daily', 0.7),
+  )
 
   const postsByLanguage = await Promise.all(
-    supportedLanguages.map(async lang => {
-      const posts = await sanityFetch<
-        {
-          slug: { current: string }
-          publishedAt?: string
-        }[]
-      >({
-        query: postsForSitemapByLanguageQuery,
-        params: { language: lang },
-        tags: [`blog:sitemap:${lang}`],
-        revalidate: 300,
-      }).catch(() => [])
+    localizedSeoLocales.map(async lang => {
+      const posts =
+        (await sanityFetch<
+          {
+            slug: { current: string }
+            publishedAt?: string
+          }[]
+        >({
+          query: postsForSitemapByLanguageQuery,
+          params: { language: lang },
+          tags: [`blog:sitemap:${lang}`],
+          revalidate: 300,
+        }).catch(() => [])) ?? []
 
-      return posts.map(post => ({
-        url: `${baseUrl}/clanky/${lang}/${post.slug.current}`,
-        lastModified: new Date(post.publishedAt || new Date()),
-        changeFrequency: 'monthly' as const,
-        priority: 0.6,
-      }))
+      return posts.map(post =>
+        createEntry(
+          `/clanky/${lang}/${post.slug.current}`,
+          'weekly',
+          0.6,
+          post.publishedAt ? new Date(post.publishedAt) : now,
+        ),
+      )
     }),
   )
 
-  const blogPages = [...blogListingPages, ...postsByLanguage.flat()]
+  const eventsByLanguage = await Promise.all(
+    localizedSeoLocales.map(async lang => {
+      const events =
+        (await sanityFetch<
+          {
+            slug: { current: string }
+            dateTime?: string
+            endDateTime?: string
+            _updatedAt?: string
+          }[]
+        >({
+          query: eventsForSitemapByLanguageQuery,
+          params: { language: lang },
+          tags: [`events:sitemap:${lang}`],
+          revalidate: 300,
+        }).catch(() => [])) ?? []
 
-  return [...staticPages, ...blogPages]
+      return events.map(event =>
+        createEntry(
+          `/udalosti/${lang}/${event.slug.current}`,
+          'weekly',
+          0.6,
+          event._updatedAt
+            ? new Date(event._updatedAt)
+            : event.endDateTime
+              ? new Date(event.endDateTime)
+              : event.dateTime
+                ? new Date(event.dateTime)
+                : now,
+        ),
+      )
+    }),
+  )
+
+  return [
+    ...staticPages,
+    ...blogListingPages,
+    ...eventListingPages,
+    ...postsByLanguage.flat(),
+    ...eventsByLanguage.flat(),
+  ]
 }
