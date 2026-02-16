@@ -21,6 +21,13 @@ interface ProductInfoProps {
     preparing: string
   }
   isPreparing?: boolean
+  hideBuyButton?: boolean
+  noteText?: string
+  cta?: {
+    label: string
+    href: string
+    external?: boolean
+  }
 }
 
 export const ProductInfo = ({
@@ -28,6 +35,9 @@ export const ProductInfo = ({
   buyUrl,
   labels,
   isPreparing = false,
+  hideBuyButton = false,
+  noteText,
+  cta,
 }: ProductInfoProps) => {
   // Use slug as key to only animate on product change, not packaging change
   const productKey = product.slug
@@ -51,27 +61,29 @@ export const ProductInfo = ({
               {product.name}
             </motion.h2>
           </AnimatePresence>
-          <div className='flex items-center gap-2'>
-            <Dialog>
-              <DialogTrigger className='border border-brand-primary text-brand-primary font-bold py-1 px-2 sm:px-3 mb-2 cursor-pointer hover:opacity-90 transition hover:bg-brand-primary hover:text-brand-action self-end text-xs sm:text-sm'>
-                {labels.composition}
-              </DialogTrigger>
-              <DialogContent className='bg-brand-primary h-[500px]'>
-                <DialogHeader>
-                  <DialogTitle className='text-brand-action text-2xl'>
-                    {labels.compositionTitle}
-                  </DialogTitle>
-                </DialogHeader>
-                {product.ingredients && (
-                  <img
-                    src={product.ingredients}
-                    alt='ingredients'
-                    className='max-h-[400px]'
-                  />
-                )}
-              </DialogContent>
-            </Dialog>
-          </div>
+          {!hideBuyButton && (
+            <div className='flex items-center gap-2'>
+              <Dialog>
+                <DialogTrigger className='border border-brand-primary text-brand-primary font-bold py-1 px-2 sm:px-3 mb-2 cursor-pointer hover:opacity-90 transition hover:bg-brand-primary hover:text-brand-action self-end text-xs sm:text-sm'>
+                  {labels.composition}
+                </DialogTrigger>
+                <DialogContent className='bg-brand-primary h-[500px]'>
+                  <DialogHeader>
+                    <DialogTitle className='text-brand-action text-2xl'>
+                      {labels.compositionTitle}
+                    </DialogTitle>
+                  </DialogHeader>
+                  {product.ingredients && (
+                    <img
+                      src={product.ingredients}
+                      alt='ingredients'
+                      className='max-h-[400px]'
+                    />
+                  )}
+                </DialogContent>
+              </Dialog>
+            </div>
+          )}
         </div>
         <AnimatePresence mode='wait'>
           <motion.p
@@ -85,35 +97,61 @@ export const ProductInfo = ({
             {product.description}
           </motion.p>
         </AnimatePresence>
-        <div className='flex justify-between border-t border-zinc-600 pt-3 sm:pt-6 mb-3 sm:mb-6'>
-          {product.stats.map(stat => (
-            <div
-              key={stat.label}
-              className='flex flex-col items-center min-w-[70px] sm:min-w-[90px]'
-            >
-              <span className='text-xs text-zinc-400'>{stat.label}</span>
-              <span className='text-sm sm:text-lg font-bold text-brand-primary'>
-                {stat.value}
-              </span>
+
+        {hideBuyButton && (
+          <div className='mt-2 sm:mt-3'>
+            {cta && (
+              <Button
+                asChild
+                variant='outline'
+                className='bg-brand-primary text-brand-action border-brand-primary hover:bg-brand-primary/90'
+              >
+                <Link
+                  href={cta.href}
+                  target={cta.external ? '_blank' : undefined}
+                  rel={cta.external ? 'noopener noreferrer' : undefined}
+                >
+                  {cta.label}
+                </Link>
+              </Button>
+            )}
+            {noteText && <p className='text-xs text-zinc-300 mt-2'>{noteText}</p>}
+          </div>
+        )}
+
+        {!hideBuyButton && (
+          <>
+            <div className='flex justify-between border-t border-zinc-600 pt-3 sm:pt-6 mb-3 sm:mb-6'>
+              {product.stats.map(stat => (
+                <div
+                  key={stat.label}
+                  className='flex flex-col items-center min-w-[70px] sm:min-w-[90px]'
+                >
+                  <span className='text-xs text-zinc-400'>{stat.label}</span>
+                  <span className='text-sm sm:text-lg font-bold text-brand-primary'>
+                    {stat.value}
+                  </span>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className='grid place-self-end'>
-          {isPreparing ? (
-            <Button variant={'shop'} disabled>
-              {labels.preparing}
-            </Button>
-          ) : (
-            <Button asChild variant={'shop'}>
-              <Link href={buyUrl} target='_blank' rel='noopener noreferrer'>
-                {labels.buy}
-              </Link>
-            </Button>
-          )}
-          {!isPreparing && (
-            <p className='text-xs text-zinc-400 mt-1'>{labels.depositNote}</p>
-          )}
-        </div>
+            <div className='grid place-self-end'>
+              {isPreparing ? (
+                <Button variant={'shop'} disabled>
+                  {labels.preparing}
+                </Button>
+              ) : (
+                <Button asChild variant={'shop'}>
+                  <Link href={buyUrl} target='_blank' rel='noopener noreferrer'>
+                    {labels.buy}
+                  </Link>
+                </Button>
+              )}
+              {!isPreparing && (
+                <p className='text-xs text-zinc-400 mt-1'>{labels.depositNote}</p>
+              )}
+            </div>
+          </>
+        )}
       </div>
     </div>
   )

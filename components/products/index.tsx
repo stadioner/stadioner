@@ -19,9 +19,17 @@ import { KegNewsDialog } from '@/components/products/keg-news-dialog'
 export const Products = ({
   rippedPaper,
   hScreen,
+  b2bMode = false,
+  b2bNote,
+  b2bCtaLabel,
+  b2bCtaHref,
 }: {
   rippedPaper?: boolean
   hScreen?: boolean
+  b2bMode?: boolean
+  b2bNote?: string
+  b2bCtaLabel?: string
+  b2bCtaHref?: string
 }) => {
   const { language } = useLanguage()
   const activeLang = language === 'en' || language === 'de' ? language : 'cs'
@@ -146,7 +154,7 @@ export const Products = ({
             onPackagingChange={handlePackagingChange}
           />
 
-          <KegNewsDialog />
+          {!b2bMode && <KegNewsDialog />}
 
           <div className='flex flex-col md:grid md:grid-cols-[2fr_1fr] gap-4 sm:gap-8 items-stretch mt-4 sm:mt-6 md:mt-12'>
             <div className='flex-1 md:hidden flex items-center justify-center relative'>
@@ -163,6 +171,17 @@ export const Products = ({
               product={product}
               buyUrl={buyUrl}
               isPreparing={isPreparing}
+              hideBuyButton={b2bMode}
+              noteText={b2bMode ? b2bNote : undefined}
+              cta={
+                b2bMode && b2bCtaLabel && b2bCtaHref
+                  ? {
+                      label: b2bCtaLabel,
+                      href: b2bCtaHref,
+                      external: b2bCtaHref.startsWith('http'),
+                    }
+                  : undefined
+              }
               labels={{
                 composition: labels.composition,
                 compositionTitle: labels.compositionTitle,
