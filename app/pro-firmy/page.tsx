@@ -5,6 +5,7 @@ import { B2BPackagingConfigurator } from './_components/packaging-configurator'
 import { B2BCooperationFlow } from './_components/cooperation-flow'
 import { B2BContactFaq } from './_components/contact-faq'
 import { RippedPaperSVG } from '@/components/ripped-paper-svg'
+import { Suspense } from 'react'
 
 export default function ProFirmyPage() {
   return (
@@ -13,7 +14,9 @@ export default function ProFirmyPage() {
       <B2BTypes />
       <B2BCoverageMap />
       <RippedPaperSVG flip />
-      <B2BPackagingConfigurator />
+      <Suspense fallback={<div className='bg-brand-action py-8' />}>
+        <B2BPackagingConfigurator />
+      </Suspense>
       <RippedPaperSVG />
       <B2BCooperationFlow />
       <B2BContactFaq />
