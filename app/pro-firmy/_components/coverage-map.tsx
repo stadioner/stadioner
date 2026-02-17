@@ -17,9 +17,9 @@ export const B2BCoverageMap = () => {
   const copy = b2bContent[getB2BLanguage(language)]
 
   return (
-    <section id='b2b-coverage' className='bg-brand-primary py-20'>
+    <section id='b2b-coverage' className='bg-brand-primary py-20 scroll-mt-16'>
       <Container>
-        <div className='max-w-3xl'>
+        <div className='max-w-4xl'>
           <h2 className='text-brand-action text-3xl md:text-4xl lg:text-5xl font-bold'>
             {copy.coverage.title}
           </h2>

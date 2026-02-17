@@ -95,19 +95,19 @@ export const getB2BLanguage = (language: string): B2BLanguage =>
 export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
   cs: {
     hero: {
-      eyebrow: 'B2B spolupráce',
-      title: 'Partner pro hospody, restaurace a lokální podniky',
+      eyebrow: 'B2B partnerství pro váš podnik',
+      title: 'Stabilní dodávky, silná značka a vyšší obrat',
       philosophy:
         'Nechceme jít do řetězců. Chceme budovat síť vesnických obchodů, které mají vztah se zákazníky. My vám dodáme produkt a uděláme marketing. Vy na tom vyděláte na každé lahvi a ještě získáte objednávky z e-shopu.',
       description:
-        'Stadioner staví spolupráci na dlouhodobém vztahu, kvalitním produktu a podpoře prodeje přímo ve vašem podniku.',
-      ctaPrimary: 'Domluvit spolupráci',
-      ctaSecondary: 'Kde působíme',
+        'Vyplňte krátký formulář a pošleme vám nezávazný návrh spolupráce, závozu i podpory prodeje pro váš provoz.',
+      ctaPrimary: 'Chci nezávaznou nabídku',
+      ctaSecondary: 'Podívat se na působnost',
     },
     types: {
       title: 'Pro koho je spolupráce určená',
       description:
-        'Dodáváme do různých provozů, kde dává smysl poctivý lokální produkt a osobní přístup.',
+        'Ať provozujete hospodu, restauraci nebo obchod, nastavíme spolupráci podle vašeho provozu a obratu.',
       cards: [
         {
           id: 'pub',
@@ -150,15 +150,15 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
     coverage: {
       title: 'Kde už dnes působíme',
       description:
-        'Naši síť partnerů postupně rozšiřujeme od Koutu na Šumavě do dalších měst a podniků.',
+        'Síť partnerů rozšiřujeme z Koutu na Šumavě do dalších měst. Přidejte se i vy a získejte lokální značku, která se prodává.',
     },
     packaging: {
-      title: 'Přehled balení pro B2B',
+      title: 'Balení pro každý typ provozu',
       description:
-        'Vyberte formát, který sedí vašemu provozu. Dodáváme víc variant balení podle typu podniku.',
+        'Porovnejte varianty balení a vyberte to, co nejlépe sedí vaší výtoči i skladovým možnostem.',
       priceListNote:
-        'Přesný ceník posíláme po úvodním kontaktu podle typu spolupráce a objemu odběru.',
-      requestPriceList: 'Vyžádat ceník',
+        'Přesný ceník a obchodní podmínky posíláme po vyplnění formuláře. Odezva obvykle do 24 hodin.',
+      requestPriceList: 'Poslat ceník',
       items: [
         {
           id: 'bottle',
@@ -196,7 +196,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
     cooperation: {
       title: 'Průběh spolupráce',
       description:
-        'Jednoduchý proces, jasné kroky a rychlé spuštění dodávek.',
+        'Od prvního kontaktu k pravidelné dodávce v několika jasných krocích.',
       wheelHint: 'Na desktopu přepnete kroky kolečkem myši nebo trackpadem.',
       mobileHint: 'Na mobilu je průběh zobrazený ve vertikálním pořadí.',
       steps: [
@@ -205,7 +205,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           badge: '1. krok',
           title: 'Kontakt',
           description:
-            'Vyplníte krátký formulář. Ozveme se vám s navržením dalšího postupu.',
+            'Vyplníte 2minutový formulář. Ozveme se vám s konkrétním návrhem dalšího postupu.',
         },
         {
           id: 'tasting',
@@ -231,15 +231,16 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       ],
     },
     contactFaq: {
-      title: 'Začněme spolupráci',
+      title: 'Vyplňte formulář a ozveme se vám',
       description:
-        'Pošlete nám základní informace. Vpravo najdete odpovědi na nejčastější dotazy.',
-      formTitle: 'Poptávkový formulář',
-      faqTitle: 'Často kladené otázky',
+        'Stačí pár základních údajů. Připravíme návrh spolupráce podle vašeho typu provozu.',
+      formTitle: 'Nezávazná B2B poptávka',
+      faqTitle: 'Nejčastější otázky před startem',
     },
     form: {
       title: 'Pro firmy',
-      subtitle: 'Zajímá vás spolupráce? Kontaktujte nás!',
+      subtitle:
+        'Vyplňte krátký formulář a do 24 hodin se vám ozveme s návrhem spolupráce.',
       companyName: 'Název firmy',
       contactName: 'Jméno kontaktní osoby',
       email: 'Email',
@@ -247,10 +248,10 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       address: 'Adresa společnosti',
       vatNumber: 'IČO (volitelné)',
       message: 'Vaše zpráva',
-      submit: 'Odeslat poptávku',
+      submit: 'Získat nabídku',
       submitting: 'Odesílám...',
       success:
-        'Děkujeme! Vaše poptávka byla úspěšně odeslána. Brzy vás budeme kontaktovat.',
+        'Děkujeme! Poptávku máme a brzy se vám ozveme s konkrétním návrhem spolupráce.',
       error: 'Omlouváme se, došlo k chybě. Zkuste to prosím znovu.',
       gdprPrefix: 'Odesláním souhlasíte s',
       gdprLink: 'ochranou osobních údajů',
@@ -259,27 +260,27 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       {
         question: 'Jaký je minimální odběr?',
         answer:
-          'Minimální odběr nastavujeme individuálně podle typu provozu a frekvence závozu. Při úvodní schůzce navrhneme nejvhodnější model.',
+          'Minimální odběr nastavujeme individuálně podle typu provozu a frekvence závozu. Cílem je, aby spolupráce dávala smysl ekonomicky vám i nám.',
       },
       {
         question: 'Jaká balení jsou pro B2B dostupná?',
         answer:
-          'Standardně nabízíme lahve, bedny, sudy 30 l a 50 l. Malé sudy 10 l a 20.5 l řešíme na objednávku předem.',
+          'Standardně nabízíme lahve, bedny, sudy 30 l a 50 l. Malé sudy 10 l a 20.5 l řešíme na objednávku podle typu akce nebo provozu.',
       },
       {
         question: 'Kde získám ceník a obchodní podmínky?',
         answer:
-          'Ceník i podmínky posíláme po prvním kontaktu. Připravíme je podle typu provozu a očekávaného odběru.',
+          'Ceník i podmínky posíláme po vyplnění formuláře. Připravíme je podle vašeho provozu, lokality a očekávaného odběru.',
       },
       {
         question: 'Pomáháte partnerům i s marketingem?',
         answer:
-          'Ano. Podporujeme partnery komunikací značky, doporučením prezentace produktů a napojením na objednávky z e-shopu.',
+          'Ano. Pomáháme s komunikací značky, doporučením prezentace na provozu a napojením na objednávky z e-shopu.',
       },
       {
         question: 'Jak řešíte dopravu a fakturaci?',
         answer:
-          'Dopravu plánujeme podle lokality a objemu. Fakturace probíhá standardně B2B formou na základě domluvených podmínek.',
+          'Dopravu plánujeme podle lokality a objemu odběru. Fakturace probíhá standardně B2B podle předem domluvených podmínek.',
       },
     ],
   },

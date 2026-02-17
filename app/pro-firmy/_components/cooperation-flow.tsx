@@ -23,6 +23,9 @@ export const B2BCooperationFlow = () => {
   const visibleCards = 2
   const maxShiftSlots = Math.max(steps.length - visibleCards, 0)
   const gapPx = 24
+  const desktopBaseVh = 190
+  const desktopPerShiftVh = 75
+  const desktopMinVh = 250
 
   useEffect(() => {
     const mediaQuery = window.matchMedia('(min-width: 1024px)')
@@ -106,7 +109,7 @@ export const B2BCooperationFlow = () => {
       className='bg-brand-primary'
       style={{
         height: interactiveDesktop
-          ? `${Math.max(220 + maxShiftSlots * 90, 280)}vh`
+          ? `${Math.max(desktopBaseVh + maxShiftSlots * desktopPerShiftVh, desktopMinVh)}vh`
           : undefined,
       }}
     >

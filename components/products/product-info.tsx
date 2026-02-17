@@ -103,8 +103,8 @@ export const ProductInfo = ({
             {cta && (
               <Button
                 asChild
-                variant='outline'
-                className='bg-brand-primary text-brand-action border-brand-primary hover:bg-brand-primary/90'
+                variant='shop'
+                className='min-w-[190px]'
               >
                 <Link
                   href={cta.href}

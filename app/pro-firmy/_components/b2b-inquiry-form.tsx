@@ -235,9 +235,9 @@ export const B2BInquiryForm = () => {
         <Button
           type='submit'
           disabled={isSubmitting}
-          variant='outline'
+          variant='shop'
           size='lg'
-          className='w-full md:w-auto min-w-[210px] bg-brand-primary text-brand-action border-brand-primary hover:bg-brand-primary/90 hover:text-brand-action'
+          className='w-full md:w-auto min-w-[210px] md:min-w-[240px]'
         >
           {isSubmitting ? copy.submitting : copy.submit}
         </Button>

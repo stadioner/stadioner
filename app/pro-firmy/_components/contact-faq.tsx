@@ -12,7 +12,7 @@ export const B2BContactFaq = () => {
   const copy = b2bContent[getB2BLanguage(language)]
 
   return (
-    <section id='b2b-contact' className='bg-brand-secondary py-20 scroll-mt-40'>
+    <section id='b2b-contact' className='bg-brand-secondary py-20 scroll-mt-16'>
       <Container>
         <div className='max-w-3xl'>
           <h2 className='text-brand-action text-3xl md:text-4xl lg:text-5xl font-bold'>

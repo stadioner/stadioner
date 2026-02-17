@@ -62,7 +62,7 @@ export const B2BHero = () => {
                     asChild
                     variant='outline'
                     size='lg'
-                    className='bg-transparent border-brand-action text-brand-action hover:bg-brand-action hover:text-brand-primary'
+                    className='bg-transparent border-brand-action text-brand-action hover:bg-brand-action'
                   >
                     <a href='#b2b-coverage'>{copy.hero.ctaSecondary}</a>
                   </Button>
