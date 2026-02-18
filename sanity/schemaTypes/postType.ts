@@ -19,6 +19,14 @@ export const postType = defineType({
       validation: Rule => Rule.required(),
     }),
     defineField({
+      name: 'translationKey',
+      type: 'string',
+      title: 'Translation Key',
+      description:
+        'Shared key across language variants of the same article (used for hreflang).',
+      initialValue: () => crypto.randomUUID(),
+    }),
+    defineField({
       name: 'title',
       type: 'string',
       title: 'Title',

@@ -133,7 +133,7 @@ export const CookieConsent = () => {
               <h3 className='font-semibold text-base mb-2'>{t.title}</h3>
               <p className='mb-2'>{t.description}</p>
               <Link
-                href='/cookies'
+                href={`/${language}/cookies`}
                 className='text-brand-action underline hover:no-underline'
               >
                 {t.learnMore}

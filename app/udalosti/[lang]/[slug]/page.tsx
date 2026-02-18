@@ -1,6 +1,6 @@
 import { sanityFetch } from '@/sanity/lib/fetch'
 import {
-  eventLanguageVariantsBySlugQuery,
+  eventVariantsByTranslationKeyQuery,
   eventBySlugQuery,
   eventsPathsByLanguageQuery,
 } from '@/sanity/lib/queries'
@@ -16,8 +16,9 @@ import {
   supportedLanguages,
 } from '@/lib/i18n/site-languages'
 import { type Event } from '@/types/event'
-import { createLocalizedDetailAlternates } from '@/lib/seo/alternates'
+import { createLocalizedDetailAlternatesFromVariants } from '@/lib/seo/alternates'
 import {
+  isLocalizedSeoLocale,
   localizedSeoLocales,
   toAbsoluteUrl,
   type LocalizedSeoLocale,
@@ -34,12 +35,6 @@ interface Props {
 
 const imageUrlBuilder = createImageUrlBuilder({ projectId, dataset })
 
-const isLocalizedSeoLocale = (
-  locale: string,
-): locale is LocalizedSeoLocale => {
-  return localizedSeoLocales.includes(locale as LocalizedSeoLocale)
-}
-
 const getEventImageUrl = (event: Event) => {
   if (!event.mainImage) {
     return ''
@@ -48,18 +43,38 @@ const getEventImageUrl = (event: Event) => {
   return imageUrlBuilder.image(event.mainImage).width(1200).height(630).url()
 }
 
-const resolveEventAvailableLocales = async (slug: string) => {
+const resolveEventVariants = async (translationKey?: string) => {
+  if (!translationKey) {
+    return []
+  }
+
   const variants =
-    (await sanityFetch<{ language: string }[]>({
-      query: eventLanguageVariantsBySlugQuery,
-      params: { slug, languages: [...localizedSeoLocales] },
-      tags: [`events:variants:${slug}`],
+    (await sanityFetch<{ language: string; slug?: string }[]>({
+      query: eventVariantsByTranslationKeyQuery,
+      params: { translationKey, languages: [...localizedSeoLocales] },
+      tags: [`events:variants:${translationKey}`],
       revalidate: 300,
     }).catch(() => [])) ?? []
 
-  return variants
-    .map(variant => variant.language)
-    .filter(isLocalizedSeoLocale)
+  return variants.reduce<Array<{ locale: LocalizedSeoLocale; slug: string }>>(
+    (acc, variant) => {
+      if (
+        !isLocalizedSeoLocale(variant.language) ||
+        typeof variant.slug !== 'string' ||
+        variant.slug.length === 0
+      ) {
+        return acc
+      }
+
+      acc.push({
+        locale: variant.language,
+        slug: variant.slug,
+      })
+
+      return acc
+    },
+    [],
+  )
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -87,12 +102,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const title = event.title
   const description = portableTextToPlainText(event.description) || title
   const imageUrl = getEventImageUrl(event)
-  const availableLocales = await resolveEventAvailableLocales(slug)
-  const alternates = createLocalizedDetailAlternates(
+  const variants = await resolveEventVariants(event.translationKey)
+  const alternates = createLocalizedDetailAlternatesFromVariants(
     'udalosti',
     lang,
     slug,
-    availableLocales,
+    variants,
   )
   const canonicalUrl = toAbsoluteUrl(alternates.canonical)
 
@@ -178,7 +193,7 @@ export default async function Page({ params }: Props) {
   const eventSchema = buildEventSchema({
     name: event.title,
     description,
-    url: toAbsoluteUrl(`/udalosti/${lang}/${encodeURIComponent(slug)}`),
+    url: toAbsoluteUrl(`/${lang}/udalosti/${encodeURIComponent(slug)}`),
     startDate: event.dateTime,
     endDate: event.endDateTime,
     imageUrl,

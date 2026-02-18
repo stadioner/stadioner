@@ -17,6 +17,7 @@ export interface SEO {
 
 export interface Post {
   _id: string
+  translationKey?: string
   title: string
   slug: {
     current: string

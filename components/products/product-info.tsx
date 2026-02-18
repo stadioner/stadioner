@@ -134,13 +134,13 @@ export const ProductInfo = ({
                 </div>
               ))}
             </div>
-            <div className='grid place-self-end'>
+            <div className='inline-flex flex-col items-start'>
               {isPreparing ? (
-                <Button variant={'shop'} disabled>
+                <Button variant={'shop'} className='w-fit' disabled>
                   {labels.preparing}
                 </Button>
               ) : (
-                <Button asChild variant={'shop'}>
+                <Button asChild variant={'shop'} className='w-fit'>
                   <Link href={buyUrl} target='_blank' rel='noopener noreferrer'>
                     {labels.buy}
                   </Link>

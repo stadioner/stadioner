@@ -52,9 +52,17 @@ export const postLanguageVariantsBySlugQuery = groq`
   }
 `
 
+export const postVariantsByTranslationKeyQuery = groq`
+  *[_type == "post" && translationKey == $translationKey && language in $languages && defined(slug.current)]{
+    language,
+    "slug": slug.current
+  }
+`
+
 export const postBySlugQuery = groq`
   *[_type == "post" && slug.current == $slug && language == $language][0] {
     _id,
+    translationKey,
     title,
     slug,
     language,
@@ -143,6 +151,7 @@ export const upcomingEventsQuery = groq`
 export const eventBySlugQuery = groq`
   *[_type == "event" && slug.current == $slug && language == $language][0] {
     _id,
+    translationKey,
     title,
     slug,
     dateTime,
@@ -172,5 +181,12 @@ export const eventsForSitemapByLanguageQuery = groq`
 export const eventLanguageVariantsBySlugQuery = groq`
   *[_type == "event" && slug.current == $slug && language in $languages]{
     language
+  }
+`
+
+export const eventVariantsByTranslationKeyQuery = groq`
+  *[_type == "event" && translationKey == $translationKey && language in $languages && defined(slug.current)]{
+    language,
+    "slug": slug.current
   }
 `

@@ -35,7 +35,10 @@ export const NewsletterMiniForm = () => {
       </Button>
       <p className='text-[11px] text-brand-action/70'>
         {copy.gdprPrefix}{' '}
-        <Link href='/gdpr' className='underline hover:text-brand-action'>
+        <Link
+          href={`/${language}/gdpr`}
+          className='underline hover:text-brand-action'
+        >
           {copy.gdprLink}
         </Link>
         {language === 'de' && ' zu'}

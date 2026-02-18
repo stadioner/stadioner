@@ -1,7 +1,7 @@
 import { Post } from '../../_components/post'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import {
-  postLanguageVariantsBySlugQuery,
+  postVariantsByTranslationKeyQuery,
   postBySlugQuery,
   postsPathsByLanguageQuery,
 } from '@/sanity/lib/queries'
@@ -18,9 +18,10 @@ import {
 } from '@/lib/i18n/site-languages'
 import { type Post as BlogPost } from '@/types/blog'
 import {
-  createLocalizedDetailAlternates,
+  createLocalizedDetailAlternatesFromVariants,
 } from '@/lib/seo/alternates'
 import {
+  isLocalizedSeoLocale,
   localizedSeoLocales,
   toAbsoluteUrl,
   type LocalizedSeoLocale,
@@ -36,12 +37,6 @@ interface Props {
 
 const imageUrlBuilder = createImageUrlBuilder({ projectId, dataset })
 
-const isLocalizedSeoLocale = (
-  locale: string,
-): locale is LocalizedSeoLocale => {
-  return localizedSeoLocales.includes(locale as LocalizedSeoLocale)
-}
-
 const getPostImageUrl = (post: BlogPost) => {
   if (!post.mainImage) {
     return ''
@@ -50,18 +45,38 @@ const getPostImageUrl = (post: BlogPost) => {
   return imageUrlBuilder.image(post.mainImage).width(1200).height(630).url()
 }
 
-const resolveBlogAvailableLocales = async (slug: string) => {
+const resolveBlogVariants = async (translationKey?: string) => {
+  if (!translationKey) {
+    return []
+  }
+
   const variants =
-    (await sanityFetch<{ language: string }[]>({
-      query: postLanguageVariantsBySlugQuery,
-      params: { slug, languages: [...localizedSeoLocales] },
-      tags: [`blog:variants:${slug}`],
+    (await sanityFetch<{ language: string; slug?: string }[]>({
+      query: postVariantsByTranslationKeyQuery,
+      params: { translationKey, languages: [...localizedSeoLocales] },
+      tags: [`blog:variants:${translationKey}`],
       revalidate: 300,
     }).catch(() => [])) ?? []
 
-  return variants
-    .map(variant => variant.language)
-    .filter(isLocalizedSeoLocale)
+  return variants.reduce<Array<{ locale: LocalizedSeoLocale; slug: string }>>(
+    (acc, variant) => {
+      if (
+        !isLocalizedSeoLocale(variant.language) ||
+        typeof variant.slug !== 'string' ||
+        variant.slug.length === 0
+      ) {
+        return acc
+      }
+
+      acc.push({
+        locale: variant.language,
+        slug: variant.slug,
+      })
+
+      return acc
+    },
+    [],
+  )
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -90,12 +105,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const description = post.seo?.metaDescription || post.title
   const keywords = post.seo?.keywords || []
   const imageUrl = getPostImageUrl(post)
-  const availableLocales = await resolveBlogAvailableLocales(slug)
-  const alternates = createLocalizedDetailAlternates(
+  const variants = await resolveBlogVariants(post.translationKey)
+  const alternates = createLocalizedDetailAlternatesFromVariants(
     'clanky',
     lang,
     slug,
-    availableLocales,
+    variants,
   )
   const canonicalUrl = toAbsoluteUrl(alternates.canonical)
 
@@ -178,7 +193,7 @@ export default async function Page({ params }: Props) {
   const articleSchema = buildBlogPostingSchema({
     headline: title,
     description,
-    url: toAbsoluteUrl(`/clanky/${lang}/${encodeURIComponent(slug)}`),
+    url: toAbsoluteUrl(`/${lang}/clanky/${encodeURIComponent(slug)}`),
     datePublished: post.publishedAt,
     imageUrl,
     language: lang,

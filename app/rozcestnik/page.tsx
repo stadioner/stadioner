@@ -20,6 +20,7 @@ import {
   GlassWater,
 } from 'lucide-react'
 import Link from 'next/link'
+import { isSupportedLanguage } from '@/lib/i18n/site-languages'
 
 interface LinkItem {
   title: string
@@ -302,6 +303,30 @@ export default function RozcestnikPage() {
 
   const currentLinks = links[language] || links.cs
 
+  const getLocalizedHref = (href: string) => {
+    if (!href.startsWith('/')) {
+      return href
+    }
+
+    const segments = href.split('/').filter(Boolean)
+    const [firstSegment, secondSegment, ...restSegments] = segments
+
+    if (
+      (firstSegment === 'clanky' || firstSegment === 'udalosti') &&
+      secondSegment &&
+      isSupportedLanguage(secondSegment)
+    ) {
+      const restPath = restSegments.length > 0 ? `/${restSegments.join('/')}` : ''
+      return `/${language}/${firstSegment}${restPath}`
+    }
+
+    if (firstSegment && isSupportedLanguage(firstSegment)) {
+      return href
+    }
+
+    return `/${language}${href}`
+  }
+
   const getCategoryTitle = (category: string) => {
     const titles = {
       cs: {
@@ -389,7 +414,7 @@ export default function RozcestnikPage() {
                               className='w-full group-hover:scale-[1.02] transition-transform'
                             >
                               <Link
-                                href={link.href}
+                                href={getLocalizedHref(link.href)}
                                 target={link.external ? '_blank' : undefined}
                                 rel={
                                   link.external

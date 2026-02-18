@@ -11,11 +11,13 @@ import {
   buildWebSiteSchema,
   jsonLdToHtml,
 } from '@/lib/seo/schema'
+import { buildPageMetadata } from '@/lib/seo/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Pivovar Kout na Šumavě',
   description:
     'Tradiční pivovar Stadioner v Koutě na Šumavě. Řemeslná piva, limonády a voda ze šumavských pramenů. Navštivte nás nebo najděte naše produkty v Plzeňském kraji.',
+  canonicalPath: '/cs',
   keywords: [
     'pivovar',
     'pivo',
@@ -27,21 +29,17 @@ export const metadata: Metadata = {
     'voda',
     'Plzeňský kraj',
   ],
-  openGraph: {
-    title: 'Pivovar Kout na Šumavě',
-    description:
-      'Tradiční pivovar Stadioner v Koutě na Šumavě. Řemeslná piva, limonády a voda ze šumavských pramenů.',
-    type: 'website',
-    images: [
-      {
-        url: '/hero/main.svg',
-        width: 1200,
-        height: 630,
-        alt: 'Stadioner Pivovar',
-      },
-    ],
-  },
-}
+  twitterCard: 'summary_large_image',
+  openGraphImages: [
+    {
+      url: '/hero/main.svg',
+      width: 1200,
+      height: 630,
+      alt: 'Stadioner Pivovar',
+    },
+  ],
+  twitterImages: ['/hero/main.svg'],
+})
 
 export default function HomePage() {
   const organizationSchema = buildOrganizationSchema()

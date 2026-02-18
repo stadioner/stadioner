@@ -102,7 +102,7 @@ export const About = () => {
           <div className='w-min hidden lg:block mt-10'>
             <Border>
               <Link
-                href='/historie'
+                href='/cs/historie'
                 className={buttonVariants({
                   variant: 'ghost',
                   size: 'lg',
@@ -170,7 +170,7 @@ export const About = () => {
         <div className='mt-6 lg:hidden text-center'>
           <Border>
             <Link
-              href='/historie'
+              href='/cs/historie'
               className={buttonVariants({
                 variant: 'ghost',
                 size: 'lg',

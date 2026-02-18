@@ -3,6 +3,7 @@ import { redirect } from 'next/navigation'
 
 export const metadata: Metadata = {
   title: 'QR Redirect',
+  description: 'Přesměrování na rozcestník pivovaru Stadioner.',
   robots: {
     index: false,
     follow: false,
@@ -10,5 +11,5 @@ export const metadata: Metadata = {
 }
 
 export default function QrPage() {
-  redirect('/rozcestnik')
+  redirect('/cs/rozcestnik')
 }

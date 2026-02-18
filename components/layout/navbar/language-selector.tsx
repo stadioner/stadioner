@@ -18,11 +18,12 @@ import {
   isSupportedLanguage,
   supportedLanguages,
 } from '@/lib/i18n/site-languages'
+import type { SupportedLanguage } from '@/lib/i18n/site-languages'
 
 const flagByLanguage = {
-  cs: '/flags/cs.webp',
-  en: '/flags/en.webp',
-  de: '/flags/de.webp',
+  cs: '/flags/cs.svg',
+  en: '/flags/en.svg',
+  de: '/flags/de.svg',
 } as const
 
 const languages = supportedLanguages.map(value => ({
@@ -30,11 +31,96 @@ const languages = supportedLanguages.map(value => ({
   src: flagByLanguage[value],
 }))
 
+type DetailSection = 'clanky' | 'udalosti'
+
+const isDetailSection = (section: string): section is DetailSection => {
+  return section === 'clanky' || section === 'udalosti'
+}
+
+const getAlternatePathForLocale = (locale: SupportedLanguage): string | null => {
+  if (typeof document === 'undefined') {
+    return null
+  }
+
+  const alternateLink = document.head.querySelector<HTMLLinkElement>(
+    `link[rel="alternate"][hreflang="${locale}"]`,
+  )
+
+  if (!alternateLink?.href) {
+    return null
+  }
+
+  try {
+    const url = new URL(alternateLink.href)
+    return `${url.pathname}${url.search}${url.hash}`
+  } catch {
+    return null
+  }
+}
+
+const getDetailSectionFromPath = (pathname: string): DetailSection | null => {
+  const segments = pathname.split('/').filter(Boolean)
+  if (segments.length < 2) {
+    return null
+  }
+
+  if (isSupportedLanguage(segments[0])) {
+    const [, section, slug] = segments
+    if (!slug || !isDetailSection(section)) {
+      return null
+    }
+
+    return section
+  }
+
+  const [section, maybeLanguage, slug] = segments
+  if (!isDetailSection(section)) {
+    return null
+  }
+
+  const hasLegacyLanguageSegment = isSupportedLanguage(maybeLanguage ?? '')
+  if (hasLegacyLanguageSegment) {
+    return slug ? section : null
+  }
+
+  return maybeLanguage ? section : null
+}
+
+const isNavigablePath = async (path: string): Promise<boolean> => {
+  if (typeof window === 'undefined') {
+    return false
+  }
+
+  try {
+    const headResponse = await fetch(path, {
+      method: 'HEAD',
+      cache: 'no-store',
+      redirect: 'manual',
+    })
+
+    if (headResponse.status === 405) {
+      const getResponse = await fetch(path, {
+        method: 'GET',
+        cache: 'no-store',
+        redirect: 'manual',
+      })
+      return getResponse.ok || (getResponse.status >= 300 && getResponse.status < 400)
+    }
+
+    return headResponse.ok || (headResponse.status >= 300 && headResponse.status < 400)
+  } catch {
+    return false
+  }
+}
+
 export const LanguageSelector = () => {
   useLanguageSync()
   const { language, imgSrc, setLanguage } = useLanguage(state => state)
   const pathname = usePathname()
   const router = useRouter()
+  const pushPreservingScroll = (targetPath: string) => {
+    router.push(targetPath, { scroll: false })
+  }
 
   const [open, setOpen] = useState<boolean>(false)
 
@@ -58,10 +144,10 @@ export const LanguageSelector = () => {
           <Command>
             <CommandGroup className='space-y-2 bg-brand-secondary'>
               {languages.map(
-                ({ src, value }: { src: string; value: string }) => (
+                ({ src, value }: { src: string; value: SupportedLanguage }) => (
                   <CommandItem
                     key={value}
-                    onSelect={() => {
+                    onSelect={async () => {
                       if (value === language) {
                         setOpen(false)
                         return
@@ -70,35 +156,45 @@ export const LanguageSelector = () => {
                       setLanguage(value)
                       setOpen(false)
 
-                      const handleLocalizedRoute = (
-                        basePath: '/clanky' | '/udalosti',
-                      ) => {
-                        if (!pathname.startsWith(`${basePath}/`)) return false
+                      const query =
+                        typeof window !== 'undefined' ? window.location.search : ''
+                      const hash =
+                        typeof window !== 'undefined' ? window.location.hash : ''
+                      const detailSection = getDetailSectionFromPath(pathname)
 
-                        const currentLang = pathname.split('/')[2]
-
-                        if (currentLang && isSupportedLanguage(currentLang)) {
-                          const pathParts = pathname.split('/')
-
-                          if (pathParts.length > 3) {
-                            // On detail page (slug), redirect to localized listing.
-                            router.push(`${basePath}/${value}`)
-                          } else {
-                            const newPath = pathname.replace(
-                              `${basePath}/${currentLang}`,
-                              `${basePath}/${value}`
-                            )
-                            router.push(newPath)
-                          }
-                        } else {
-                          router.push(`${basePath}/${value}`)
+                      const alternatePath = getAlternatePathForLocale(value)
+                      if (alternatePath && !detailSection) {
+                        pushPreservingScroll(alternatePath)
+                        return
+                      }
+                      if (alternatePath && detailSection) {
+                        const canNavigateToAlternate =
+                          await isNavigablePath(alternatePath)
+                        if (canNavigateToAlternate) {
+                          pushPreservingScroll(alternatePath)
+                          return
                         }
 
-                        return true
+                        pushPreservingScroll(`/${value}/${detailSection}${query}`)
+                        return
+                      }
+                      if (detailSection) {
+                        pushPreservingScroll(`/${value}/${detailSection}${query}`)
+                        return
                       }
 
-                      if (handleLocalizedRoute('/clanky')) return
-                      if (handleLocalizedRoute('/udalosti')) return
+                      const pathSegments = pathname.split('/').filter(Boolean)
+                      const [firstSegment, ...remainingSegments] = pathSegments
+
+                      const normalizedPath = isSupportedLanguage(firstSegment)
+                        ? `/${remainingSegments.join('/')}`
+                        : pathname
+
+                      const basePath =
+                        normalizedPath === '/' ? '' : normalizedPath
+                      const targetPath = `/${value}${basePath}${query}${hash}`
+
+                      pushPreservingScroll(targetPath)
                     }}
                     className='mb-2 cursor-pointer'
                   >

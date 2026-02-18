@@ -9,6 +9,7 @@ import { useNewsletterForm } from '@/hooks/use-newsletter-form'
 
 export default function NewsletterPage() {
   const { language } = useLanguage()
+  const localizedRootPath = `/${language}`
   const { email, setEmail, isSubmitting, submit, copy } = useNewsletterForm({
     language,
   })
@@ -52,7 +53,7 @@ export default function NewsletterPage() {
                 <p className='text-sm text-brand-primary/60 text-center'>
                   {copy.gdprPrefix}{' '}
                   <Link
-                    href='/gdpr'
+                    href={`${localizedRootPath}/gdpr`}
                     className='underline hover:text-brand-primary'
                   >
                     {copy.gdprLink}

@@ -13,6 +13,7 @@ import { Container } from '@/components/container'
 
 export const Navbar = () => {
   const { language } = useLanguage()
+  const localizedRootPath = `/${language}`
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
@@ -42,7 +43,7 @@ export const Navbar = () => {
                             ? 'Produkte / E-shop'
                             : ''
                     }
-                    href='/produkty'
+                    href={`${localizedRootPath}/produkty`}
                   />
                   <NavItem
                     label={
@@ -54,7 +55,7 @@ export const Navbar = () => {
                             ? 'Verkaufsstellen'
                             : ''
                     }
-                    href='/prodejni-mista'
+                    href={`${localizedRootPath}/prodejni-mista`}
                   />
                   <NavItem
                     label={
@@ -66,7 +67,7 @@ export const Navbar = () => {
                             ? 'Für Unternehmen'
                             : ''
                     }
-                    href='/pro-firmy'
+                    href={`${localizedRootPath}/pro-firmy`}
                   />
                 </ul>
               </div>
@@ -74,7 +75,7 @@ export const Navbar = () => {
               <div className='absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2'>
                 <Border rounded background>
                   <Link
-                    href='/'
+                    href={localizedRootPath}
                     className='transition duration-300 justify-self-center bg-brand-secondary rounded-full'
                   >
                     <img src='/logo.svg' alt='logo' className='size-18 p-1' />
@@ -94,7 +95,7 @@ export const Navbar = () => {
                             ? 'Veranstaltungen'
                             : ''
                     }
-                    href={`/udalosti/${language}`}
+                    href={`${localizedRootPath}/udalosti`}
                   />
                   <NavItem
                     label={
@@ -106,7 +107,7 @@ export const Navbar = () => {
                             ? 'Artikel'
                             : ''
                     }
-                    href={`/clanky/${language}`}
+                    href={`${localizedRootPath}/clanky`}
                   />
                   <NavItem
                     label={
@@ -118,7 +119,7 @@ export const Navbar = () => {
                             ? 'Geschichte'
                             : ''
                     }
-                    href='/historie'
+                    href={`${localizedRootPath}/historie`}
                   />
                   <NavItem
                     label={
@@ -130,7 +131,7 @@ export const Navbar = () => {
                             ? 'Kontakt'
                             : ''
                     }
-                    href='/kontakt'
+                    href={`${localizedRootPath}/kontakt`}
                   />
                   <LanguageSelector />
                 </ul>
@@ -157,7 +158,7 @@ export const Navbar = () => {
               <div className='absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2'>
                 <Border rounded background>
                   <Link
-                    href='/'
+                    href={localizedRootPath}
                     className='transition duration-300 justify-self-center bg-brand-secondary rounded-full'
                   >
                     <img src='/logo.svg' alt='logo' className='size-18 p-1' />

@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     short_name: 'Stadioner',
     description:
       'Tradiční pivovar Stadioner v Koutě na Šumavě. Řemeslná piva, limonády a voda ze šumavských pramenů.',
-    start_url: '/',
+    start_url: '/cs',
     display: 'standalone',
     background_color: '#ffffff',
     theme_color: '#8B4513',

@@ -1,6 +1,8 @@
 import {
   defaultLocale,
+  isLocalizedSeoLocale,
   localizedSeoLocales,
+  toLocalePath,
   type LocalizedSeoLocale,
 } from '@/lib/seo/site'
 
@@ -50,14 +52,14 @@ export const createLocalizedListingAlternates = (
 ) => {
   const pathsByLocale = localizedSeoLocales.reduce<LocalizedPathMap>(
     (acc, localizedLocale) => {
-      acc[localizedLocale] = `/${section}/${localizedLocale}`
+      acc[localizedLocale] = toLocalePath(localizedLocale, `/${section}`)
       return acc
     },
     {},
   )
 
   return createLocalizedAlternates({
-    canonicalPath: `/${section}/${locale}`,
+    canonicalPath: toLocalePath(locale, `/${section}`),
     pathsByLocale,
   })
 }
@@ -73,12 +75,46 @@ export const createLocalizedDetailAlternates = (
     availableLocales.length > 0 ? availableLocales : ([locale] as const)
 
   const pathsByLocale = locales.reduce<LocalizedPathMap>((acc, localeItem) => {
-    acc[localeItem] = `/${section}/${localeItem}/${normalizedSlug}`
+    acc[localeItem] = toLocalePath(localeItem, `/${section}/${normalizedSlug}`)
     return acc
   }, {})
 
   return createLocalizedAlternates({
-    canonicalPath: `/${section}/${locale}/${normalizedSlug}`,
+    canonicalPath: toLocalePath(locale, `/${section}/${normalizedSlug}`),
     pathsByLocale,
+  })
+}
+
+interface LocalizedSlugVariant {
+  locale: string
+  slug: string
+}
+
+export const createLocalizedDetailAlternatesFromVariants = (
+  section: LocalizedSection,
+  locale: LocalizedSeoLocale,
+  currentSlug: string,
+  variants: readonly LocalizedSlugVariant[],
+) => {
+  const pathsByLocale = variants.reduce<LocalizedPathMap>((acc, variant) => {
+    if (!isLocalizedSeoLocale(variant.locale)) {
+      return acc
+    }
+
+    acc[variant.locale] = toLocalePath(
+      variant.locale,
+      `/${section}/${encodeURIComponent(variant.slug)}`,
+    )
+    return acc
+  }, {})
+
+  const hasLocaleVariant = Boolean(pathsByLocale[locale])
+  const canonicalPath = hasLocaleVariant
+    ? (pathsByLocale[locale] as string)
+    : toLocalePath(locale, `/${section}/${encodeURIComponent(currentSlug)}`)
+
+  return createLocalizedAlternates({
+    canonicalPath,
+    pathsByLocale: hasLocaleVariant ? pathsByLocale : { [locale]: canonicalPath },
   })
 }

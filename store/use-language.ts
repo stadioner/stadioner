@@ -3,6 +3,7 @@
 import { create } from 'zustand'
 import { useEffect } from 'react'
 import { useCookieConsent } from './use-cookie-consent'
+import { isSupportedLanguage } from '@/lib/i18n/site-languages'
 
 interface LanguageStore {
   language: string
@@ -14,7 +15,7 @@ let memoryLanguage = 'cs'
 
 export const useLanguage = create<LanguageStore>((set, get) => ({
   language: memoryLanguage,
-  imgSrc: lang => `/flags/${lang}.webp`,
+  imgSrc: lang => `/flags/${lang}.svg`,
   setLanguage: value => {
     const { hasConsented } = useCookieConsent.getState()
     set({ language: value })
@@ -31,8 +32,19 @@ export const useLanguage = create<LanguageStore>((set, get) => ({
 export const useLanguageSync = () => {
   const { hasConsented } = useCookieConsent()
   const setLanguage = useLanguage(state => state.setLanguage)
+
   useEffect(() => {
-    if (typeof window !== 'undefined' && hasConsented) {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    const localeFromPath = window.location.pathname.split('/')[1]
+    if (localeFromPath && isSupportedLanguage(localeFromPath)) {
+      setLanguage(localeFromPath)
+      return
+    }
+
+    if (hasConsented) {
       const cookies = document.cookie.split(';').reduce(
         (acc, cookie) => {
           const [key, value] = cookie.trim().split('=')
@@ -41,8 +53,9 @@ export const useLanguageSync = () => {
         },
         {} as Record<string, string>
       )
-      if (cookies['language-storage']) {
-        setLanguage(cookies['language-storage'])
+      const cookieLanguage = cookies['language-storage']
+      if (cookieLanguage && isSupportedLanguage(cookieLanguage)) {
+        setLanguage(cookieLanguage)
       }
     }
   }, [hasConsented, setLanguage])

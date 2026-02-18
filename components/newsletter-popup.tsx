@@ -36,7 +36,7 @@ export const NewsletterPopup = () => {
 
   useEffect(() => {
     // Don't show popup on newsletter or studio pages
-    if (pathname === '/newsletter' || pathname.includes('/studio')) {
+    if (pathname.endsWith('/newsletter') || pathname.includes('/studio')) {
       return
     }
 
@@ -92,7 +92,10 @@ export const NewsletterPopup = () => {
               {/* Description */}
               <p className='text-brand-primary/80 text-sm mb-4'>
                 {copy.description}{' '}
-                <Link href='/gdpr' className='underline hover:text-brand-primary'>
+                <Link
+                  href={`/${language}/gdpr`}
+                  className='underline hover:text-brand-primary'
+                >
                   {copy.gdprLink}
                 </Link>
               </p>
@@ -128,7 +131,7 @@ export const NewsletterPopup = () => {
                 <p className='text-brand-primary/80 text-sm'>
                   {copy.description}{' '}
                   <Link
-                    href='/gdpr'
+                    href={`/${language}/gdpr`}
                     className='underline hover:text-brand-primary'
                   >
                     {copy.gdprLink}

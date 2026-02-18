@@ -10,6 +10,7 @@ interface MenuProps {
 
 export const Menu = ({ setIsOpen }: MenuProps) => {
   const { language } = useLanguage()
+  const localizedRootPath = `/${language}`
 
   return (
     <motion.div
@@ -52,7 +53,7 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
                   ? 'Produkte / E-shop'
                   : ''
           }
-          href='/produkty'
+          href={`${localizedRootPath}/produkty`}
         />
         <NavItem
           phone
@@ -66,7 +67,7 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
                   ? 'Verkaufsstellen'
                   : ''
           }
-          href='/prodejni-mista'
+          href={`${localizedRootPath}/prodejni-mista`}
         />
         <NavItem
           phone
@@ -80,7 +81,7 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
                   ? 'Für Unternehmen'
                   : ''
           }
-          href='/pro-firmy'
+          href={`${localizedRootPath}/pro-firmy`}
         />
         <NavItem
           phone
@@ -94,7 +95,7 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
                   ? 'Veranstaltungen'
                   : ''
           }
-          href={`/udalosti/${language}`}
+          href={`${localizedRootPath}/udalosti`}
         />
         <NavItem
           phone
@@ -108,7 +109,7 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
                   ? 'Artikel'
                   : ''
           }
-          href={`/clanky/${language}`}
+          href={`${localizedRootPath}/clanky`}
         />
         <NavItem
           phone
@@ -122,7 +123,7 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
                   ? 'Geschichte'
                   : ''
           }
-          href='/historie'
+          href={`${localizedRootPath}/historie`}
         />
         <NavItem
           phone
@@ -136,7 +137,7 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
                   ? 'Kontakt'
                   : ''
           }
-          href='/kontakt'
+          href={`${localizedRootPath}/kontakt`}
         />
       </ul>
     </motion.div>

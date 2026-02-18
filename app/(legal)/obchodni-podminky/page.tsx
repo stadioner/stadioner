@@ -212,7 +212,7 @@ export default function TermsPage() {
               </h2>
               <p className='text-gray-700'>
                 Osobní údaje jsou zpracovávány v souladu s
-                <Link href='/gdpr'> GDPR </Link>a zákonem č. 110/2019 Sb.
+                <Link href='/cs/gdpr'> GDPR </Link>a zákonem č. 110/2019 Sb.
                 Podrobnosti viz „Ochrana osobních údajů“ na webu.
               </p>
             </section>

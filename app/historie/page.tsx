@@ -274,6 +274,11 @@ export default function HistoriePage() {
 
   return (
     <section className='relative h-screen overflow-hidden timeline-container bg-brand-action'>
+      <h1 className='sr-only'>
+        {language === 'cs' && 'Historie pivovaru Stadioner'}
+        {language === 'en' && 'History of Stadioner Brewery'}
+        {language === 'de' && 'Geschichte der Brauerei Stadioner'}
+      </h1>
       {/* Background Image */}
       <AnimatePresence mode='wait'>
         <motion.div

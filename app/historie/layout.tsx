@@ -1,10 +1,12 @@
 import { PropsWithChildren } from 'react'
 import { Metadata } from 'next'
+import { buildPageMetadata } from '@/lib/seo/metadata'
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: 'Historie pivovaru',
   description:
     'Poznejte bohatou historii pivovaru Stadioner v Koutě na Šumavě. Tradice, která pokračuje již po generace.',
+  canonicalPath: '/cs/historie',
   keywords: [
     'historie',
     'pivovar',
@@ -13,13 +15,7 @@ export const metadata: Metadata = {
     'tradice',
     'Šumava',
   ],
-  openGraph: {
-    title: 'Historie pivovaru Stadioner',
-    description:
-      'Poznejte bohatou historii pivovaru Stadioner v Koutě na Šumavě. Tradice, která pokračuje již po generace.',
-    type: 'website',
-  },
-}
+})
 
 export default function HistorieLayout({ children }: PropsWithChildren) {
   return children

@@ -243,7 +243,7 @@ export const B2BInquiryForm = () => {
         </Button>
         <p className='text-xs text-brand-primary/80'>
           {copy.gdprPrefix}{' '}
-          <Link href='/gdpr' className='underline hover:text-brand-primary'>
+          <Link href={`/${language}/gdpr`} className='underline hover:text-brand-primary'>
             {copy.gdprLink}
           </Link>
         </p>

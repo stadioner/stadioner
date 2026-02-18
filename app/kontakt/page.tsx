@@ -11,6 +11,11 @@ export default function KontaktPage() {
 
   return (
     <main className='bg-brand-primary pt-36 pb-20'>
+      <h1 className='sr-only'>
+        {language === 'cs' && 'Kontakt pivovaru Stadioner'}
+        {language === 'en' && 'Stadioner Brewery contact'}
+        {language === 'de' && 'Kontakt zur Brauerei Stadioner'}
+      </h1>
       <Container className='grid md:grid-cols-2 gap-10'>
         <div className='space-y-8'>
           {/* Contact Information */}

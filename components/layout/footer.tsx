@@ -9,6 +9,7 @@ import { useNewsletterForm } from '@/hooks/use-newsletter-form'
 
 export const Footer = () => {
   const { language } = useLanguage()
+  const localizedRootPath = `/${language}`
   const { email, setEmail, isSubmitting, submit, copy } = useNewsletterForm({
     language,
     markSubscribed: false,
@@ -24,47 +25,47 @@ export const Footer = () => {
               {language === 'en' && 'Links'}
               {language === 'de' && 'Links'}
             </h4>
-            <Link href='/'>
+            <Link href={localizedRootPath}>
               {language === 'cs' && 'Domů'}
               {language === 'en' && 'Home'}
               {language === 'de' && 'Startseite'}
             </Link>
-            <Link href='/produkty'>
+            <Link href={`${localizedRootPath}/produkty`}>
               {language === 'cs' && 'Produkty'}
               {language === 'en' && 'Products'}
               {language === 'de' && 'Produkte'}
             </Link>
-            <Link href='/prodejni-mista'>
+            <Link href={`${localizedRootPath}/prodejni-mista`}>
               {language === 'cs' && 'Prodejní Místa'}
               {language === 'en' && 'Sales Locations'}
               {language === 'de' && 'Verkaufsstellen'}
             </Link>
-            <Link href={`/udalosti/${language}`}>
+            <Link href={`${localizedRootPath}/udalosti`}>
               {language === 'cs' && 'Události'}
               {language === 'en' && 'Events'}
               {language === 'de' && 'Veranstaltungen'}
             </Link>
-            <Link href={`/clanky/${language}`}>
+            <Link href={`${localizedRootPath}/clanky`}>
               {language === 'cs' && 'Články'}
               {language === 'en' && 'Articles'}
               {language === 'de' && 'Artikel'}
             </Link>
-            <Link href='/historie'>
+            <Link href={`${localizedRootPath}/historie`}>
               {language === 'cs' && 'Historie'}
               {language === 'en' && 'History'}
               {language === 'de' && 'Geschichte'}
             </Link>
-            <Link href='/kontakt'>
+            <Link href={`${localizedRootPath}/kontakt`}>
               {language === 'cs' && 'Kontakt'}
               {language === 'en' && 'Contact'}
               {language === 'de' && 'Kontakt'}
             </Link>
-            <Link href='/cookies'>
+            <Link href={`${localizedRootPath}/cookies`}>
               {language === 'cs' && 'Cookies'}
               {language === 'en' && 'Cookies'}
               {language === 'de' && 'Cookies'}
             </Link>
-            <Link href='/gdpr'>
+            <Link href={`${localizedRootPath}/gdpr`}>
               {language === 'cs' && 'GDPR'}
               {language === 'en' && 'GDPR'}
               {language === 'de' && 'GDPR'}
@@ -76,43 +77,43 @@ export const Footer = () => {
               {language === 'en' && 'Products'}
               {language === 'de' && 'Produkte'}
             </h4>
-            <Link href='/produkty?produkt=safar-15&kategorie=pivo'>
+            <Link href={`${localizedRootPath}/produkty?produkt=safar-15&kategorie=pivo`}>
               Šafář 15
             </Link>
-            <Link href='/produkty?produkt=profesor-12&kategorie=pivo'>
+            <Link href={`${localizedRootPath}/produkty?produkt=profesor-12&kategorie=pivo`}>
               Profesor 12
             </Link>
-            <Link href='/produkty?produkt=hvozdar-12&kategorie=pivo'>
+            <Link href={`${localizedRootPath}/produkty?produkt=hvozdar-12&kategorie=pivo`}>
               Hvozdář 12
             </Link>
-            <Link href='/produkty?produkt=experiment-11&kategorie=pivo'>
+            <Link href={`${localizedRootPath}/produkty?produkt=experiment-11&kategorie=pivo`}>
               Experiment 11
             </Link>
-            <Link href='/produkty?produkt=pozarnik-10&kategorie=pivo'>
+            <Link href={`${localizedRootPath}/produkty?produkt=pozarnik-10&kategorie=pivo`}>
               Požárník 10
             </Link>
 
-            <Link href='/produkty?produkt=limonada-pomeranc&kategorie=limo'>
+            <Link href={`${localizedRootPath}/produkty?produkt=limonada-pomeranc&kategorie=limo`}>
               {language === 'cs' && 'Limonáda pomeranč'}
               {language === 'en' && 'Orange Lemonade'}
               {language === 'de' && 'Orangenlimonade'}
             </Link>
-            <Link href='/produkty?produkt=limonada-citron&kategorie=limo'>
+            <Link href={`${localizedRootPath}/produkty?produkt=limonada-citron&kategorie=limo`}>
               {language === 'cs' && 'Limonáda citrón'}
               {language === 'en' && 'Lemon Lemonade'}
               {language === 'de' && 'Zitronenlimonade'}
             </Link>
-            <Link href='/produkty?produkt=cola-mix&kategorie=limo'>
+            <Link href={`${localizedRootPath}/produkty?produkt=cola-mix&kategorie=limo`}>
               {language === 'cs' && 'Cola mix'}
               {language === 'en' && 'Cola mix'}
               {language === 'de' && 'Cola Mix'}
             </Link>
-            <Link href='/produkty/?produkt=pramenita-voda-perliva&kategorie=voda'>
+            <Link href={`${localizedRootPath}/produkty?produkt=pramenita-voda-perliva&kategorie=voda`}>
               {language === 'cs' && 'Pramenitá voda (Sycená)'}
               {language === 'en' && 'Spring water (Sparkling)'}
               {language === 'de' && 'Quellwasser (Kohlensäurehaltig)'}
             </Link>
-            <Link href='/produkty/?produkt=pramenita-voda-neperliva&kategorie=voda'>
+            <Link href={`${localizedRootPath}/produkty?produkt=pramenita-voda-neperliva&kategorie=voda`}>
               {language === 'cs' && 'Pramenitá voda (Nesycená)'}
               {language === 'en' && 'Spring water (Still)'}
               {language === 'de' && 'Quellwasser (Still)'}
@@ -188,7 +189,10 @@ export const Footer = () => {
 
               <p className='text-xs text-brand-action/60'>
                 {copy.gdprPrefix}{' '}
-                <Link href='/gdpr' className='underline hover:text-brand-action'>
+                <Link
+                  href={`${localizedRootPath}/gdpr`}
+                  className='underline hover:text-brand-action'
+                >
                   {copy.gdprLink}
                 </Link>
                 {language === 'de' && ' zu'}

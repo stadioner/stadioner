@@ -14,6 +14,7 @@ import {
 import { type Category, type Post, type SupportedLanguage } from '@/types/blog'
 import { createLocalizedListingAlternates } from '@/lib/seo/alternates'
 import { type LocalizedSeoLocale } from '@/lib/seo/site'
+import { buildPageMetadata } from '@/lib/seo/metadata'
 
 interface Props {
   params: Promise<{ lang: string }>
@@ -46,21 +47,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     lang as LocalizedSeoLocale,
   )
 
-  return {
+  return buildPageMetadata({
     title,
     description,
+    canonicalPath: alternates.canonical,
     alternates,
-    openGraph: {
-      title,
-      description,
-      type: 'website',
-    },
-    twitter: {
-      card: 'summary',
-      title,
-      description,
-    },
-  }
+    locale: lang as LocalizedSeoLocale,
+    twitterCard: 'summary',
+  })
 }
 
 export async function generateStaticParams() {
@@ -95,6 +89,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <main className='bg-brand-primary pt-32 md:pt-40 pb-28'>
+      <h1 className='sr-only'>{languageNames[lang]}</h1>
       <Container>
         <Posts
           posts={posts}

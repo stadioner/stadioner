@@ -37,6 +37,18 @@ interface EventSchemaInput {
   language: string
 }
 
+type ProductAvailability = 'InStock' | 'OutOfStock' | 'PreOrder'
+
+interface ProductSchemaInput {
+  name: string
+  description: string
+  sku: string
+  imageUrl: string
+  productUrl: string
+  language: string
+  availability?: ProductAvailability
+}
+
 export const jsonLdToHtml = (schema: JsonLd) => ({
   __html: JSON.stringify(schema),
 })
@@ -156,4 +168,34 @@ export const buildEventSchema = ({
         name: location,
       }
     : undefined,
+})
+
+export const buildProductSchema = ({
+  name,
+  description,
+  sku,
+  imageUrl,
+  productUrl,
+  language,
+  availability = 'InStock',
+}: ProductSchemaInput): JsonLd => ({
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name,
+  description,
+  sku,
+  inLanguage: language,
+  image: [imageUrl],
+  brand: {
+    '@type': 'Brand',
+    name: 'Stadioner',
+  },
+  offers: {
+    '@type': 'Offer',
+    url: productUrl,
+    availability: `https://schema.org/${availability}`,
+    seller: {
+      '@id': organizationId,
+    },
+  },
 })
