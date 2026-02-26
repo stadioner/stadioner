@@ -52,44 +52,41 @@ export const Products = ({
   const categoriesList = categories[activeLang]
   const labels = uiLabels[activeLang]
 
-  const packagingOptions: PackagingOption[] = useMemo(
-    () => {
-      if (!product || !productVariantUrls) {
-        return []
-      }
+  const packagingOptions: PackagingOption[] = useMemo(() => {
+    if (!product || !productVariantUrls) {
+      return []
+    }
 
-      const availability = availabilityBySlug[product.slug]
+    const availability = availabilityBySlug[product.slug]
 
-      return (
-        [
-          {
-            key: 'bottle' as PackagingKey,
-            label: labels.bottle,
-            url: productVariantUrls.bottle,
-          },
-          {
-            key: 'crate' as PackagingKey,
-            label: labels.crate,
-            url: productVariantUrls.crate,
-          },
-          {
-            key: 'barrel30' as PackagingKey,
-            label: labels.barrel30,
-            url: productVariantUrls.barrel30,
-          },
-          {
-            key: 'barrel50' as PackagingKey,
-            label: labels.barrel50,
-            url: productVariantUrls.barrel50,
-          },
-        ] as const
-      ).map(opt => ({
-        ...opt,
-        available: availability ? availability[opt.key] : opt.key === 'bottle',
-      }))
-    },
-    [product, productVariantUrls, labels, availabilityBySlug],
-  )
+    return (
+      [
+        {
+          key: 'bottle' as PackagingKey,
+          label: labels.bottle,
+          url: productVariantUrls.bottle,
+        },
+        {
+          key: 'crate' as PackagingKey,
+          label: labels.crate,
+          url: productVariantUrls.crate,
+        },
+        {
+          key: 'barrel30' as PackagingKey,
+          label: labels.barrel30,
+          url: productVariantUrls.barrel30,
+        },
+        {
+          key: 'barrel50' as PackagingKey,
+          label: labels.barrel50,
+          url: productVariantUrls.barrel50,
+        },
+      ] as const
+    ).map(opt => ({
+      ...opt,
+      available: availability ? availability[opt.key] : opt.key === 'bottle',
+    }))
+  }, [product, productVariantUrls, labels, availabilityBySlug])
 
   if (!product || !productVariantUrls) {
     return null
@@ -111,7 +108,7 @@ export const Products = ({
   const preparingProducts = ['experiment-11']
   const isPreparing =
     preparingProducts.includes(product.slug) ||
-    (product.slug === 'pozarnik-10' &&
+    (product.slug === '' &&
       (selectedPackaging === 'bottle' || selectedPackaging === 'crate'))
 
   const handlePackagingChange = (key: PackagingKey) => {
