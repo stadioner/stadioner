@@ -66,13 +66,22 @@ export const VydejniMisto = () => {
 
                 <div className='mt-3 text-sm text-zinc-200'>
                   {language === 'cs' && (
-                    <p>Zálohy: lahev 5 Kč, bedna 100 Kč, sud 1500 Kč.</p>
+                    <p>
+                      Zálohy: lahev 5 Kč, bedna 100 Kč, sud (30L, 50L) 1500 Kč,
+                      sud (10L, 20.5L) 2000 Kč
+                    </p>
                   )}
                   {language === 'en' && (
-                    <p>Deposits: bottle 5 CZK, crate 100 CZK, keg 1500 CZK.</p>
+                    <p>
+                      Deposits: bottle 5 CZK, crate 100 CZK, keg (30L, 50L) 1500
+                      CZK, keg (10L, 20.5L) 2000 CZK
+                    </p>
                   )}
                   {language === 'de' && (
-                    <p>Pfand: Flasche 5 CZK, Kiste 100 CZK, Fass 1500 CZK.</p>
+                    <p>
+                      Pfand: Flasche 5 CZK, Kiste 100 CZK, Fass (30L, 50L) 1500
+                      CZK, Fass (10L, 20.5L) 2000 CZK
+                    </p>
                   )}
                 </div>
 
@@ -111,16 +120,14 @@ export const VydejniMisto = () => {
                         {language === 'de' && 'GESCHLOSSEN'}
                       </span>
                     </div>
-                   {/* Út - Čt*/}
+                    {/* Út - Čt*/}
                     <div className='flex justify-between items-center'>
                       <span>
                         {language === 'cs' && 'Útery - Čtvrtek'}
                         {language === 'en' && 'Tuesday - Thursday '}
                         {language === 'de' && 'Dienstag – Donnerstag'}
                       </span>
-                      <span className='font-medium'>
-                       14:00 – 17:00
-                      </span>
+                      <span className='font-medium'>14:00 – 17:00</span>
                     </div>
 
                     {/* Čt - Pá */}
@@ -130,9 +137,7 @@ export const VydejniMisto = () => {
                         {language === 'en' && 'Friday'}
                         {language === 'de' && 'Freitag'}
                       </span>
-                      <span className='font-medium'>
-                       9:00 – 17:00
-                      </span>
+                      <span className='font-medium'>9:00 – 17:00</span>
                     </div>
 
                     {/* So */}
