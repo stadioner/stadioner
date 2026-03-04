@@ -64,6 +64,24 @@ export const eventType = defineType({
       initialValue: false,
     }),
     defineField({
+      name: 'rsvpCount',
+      type: 'number',
+      title: 'RSVP Count',
+      description: 'Current count of participants collected from the website.',
+      initialValue: 0,
+      validation: Rule => Rule.min(0),
+      readOnly: true,
+    }),
+    defineField({
+      name: 'rsvpVoterHashes',
+      type: 'array',
+      title: 'RSVP Voter Hashes',
+      of: [{ type: 'string' }],
+      initialValue: [],
+      readOnly: true,
+      hidden: true,
+    }),
+    defineField({
       name: 'mainImage',
       type: 'image',
       title: 'Main Image',
@@ -91,9 +109,10 @@ export const eventType = defineType({
       media: 'mainImage',
       dateTime: 'dateTime',
       endDateTime: 'endDateTime',
+      rsvpCount: 'rsvpCount',
     },
     prepare(selection) {
-      const { title, language, dateTime, endDateTime } = selection
+      const { title, language, dateTime, endDateTime, rsvpCount } = selection
       const lang = languages.find(l => l.id === language)
 
       const startDate = dateTime ? new Date(dateTime) : null
@@ -123,7 +142,7 @@ export const eventType = defineType({
 
       return {
         title,
-        subtitle: `${lang ? `${lang.flag} ` : ''} • ${dateString}`,
+        subtitle: `${lang ? `${lang.flag} ` : ''} • ${dateString} • RSVP: ${typeof rsvpCount === 'number' ? rsvpCount : 0}`,
         media: selection.media,
       }
     },

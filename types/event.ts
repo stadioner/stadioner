@@ -11,6 +11,7 @@ export interface Event {
   endDateTime?: string
   location?: string
   isComingSoon?: boolean
+  rsvpCount?: number
   mainImage?: {
     asset: {
       _ref: string

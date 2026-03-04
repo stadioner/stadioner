@@ -15,6 +15,7 @@ import { urlFor } from '@/sanity/lib/image'
 import { Event } from '@/types/event'
 import { SupportedLanguage } from '@/types/blog'
 import { type ReactNode } from 'react'
+import { EventRsvp } from './event-rsvp'
 
 interface EventDetailProps {
   event: Event
@@ -163,6 +164,8 @@ export function EventDetail({ event, language }: EventDetailProps) {
                 </p>
               )}
             </div>
+
+            <EventRsvp eventId={event._id} language={language} />
           </div>
         </div>
       </Border>
