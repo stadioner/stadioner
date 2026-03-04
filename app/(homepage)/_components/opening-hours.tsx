@@ -89,7 +89,7 @@ export const OpeningHours = () => {
                 <span className='font-bold'>{t.tue_thu_time}</span>
               </div>
 
-                {/* Friday */}
+              {/* Friday */}
               <div className='border-brand-primary/20 flex items-center justify-between border-b pb-2'>
                 <span>{t.fri}</span>
                 <span className='font-bold'>{t.fri_time}</span>
@@ -102,14 +102,14 @@ export const OpeningHours = () => {
               </div>
 
               {/* Sun */}
-              <div className='flex items-center justify-between pb-2'>
+              <div className='flex items-center justify-between pb-2 border-b border-brand-primary/20'>
                 <span>{t.sun}</span>
                 <span className='text-red-400 font-bold'>{t.closed}</span>
               </div>
             </div>
 
             {/* Address Section */}
-            <div className='border-brand-primary/20 pt-8 border-t'>
+            <div className='pt-8'>
               <h3 className='mb-2 text-2xl font-bold'>{t.address_title}</h3>
               <address className='not-italic text-lg md:text-xl'>
                 <p>{t.address_line1}</p>
