@@ -21,7 +21,7 @@ const buttonVariants = cva(
           'hover:bg-accent hover:text-accent-foreground dark:hover:bg-accent/50',
         link: 'text-primary underline-offset-4 hover:underline',
         green: 'bg-brand-action hover:bg-brand-action/90 text-brand-primary',
-        shop: 'bg-brand-shop hover:bg-brand-shop/90 text-brand-action-dark font-bold text-base border border-brand-shop',
+        shop: 'bg-brand-shop hover:bg-brand-shop/90 text-brand-primary font-bold text-base border border-brand-shop',
       },
       size: {
         default: 'h-9 px-4 py-2 has-[>svg]:px-3',
@@ -34,7 +34,7 @@ const buttonVariants = cva(
       variant: 'default',
       size: 'default',
     },
-  }
+  },
 )
 
 function Button({
