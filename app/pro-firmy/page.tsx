@@ -4,12 +4,13 @@ import { B2BCoverageMap } from './_components/coverage-map'
 import { B2BPackagingConfigurator } from './_components/packaging-configurator'
 import { B2BCooperationFlow } from './_components/cooperation-flow'
 import { B2BContactFaq } from './_components/contact-faq'
+import { FixedInquiryCta } from './_components/fixed-inquiry-cta'
 import { RippedPaperSVG } from '@/components/ripped-paper-svg'
 import { Suspense } from 'react'
 
 export default function ProFirmyPage() {
   return (
-    <main className='bg-brand-primary'>
+    <main className='bg-brand-primary pb-36'>
       <B2BHero />
       <B2BTypes />
       <B2BCoverageMap />
@@ -20,6 +21,7 @@ export default function ProFirmyPage() {
       <RippedPaperSVG />
       <B2BCooperationFlow />
       <B2BContactFaq />
+      <FixedInquiryCta />
     </main>
   )
 }

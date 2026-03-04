@@ -124,7 +124,10 @@ export const CookieConsent = () => {
     translations[language as keyof typeof translations] || translations.cs
 
   return (
-    <div className='fixed bottom-0 left-0 right-0 z-[1001] bg-brand-primary border-t border-brand-action p-4 shadow-lg'>
+    <div
+      id='cookie-consent-banner'
+      className='fixed bottom-0 left-0 right-0 z-[1001] bg-brand-primary border-t border-brand-action p-4 shadow-lg'
+    >
       <Container className='max-w-6xl'>
         <div className='space-y-4'>
           {/* Header */}
