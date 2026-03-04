@@ -1,8 +1,7 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { format, parseISO } from 'date-fns'
-import { cs, enUS, de } from 'date-fns/locale'
+import { parseISO } from 'date-fns'
 import {
   Calendar as CalendarIcon,
   MapPin,
@@ -15,6 +14,11 @@ import Link from 'next/link'
 import { Container } from '@/components/container'
 import { Event } from '@/types/event'
 import { SupportedLanguage } from '@/types/blog'
+import {
+  formatEventDay,
+  formatEventMonthShort,
+  formatEventTime,
+} from '@/lib/events/date-time'
 
 interface EventsPageProps {
   events: Event[]
@@ -51,7 +55,6 @@ const eventsPageTranslations: Record<
 }
 
 export function EventsPage({ events, language }: EventsPageProps) {
-  const locale = language === 'cs' ? cs : language === 'de' ? de : enUS
   const t = eventsPageTranslations[language]
   const now = new Date()
 
@@ -90,12 +93,10 @@ export function EventsPage({ events, language }: EventsPageProps) {
                         <div className='flex gap-4 items-center'>
                           <div className='flex flex-col items-center justify-center bg-brand-primary px-4 py-2 min-w-[80px] border border-brand-action/20'>
                             <span className='text-brand-action font-bold text-2xl font-mohave'>
-                              {format(parseISO(event.dateTime), 'd')}
+                              {formatEventDay(event.dateTime, language)}
                             </span>
                             <span className='text-brand-action/80 text-xs uppercase font-bold tracking-wider'>
-                              {format(parseISO(event.dateTime), 'MMM', {
-                                locale,
-                              })}
+                              {formatEventMonthShort(event.dateTime, language)}
                             </span>
                           </div>
 
@@ -106,12 +107,9 @@ export function EventsPage({ events, language }: EventsPageProps) {
                             <div className='flex flex-wrap gap-x-6 gap-y-2 text-sm text-brand-primary/70'>
                               <div className='flex items-center gap-1.5'>
                                 <Clock className='w-4 h-4' />
-                                {format(parseISO(event.dateTime), 'HH:mm')}
+                                {formatEventTime(event.dateTime, language)}
                                 {event.endDateTime &&
-                                  ` - ${format(
-                                    parseISO(event.endDateTime),
-                                    'HH:mm',
-                                  )}`}
+                                  ` - ${formatEventTime(event.endDateTime, language)}`}
                               </div>
                               {event.location && (
                                 <div className='flex items-center gap-1.5'>
@@ -199,12 +197,10 @@ export function EventsPage({ events, language }: EventsPageProps) {
                             <div className='flex gap-4 items-center'>
                               <div className='flex flex-col items-center justify-center bg-brand-primary/80 px-4 py-2 min-w-[80px] border border-brand-primary/10'>
                                 <span className='text-brand-action/70 font-bold text-2xl font-mohave'>
-                                  {format(parseISO(event.dateTime), 'd')}
+                                  {formatEventDay(event.dateTime, language)}
                                 </span>
                                 <span className='text-brand-action/60 text-xs uppercase font-bold tracking-wider'>
-                                  {format(parseISO(event.dateTime), 'MMM', {
-                                    locale,
-                                  })}
+                                  {formatEventMonthShort(event.dateTime, language)}
                                 </span>
                               </div>
 
@@ -215,12 +211,9 @@ export function EventsPage({ events, language }: EventsPageProps) {
                                 <div className='flex flex-wrap gap-x-6 gap-y-2 text-sm text-brand-primary/50'>
                                   <div className='flex items-center gap-1.5'>
                                     <Clock className='w-4 h-4' />
-                                    {format(parseISO(event.dateTime), 'HH:mm')}
+                                    {formatEventTime(event.dateTime, language)}
                                     {event.endDateTime &&
-                                      ` - ${format(
-                                        parseISO(event.endDateTime),
-                                        'HH:mm',
-                                      )}`}
+                                      ` - ${formatEventTime(event.endDateTime, language)}`}
                                   </div>
                                   {event.location && (
                                     <div className='flex items-center gap-1.5'>

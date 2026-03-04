@@ -6,8 +6,6 @@ import {
   Clock,
   ArrowLeft,
 } from 'lucide-react'
-import { format, parseISO } from 'date-fns'
-import { cs, enUS, de } from 'date-fns/locale'
 import Link from 'next/link'
 import { Border } from '@/components/border'
 import Image from 'next/image'
@@ -16,6 +14,7 @@ import { Event } from '@/types/event'
 import { SupportedLanguage } from '@/types/blog'
 import { type ReactNode } from 'react'
 import { EventRsvp } from './event-rsvp'
+import { formatEventDate, formatEventTime } from '@/lib/events/date-time'
 
 interface EventDetailProps {
   event: Event
@@ -93,8 +92,6 @@ const eventRichTextComponents: PortableTextComponents = {
 }
 
 export function EventDetail({ event, language }: EventDetailProps) {
-  const locale = language === 'cs' ? cs : language === 'de' ? de : enUS
-
   return (
     <div>
       <Link
@@ -129,15 +126,13 @@ export function EventDetail({ event, language }: EventDetailProps) {
               <div className='flex flex-wrap gap-x-8 gap-y-3 text-brand-action/70 text-lg'>
                 <div className='flex items-center gap-2'>
                   <CalendarIcon className='w-5 h-5 text-brand-action' />
-                  {format(parseISO(event.dateTime), 'PPP', {
-                    locale,
-                  })}
+                  {formatEventDate(event.dateTime, language)}
                 </div>
                 <div className='flex items-center gap-2'>
                   <Clock className='w-5 h-5 text-brand-action' />
-                  {format(parseISO(event.dateTime), 'HH:mm')}
+                  {formatEventTime(event.dateTime, language)}
                   {event.endDateTime &&
-                    ` - ${format(parseISO(event.endDateTime), 'HH:mm')}`}
+                    ` - ${formatEventTime(event.endDateTime, language)}`}
                 </div>
                 {event.location && (
                   <div className='flex items-center gap-2'>
