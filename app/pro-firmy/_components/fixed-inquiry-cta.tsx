@@ -3,10 +3,18 @@
 import { useEffect, useState } from 'react'
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
+import { useLanguage } from '@/store/use-language'
 
 export const FixedInquiryCta = () => {
+  const { language } = useLanguage()
   const [bottomOffset, setBottomOffset] = useState(16)
   const [isFormVisible, setIsFormVisible] = useState(false)
+  const buttonLabel =
+    language === 'en'
+      ? 'Non-binding order'
+      : language === 'de'
+        ? 'Unverbindliche Bestellung'
+        : 'Nezávazná objednávka'
 
   useEffect(() => {
     const cookieBannerId = 'cookie-consent-banner'
@@ -111,7 +119,7 @@ export const FixedInquiryCta = () => {
             onClick={handleClick}
             className='block w-full bg-brand-shop px-6 py-3 text-center text-base font-bold text-brand-primary transition-colors hover:bg-brand-shop/90'
           >
-            Nezávazná objednávka
+            {buttonLabel}
           </button>
         </Border>
       </Container>
