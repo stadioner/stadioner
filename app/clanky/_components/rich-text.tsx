@@ -1,24 +1,19 @@
+import type { PortableTextComponents } from '@portabletext/react'
 import { urlFor } from '@/sanity/lib/image'
+import { createPortableTextListComponents } from '@/sanity/lib/portable-text'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 
-export const RichText = {
+export const RichText: PortableTextComponents = {
   types: {
     image: ({ value }: { value: string }) => (
       <img src={urlFor(value)} alt='Blog Post Image' className='mb-10' />
     ),
   },
 
-  list: {
-    bullet: ({ children }: PropsWithChildren) => (
-      <ul className='list-disc my-4 space-y-2 list-inside text-lg mb-2'>
-        {children}
-      </ul>
-    ),
-    number: ({ children }: PropsWithChildren) => (
-      <ol className='list-decimal list-inside text-lg mb-2'>{children}</ol>
-    ),
-  },
+  ...createPortableTextListComponents({
+    listClassName: 'text-lg',
+  }),
 
   block: {
     normal: ({ children }: PropsWithChildren) => (

@@ -10,6 +10,7 @@ import Link from 'next/link'
 import { Border } from '@/components/border'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
+import { createPortableTextListComponents } from '@/sanity/lib/portable-text'
 import { Event } from '@/types/event'
 import { SupportedLanguage } from '@/types/blog'
 import { type ReactNode } from 'react'
@@ -59,18 +60,9 @@ const eventRichTextComponents: PortableTextComponents = {
       </blockquote>
     ),
   },
-  list: {
-    bullet: ({ children }) => (
-      <ul className='list-disc list-inside space-y-2 mb-4 text-brand-action/80'>
-        {children}
-      </ul>
-    ),
-    number: ({ children }) => (
-      <ol className='list-decimal list-inside space-y-2 mb-4 text-brand-action/80'>
-        {children}
-      </ol>
-    ),
-  },
+  ...createPortableTextListComponents({
+    listClassName: 'text-brand-action/80',
+  }),
   marks: {
     link: ({
       children,
