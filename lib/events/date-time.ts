@@ -58,3 +58,11 @@ export const formatEventMonthShort = (
   formatInEventTimeZone(isoDateTime, language, {
     month: 'short',
   })
+
+export const formatEventYear = (
+  isoDateTime: string,
+  language: SupportedLanguage,
+): string =>
+  formatInEventTimeZone(isoDateTime, language, {
+    year: 'numeric',
+  })

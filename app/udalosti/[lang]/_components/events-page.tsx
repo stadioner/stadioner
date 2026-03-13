@@ -18,6 +18,7 @@ import {
   formatEventDay,
   formatEventMonthShort,
   formatEventTime,
+  formatEventYear,
 } from '@/lib/events/date-time'
 
 interface EventsPageProps {
@@ -91,12 +92,15 @@ export function EventsPage({ events, language }: EventsPageProps) {
                     {upcomingEvents.map(event => {
                       const EventContent = (
                         <div className='flex gap-4 items-center'>
-                          <div className='flex flex-col items-center justify-center bg-brand-primary px-4 py-2 min-w-[80px] border border-brand-action/20'>
+                          <div className='flex min-w-[80px] flex-col items-center justify-center border border-brand-action/20 bg-brand-primary px-4 py-2'>
                             <span className='text-brand-action font-bold text-2xl font-mohave'>
                               {formatEventDay(event.dateTime, language)}
                             </span>
                             <span className='text-brand-action/80 text-xs uppercase font-bold tracking-wider'>
                               {formatEventMonthShort(event.dateTime, language)}
+                            </span>
+                            <span className='mt-0.5 text-[0.6rem] font-medium uppercase tracking-[0.18em] text-brand-action/70'>
+                              {formatEventYear(event.dateTime, language)}
                             </span>
                           </div>
 
@@ -195,12 +199,18 @@ export function EventsPage({ events, language }: EventsPageProps) {
                         >
                           <div className='block p-4'>
                             <div className='flex gap-4 items-center'>
-                              <div className='flex flex-col items-center justify-center bg-brand-primary/80 px-4 py-2 min-w-[80px] border border-brand-primary/10'>
+                              <div className='flex min-w-[80px] flex-col items-center justify-center border border-brand-primary/10 bg-brand-primary/80 px-4 py-2'>
                                 <span className='text-brand-action/70 font-bold text-2xl font-mohave'>
                                   {formatEventDay(event.dateTime, language)}
                                 </span>
                                 <span className='text-brand-action/60 text-xs uppercase font-bold tracking-wider'>
-                                  {formatEventMonthShort(event.dateTime, language)}
+                                  {formatEventMonthShort(
+                                    event.dateTime,
+                                    language,
+                                  )}
+                                </span>
+                                <span className='mt-0.5 text-[0.6rem] font-medium uppercase tracking-[0.18em] text-brand-action/35'>
+                                  {formatEventYear(event.dateTime, language)}
                                 </span>
                               </div>
 
