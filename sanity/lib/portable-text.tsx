@@ -21,6 +21,15 @@ interface PortableTextListStyleOptions {
   listItemClassName?: string
 }
 
+interface PortableTextSpanLike {
+  _type?: string
+  text?: string
+}
+
+export interface PortableTextBlockLike {
+  children?: PortableTextSpanLike[]
+}
+
 const BULLET_LIST_STYLES = ['list-disc', 'list-[circle]', 'list-[square]'] as const
 const NUMBER_LIST_STYLES = [
   'list-decimal',
@@ -86,4 +95,16 @@ export function createPortableTextListComponents(
       </li>
     ),
   }
+}
+
+export function isPortableTextBlockEmpty(
+  value?: PortableTextBlockLike,
+): boolean {
+  if (!value?.children?.length) {
+    return true
+  }
+
+  return value.children.every(
+    child => child._type === 'span' && (child.text ?? '').trim().length === 0,
+  )
 }

@@ -1,6 +1,10 @@
 import type { PortableTextComponents } from '@portabletext/react'
 import { urlFor } from '@/sanity/lib/image'
-import { createPortableTextListComponents } from '@/sanity/lib/portable-text'
+import {
+  createPortableTextListComponents,
+  isPortableTextBlockEmpty,
+  type PortableTextBlockLike,
+} from '@/sanity/lib/portable-text'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 
@@ -16,11 +20,17 @@ export const RichText: PortableTextComponents = {
   }),
 
   block: {
-    normal: ({ children }: PropsWithChildren) => (
-      <p className='text-zinc-800 font-stabil !text-justify text-lg mb-4 !leading-[1.15]'>
-        {children}
-      </p>
-    ),
+    normal: ({
+      children,
+      value,
+    }: PropsWithChildren<{ value?: PortableTextBlockLike }>) =>
+      isPortableTextBlockEmpty(value) ? (
+        <div aria-hidden='true' className='h-8' />
+      ) : (
+        <p className='text-zinc-800 font-stabil !text-justify text-lg mb-4 !leading-[1.15]'>
+          {children}
+        </p>
+      ),
     h1: ({ children }: PropsWithChildren) => (
       <h1 className='mt-10 mb-4 text-4xl xl:text-5xl font-bold font-labil'>
         {children}

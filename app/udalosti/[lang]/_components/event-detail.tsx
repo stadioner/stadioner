@@ -10,7 +10,10 @@ import Link from 'next/link'
 import { Border } from '@/components/border'
 import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
-import { createPortableTextListComponents } from '@/sanity/lib/portable-text'
+import {
+  createPortableTextListComponents,
+  isPortableTextBlockEmpty,
+} from '@/sanity/lib/portable-text'
 import { Event } from '@/types/event'
 import { SupportedLanguage } from '@/types/blog'
 import { type ReactNode } from 'react'
@@ -36,32 +39,43 @@ const eventRichTextComponents: PortableTextComponents = {
     ),
   },
   block: {
-    normal: ({ children }) => (
-      <p className='mb-4 text-brand-action/80 leading-relaxed'>{children}</p>
-    ),
+    normal: ({ children, value }) =>
+      isPortableTextBlockEmpty(value) ? (
+        <div aria-hidden='true' className='h-8' />
+      ) : (
+        <p className='mb-4 text-[1.0625rem] leading-[1.8] text-brand-action/80 md:text-[1.125rem]'>
+          {children}
+        </p>
+      ),
     h1: ({ children }) => (
-      <h1 className='text-3xl font-bold text-brand-action mt-8 mb-4'>
+      <h1 className='mt-8 mb-4 text-3xl font-bold text-brand-action'>
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className='text-2xl font-bold text-brand-action mt-8 mb-4'>
+      <h2 className='mt-8 mb-5 text-[2.1rem] leading-none font-bold text-brand-action md:text-[2.55rem]'>
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className='text-xl font-bold text-brand-action mt-6 mb-3'>
+      <h3 className='mt-8 mb-4 text-[1.65rem] leading-tight font-bold text-brand-action md:text-[2rem]'>
         {children}
       </h3>
     ),
+    h4: ({ children }) => (
+      <h4 className='mt-7 mb-3 text-[1.2rem] leading-snug font-semibold text-brand-action md:text-[1.35rem]'>
+        {children}
+      </h4>
+    ),
     blockquote: ({ children }) => (
-      <blockquote className='border-l-4 border-brand-action/50 pl-4 py-2 my-4 italic text-brand-action/70'>
+      <blockquote className='my-5 border-l-4 border-brand-action/50 py-2 pl-4 text-[1.0625rem] italic leading-relaxed text-brand-action/70 md:text-[1.125rem]'>
         {children}
       </blockquote>
     ),
   },
   ...createPortableTextListComponents({
-    listClassName: 'text-brand-action/80',
+    listClassName:
+      'text-[1.0625rem] leading-[1.8] text-brand-action/80 md:text-[1.125rem]',
   }),
   marks: {
     link: ({
