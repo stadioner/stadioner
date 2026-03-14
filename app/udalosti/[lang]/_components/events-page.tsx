@@ -1,7 +1,6 @@
 'use client'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { parseISO } from 'date-fns'
 import {
   Calendar as CalendarIcon,
   MapPin,
@@ -19,6 +18,7 @@ import {
   formatEventMonthShort,
   formatEventTime,
   formatEventYear,
+  isEventPast,
 } from '@/lib/events/date-time'
 
 interface EventsPageProps {
@@ -60,20 +60,14 @@ export function EventsPage({ events, language }: EventsPageProps) {
   const now = new Date()
 
   const pastEvents = events
-    .filter(event => {
-      const eventEnd = parseISO(event.endDateTime ?? event.dateTime)
-      return eventEnd.getTime() < now.getTime()
-    })
+    .filter(event => isEventPast(event, now))
     .sort(
       (a, b) =>
-        parseISO(b.endDateTime ?? b.dateTime).getTime() -
-        parseISO(a.endDateTime ?? a.dateTime).getTime(),
+        new Date(b.endDateTime ?? b.dateTime).getTime() -
+        new Date(a.endDateTime ?? a.dateTime).getTime(),
     )
 
-  const upcomingEvents = events.filter(event => {
-    const eventEnd = parseISO(event.endDateTime ?? event.dateTime)
-    return eventEnd.getTime() >= now.getTime()
-  })
+  const upcomingEvents = events.filter(event => !isEventPast(event, now))
 
   return (
     <main className='bg-brand-primary pt-36 pb-20 min-h-[80vh]'>

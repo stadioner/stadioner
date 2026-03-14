@@ -4,6 +4,7 @@ import {
   eventsForSitemapByLanguageQuery,
   postsForSitemapByLanguageQuery,
 } from '@/sanity/lib/queries'
+import { isEventPast } from '@/lib/events/date-time'
 import { localizedSeoLocales, toAbsoluteUrl } from '@/lib/seo/site'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -118,8 +119,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             return false
           }
 
-          const eventEnd = new Date(event.endDateTime ?? event.dateTime)
-          return Number.isFinite(eventEnd.getTime()) && eventEnd >= now
+          return !isEventPast(event, now)
         })
         .map(event =>
           createEntry(

@@ -25,6 +25,49 @@ const formatInEventTimeZone = (
   }).format(date)
 }
 
+const getDateKeyInEventTimeZone = (date: Date): string | null => {
+  if (Number.isNaN(date.getTime())) {
+    return null
+  }
+
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: EVENT_TIME_ZONE,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+  }).formatToParts(date)
+
+  const year = parts.find(part => part.type === 'year')?.value
+  const month = parts.find(part => part.type === 'month')?.value
+  const day = parts.find(part => part.type === 'day')?.value
+
+  if (!year || !month || !day) {
+    return null
+  }
+
+  return `${year}-${month}-${day}`
+}
+
+export const isEventPast = (
+  event: { dateTime?: string; endDateTime?: string },
+  referenceDate: Date = new Date(),
+): boolean => {
+  const eventEndDateTime = event.endDateTime ?? event.dateTime
+
+  if (!eventEndDateTime) {
+    return false
+  }
+
+  const eventEndDateKey = getDateKeyInEventTimeZone(new Date(eventEndDateTime))
+  const referenceDateKey = getDateKeyInEventTimeZone(referenceDate)
+
+  if (!eventEndDateKey || !referenceDateKey) {
+    return false
+  }
+
+  return eventEndDateKey < referenceDateKey
+}
+
 export const formatEventDate = (
   isoDateTime: string,
   language: SupportedLanguage,

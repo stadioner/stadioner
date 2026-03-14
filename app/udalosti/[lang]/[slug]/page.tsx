@@ -15,6 +15,7 @@ import {
   isSupportedLanguage,
   supportedLanguages,
 } from '@/lib/i18n/site-languages'
+import { isEventPast } from '@/lib/events/date-time'
 import { type Event } from '@/types/event'
 import { createLocalizedDetailAlternatesFromVariants } from '@/lib/seo/alternates'
 import {
@@ -183,8 +184,7 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
-  const eventEnd = new Date(event.endDateTime ?? event.dateTime)
-  if (eventEnd.getTime() < Date.now()) {
+  if (isEventPast(event)) {
     notFound()
   }
 
