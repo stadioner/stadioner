@@ -253,7 +253,7 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
             }
           />
           <CustomMarker
-            position={[50.0933570258205, 14.44776125216898]}
+            position={[49.74832117580861, 13.37899663576035]}
             icon={createImageIcon("/map/pivoteka.svg")}
             popupContent={
               <>
