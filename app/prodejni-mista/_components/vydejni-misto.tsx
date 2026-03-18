@@ -75,7 +75,7 @@ export const VydejniMisto = () => {
     <section className="bg-brand-primary">
       <RippedPaperSVG flip />
       <div className="bg-brand-action py-12">
-        <Container className="grid md:grid-cols-2 gap-10">
+        <Container className="grid md:grid-cols-[0.9fr_1.05fr] gap-10">
           <div className="flex flex-col justify-between">
             <div>
               <div>
@@ -172,7 +172,7 @@ export const VydejniMisto = () => {
                     {language === "de" && "Öffnungszeiten"}
                   </h4>
 
-                  <div className="text-sm space-y-1.5">
+                  <div className="space-y-1">
                     {openingHours.map((row) => (
                       <div
                         key={row.key}
@@ -202,6 +202,7 @@ export const VydejniMisto = () => {
               </div>
             </div>
           </div>
+
           <Image
             src="/vydejni-misto-zima.webp"
             alt="Výdejní místo STADIONER (Kout na Šumavě)"
