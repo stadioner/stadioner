@@ -1,7 +1,7 @@
 # Stadioner Design System
 
 ## Purpose and Scope
-This document defines the current design system implemented in the Stadioner public web application and provides a consistency audit with standardization recommendations.
+This document defines the current design system implemented in the STADIONER public web application and provides a consistency audit with standardization recommendations.
 
 Scope includes:
 - Public web UI in `app/` and `components/`

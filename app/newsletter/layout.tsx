@@ -1,15 +1,15 @@
-import type { Metadata } from 'next'
-import type { PropsWithChildren } from 'react'
-import { buildPageMetadata } from '@/lib/seo/metadata'
+import type { Metadata } from "next";
+import type { PropsWithChildren } from "react";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Newsletter',
+  title: "Newsletter",
   description:
-    'Přihlaste se k odběru novinek pivovaru Stadioner a získejte informace o produktech, událostech a speciálních nabídkách.',
-  canonicalPath: '/cs/newsletter',
-  keywords: ['newsletter', 'Stadioner', 'pivovar', 'novinky'],
-})
+    "Přihlaste se k odběru novinek pivovaru STADIONER a získejte informace o produktech, událostech a speciálních nabídkách.",
+  canonicalPath: "/cs/newsletter",
+  keywords: ["newsletter", "STADIONER", "pivovar", "novinky"],
+});
 
 export default function NewsletterLayout({ children }: PropsWithChildren) {
-  return children
+  return children;
 }
