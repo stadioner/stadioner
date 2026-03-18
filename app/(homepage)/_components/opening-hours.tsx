@@ -3,6 +3,7 @@
 import { Container } from "@/components/container";
 import { RippedPaperSVG } from "@/components/ripped-paper-svg";
 import { useLanguage } from "@/store/use-language";
+import { cn } from "@/lib/utils";
 
 const translations = {
   cs: {
@@ -59,6 +60,45 @@ export const OpeningHours = () => {
   const language = useLanguage((state) => state.language);
   const t =
     translations[language as keyof typeof translations] || translations.cs;
+  const currentDay = new Date().getDay();
+
+  const rows = [
+    {
+      key: "mon",
+      label: t.mon,
+      value: t.closed,
+      closed: true,
+      isToday: currentDay === 1,
+    },
+    {
+      key: "tue_thu",
+      label: t.tue_thu,
+      value: t.tue_thu_time,
+      closed: false,
+      isToday: currentDay >= 2 && currentDay <= 4,
+    },
+    {
+      key: "fri",
+      label: t.fri,
+      value: t.fri_time,
+      closed: false,
+      isToday: currentDay === 5,
+    },
+    {
+      key: "sat",
+      label: t.sat,
+      value: t.sat_time,
+      closed: false,
+      isToday: currentDay === 6,
+    },
+    {
+      key: "sun",
+      label: t.sun,
+      value: t.closed,
+      closed: true,
+      isToday: currentDay === 0,
+    },
+  ];
 
   return (
     <section className="bg-brand-action py-16 text-brand-primary relative">
@@ -76,41 +116,36 @@ export const OpeningHours = () => {
               {t.title}
             </h2>
 
-            <div className="w-full space-y-4 text-lg md:text-xl">
-              {/* Mon - Wed */}
-              <div className="border-brand-primary/20 flex items-center justify-between border-b pb-2">
-                <span>{t.mon}</span>
-                <span className="text-red-400 font-bold">{t.closed}</span>
-              </div>
-
-              {/* Tue - Thu */}
-              <div className="border-brand-primary/20 flex items-center justify-between border-b pb-2">
-                <span>{t.tue_thu}</span>
-                <span className="font-bold">{t.tue_thu_time}</span>
-              </div>
-
-              {/* Friday */}
-              <div className="border-brand-primary/20 flex items-center justify-between border-b pb-2">
-                <span>{t.fri}</span>
-                <span className="font-bold">{t.fri_time}</span>
-              </div>
-
-              {/* Sat */}
-              <div className="border-brand-primary/20 flex items-center justify-between border-b pb-2">
-                <span>{t.sat}</span>
-                <span className="font-bold">{t.sat_time}</span>
-              </div>
-
-              {/* Sun */}
-              <div className="flex items-center justify-between pb-2 border-b border-brand-primary/20">
-                <span>{t.sun}</span>
-                <span className="text-red-400 font-bold">{t.closed}</span>
-              </div>
+            <div className="w-full text-lg md:text-xl divide-solid divide-brand-primary/80">
+              {rows.map((row) => (
+                <div
+                  key={row.key}
+                  className={cn(
+                    "flex items-center justify-between px-3 py-3 my-3 transition-colors",
+                    row.isToday &&
+                      "bg-brand-primary text-brand-action border-brand-primary",
+                  )}
+                >
+                  <div className="flex justify-center items-center gap-3">
+                    <span className={cn(row.isToday && "font-bold")}>
+                      {row.label}
+                    </span>
+                  </div>
+                  <span
+                    className={cn(
+                      "font-bold",
+                      row.closed && !row.isToday && "text-red-400",
+                    )}
+                  >
+                    {row.value}
+                  </span>
+                </div>
+              ))}
             </div>
 
             {/* Address Section */}
             <div className="pt-8">
-              <h3 className="mb-2 text-2xl font-bold">{t.address_title}</h3>
+              <h3 className="mb-1 text-2xl font-bold">{t.address_title}</h3>
               <address className="not-italic text-lg md:text-xl">
                 <p>{t.address_line1}</p>
                 <p>{t.address_line2}</p>

@@ -3,9 +3,72 @@
 import { Container } from "@/components/container";
 import { RippedPaperSVG } from "@/components/ripped-paper-svg";
 import { useLanguage } from "@/store/use-language";
+import { cn } from "@/lib/utils";
 
 export const VydejniMisto = () => {
   const { language } = useLanguage();
+  const currentDay = new Date().getDay();
+
+  const t = {
+    monday:
+      language === "cs" ? "Pondělí" : language === "en" ? "Monday" : "Montag",
+    tueThu:
+      language === "cs"
+        ? "Útery - Čtvrtek"
+        : language === "en"
+          ? "Tuesday - Thursday "
+          : "Dienstag – Donnerstag",
+    friday:
+      language === "cs" ? "Pátek" : language === "en" ? "Friday" : "Freitag",
+    saturday:
+      language === "cs" ? "Sobota" : language === "en" ? "Saturday" : "Samstag",
+    sunday:
+      language === "cs" ? "Neděle" : language === "en" ? "Sunday" : "Sonntag",
+    closed:
+      language === "cs"
+        ? "ZAVŘENO"
+        : language === "en"
+          ? "CLOSED"
+          : "GESCHLOSSEN",
+  };
+
+  const openingHours = [
+    {
+      key: "mon",
+      label: t.monday,
+      value: t.closed,
+      closed: true,
+      isToday: currentDay === 1,
+    },
+    {
+      key: "tue-thu",
+      label: t.tueThu,
+      value: "14:00 – 17:00",
+      closed: false,
+      isToday: currentDay >= 2 && currentDay <= 4,
+    },
+    {
+      key: "fri",
+      label: t.friday,
+      value: "9:00 – 17:00",
+      closed: false,
+      isToday: currentDay === 5,
+    },
+    {
+      key: "sat",
+      label: t.saturday,
+      value: "9:00 - 12:00",
+      closed: false,
+      isToday: currentDay === 6,
+    },
+    {
+      key: "sun",
+      label: t.sunday,
+      value: t.closed,
+      closed: true,
+      isToday: currentDay === 0,
+    },
+  ];
 
   return (
     <section className="bg-brand-primary">
@@ -100,69 +163,36 @@ export const VydejniMisto = () => {
                 {/* --- OTEVÍRACÍ DOBA --- */}
                 <div className="border-t border-zinc-600 pt-4">
                   <h4 className="font-semibold text-brand-primary mb-2 text-xl">
-                    {language === "cs" && "Otevírací doba (od 12. 1. 2026)"}
-                    {language === "en" &&
-                      "Opening hours (from January 12, 2026)"}
-                    {language === "de" && "Öffnungszeiten (ab 12. 1. 2026)"}
+                    {language === "cs" && "Otevírací doba"}
+                    {language === "en" && "Opening hours"}
+                    {language === "de" && "Öffnungszeiten"}
                   </h4>
 
-                  <div className="text-sm space-y-0.5">
-                    {/* Po*/}
-                    <div className="flex justify-between items-center">
-                      <span>
-                        {language === "cs" && "Pondělí"}
-                        {language === "en" && "Monday"}
-                        {language === "de" && "Montag"}
-                      </span>
-                      <span className="font-medium text-red-400">
-                        {language === "cs" && "ZAVŘENO"}
-                        {language === "en" && "CLOSED"}
-                        {language === "de" && "GESCHLOSSEN"}
-                      </span>
-                    </div>
-                    {/* Út - Čt*/}
-                    <div className="flex justify-between items-center">
-                      <span>
-                        {language === "cs" && "Útery - Čtvrtek"}
-                        {language === "en" && "Tuesday - Thursday "}
-                        {language === "de" && "Dienstag – Donnerstag"}
-                      </span>
-                      <span className="font-medium">14:00 – 17:00</span>
-                    </div>
-
-                    {/* Čt - Pá */}
-                    <div className="flex justify-between items-center">
-                      <span>
-                        {language === "cs" && "Pátek"}
-                        {language === "en" && "Friday"}
-                        {language === "de" && "Freitag"}
-                      </span>
-                      <span className="font-medium">9:00 – 17:00</span>
-                    </div>
-
-                    {/* So */}
-                    <div className="flex justify-between items-center">
-                      <span>
-                        {language === "cs" && "Sobota"}
-                        {language === "en" && "Saturday"}
-                        {language === "de" && "Samstag"}
-                      </span>
-                      <span className="font-medium">9:00 - 12:00</span>
-                    </div>
-
-                    {/* Ne */}
-                    <div className="flex justify-between items-center">
-                      <span>
-                        {language === "cs" && "Neděle"}
-                        {language === "en" && "Sunday"}
-                        {language === "de" && "Sonntag"}
-                      </span>
-                      <span className="font-medium text-red-400">
-                        {language === "cs" && "ZAVŘENO"}
-                        {language === "en" && "CLOSED"}
-                        {language === "de" && "GESCHLOSSEN"}
-                      </span>
-                    </div>
+                  <div className="text-sm space-y-1.5">
+                    {openingHours.map((row) => (
+                      <div
+                        key={row.key}
+                        className={cn(
+                          "flex items-center justify-between px-3 py-2 transition-colors",
+                          row.isToday && "bg-brand-primary text-brand-action",
+                        )}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span className={cn(row.isToday && "font-bold")}>
+                            {row.label}
+                          </span>
+                        </div>
+                        <span
+                          className={cn(
+                            "font-medium",
+                            row.closed && !row.isToday && "text-red-400",
+                            row.isToday && "font-bold",
+                          )}
+                        >
+                          {row.value}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
