@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import type { Product } from '@/types/products'
 
 interface ProductNavigationProps {
@@ -39,9 +40,11 @@ export const ProductNavigation = ({
             transition={{ type: 'spring', stiffness: 300 }}
             aria-label={`Select ${p.name}`}
           >
-            <img
+            <Image
               src={p.icon}
               alt={p.name}
+              width={56}
+              height={56}
               className='size-10 sm:size-12 md:size-14 object-cover rounded-full'
             />
           </motion.button>

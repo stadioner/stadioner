@@ -116,10 +116,12 @@ export function EventDetail({ event, language }: EventDetailProps) {
           {/* Header Image */}
           {event.mainImage && (
             <div className='relative w-full aspect-video border-b border-brand-action/10 shrink-0 overflow-hidden max-h-[50vh]'>
-              <img
+              <Image
                 src={urlFor(event.mainImage)}
                 alt={event.title}
-                className='w-full h-full object-cover'
+                fill
+                sizes='100vw'
+                className='object-cover'
               />
             </div>
           )}

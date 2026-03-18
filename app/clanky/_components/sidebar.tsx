@@ -1,6 +1,7 @@
 import { sanityFetch } from '@/sanity/lib/fetch'
 import { recentPostsQuery } from '@/sanity/lib/queries'
 import { SupportedLanguage, Post } from '@/types/blog'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Border } from '@/components/border'
 import { urlFor } from '@/sanity/lib/image'
@@ -60,9 +61,11 @@ export const Sidebar = async ({ language }: SidebarProps) => {
                 <Border>
                   <div className='flex gap-3 p-3 items-center'>
                     <div className='w-16 h-16 overflow-hidden relative flex-shrink-0'>
-                      <img
+                      <Image
                         src={urlFor(post.mainImage)}
                         alt={post.mainImage?.alt || post.title}
+                        fill
+                        sizes='64px'
                         className='absolute inset-0 w-full h-full object-cover group-hover:scale-[1.02] transition'
                       />
                     </div>

@@ -1,5 +1,6 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Button } from '@/components/ui/button'
 import {
   Dialog,
@@ -74,10 +75,12 @@ export const ProductInfo = ({
                     </DialogTitle>
                   </DialogHeader>
                   {product.ingredients && (
-                    <img
+                    <Image
                       src={product.ingredients}
                       alt='ingredients'
-                      className='max-h-[400px]'
+                      width={1200}
+                      height={1600}
+                      className='max-h-[400px] h-auto w-auto'
                     />
                   )}
                 </DialogContent>

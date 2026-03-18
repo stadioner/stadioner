@@ -4,6 +4,7 @@ import { Container } from "@/components/container";
 import { RippedPaperSVG } from "@/components/ripped-paper-svg";
 import { useLanguage } from "@/store/use-language";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 const translations = {
   cs: {
@@ -154,9 +155,12 @@ export const OpeningHours = () => {
           </div>
 
           {/* Image */}
-          <img
+          <Image
             src="/vydejni-misto-zima.webp"
             alt={t.image_alt}
+            width={1200}
+            height={900}
+            sizes="(min-width: 1024px) 50vw, 100vw"
             className="w-full"
           />
         </div>

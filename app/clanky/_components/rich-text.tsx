@@ -1,5 +1,6 @@
 import type { PortableTextComponents } from '@portabletext/react'
 import { urlFor } from '@/sanity/lib/image'
+import Image from 'next/image'
 import {
   createPortableTextListComponents,
   isPortableTextBlockEmpty,
@@ -11,7 +12,15 @@ import { PropsWithChildren } from 'react'
 export const RichText: PortableTextComponents = {
   types: {
     image: ({ value }: { value: string }) => (
-      <img src={urlFor(value)} alt='Blog Post Image' className='mb-10' />
+      <div className='relative mb-10 aspect-video overflow-hidden'>
+        <Image
+          src={urlFor(value)}
+          alt='Blog Post Image'
+          fill
+          sizes='100vw'
+          className='object-cover'
+        />
+      </div>
     ),
   },
 

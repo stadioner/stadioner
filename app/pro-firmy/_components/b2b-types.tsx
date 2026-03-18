@@ -3,6 +3,7 @@
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
 import { useLanguage } from '@/store/use-language'
+import Image from 'next/image'
 import { b2bContent, getB2BLanguage } from './content'
 
 export const B2BTypes = () => {
@@ -25,17 +26,21 @@ export const B2BTypes = () => {
           {copy.types.cards.map(card => (
             <Border key={card.id}>
               <article className='group relative h-[320px] md:h-[360px] overflow-hidden'>
-                <img
+                <Image
                   src='/b2b/restaruace.webp'
                   alt={card.title}
+                  fill
+                  sizes='(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw'
                   className='absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105'
                 />
                 <div className='absolute inset-0 bg-brand-action/45' />
                 <div className='absolute inset-0 bg-gradient-to-t from-brand-action/90 via-brand-action/40 to-brand-action/15' />
 
-                <img
+                <Image
                   src={card.icon}
                   alt={card.title}
+                  width={44}
+                  height={44}
                   className='absolute right-2 top-2 z-20 size-11 rounded-full bg-brand-primary p-1 border border-brand-action/40'
                 />
 

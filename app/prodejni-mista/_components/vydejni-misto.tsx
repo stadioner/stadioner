@@ -4,6 +4,7 @@ import { Container } from "@/components/container";
 import { RippedPaperSVG } from "@/components/ripped-paper-svg";
 import { useLanguage } from "@/store/use-language";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export const VydejniMisto = () => {
   const { language } = useLanguage();
@@ -87,9 +88,12 @@ export const VydejniMisto = () => {
                   Kout na Šumavě 2, 345 02 Kout na Šumavě
                 </p>
               </div>
-              <img
+              <Image
                 src="/vydejni-misto.webp"
                 alt="Výdejní místo STADIONER (Kout na Šumavě)"
+                width={1200}
+                height={900}
+                sizes="100vw"
                 className="md:hidden py-4"
               />
               <div className="text-zinc-100 md:mt-6 space-y-4">
@@ -198,9 +202,12 @@ export const VydejniMisto = () => {
               </div>
             </div>
           </div>
-          <img
+          <Image
             src="/vydejni-misto-zima.webp"
             alt="Výdejní místo STADIONER (Kout na Šumavě)"
+            width={1200}
+            height={900}
+            sizes="(min-width: 768px) 50vw, 100vw"
             className="hidden md:block"
           />
         </Container>

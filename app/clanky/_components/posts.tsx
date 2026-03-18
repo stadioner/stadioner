@@ -3,6 +3,7 @@
 import { Border } from '@/components/border'
 import { urlFor } from '@/sanity/lib/image'
 import { Post, Category, SupportedLanguage } from '@/types/blog'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 
@@ -159,9 +160,11 @@ export const Posts = ({ posts, categories, language }: PostsProps) => {
             >
               <Border>
                 <div className='aspect-square overflow-hidden relative'>
-                  <img
+                  <Image
                     src={urlFor(post.mainImage)}
                     alt={post.mainImage.alt || post.title}
+                    fill
+                    sizes='(min-width: 768px) 33vw, 100vw'
                     className='absolute inset-0 object-cover hover:scale-[102%] transition aspect-square overflow-hidden'
                   />
 

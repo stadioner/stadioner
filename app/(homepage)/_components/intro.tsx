@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
 export const Intro = () => {
   const [reveal, setReveal] = useState(false)
@@ -26,10 +27,13 @@ export const Intro = () => {
     >
       <div className='relative w-64 h-64 flex items-center justify-center'>
         {/* Bottom: Cream logo */}
-        <img
+        <Image
           src='/logo-cream.svg'
           alt='Logo cream'
-          className='absolute inset-0 w-full h-full object-contain'
+          fill
+          priority
+          sizes='16rem'
+          className='absolute inset-0 object-contain'
         />
         {/* Top: Green logo, animates in from bottom to top */}
         <motion.img

@@ -2,16 +2,20 @@
 
 import { Container } from "@/components/container";
 import { useLanguage } from "@/store/use-language";
+import Image from "next/image";
 
 export const Hero = () => {
   const { language } = useLanguage();
 
   return (
     <section className="relative h-[70vh] sm:h-[86vh] w-full">
-      <img
+      <Image
         src="/hero/main.svg"
         alt="hero"
-        className="absolute bottom-0 left-0 z-10 w-full scale-200 sm:scale-150 md:scale-100 object-bottom"
+        fill
+        priority
+        sizes="100vw"
+        className="absolute bottom-0 left-0 z-10 w-full scale-200 object-contain object-bottom sm:scale-150 md:scale-100"
       />
       <div className="bg-brand-primary absolute left-0 bottom-0 w-full h-full">
         <Container className="mt-32 md:mt-44 text-brand-action">

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useLanguage } from '@/store/use-language'
 import { AnimatePresence } from 'framer-motion'
 import { NavItem } from '@/components/layout/navbar/nav-item'
@@ -78,7 +79,7 @@ export const Navbar = () => {
                     href={localizedRootPath}
                     className='transition duration-300 justify-self-center bg-brand-secondary rounded-full'
                   >
-                    <img src='/logo.svg' alt='logo' className='size-18 p-1' />
+                    <Image src='/logo.svg' alt='logo' width={72} height={72} className='size-18 p-1' />
                   </Link>
                 </Border>
               </div>
@@ -161,7 +162,7 @@ export const Navbar = () => {
                     href={localizedRootPath}
                     className='transition duration-300 justify-self-center bg-brand-secondary rounded-full'
                   >
-                    <img src='/logo.svg' alt='logo' className='size-18 p-1' />
+                    <Image src='/logo.svg' alt='logo' width={72} height={72} className='size-18 p-1' />
                   </Link>
                 </Border>
               </div>
