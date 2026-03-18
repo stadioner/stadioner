@@ -1,96 +1,96 @@
-'use client'
+"use client";
 
-import { Border } from '@/components/border'
-import { Container } from '@/components/container'
-import { MapLegend } from '@/components/map-legend'
-import { useLanguage } from '@/store/use-language'
-import dynamic from 'next/dynamic'
-import Link from 'next/link'
+import { Border } from "@/components/border";
+import { Container } from "@/components/container";
+import { MapLegend } from "@/components/map-legend";
+import { useLanguage } from "@/store/use-language";
+import dynamic from "next/dynamic";
+import Link from "next/link";
 
 const Map = dynamic(
-  () => import('@/components/map').then(mod => ({ default: mod.Map })),
-  { ssr: false }
-)
+  () => import("@/components/map").then((mod) => ({ default: mod.Map })),
+  { ssr: false },
+);
 
 export const Intro = () => {
-  const { language } = useLanguage()
+  const { language } = useLanguage();
 
   return (
-    <main className='bg-brand-primary pt-32 md:pt-40 pb-20'>
-      <Container className='pb-20'>
+    <main className="bg-brand-primary pt-32 md:pt-40 pb-20">
+      <Container className="pb-20">
         <section>
-          <div className='pb-6'>
-            <h2 className='text-brand-action text-3xl md:text-4xl lg:text-6xl font-bold'>
-              {language === 'cs' && 'Spustili jsme prodej'}
-              {language === 'en' && 'We have launched sales'}
-              {language === 'de' && 'Wir haben den Verkauf gestartet'}
+          <div className="pb-6">
+            <h2 className="text-brand-action text-3xl md:text-4xl lg:text-6xl font-bold">
+              {language === "cs" && "Kde koupit STADIONER?"}
+              {language === "en" && "Where to buy STADIONER?"}
+              {language === "de" && "Wo kann man STADIONER kaufen?"}
             </h2>
-            <p className='max-w-[100ch]'>
-              {language === 'cs' && (
+            <p className="max-w-[100ch]">
+              {language === "cs" && (
                 <>
-                  Naše produkty si nyní můžete zakoupit přímo v pivovaru. Prodej
-                  postupně rozšiřujeme do restaurací a obchodů napříč Plzeňským
-                  krajem. Nepropásněte novinky – přihlaste se k našemu{' '}
-                  <Link href='/cs/newsletter' className='underline font-bold'>
-                    newsletteru
-                  </Link>
-                  . Zboží si můžete také rezervovat na našem{' '}
+                  Naše produkty jsou dostupné přímo v pivovaru a nově také ve
+                  vybraných restauracích a obchodech. Síť partnerů neustále
+                  rozšiřujeme. Zboží si můžete pohodlně{" "}
                   <Link
-                    href='https://eshop.stadioner.cz'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='underline font-bold'
+                    href="https://eshop.stadioner.cz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline font-bold"
                   >
-                    e‑shopu
-                  </Link>{' '}
-                  a vyzvednout na výdejním místě.
+                    rezervovat online
+                  </Link>{" "}
+                  a vyzvednout na výdejním místě. Chcete mít přehled, kde nás
+                  najdete dál?
+                  <Link href="/cs/newsletter" className="underline font-bold">
+                    Přihlaste se k newsletteru.
+                  </Link>
                 </>
               )}
-              {language === 'en' && (
+              {language === "en" && (
                 <>
-                  You can now purchase our products directly at the brewery. We
-                  are gradually expanding sales to restaurants and shops across
-                  the Plzeň Region. Stay in the loop — subscribe to our{' '}
-                  <Link href='/cs/newsletter' className='underline font-bold'>
-                    newsletter
-                  </Link>
-                  . You can also reserve goods on our{' '}
+                  Our products are available directly at the brewery and now
+                  also in selected restaurants and shops. We are constantly
+                  expanding our partner network. You can conveniently{" "}
                   <Link
-                    href='https://eshop.stadioner.cz'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='underline font-bold'
+                    href="https://eshop.stadioner.cz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline font-bold"
                   >
-                    e‑shop
-                  </Link>{' '}
-                  and pick them up at the pickup point.
+                    reserve online
+                  </Link>{" "}
+                  and pick up your order at a pickup point. Want to stay up to
+                  date on where you can find us next?
+                  <Link href="/en/newsletter" className="underline font-bold">
+                    Sign up for the newsletter.
+                  </Link>
                 </>
               )}
-              {language === 'de' && (
+              {language === "de" && (
                 <>
-                  Unsere Produkte können Sie jetzt direkt in der Brauerei
-                  kaufen. Wir erweitern den Verkauf nach und nach auf
-                  Restaurants und Geschäfte im gesamten Bezirk Pilsen. Bleiben
-                  Sie auf dem Laufenden – abonnieren Sie unseren{' '}
-                  <Link href='/cs/newsletter' className='underline font-bold'>
-                    Newsletter
-                  </Link>
-                  . Sie können die Ware auch in unserem{' '}
+                  Unsere Produkte sind direkt in der Brauerei und ab sofort auch
+                  in ausgewahlten Restaurants und Geschafte erhaltlich. Unser
+                  Partnernetzwerk bauen wir laufend aus. Sie konnen die Ware
+                  bequem{" "}
                   <Link
-                    href='https://eshop.stadioner.cz'
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='underline font-bold'
+                    href="https://eshop.stadioner.cz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline font-bold"
                   >
-                    E‑Shop
-                  </Link>{' '}
-                  reservieren und am Abholpunkt abholen.
+                    online reservieren
+                  </Link>{" "}
+                  und an einer Abholstelle abholen. Mochten Sie den Uberblick
+                  behalten, wo Sie uns als Nachstes finden?
+                  <Link href="/de/newsletter" className="underline font-bold">
+                    Melden Sie sich fur den Newsletter an.
+                  </Link>
                 </>
               )}
             </p>
           </div>
 
-          <div className='relative'>
+          <div className="relative">
             <Border>
               <Map />
             </Border>
@@ -99,5 +99,5 @@ export const Intro = () => {
         </section>
       </Container>
     </main>
-  )
-}
+  );
+};
