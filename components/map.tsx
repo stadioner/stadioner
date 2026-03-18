@@ -252,6 +252,54 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
               </>
             }
           />
+          <CustomMarker
+            position={[50.0933570258205, 14.44776125216898]}
+            icon={createImageIcon("/map/pivoteka.svg")}
+            popupContent={
+              <>
+                <Link
+                  href="https://kegzistence.cz/"
+                  target="_blank"
+                  className="text-lg font-bold"
+                >
+                  KEGzistence
+                </Link>
+                <p>Rooseveltova 76/4, 301 00 Plzeň 3 - Vnitřní Město</p>
+              </>
+            }
+          />
+          <CustomMarker
+            position={[49.74567349997154, 13.3744342378202]}
+            icon={createImageIcon("/map/pivoteka.svg")}
+            popupContent={
+              <>
+                <Link
+                  href="https://pivstro.cz/"
+                  target="_blank"
+                  className="text-lg font-bold"
+                >
+                  Pivstro - Beer Bistro
+                </Link>
+                <p>Bezručova 185/31, 301 00 Plzeň 3 - Vnitřní Město</p>
+              </>
+            }
+          />
+          <CustomMarker
+            position={[49.74529980301824, 13.386388149792635]}
+            icon={createImageIcon("/map/pivoteka.svg")}
+            popupContent={
+              <>
+                <Link
+                  href="https://www.klubmalychpivovaru.cz/"
+                  target="_blank"
+                  className="text-lg font-bold"
+                >
+                  Klub malých pivovarů Plzeň
+                </Link>
+                <p>Nádražní 16, 301 00 Plzeň 3 - Východní Předměstí</p>
+              </>
+            }
+          />
         </>
       )}
     </MapContainer>
