@@ -89,7 +89,7 @@ export const VydejniMisto = () => {
                 </p>
               </div>
               <Image
-                src="/vydejni-misto.webp"
+                src="/vydejni-misto-zima.webp"
                 alt="Výdejní místo STADIONER (Kout na Šumavě)"
                 width={1200}
                 height={900}
