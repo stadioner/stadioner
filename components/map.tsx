@@ -303,7 +303,7 @@ const defaultMarkers: ExternalMarker[] = [
   },
   {
     position: [49.74832117580861, 13.37899663576035],
-    iconUrl: "/map/pivoteka.svg",
+    iconUrl: "/map/hospoda.svg",
     popupContent: (
       <>
         <Link
@@ -335,7 +335,7 @@ const defaultMarkers: ExternalMarker[] = [
   },
   {
     position: [49.74529980301824, 13.386388149792635],
-    iconUrl: "/map/pivoteka.svg",
+    iconUrl: "/map/hospoda.svg",
     popupContent: (
       <>
         <Link
@@ -346,6 +346,54 @@ const defaultMarkers: ExternalMarker[] = [
           Klub malých pivovarů Plzeň
         </Link>
         <p>Nádražní 16, 301 00 Plzeň 3 - Východní Předměstí</p>
+      </>
+    ),
+  },
+  {
+    position: [49.35975333741444, 13.358563380620216],
+    iconUrl: "/map/pivoteka.svg",
+    popupContent: (
+      <>
+        <Link
+          href="https://www.firmy.cz/detail/2110892-potraviny-a-hospoda-u-novaku-mochtin.html"
+          target="_blank"
+          className="text-lg font-bold"
+        >
+          Potraviny a hospoda u Nováků
+        </Link>
+        <p>Mochtín 8, 33901 Mochtín</p>
+      </>
+    ),
+  },
+  {
+    position: [49.44134101291233, 12.927037349677597],
+    iconUrl: "/map/hospoda.svg",
+    popupContent: (
+      <>
+        <Link
+          href="https://www.facebook.com/profile.php?id=100071641868397"
+          target="_blank"
+          className="text-lg font-bold"
+        >
+          Hospoda Kovárna Domažlice
+        </Link>
+        <p>Komenského 7, 344 01 Domažlice 1-Týnské Předměstí</p>
+      </>
+    ),
+  },
+  {
+    position: [49.44134101291233, 12.927037349677597],
+    iconUrl: "/map/limo.svg",
+    popupContent: (
+      <>
+        <Link
+          href="https://www.facebook.com/napojebubenec/"
+          target="_blank"
+          className="text-lg font-bold"
+        >
+          Nápoje Bubeneč
+        </Link>
+        <p>Národní obrany 789/49, 160 00 Praha 6</p>
       </>
     ),
   },
