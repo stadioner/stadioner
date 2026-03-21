@@ -382,7 +382,7 @@ const defaultMarkers: ExternalMarker[] = [
     ),
   },
   {
-    position: [49.44134101291233, 12.927037349677597],
+    position: [50.102595712567584, 14.396810835306159],
     iconUrl: "/map/limo.svg",
     popupContent: (
       <>
