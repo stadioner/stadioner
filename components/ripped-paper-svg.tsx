@@ -18,7 +18,7 @@ export const RippedPaperSVG = ({ flip = false }: { flip?: boolean }) => {
     }
     d += ` L${width},0 L0,0 Z`
     return d
-  }, [width, height, points, minY, maxY])
+  }, [width, points, minY, maxY])
 
   return (
     <svg

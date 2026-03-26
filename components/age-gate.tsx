@@ -34,7 +34,13 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
     if (isHydrated) {
       setOpen(shouldShowAgeGate)
     }
-  }, [isHydrated, isVerified, sessionVerified, isExcludedPage])
+  }, [
+    isHydrated,
+    isVerified,
+    sessionVerified,
+    isExcludedPage,
+    shouldShowAgeGate
+  ])
 
   const handleVerify = () => {
     if (hasConsented) {
@@ -51,7 +57,7 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
       setVerified(false)
       setOpen(true)
     }
-  }, [hasConsented])
+  }, [hasConsented, isVerified, setVerified])
 
   // Don't render anything until hydrated to prevent flash
   if (!isHydrated) {

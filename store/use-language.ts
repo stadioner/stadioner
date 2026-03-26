@@ -13,7 +13,7 @@ interface LanguageStore {
 
 let memoryLanguage = 'cs'
 
-export const useLanguage = create<LanguageStore>((set, get) => ({
+export const useLanguage = create<LanguageStore>((set) => ({
   language: memoryLanguage,
   imgSrc: (lang) => `/flags/${lang}.svg`,
   setLanguage: (value) => {

@@ -1,50 +1,50 @@
-'use client'
+"use client";
 
-import { type FormEvent, useState } from 'react'
-import { useToast } from '@/components/custom-toast'
+import { type FormEvent, useState } from "react";
+import { useToast } from "@/components/custom-toast";
 import {
   newsletterCopy,
-  resolveNewsletterLanguage
-} from '@/lib/newsletter/copy'
+  resolveNewsletterLanguage,
+} from "@/lib/newsletter/copy";
 import {
   markNewsletterSubscribed,
-  submitNewsletterSafely
-} from '@/lib/newsletter/submit'
+  submitNewsletterSafely,
+} from "@/lib/newsletter/submit";
 
 type UseNewsletterFormOptions = {
-  language: string
-  onSubmitted?: () => void
-  markSubscribed?: boolean
-}
+  language: string;
+  onSubmitted?: () => void;
+  markSubscribed?: boolean;
+};
 
 export const useNewsletterForm = ({
   language,
   onSubmitted,
-  markSubscribed = true
+  markSubscribed = true,
 }: UseNewsletterFormOptions) => {
-  const { showToast } = useToast()
-  const lang = resolveNewsletterLanguage(language)
-  const [email, setEmail] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const { showToast } = useToast();
+  const lang = resolveNewsletterLanguage(language);
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const submit = async (event: FormEvent) => {
-    event.preventDefault()
-    setIsSubmitting(true)
+    event.preventDefault();
+    setIsSubmitting(true);
 
     try {
-      await submitNewsletterSafely(email)
-      showToast(newsletterCopy[lang].success, 'success')
-      setEmail('')
+      await submitNewsletterSafely(email);
+      showToast(newsletterCopy[lang].success, "success");
+      setEmail("");
 
       if (markSubscribed) {
-        markNewsletterSubscribed()
+        markNewsletterSubscribed();
       }
 
-      onSubmitted?.()
+      onSubmitted?.();
     } finally {
-      setIsSubmitting(false)
+      setIsSubmitting(false);
     }
-  }
+  };
 
   return {
     email,
@@ -52,6 +52,6 @@ export const useNewsletterForm = ({
     isSubmitting,
     submit,
     copy: newsletterCopy[lang],
-    language: lang
-  }
-}
+    language: lang,
+  };
+};

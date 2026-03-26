@@ -3,10 +3,86 @@
 import { useEffect, useRef } from 'react'
 import { useCookieConsent } from '@/store/use-cookie-consent'
 
+type TrackingParams = [command: string, ...values: unknown[]]
+type ScriptKey = 'ga' | 'fb'
+
+type GtagFunction = ((...args: TrackingParams) => void) & {
+  q?: TrackingParams[]
+}
+
+type FbqFunction = ((...args: TrackingParams) => void) & {
+  callMethod?: (...args: TrackingParams) => void
+  push: (...args: TrackingParams) => void
+  loaded: boolean
+  version: string
+  queue: TrackingParams[]
+}
+
+const createGtagStub = (): GtagFunction =>
+  Object.assign(
+    (...args: TrackingParams) => {
+      window.gtag.q ??= []
+      window.gtag.q.push(args)
+    },
+    {
+      q: [] as TrackingParams[]
+    }
+  )
+
+const createNoopGtag = (): GtagFunction =>
+  Object.assign(
+    (...args: TrackingParams) => {
+      void args
+    },
+    {
+      q: [] as TrackingParams[]
+    }
+  )
+
+const createFbqStub = (): FbqFunction => {
+  const fbq = Object.assign(
+    (...args: TrackingParams) => {
+      if (typeof fbq.callMethod === 'function') {
+        fbq.callMethod(...args)
+        return
+      }
+
+      fbq.queue.push(args)
+    },
+    {
+      callMethod: undefined as ((...args: TrackingParams) => void) | undefined,
+      push: (...args: TrackingParams) => {
+        fbq.queue.push(args)
+      },
+      loaded: false,
+      version: '2.0',
+      queue: [] as TrackingParams[]
+    }
+  )
+
+  fbq.push = fbq
+  return fbq
+}
+
+const createNoopFbq = (): FbqFunction =>
+  Object.assign(
+    (...args: TrackingParams) => {
+      void args
+    },
+    {
+      push: (...args: TrackingParams) => {
+        void args
+      },
+      loaded: false,
+      version: '0',
+      queue: [] as TrackingParams[]
+    }
+  )
+
 // Cookie management hook that enforces user preferences
 export const useCookieManagement = () => {
   const { cookiePreferences, hasConsented } = useCookieConsent()
-  const scriptsLoaded = useRef<Set<string>>(new Set())
+  const scriptsLoaded = useRef<Set<ScriptKey>>(new Set())
 
   useEffect(() => {
     if (!hasConsented) return
@@ -34,12 +110,7 @@ export const useCookieManagement = () => {
     // Manage Google Analytics
     if (cookiePreferences.analytics && !scriptsLoaded.current.has('ga')) {
       // Enable Google Analytics
-      window.gtag =
-        window.gtag ||
-        function () {
-          ;(window.gtag as any).q = (window.gtag as any).q || []
-          ;(window.gtag as any).q.push(arguments)
-        }
+      window.gtag = window.gtag || createGtagStub()
 
       // Load Google Analytics script
       const script = document.createElement('script')
@@ -60,30 +131,15 @@ export const useCookieManagement = () => {
       document.head.appendChild(script)
     } else if (!cookiePreferences.analytics) {
       // Disable Google Analytics
-      window.gtag = function () {
-        // No-op function to prevent errors
-      }
+      window.gtag = createNoopGtag()
     }
 
     // Manage Marketing cookies (Facebook Pixel, etc.)
     if (cookiePreferences.marketing && !scriptsLoaded.current.has('fb')) {
       // Enable Facebook Pixel
       if (typeof window !== 'undefined' && !window.fbq) {
-        window.fbq = Object.assign(
-          function () {
-            ;(window.fbq as any).callMethod ?
-              (window.fbq as any).callMethod.apply(window.fbq, arguments)
-            : (window.fbq as any).queue.push(arguments)
-          },
-          {
-            push: function () {},
-            loaded: false,
-            version: '2.0',
-            queue: []
-          }
-        )
-        if (!(window as any)._fbq) (window as any)._fbq = window.fbq
-        window.fbq.push = window.fbq
+        window.fbq = createFbqStub()
+        if (!window._fbq) window._fbq = window.fbq
         window.fbq.loaded = !0
         window.fbq.version = '2.0'
         window.fbq.queue = []
@@ -99,17 +155,7 @@ export const useCookieManagement = () => {
       document.head.appendChild(fbScript)
     } else if (!cookiePreferences.marketing) {
       // Disable Facebook Pixel
-      window.fbq = Object.assign(
-        function () {
-          // No-op function
-        },
-        {
-          push: function () {},
-          loaded: false,
-          version: '0',
-          queue: []
-        }
-      )
+      window.fbq = createNoopFbq()
     }
 
     // Manage Functional cookies (language preferences, etc.)
@@ -132,13 +178,8 @@ export const useCookieManagement = () => {
 // Declare global types for TypeScript
 declare global {
   interface Window {
-    gtag: (...args: any[]) => void
-    fbq: {
-      (...args: any[]): void
-      push: any
-      loaded: boolean
-      version: string
-      queue: any[]
-    }
+    _fbq?: FbqFunction
+    gtag: GtagFunction
+    fbq: FbqFunction
   }
 }

@@ -89,7 +89,7 @@ export const useProducts = (activeLang: Language) => {
 
   const productVariantUrls = useMemo(
     () => (product ? deriveVariantUrls(product.image, product.category) : null),
-    [product?.image, product?.category]
+    [product]
   )
 
   useEffect(() => {
@@ -116,7 +116,7 @@ export const useProducts = (activeLang: Language) => {
         setSelectedPackagingBySlug((prev) => ({ ...prev, [slug]: defaultKey }))
       }
     })
-  }, [product?.slug, productVariantUrls, availabilityBySlug])
+  }, [product, productVariantUrls, availabilityBySlug])
 
   return {
     productMap,

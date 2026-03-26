@@ -187,7 +187,7 @@ export default function HistoriePage() {
       setCurrentSlide((prev) => Math.min(prev + 1, timelineData.length - 1))
       setTimeout(() => setIsScrolling(false), 1000)
     }
-  }, [isScrolling, currentSlide])
+  }, [isScrolling])
 
   const prevSlide = useCallback(() => {
     if (!isScrolling) {
@@ -196,7 +196,7 @@ export default function HistoriePage() {
       setCurrentSlide((prev) => Math.max(prev - 1, 0))
       setTimeout(() => setIsScrolling(false), 1000)
     }
-  }, [isScrolling, currentSlide])
+  }, [isScrolling])
 
   const goToSlide = (index: number) => {
     if (!isScrolling) {

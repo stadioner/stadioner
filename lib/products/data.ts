@@ -1,4 +1,4 @@
-import type { Product, Category, Language } from '@/types/products'
+import type { Product, Language } from '@/types/products'
 
 // Czech products
 export const beersCs: Product[] = [
