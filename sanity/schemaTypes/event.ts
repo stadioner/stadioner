@@ -13,10 +13,10 @@ export const eventType = defineType({
       type: 'string',
       title: 'Language',
       options: {
-        list: languages.map(lang => ({ title: lang.title, value: lang.id })),
-        layout: 'radio',
+        list: languages.map((lang) => ({ title: lang.title, value: lang.id })),
+        layout: 'radio'
       },
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required()
     }),
     defineField({
       name: 'translationKey',
@@ -24,44 +24,44 @@ export const eventType = defineType({
       title: 'Translation Key',
       description:
         'Shared key across language variants of the same event (used for hreflang).',
-      initialValue: () => crypto.randomUUID(),
+      initialValue: () => crypto.randomUUID()
     }),
     defineField({
       name: 'title',
       type: 'string',
       title: 'Title',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required()
     }),
     defineField({
       name: 'slug',
       type: 'slug',
       title: 'Slug',
       options: {
-        source: 'title',
+        source: 'title'
       },
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required()
     }),
     defineField({
       name: 'dateTime',
       type: 'datetime',
       title: 'Start Date and Time',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required()
     }),
     defineField({
       name: 'endDateTime',
       type: 'datetime',
-      title: 'End Date and Time',
+      title: 'End Date and Time'
     }),
     defineField({
       name: 'location',
       type: 'string',
-      title: 'Location',
+      title: 'Location'
     }),
     defineField({
       name: 'isComingSoon',
       type: 'boolean',
       title: 'Coming Soon',
-      initialValue: false,
+      initialValue: false
     }),
     defineField({
       name: 'rsvpCount',
@@ -69,8 +69,8 @@ export const eventType = defineType({
       title: 'RSVP Count',
       description: 'Current count of participants collected from the website.',
       initialValue: 0,
-      validation: Rule => Rule.min(0),
-      readOnly: true,
+      validation: (Rule) => Rule.min(0),
+      readOnly: true
     }),
     defineField({
       name: 'rsvpVoterHashes',
@@ -79,28 +79,28 @@ export const eventType = defineType({
       of: [{ type: 'string' }],
       initialValue: [],
       readOnly: true,
-      hidden: true,
+      hidden: true
     }),
     defineField({
       name: 'mainImage',
       type: 'image',
       title: 'Main Image',
       options: {
-        hotspot: true,
+        hotspot: true
       },
       fields: [
         defineField({
           name: 'alt',
           type: 'string',
-          title: 'Alternative text',
-        }),
-      ],
+          title: 'Alternative text'
+        })
+      ]
     }),
     defineField({
       name: 'description',
       type: 'blockContent',
-      title: 'Description',
-    }),
+      title: 'Description'
+    })
   ],
   preview: {
     select: {
@@ -109,11 +109,11 @@ export const eventType = defineType({
       media: 'mainImage',
       dateTime: 'dateTime',
       endDateTime: 'endDateTime',
-      rsvpCount: 'rsvpCount',
+      rsvpCount: 'rsvpCount'
     },
     prepare(selection) {
       const { title, language, dateTime, endDateTime, rsvpCount } = selection
-      const lang = languages.find(l => l.id === language)
+      const lang = languages.find((l) => l.id === language)
 
       const startDate = dateTime ? new Date(dateTime) : null
       const endDate = endDateTime ? new Date(endDateTime) : null
@@ -126,7 +126,7 @@ export const eventType = defineType({
           ' ' +
           startDate.toLocaleTimeString([], {
             hour: '2-digit',
-            minute: '2-digit',
+            minute: '2-digit'
           })
         if (endDate) {
           const sameDay = startDate.toDateString() === endDate.toDateString()
@@ -135,7 +135,7 @@ export const eventType = defineType({
             (sameDay ? '' : endDate.toLocaleDateString() + ' ') +
             endDate.toLocaleTimeString([], {
               hour: '2-digit',
-              minute: '2-digit',
+              minute: '2-digit'
             })
         }
       }
@@ -143,20 +143,20 @@ export const eventType = defineType({
       return {
         title,
         subtitle: `${lang ? `${lang.flag} ` : ''} • ${dateString} • RSVP: ${typeof rsvpCount === 'number' ? rsvpCount : 0}`,
-        media: selection.media,
+        media: selection.media
       }
-    },
+    }
   },
   orderings: [
     {
       title: 'Date, New',
       name: 'dateDesc',
-      by: [{ field: 'dateTime', direction: 'desc' }],
+      by: [{ field: 'dateTime', direction: 'desc' }]
     },
     {
       title: 'Date, Old',
       name: 'dateAsc',
-      by: [{ field: 'dateTime', direction: 'asc' }],
-    },
-  ],
+      by: [{ field: 'dateTime', direction: 'asc' }]
+    }
+  ]
 })

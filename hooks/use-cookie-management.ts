@@ -15,7 +15,7 @@ export const useCookieManagement = () => {
     if (!cookiePreferences.analytics) {
       // Remove Google Analytics cookies
       const gaCookies = ['_ga', '_ga_', '_gid', '_gat', '_gat_gtag_']
-      gaCookies.forEach(cookieName => {
+      gaCookies.forEach((cookieName) => {
         document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`
         document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.${window.location.hostname}`
       })
@@ -25,7 +25,7 @@ export const useCookieManagement = () => {
     if (!cookiePreferences.marketing) {
       // Remove Facebook Pixel cookies
       const fbCookies = ['_fbp', '_fbc', 'fr']
-      fbCookies.forEach(cookieName => {
+      fbCookies.forEach((cookieName) => {
         document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/`
         document.cookie = `${cookieName}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; domain=.${window.location.hostname}`
       })
@@ -52,7 +52,7 @@ export const useCookieManagement = () => {
           process.env.NEXT_PUBLIC_GA_ID || 'GA_MEASUREMENT_ID',
           {
             anonymize_ip: true,
-            cookie_flags: 'SameSite=None;Secure',
+            cookie_flags: 'SameSite=None;Secure'
           }
         )
         scriptsLoaded.current.add('ga')
@@ -71,15 +71,15 @@ export const useCookieManagement = () => {
       if (typeof window !== 'undefined' && !window.fbq) {
         window.fbq = Object.assign(
           function () {
-            ;(window.fbq as any).callMethod
-              ? (window.fbq as any).callMethod.apply(window.fbq, arguments)
-              : (window.fbq as any).queue.push(arguments)
+            ;(window.fbq as any).callMethod ?
+              (window.fbq as any).callMethod.apply(window.fbq, arguments)
+            : (window.fbq as any).queue.push(arguments)
           },
           {
             push: function () {},
             loaded: false,
             version: '2.0',
-            queue: [],
+            queue: []
           }
         )
         if (!(window as any)._fbq) (window as any)._fbq = window.fbq
@@ -107,7 +107,7 @@ export const useCookieManagement = () => {
           push: function () {},
           loaded: false,
           version: '0',
-          queue: [],
+          queue: []
         }
       )
     }
@@ -125,7 +125,7 @@ export const useCookieManagement = () => {
     isAnalyticsEnabled: cookiePreferences.analytics,
     isMarketingEnabled: cookiePreferences.marketing,
     isFunctionalEnabled: cookiePreferences.functional,
-    isEssentialEnabled: cookiePreferences.essential,
+    isEssentialEnabled: cookiePreferences.essential
   }
 }
 

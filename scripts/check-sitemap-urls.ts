@@ -13,9 +13,7 @@ const fetchText = async (url: string) => {
 
 const extractSitemapUrls = (xml: string): string[] => {
   const matches = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)]
-  return matches
-    .map(match => match[1]?.trim() ?? '')
-    .filter(Boolean)
+  return matches.map((match) => match[1]?.trim() ?? '').filter(Boolean)
 }
 
 const run = async () => {
@@ -40,15 +38,15 @@ const run = async () => {
     throw new Error(
       [
         `Sitemap URL check failed (${failed.length} failing URLs):`,
-        ...failed.map(item => `- ${item.status} ${item.url}`),
-      ].join('\n'),
+        ...failed.map((item) => `- ${item.status} ${item.url}`)
+      ].join('\n')
     )
   }
 
   console.log(`Sitemap URL check passed for ${urls.length} URLs.`)
 }
 
-run().catch(error => {
+run().catch((error) => {
   console.error(error instanceof Error ? error.message : String(error))
   process.exit(1)
 })

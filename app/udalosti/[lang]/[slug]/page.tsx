@@ -2,7 +2,7 @@ import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   eventVariantsByTranslationKeyQuery,
   eventBySlugQuery,
-  eventsPathsByLanguageQuery,
+  eventsPathsByLanguageQuery
 } from '@/sanity/lib/queries'
 import { type SupportedLanguage } from '@/types/blog'
 import { notFound } from 'next/navigation'
@@ -13,7 +13,7 @@ import { Container } from '@/components/container'
 import { EventDetail } from '../_components/event-detail'
 import {
   isSupportedLanguage,
-  supportedLanguages,
+  supportedLanguages
 } from '@/lib/i18n/site-languages'
 import { isEventPast } from '@/lib/events/date-time'
 import { type Event } from '@/types/event'
@@ -22,12 +22,12 @@ import {
   isLocalizedSeoLocale,
   localizedSeoLocales,
   toAbsoluteUrl,
-  type LocalizedSeoLocale,
+  type LocalizedSeoLocale
 } from '@/lib/seo/site'
 import {
   buildEventSchema,
   jsonLdToHtml,
-  portableTextToPlainText,
+  portableTextToPlainText
 } from '@/lib/seo/schema'
 
 interface Props {
@@ -54,7 +54,7 @@ const resolveEventVariants = async (translationKey?: string) => {
       query: eventVariantsByTranslationKeyQuery,
       params: { translationKey, languages: [...localizedSeoLocales] },
       tags: [`events:variants:${translationKey}`],
-      revalidate: 300,
+      revalidate: 300
     }).catch(() => [])) ?? []
 
   return variants.reduce<Array<{ locale: LocalizedSeoLocale; slug: string }>>(
@@ -69,12 +69,12 @@ const resolveEventVariants = async (translationKey?: string) => {
 
       acc.push({
         locale: variant.language,
-        slug: variant.slug,
+        slug: variant.slug
       })
 
       return acc
     },
-    [],
+    []
   )
 }
 
@@ -83,7 +83,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!isSupportedLanguage(lang)) {
     return {
-      title: 'Event Not Found',
+      title: 'Event Not Found'
     }
   }
 
@@ -91,12 +91,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     query: eventBySlugQuery,
     params: { slug, language: lang },
     tags: [`events:detail:${lang}:${slug}`],
-    revalidate: 60,
+    revalidate: 60
   })
 
   if (!event) {
     return {
-      title: 'Event Not Found',
+      title: 'Event Not Found'
     }
   }
 
@@ -108,7 +108,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     'udalosti',
     lang,
     slug,
-    variants,
+    variants
   )
   const canonicalUrl = toAbsoluteUrl(alternates.canonical)
 
@@ -122,42 +122,43 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'article',
       url: canonicalUrl,
       publishedTime: event.dateTime,
-      images: imageUrl
-        ? [
+      images:
+        imageUrl ?
+          [
             {
               url: imageUrl,
               width: 1200,
               height: 630,
-              alt: event.mainImage?.alt || event.title,
-            },
+              alt: event.mainImage?.alt || event.title
+            }
           ]
-        : [],
+        : []
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: imageUrl ? [imageUrl] : [],
-    },
+      images: imageUrl ? [imageUrl] : []
+    }
   }
 }
 
 export async function generateStaticParams() {
   const allPaths = await Promise.all(
-    supportedLanguages.map(async lang => {
+    supportedLanguages.map(async (lang) => {
       const events = await sanityFetch<{ params: { slug: string } }[]>({
         query: eventsPathsByLanguageQuery,
         params: { language: lang },
         tags: [`events:paths:${lang}`],
-        revalidate: 300,
+        revalidate: 300
       })
 
       if (!Array.isArray(events)) return []
       return events.map((event: { params: { slug: string } }) => ({
         lang,
-        slug: event.params.slug,
+        slug: event.params.slug
       }))
-    }),
+    })
   )
 
   return allPaths.flat()
@@ -177,7 +178,7 @@ export default async function Page({ params }: Props) {
     query: eventBySlugQuery,
     params: { slug, language: lang },
     tags: [`events:detail:${lang}:${slug}`],
-    revalidate: 60,
+    revalidate: 60
   })
 
   if (!event) {
@@ -198,14 +199,17 @@ export default async function Page({ params }: Props) {
     endDate: event.endDateTime,
     imageUrl,
     location: event.location,
-    language: lang,
+    language: lang
   })
 
   return (
     <>
-      <main className='bg-brand-primary pt-32 md:pt-40 pb-20'>
+      <main className='bg-brand-primary pt-32 pb-20 md:pt-40'>
         <Container>
-          <EventDetail event={event} language={lang as SupportedLanguage} />
+          <EventDetail
+            event={event}
+            language={lang as SupportedLanguage}
+          />
         </Container>
       </main>
       <script

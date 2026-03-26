@@ -5,13 +5,13 @@ const EVENT_TIME_ZONE = 'Europe/Prague'
 const languageLocaleMap: Record<SupportedLanguage, string> = {
   cs: 'cs-CZ',
   en: 'en-GB',
-  de: 'de-DE',
+  de: 'de-DE'
 }
 
 const formatInEventTimeZone = (
   isoDateTime: string,
   language: SupportedLanguage,
-  options: Intl.DateTimeFormatOptions,
+  options: Intl.DateTimeFormatOptions
 ): string => {
   const date = new Date(isoDateTime)
 
@@ -21,7 +21,7 @@ const formatInEventTimeZone = (
 
   return new Intl.DateTimeFormat(languageLocaleMap[language], {
     timeZone: EVENT_TIME_ZONE,
-    ...options,
+    ...options
   }).format(date)
 }
 
@@ -34,12 +34,12 @@ const getDateKeyInEventTimeZone = (date: Date): string | null => {
     timeZone: EVENT_TIME_ZONE,
     year: 'numeric',
     month: '2-digit',
-    day: '2-digit',
+    day: '2-digit'
   }).formatToParts(date)
 
-  const year = parts.find(part => part.type === 'year')?.value
-  const month = parts.find(part => part.type === 'month')?.value
-  const day = parts.find(part => part.type === 'day')?.value
+  const year = parts.find((part) => part.type === 'year')?.value
+  const month = parts.find((part) => part.type === 'month')?.value
+  const day = parts.find((part) => part.type === 'day')?.value
 
   if (!year || !month || !day) {
     return null
@@ -50,7 +50,7 @@ const getDateKeyInEventTimeZone = (date: Date): string | null => {
 
 export const isEventPast = (
   event: { dateTime?: string; endDateTime?: string },
-  referenceDate: Date = new Date(),
+  referenceDate: Date = new Date()
 ): boolean => {
   const eventEndDateTime = event.endDateTime ?? event.dateTime
 
@@ -70,42 +70,42 @@ export const isEventPast = (
 
 export const formatEventDate = (
   isoDateTime: string,
-  language: SupportedLanguage,
+  language: SupportedLanguage
 ): string =>
   formatInEventTimeZone(isoDateTime, language, {
-    dateStyle: 'long',
+    dateStyle: 'long'
   })
 
 export const formatEventTime = (
   isoDateTime: string,
-  language: SupportedLanguage,
+  language: SupportedLanguage
 ): string =>
   formatInEventTimeZone(isoDateTime, language, {
     hour: '2-digit',
     minute: '2-digit',
-    hourCycle: 'h23',
+    hourCycle: 'h23'
   })
 
 export const formatEventDay = (
   isoDateTime: string,
-  language: SupportedLanguage,
+  language: SupportedLanguage
 ): string =>
   formatInEventTimeZone(isoDateTime, language, {
-    day: 'numeric',
+    day: 'numeric'
   })
 
 export const formatEventMonthShort = (
   isoDateTime: string,
-  language: SupportedLanguage,
+  language: SupportedLanguage
 ): string =>
   formatInEventTimeZone(isoDateTime, language, {
-    month: 'short',
+    month: 'short'
   })
 
 export const formatEventYear = (
   isoDateTime: string,
-  language: SupportedLanguage,
+  language: SupportedLanguage
 ): string =>
   formatInEventTimeZone(isoDateTime, language, {
-    year: 'numeric',
+    year: 'numeric'
   })

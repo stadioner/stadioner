@@ -96,9 +96,9 @@ export const B2BCooperationFlow = () => {
   }, [interactiveDesktop])
 
   const cardWidth =
-    viewportWidth > 0
-      ? (viewportWidth - gapPx * (visibleCards - 1)) / visibleCards
-      : 0
+    viewportWidth > 0 ?
+      (viewportWidth - gapPx * (visibleCards - 1)) / visibleCards
+    : 0
   const slotWidth = cardWidth > 0 ? cardWidth + gapPx : 0
   const translateX = slotWidth > 0 ? progress * maxShiftSlots * slotWidth : 0
 
@@ -108,49 +108,56 @@ export const B2BCooperationFlow = () => {
       ref={sectionRef}
       className='bg-brand-primary'
       style={{
-        height: interactiveDesktop
-          ? `${Math.max(desktopBaseVh + maxShiftSlots * desktopPerShiftVh, desktopMinVh)}vh`
-          : undefined,
+        height:
+          interactiveDesktop ?
+            `${Math.max(desktopBaseVh + maxShiftSlots * desktopPerShiftVh, desktopMinVh)}vh`
+          : undefined
       }}
     >
-      {interactiveDesktop ? (
-        <div className='sticky top-0 h-screen flex items-center overflow-hidden py-16'>
+      {interactiveDesktop ?
+        <div className='sticky top-0 flex h-screen items-center overflow-hidden py-16'>
           <Container className='w-full'>
             <div className='max-w-3xl'>
-              <h2 className='text-brand-action text-3xl md:text-4xl lg:text-5xl font-bold'>
+              <h2 className='text-brand-action text-3xl font-bold md:text-4xl lg:text-5xl'>
                 {copy.cooperation.title}
               </h2>
-              <p className='mt-4 text-brand-action/90 text-lg'>
+              <p className='text-brand-action/90 mt-4 text-lg'>
                 {copy.cooperation.description}
               </p>
             </div>
 
             <div className='relative mt-10'>
-              <div ref={trackViewportRef} className='overflow-hidden'>
+              <div
+                ref={trackViewportRef}
+                className='overflow-hidden'
+              >
                 <div
                   className='flex gap-6 will-change-transform'
                   style={{ transform: `translate3d(-${translateX}px, 0, 0)` }}
                 >
-                  {steps.map(step => (
+                  {steps.map((step) => (
                     <div
                       key={step.id}
                       className='shrink-0'
                       style={{
                         width:
-                          cardWidth > 0
-                            ? `${cardWidth}px`
-                            : `calc((100% - ${gapPx}px) / 2)`,
+                          cardWidth > 0 ?
+                            `${cardWidth}px`
+                          : `calc((100% - ${gapPx}px) / 2)`
                       }}
                     >
-                      <Border background className='min-h-[40svh] h-full'>
-                        <article className='h-full bg-brand-secondary px-8 py-10 lg:px-12 lg:py-14 flex flex-col justify-between'>
-                          <p className='text-sm uppercase tracking-[0.14em] font-semibold text-brand-action/70'>
+                      <Border
+                        background
+                        className='h-full min-h-[40svh]'
+                      >
+                        <article className='bg-brand-secondary flex h-full flex-col justify-between px-8 py-10 lg:px-12 lg:py-14'>
+                          <p className='text-brand-action/70 text-sm font-semibold tracking-[0.14em] uppercase'>
                             {step.badge}
                           </p>
-                          <h3 className='mt-3 text-4xl lg:text-6xl font-bold text-brand-action leading-[0.95] max-w-3xl'>
+                          <h3 className='text-brand-action mt-3 max-w-3xl text-4xl leading-[0.95] font-bold lg:text-6xl'>
                             {step.title}
                           </h3>
-                          <p className='mt-4 text-lg lg:text-2xl text-brand-action/90 max-w-3xl'>
+                          <p className='text-brand-action/90 mt-4 max-w-3xl text-lg lg:text-2xl'>
                             {step.description}
                           </p>
                         </article>
@@ -162,28 +169,30 @@ export const B2BCooperationFlow = () => {
             </div>
           </Container>
         </div>
-      ) : (
-        <Container className='py-20'>
+      : <Container className='py-20'>
           <div className='max-w-3xl'>
-            <h2 className='text-brand-action text-3xl md:text-4xl lg:text-5xl font-bold'>
+            <h2 className='text-brand-action text-3xl font-bold md:text-4xl lg:text-5xl'>
               {copy.cooperation.title}
             </h2>
-            <p className='mt-4 text-brand-action/90 text-lg'>
+            <p className='text-brand-action/90 mt-4 text-lg'>
               {copy.cooperation.description}
             </p>
           </div>
 
           <div className='mt-8 grid gap-4'>
-            {steps.map(step => (
-              <Border key={step.id} background>
+            {steps.map((step) => (
+              <Border
+                key={step.id}
+                background
+              >
                 <article className='bg-brand-secondary p-6 md:p-8'>
-                  <p className='text-sm uppercase tracking-[0.14em] font-semibold text-brand-action/70'>
+                  <p className='text-brand-action/70 text-sm font-semibold tracking-[0.14em] uppercase'>
                     {step.badge}
                   </p>
-                  <h3 className='mt-2 text-2xl md:text-3xl font-bold text-brand-action'>
+                  <h3 className='text-brand-action mt-2 text-2xl font-bold md:text-3xl'>
                     {step.title}
                   </h3>
-                  <p className='mt-3 text-brand-action/90 text-lg'>
+                  <p className='text-brand-action/90 mt-3 text-lg'>
                     {step.description}
                   </p>
                 </article>
@@ -191,7 +200,7 @@ export const B2BCooperationFlow = () => {
             ))}
           </div>
         </Container>
-      )}
+      }
     </section>
   )
 }

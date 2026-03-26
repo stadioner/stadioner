@@ -1,23 +1,23 @@
-import { PropsWithChildren } from "react";
-import { Metadata } from "next";
-import { buildPageMetadata } from "@/lib/seo/metadata";
+import { PropsWithChildren } from 'react'
+import { Metadata } from 'next'
+import { buildPageMetadata } from '@/lib/seo/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Cookies",
+  title: 'Cookies',
   description:
-    "Informace o používání cookies na webových stránkách pivovaru STADIONER. Zjistěte, jaké cookies používáme a jak je můžete spravovat.",
-  canonicalPath: "/cs/cookies",
+    'Informace o používání cookies na webových stránkách pivovaru STADIONER. Zjistěte, jaké cookies používáme a jak je můžete spravovat.',
+  canonicalPath: '/cs/cookies',
   keywords: [
-    "cookies",
-    "soubory cookie",
-    "soukromí",
-    "GDPR",
-    "Stadioner",
-    "pivovar",
-    "ochrana údajů",
-  ],
-});
+    'cookies',
+    'soubory cookie',
+    'soukromí',
+    'GDPR',
+    'Stadioner',
+    'pivovar',
+    'ochrana údajů'
+  ]
+})
 
 export default function CookiesLayout({ children }: PropsWithChildren) {
-  return children;
+  return children
 }

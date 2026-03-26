@@ -4,7 +4,7 @@ export const MAILCHIMP_SUBSCRIBE_URL =
 export const NEWSLETTER_STORAGE_KEYS = {
   subscribed: 'newsletter-subscribed',
   popupDismissed: 'newsletter-popup-dismissed',
-  popupCloseCount: 'newsletter-popup-close-count',
+  popupCloseCount: 'newsletter-popup-close-count'
 } as const
 
 const buildNewsletterFormData = (email: string) => {
@@ -19,7 +19,7 @@ export const submitNewsletter = async (email: string): Promise<void> => {
   await fetch(MAILCHIMP_SUBSCRIBE_URL, {
     method: 'POST',
     body: buildNewsletterFormData(email),
-    mode: 'no-cors',
+    mode: 'no-cors'
   })
 }
 
@@ -50,7 +50,7 @@ export const increaseNewsletterPopupCloseCount = (): number => {
   const nextCount = getNewsletterPopupCloseCount() + 1
   localStorage.setItem(
     NEWSLETTER_STORAGE_KEYS.popupCloseCount,
-    String(nextCount),
+    String(nextCount)
   )
 
   if (nextCount >= 3) {
@@ -59,4 +59,3 @@ export const increaseNewsletterPopupCloseCount = (): number => {
 
   return nextCount
 }
-

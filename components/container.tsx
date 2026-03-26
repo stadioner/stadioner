@@ -8,7 +8,7 @@ interface ContainerProps {
 
 export const Container: FC<PropsWithChildren<ContainerProps>> = ({
   children,
-  className,
+  className
 }) => (
   <div
     className={cn(

@@ -13,12 +13,12 @@ export const sanityFetch = async <T>({
   query,
   params = {},
   revalidate = 60,
-  tags = [],
+  tags = []
 }: SanityFetchOptions): Promise<T> => {
   return client.fetch<T>(query, params, {
     next: {
       revalidate,
-      tags,
-    },
+      tags
+    }
   })
 }

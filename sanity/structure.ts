@@ -2,7 +2,7 @@ import type { StructureResolver } from 'sanity/structure'
 import { languages } from './lib/languages'
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
-export const structure: StructureResolver = S =>
+export const structure: StructureResolver = (S) =>
   S.list()
     .title('Blog')
     .items([
@@ -13,7 +13,7 @@ export const structure: StructureResolver = S =>
           S.list()
             .title('Posts by Language')
             .items([
-              ...languages.map(lang =>
+              ...languages.map((lang) =>
                 S.listItem()
                   .title(`${lang.flag} ${lang.title} Posts`)
                   .child(
@@ -21,13 +21,13 @@ export const structure: StructureResolver = S =>
                       .title(`${lang.title} Posts`)
                       .filter(`_type == "post" && language == "${lang.id}"`)
                       .defaultOrdering([
-                        { field: 'publishedAt', direction: 'desc' },
-                      ]),
-                  ),
+                        { field: 'publishedAt', direction: 'desc' }
+                      ])
+                  )
               ),
               S.divider(),
-              S.listItem().title('All Posts').child(S.documentTypeList('post')),
-            ]),
+              S.listItem().title('All Posts').child(S.documentTypeList('post'))
+            ])
         ),
 
       // Categories organized by language
@@ -37,22 +37,20 @@ export const structure: StructureResolver = S =>
           S.list()
             .title('Categories by Language')
             .items([
-              ...languages.map(lang =>
+              ...languages.map((lang) =>
                 S.listItem()
                   .title(`${lang.flag} ${lang.title} Categories`)
                   .child(
                     S.documentList()
                       .title(`${lang.title} Categories`)
-                      .filter(
-                        `_type == "category" && language == "${lang.id}"`,
-                      ),
-                  ),
+                      .filter(`_type == "category" && language == "${lang.id}"`)
+                  )
               ),
               S.divider(),
               S.listItem()
                 .title('All Categories')
-                .child(S.documentTypeList('category')),
-            ]),
+                .child(S.documentTypeList('category'))
+            ])
         ),
 
       // Events organized by language
@@ -62,7 +60,7 @@ export const structure: StructureResolver = S =>
           S.list()
             .title('Events by Language')
             .items([
-              ...languages.map(lang =>
+              ...languages.map((lang) =>
                 S.listItem()
                   .title(`${lang.flag} ${lang.title} Events`)
                   .child(
@@ -70,21 +68,20 @@ export const structure: StructureResolver = S =>
                       .title(`${lang.title} Events`)
                       .filter(`_type == "event" && language == "${lang.id}"`)
                       .defaultOrdering([
-                        { field: 'dateTime', direction: 'asc' },
-                      ]),
-                  ),
+                        { field: 'dateTime', direction: 'asc' }
+                      ])
+                  )
               ),
               S.divider(),
               S.listItem()
                 .title('All Events')
-                .child(S.documentTypeList('event')),
-            ]),
+                .child(S.documentTypeList('event'))
+            ])
         ),
 
       S.divider(),
       ...S.documentTypeListItems().filter(
-        item =>
-          item.getId() &&
-          !['post', 'category', 'event'].includes(item.getId()!),
-      ),
+        (item) =>
+          item.getId() && !['post', 'category', 'event'].includes(item.getId()!)
+      )
     ])

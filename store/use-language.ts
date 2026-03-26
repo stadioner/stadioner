@@ -15,8 +15,8 @@ let memoryLanguage = 'cs'
 
 export const useLanguage = create<LanguageStore>((set, get) => ({
   language: memoryLanguage,
-  imgSrc: lang => `/flags/${lang}.svg`,
-  setLanguage: value => {
+  imgSrc: (lang) => `/flags/${lang}.svg`,
+  setLanguage: (value) => {
     const { hasConsented } = useCookieConsent.getState()
     set({ language: value })
     memoryLanguage = value
@@ -25,13 +25,13 @@ export const useLanguage = create<LanguageStore>((set, get) => ({
     } else {
       document.cookie = `language-storage=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`
     }
-  },
+  }
 }))
 
 // Synchronizace jazyka z cookies při mountu a při změně souhlasu
 export const useLanguageSync = () => {
   const { hasConsented } = useCookieConsent()
-  const setLanguage = useLanguage(state => state.setLanguage)
+  const setLanguage = useLanguage((state) => state.setLanguage)
 
   useEffect(() => {
     if (typeof window === 'undefined') {

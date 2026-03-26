@@ -31,14 +31,14 @@ export const B2BInquiryForm = () => {
     phone: '',
     address: '',
     vatNumber: '',
-    message: '',
+    message: ''
   })
 
   const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = event.target
-    setFormData(prev => ({ ...prev, [name]: value }))
+    setFormData((prev) => ({ ...prev, [name]: value }))
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -63,22 +63,20 @@ export const B2BInquiryForm = () => {
         vat_number: formData.vatNumber || null,
         message: formData.message,
         language:
-          language === 'cs'
-            ? 'Čeština'
-            : language === 'en'
-              ? 'Angličtina'
-              : 'Němčina',
+          language === 'cs' ? 'Čeština'
+          : language === 'en' ? 'Angličtina'
+          : 'Němčina',
         date: new Date().toLocaleString('cs-CZ', {
           year: 'numeric',
           month: 'long',
           day: 'numeric',
           hour: '2-digit',
-          minute: '2-digit',
-        }),
+          minute: '2-digit'
+        })
       }
 
       await emailjs.send(serviceId, templateId, templateParams, {
-        publicKey,
+        publicKey
       })
 
       showToast(copy.success, 'success')
@@ -90,7 +88,7 @@ export const B2BInquiryForm = () => {
         phone: '',
         address: '',
         vatNumber: '',
-        message: '',
+        message: ''
       })
     } catch (error) {
       console.error('EmailJS error:', error)
@@ -101,12 +99,16 @@ export const B2BInquiryForm = () => {
   }
 
   return (
-    <form id='b2b-form' onSubmit={handleSubmit} className='space-y-6'>
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+    <form
+      id='b2b-form'
+      onSubmit={handleSubmit}
+      className='space-y-6'
+    >
+      <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
         <div>
           <label
             htmlFor='companyName'
-            className='block text-brand-primary text-sm font-medium mb-2'
+            className='text-brand-primary mb-2 block text-sm font-medium'
           >
             {copy.companyName} *
           </label>
@@ -117,14 +119,14 @@ export const B2BInquiryForm = () => {
             value={formData.companyName}
             onChange={handleChange}
             required
-            className='px-4 py-3 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action/65 focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-full text-base'
+            className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none'
           />
         </div>
 
         <div>
           <label
             htmlFor='contactName'
-            className='block text-brand-primary text-sm font-medium mb-2'
+            className='text-brand-primary mb-2 block text-sm font-medium'
           >
             {copy.contactName} *
           </label>
@@ -135,16 +137,16 @@ export const B2BInquiryForm = () => {
             value={formData.contactName}
             onChange={handleChange}
             required
-            className='px-4 py-3 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action/65 focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-full text-base'
+            className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none'
           />
         </div>
       </div>
 
-      <div className='grid grid-cols-1 md:grid-cols-2 gap-6'>
+      <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
         <div>
           <label
             htmlFor='email'
-            className='block text-brand-primary text-sm font-medium mb-2'
+            className='text-brand-primary mb-2 block text-sm font-medium'
           >
             {copy.email} *
           </label>
@@ -155,14 +157,14 @@ export const B2BInquiryForm = () => {
             value={formData.email}
             onChange={handleChange}
             required
-            className='px-4 py-3 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action/65 focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-full text-base'
+            className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none'
           />
         </div>
 
         <div>
           <label
             htmlFor='phone'
-            className='block text-brand-primary text-sm font-medium mb-2'
+            className='text-brand-primary mb-2 block text-sm font-medium'
           >
             {copy.phone} *
           </label>
@@ -173,7 +175,7 @@ export const B2BInquiryForm = () => {
             value={formData.phone}
             onChange={handleChange}
             required
-            className='px-4 py-3 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action/65 focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-full text-base'
+            className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none'
           />
         </div>
       </div>
@@ -181,7 +183,7 @@ export const B2BInquiryForm = () => {
       <div>
         <label
           htmlFor='address'
-          className='block text-brand-primary text-sm font-medium mb-2'
+          className='text-brand-primary mb-2 block text-sm font-medium'
         >
           {copy.address} *
         </label>
@@ -192,14 +194,14 @@ export const B2BInquiryForm = () => {
           value={formData.address}
           onChange={handleChange}
           required
-          className='px-4 py-3 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action/65 focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-full text-base'
+          className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none'
         />
       </div>
 
       <div>
         <label
           htmlFor='vatNumber'
-          className='block text-brand-primary text-sm font-medium mb-2'
+          className='text-brand-primary mb-2 block text-sm font-medium'
         >
           {copy.vatNumber}
         </label>
@@ -209,14 +211,14 @@ export const B2BInquiryForm = () => {
           name='vatNumber'
           value={formData.vatNumber}
           onChange={handleChange}
-          className='px-4 py-3 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action/65 focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-full text-base'
+          className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none'
         />
       </div>
 
       <div>
         <label
           htmlFor='message'
-          className='block text-brand-primary text-sm font-medium mb-2'
+          className='text-brand-primary mb-2 block text-sm font-medium'
         >
           {copy.message} *
         </label>
@@ -227,23 +229,26 @@ export const B2BInquiryForm = () => {
           onChange={handleChange}
           required
           rows={6}
-          className='px-4 py-3 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action/65 focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-full text-base resize-none'
+          className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full resize-none border px-4 py-3 text-base focus:ring-2 focus:outline-none'
         />
       </div>
 
-      <div className='pt-2 space-y-2'>
+      <div className='space-y-2 pt-2'>
         <Button
           type='submit'
           disabled={isSubmitting}
           variant='shop'
           size='lg'
-          className='w-full md:w-auto min-w-[210px] md:min-w-[240px]'
+          className='w-full min-w-[210px] md:w-auto md:min-w-[240px]'
         >
           {isSubmitting ? copy.submitting : copy.submit}
         </Button>
-        <p className='text-xs text-brand-primary/80'>
+        <p className='text-brand-primary/80 text-xs'>
           {copy.gdprPrefix}{' '}
-          <Link href={`/${language}/gdpr`} className='underline hover:text-brand-primary'>
+          <Link
+            href={`/${language}/gdpr`}
+            className='hover:text-brand-primary underline'
+          >
             {copy.gdprLink}
           </Link>
         </p>

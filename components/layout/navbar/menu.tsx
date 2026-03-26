@@ -19,39 +19,38 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
         scaleY: 1,
         transition: {
           duration: 0.5,
-          ease: [0.12, 0, 0.39, 0],
-        },
+          ease: [0.12, 0, 0.39, 0]
+        }
       }}
       exit={{
         scaleY: 0,
         transition: {
           duration: 0.5,
-          ease: [0.22, 1, 0.36, 1],
-        },
+          ease: [0.22, 1, 0.36, 1]
+        }
       }}
-      className='fixed left-0 top-0 z-[1002] grid h-screen w-screen origin-top justify-between bg-brand-action'
+      className='bg-brand-action fixed top-0 left-0 z-[1002] grid h-screen w-screen origin-top justify-between'
     >
       <button
         onClick={() => setIsOpen(false)}
-        className='absolute right-11 top-11 cursor-pointer text-brand-primary'
+        className='text-brand-primary absolute top-11 right-11 cursor-pointer'
       >
         {language === 'cs' && 'Zavřít'}
         {language === 'en' && 'Close'}
         {language === 'de' && 'Zurück'}
       </button>
 
-      <ul className='absolute left-1/2 top-60 flex -translate-x-1/2 flex-col items-center gap-6 text-center text-white z-[1003]'>
+      <ul className='absolute top-60 left-1/2 z-[1003] flex -translate-x-1/2 flex-col items-center gap-6 text-center text-white'>
         <NavItem
           phone
           setIsOpen={setIsOpen}
           label={
-            language === 'cs'
-              ? 'Produkty / E-shop'
-              : language === 'en'
-                ? 'Products / E-shop'
-                : language === 'de'
-                  ? 'Produkte / E-shop'
-                  : ''
+            language === 'cs' ? 'Produkty / E-shop'
+            : language === 'en' ?
+              'Products / E-shop'
+            : language === 'de' ?
+              'Produkte / E-shop'
+            : ''
           }
           href={`${localizedRootPath}/produkty`}
         />
@@ -59,13 +58,12 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
           phone
           setIsOpen={setIsOpen}
           label={
-            language === 'cs'
-              ? 'Prodejní Místa'
-              : language === 'en'
-                ? 'Sales Locations'
-                : language === 'de'
-                  ? 'Verkaufsstellen'
-                  : ''
+            language === 'cs' ? 'Prodejní Místa'
+            : language === 'en' ?
+              'Sales Locations'
+            : language === 'de' ?
+              'Verkaufsstellen'
+            : ''
           }
           href={`${localizedRootPath}/prodejni-mista`}
         />
@@ -73,13 +71,12 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
           phone
           setIsOpen={setIsOpen}
           label={
-            language === 'cs'
-              ? 'Pro Firmy'
-              : language === 'en'
-                ? 'For Companies'
-                : language === 'de'
-                  ? 'Für Unternehmen'
-                  : ''
+            language === 'cs' ? 'Pro Firmy'
+            : language === 'en' ?
+              'For Companies'
+            : language === 'de' ?
+              'Für Unternehmen'
+            : ''
           }
           href={`${localizedRootPath}/pro-firmy`}
         />
@@ -87,13 +84,12 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
           phone
           setIsOpen={setIsOpen}
           label={
-            language === 'cs'
-              ? 'Události'
-              : language === 'en'
-                ? 'Events'
-                : language === 'de'
-                  ? 'Veranstaltungen'
-                  : ''
+            language === 'cs' ? 'Události'
+            : language === 'en' ?
+              'Events'
+            : language === 'de' ?
+              'Veranstaltungen'
+            : ''
           }
           href={`${localizedRootPath}/udalosti`}
         />
@@ -101,13 +97,12 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
           phone
           setIsOpen={setIsOpen}
           label={
-            language === 'cs'
-              ? 'Články'
-              : language === 'en'
-                ? 'Articles'
-                : language === 'de'
-                  ? 'Artikel'
-                  : ''
+            language === 'cs' ? 'Články'
+            : language === 'en' ?
+              'Articles'
+            : language === 'de' ?
+              'Artikel'
+            : ''
           }
           href={`${localizedRootPath}/clanky`}
         />
@@ -115,13 +110,12 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
           phone
           setIsOpen={setIsOpen}
           label={
-            language === 'cs'
-              ? 'Historie'
-              : language === 'en'
-                ? 'History'
-                : language === 'de'
-                  ? 'Geschichte'
-                  : ''
+            language === 'cs' ? 'Historie'
+            : language === 'en' ?
+              'History'
+            : language === 'de' ?
+              'Geschichte'
+            : ''
           }
           href={`${localizedRootPath}/historie`}
         />
@@ -129,13 +123,12 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
           phone
           setIsOpen={setIsOpen}
           label={
-            language === 'cs'
-              ? 'Kontakt'
-              : language === 'en'
-                ? 'Contact'
-                : language === 'de'
-                  ? 'Kontakt'
-                  : ''
+            language === 'cs' ? 'Kontakt'
+            : language === 'en' ?
+              'Contact'
+            : language === 'de' ?
+              'Kontakt'
+            : ''
           }
           href={`${localizedRootPath}/kontakt`}
         />

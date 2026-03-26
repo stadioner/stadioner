@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   eventsForSitemapByLanguageQuery,
-  postsForSitemapByLanguageQuery,
+  postsForSitemapByLanguageQuery
 } from '@/sanity/lib/queries'
 import { isEventPast } from '@/lib/events/date-time'
 import { localizedSeoLocales, toAbsoluteUrl } from '@/lib/seo/site'
@@ -14,15 +14,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     path: string,
     changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'],
     priority: number,
-    lastModified: Date = now,
+    lastModified: Date = now
   ): MetadataRoute.Sitemap[number] => ({
     url: toAbsoluteUrl(path),
     lastModified,
     changeFrequency,
-    priority,
+    priority
   })
 
-  const staticLocalizedPaths = localizedSeoLocales.flatMap(locale => [
+  const staticLocalizedPaths = localizedSeoLocales.flatMap((locale) => [
     `/${locale}`,
     `/${locale}/historie`,
     `/${locale}/produkty`,
@@ -33,45 +33,45 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     `/${locale}/rozcestnik`,
     `/${locale}/cookies`,
     `/${locale}/gdpr`,
-    `/${locale}/obchodni-podminky`,
+    `/${locale}/obchodni-podminky`
   ])
 
-  const staticPages = staticLocalizedPaths.map(path => {
+  const staticPages = staticLocalizedPaths.map((path) => {
     const changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] =
-      path.includes('/cookies') ||
-      path.includes('/gdpr') ||
-      path.includes('/obchodni-podminky')
-        ? 'yearly'
-        : path.endsWith('/produkty') || path.endsWith('/kontakt')
-          ? 'weekly'
-          : 'daily'
+      (
+        path.includes('/cookies') ||
+        path.includes('/gdpr') ||
+        path.includes('/obchodni-podminky')
+      ) ?
+        'yearly'
+      : path.endsWith('/produkty') || path.endsWith('/kontakt') ? 'weekly'
+      : 'daily'
 
     const priority =
-      path.split('/').length <= 2
-        ? 1
-        : path.endsWith('/produkty')
-          ? 0.9
-          : path.endsWith('/kontakt') || path.endsWith('/prodejni-mista')
-            ? 0.8
-            : path.endsWith('/cookies') ||
-                path.endsWith('/gdpr') ||
-                path.endsWith('/obchodni-podminky')
-              ? 0.3
-              : 0.7
+      path.split('/').length <= 2 ? 1
+      : path.endsWith('/produkty') ? 0.9
+      : path.endsWith('/kontakt') || path.endsWith('/prodejni-mista') ? 0.8
+      : (
+        path.endsWith('/cookies') ||
+        path.endsWith('/gdpr') ||
+        path.endsWith('/obchodni-podminky')
+      ) ?
+        0.3
+      : 0.7
 
     return createEntry(path, changeFrequency, priority)
   })
 
-  const blogListingPages = localizedSeoLocales.map(lang =>
-    createEntry(`/${lang}/clanky`, 'daily', 0.7),
+  const blogListingPages = localizedSeoLocales.map((lang) =>
+    createEntry(`/${lang}/clanky`, 'daily', 0.7)
   )
 
-  const eventListingPages = localizedSeoLocales.map(lang =>
-    createEntry(`/${lang}/udalosti`, 'daily', 0.7),
+  const eventListingPages = localizedSeoLocales.map((lang) =>
+    createEntry(`/${lang}/udalosti`, 'daily', 0.7)
   )
 
   const postsByLanguage = await Promise.all(
-    localizedSeoLocales.map(async lang => {
+    localizedSeoLocales.map(async (lang) => {
       const posts =
         (await sanityFetch<
           {
@@ -82,22 +82,22 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           query: postsForSitemapByLanguageQuery,
           params: { language: lang },
           tags: [`blog:sitemap:${lang}`],
-          revalidate: 300,
+          revalidate: 300
         }).catch(() => [])) ?? []
 
-      return posts.map(post =>
+      return posts.map((post) =>
         createEntry(
           `/${lang}/clanky/${post.slug.current}`,
           'weekly',
           0.6,
-          post.publishedAt ? new Date(post.publishedAt) : now,
-        ),
+          post.publishedAt ? new Date(post.publishedAt) : now
+        )
       )
-    }),
+    })
   )
 
   const eventsByLanguage = await Promise.all(
-    localizedSeoLocales.map(async lang => {
+    localizedSeoLocales.map(async (lang) => {
       const events =
         (await sanityFetch<
           {
@@ -110,32 +110,29 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           query: eventsForSitemapByLanguageQuery,
           params: { language: lang },
           tags: [`events:sitemap:${lang}`],
-          revalidate: 300,
+          revalidate: 300
         }).catch(() => [])) ?? []
 
       return events
-        .filter(event => {
+        .filter((event) => {
           if (!event.dateTime) {
             return false
           }
 
           return !isEventPast(event, now)
         })
-        .map(event =>
+        .map((event) =>
           createEntry(
             `/${lang}/udalosti/${event.slug.current}`,
             'weekly',
             0.6,
-            event._updatedAt
-              ? new Date(event._updatedAt)
-              : event.endDateTime
-                ? new Date(event.endDateTime)
-                : event.dateTime
-                  ? new Date(event.dateTime)
-                  : now,
-          ),
+            event._updatedAt ? new Date(event._updatedAt)
+            : event.endDateTime ? new Date(event.endDateTime)
+            : event.dateTime ? new Date(event.dateTime)
+            : now
+          )
         )
-    }),
+    })
   )
 
   return [
@@ -143,6 +140,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...blogListingPages,
     ...eventListingPages,
     ...postsByLanguage.flat(),
-    ...eventsByLanguage.flat(),
+    ...eventsByLanguage.flat()
   ]
 }

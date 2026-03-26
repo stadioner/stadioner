@@ -3,7 +3,7 @@ import {
   isLocalizedSeoLocale,
   localizedSeoLocales,
   toLocalePath,
-  type LocalizedSeoLocale,
+  type LocalizedSeoLocale
 } from '@/lib/seo/site'
 
 type LocalizedPathMap = Partial<Record<LocalizedSeoLocale, string>>
@@ -26,7 +26,7 @@ const normalizePath = (path: string): string => {
 
 export const createLocalizedAlternates = ({
   canonicalPath,
-  pathsByLocale,
+  pathsByLocale
 }: LocalizedAlternatesInput) => {
   const canonical = normalizePath(canonicalPath)
   const languages: Record<string, string> = {}
@@ -42,25 +42,25 @@ export const createLocalizedAlternates = ({
 
   return {
     canonical,
-    languages,
+    languages
   }
 }
 
 export const createLocalizedListingAlternates = (
   section: LocalizedSection,
-  locale: LocalizedSeoLocale,
+  locale: LocalizedSeoLocale
 ) => {
   const pathsByLocale = localizedSeoLocales.reduce<LocalizedPathMap>(
     (acc, localizedLocale) => {
       acc[localizedLocale] = toLocalePath(localizedLocale, `/${section}`)
       return acc
     },
-    {},
+    {}
   )
 
   return createLocalizedAlternates({
     canonicalPath: toLocalePath(locale, `/${section}`),
-    pathsByLocale,
+    pathsByLocale
   })
 }
 
@@ -68,7 +68,7 @@ export const createLocalizedDetailAlternates = (
   section: LocalizedSection,
   locale: LocalizedSeoLocale,
   slug: string,
-  availableLocales: readonly LocalizedSeoLocale[],
+  availableLocales: readonly LocalizedSeoLocale[]
 ) => {
   const normalizedSlug = encodeURIComponent(slug)
   const locales =
@@ -81,7 +81,7 @@ export const createLocalizedDetailAlternates = (
 
   return createLocalizedAlternates({
     canonicalPath: toLocalePath(locale, `/${section}/${normalizedSlug}`),
-    pathsByLocale,
+    pathsByLocale
   })
 }
 
@@ -94,7 +94,7 @@ export const createLocalizedDetailAlternatesFromVariants = (
   section: LocalizedSection,
   locale: LocalizedSeoLocale,
   currentSlug: string,
-  variants: readonly LocalizedSlugVariant[],
+  variants: readonly LocalizedSlugVariant[]
 ) => {
   const pathsByLocale = variants.reduce<LocalizedPathMap>((acc, variant) => {
     if (!isLocalizedSeoLocale(variant.locale)) {
@@ -103,18 +103,20 @@ export const createLocalizedDetailAlternatesFromVariants = (
 
     acc[variant.locale] = toLocalePath(
       variant.locale,
-      `/${section}/${encodeURIComponent(variant.slug)}`,
+      `/${section}/${encodeURIComponent(variant.slug)}`
     )
     return acc
   }, {})
 
   const hasLocaleVariant = Boolean(pathsByLocale[locale])
-  const canonicalPath = hasLocaleVariant
-    ? (pathsByLocale[locale] as string)
+  const canonicalPath =
+    hasLocaleVariant ?
+      (pathsByLocale[locale] as string)
     : toLocalePath(locale, `/${section}/${encodeURIComponent(currentSlug)}`)
 
   return createLocalizedAlternates({
     canonicalPath,
-    pathsByLocale: hasLocaleVariant ? pathsByLocale : { [locale]: canonicalPath },
+    pathsByLocale:
+      hasLocaleVariant ? pathsByLocale : { [locale]: canonicalPath }
   })
 }

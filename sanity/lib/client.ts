@@ -7,5 +7,5 @@ export const client = createClient({
   dataset,
   apiVersion,
   // Use CDN in production for published content. Local dev keeps fresh responses.
-  useCdn: process.env.NODE_ENV === 'production',
+  useCdn: process.env.NODE_ENV === 'production'
 })

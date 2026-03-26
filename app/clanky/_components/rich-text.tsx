@@ -4,7 +4,7 @@ import Image from 'next/image'
 import {
   createPortableTextListComponents,
   isPortableTextBlockEmpty,
-  type PortableTextBlockLike,
+  type PortableTextBlockLike
 } from '@/sanity/lib/portable-text'
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
@@ -21,71 +21,72 @@ export const RichText: PortableTextComponents = {
           className='object-cover'
         />
       </div>
-    ),
+    )
   },
 
   ...createPortableTextListComponents({
-    listClassName: 'text-lg',
+    listClassName: 'text-lg'
   }),
 
   block: {
     normal: ({
       children,
-      value,
+      value
     }: PropsWithChildren<{ value?: PortableTextBlockLike }>) =>
-      isPortableTextBlockEmpty(value) ? (
-        <div aria-hidden='true' className='h-8' />
-      ) : (
-        <p className='text-zinc-800 font-stabil !text-justify text-lg mb-4 !leading-[1.15]'>
+      isPortableTextBlockEmpty(value) ?
+        <div
+          aria-hidden='true'
+          className='h-8'
+        />
+      : <p className='font-stabil mb-4 !text-justify text-lg !leading-[1.15] text-zinc-800'>
           {children}
-        </p>
-      ),
+        </p>,
     h1: ({ children }: PropsWithChildren) => (
-      <h1 className='mt-10 mb-4 text-4xl xl:text-5xl font-bold font-labil'>
+      <h1 className='font-labil mt-10 mb-4 text-4xl font-bold xl:text-5xl'>
         {children}
       </h1>
     ),
     h2: ({ children }: PropsWithChildren) => (
-      <h2 className='mt-10 mb-4 text-3xl sm:text-4xl font-bold font-labil'>
+      <h2 className='font-labil mt-10 mb-4 text-3xl font-bold sm:text-4xl'>
         {children}
       </h2>
     ),
     h3: ({ children }: PropsWithChildren) => (
-      <h3 className='mt-10 mb-4 text-2xl sm:text-3xl font-bold font-labil '>
+      <h3 className='font-labil mt-10 mb-4 text-2xl font-bold sm:text-3xl'>
         {children}
       </h3>
     ),
     h4: ({ children }: PropsWithChildren) => (
-      <h4 className='mt-10 mb-4 text-xl xl:text-2xl font-bold font-labil'>
+      <h4 className='font-labil mt-10 mb-4 text-xl font-bold xl:text-2xl'>
         {children}
       </h4>
     ),
     blockquote: ({ children }: PropsWithChildren) => (
-      <blockquote className='py-5 pl-5 my-5 border-l-4 border-l-brand-action text-lg'>
+      <blockquote className='border-l-brand-action my-5 border-l-4 py-5 pl-5 text-lg'>
         {children}
       </blockquote>
-    ),
+    )
   },
 
   marks: {
     link: ({
       children,
-      value,
+      value
     }: PropsWithChildren<{ value?: { href: string } }>) => {
       const rel =
-        value?.href && !value.href.startsWith('/')
-          ? 'noreferrer noopener'
-          : undefined
+        value?.href && !value.href.startsWith('/') ?
+          'noreferrer noopener'
+        : undefined
 
       return (
         <Link
           href={value?.href || '#'}
           rel={rel}
-          className='underline decoration-brand-action hover:decoration-black text-brand-action'
+          className='decoration-brand-action text-brand-action underline hover:decoration-black'
         >
           {children}
         </Link>
       )
-    },
-  },
+    }
+  }
 }

@@ -17,7 +17,7 @@ import {
   Globe,
   ArrowRight,
   Milk,
-  GlassWater,
+  GlassWater
 } from 'lucide-react'
 import Link from 'next/link'
 import { isSupportedLanguage } from '@/lib/i18n/site-languages'
@@ -44,7 +44,7 @@ export default function RozcestnikPage() {
         href: 'https://www.facebook.com/stadioner.cz',
         icon: <Facebook size={24} />,
         external: true,
-        category: 'social',
+        category: 'social'
       },
       {
         title: 'Instagram',
@@ -52,7 +52,7 @@ export default function RozcestnikPage() {
         href: 'https://www.instagram.com/stadioner.cz/',
         icon: <Instagram size={24} />,
         external: true,
-        category: 'social',
+        category: 'social'
       },
 
       // Obchodní informace
@@ -61,7 +61,7 @@ export default function RozcestnikPage() {
         description: 'Kontaktujte nás pro objednávky a dotazy',
         href: '/kontakt',
         icon: <Phone size={24} />,
-        category: 'business',
+        category: 'business'
       },
       {
         title: 'E-mail',
@@ -69,14 +69,14 @@ export default function RozcestnikPage() {
         href: 'mailto:info@stadioner.cz',
         icon: <Mail size={24} />,
         external: true,
-        category: 'business',
+        category: 'business'
       },
       {
         title: 'Prodejní místa',
         description: 'Kde najdete naše produkty v Plzeňském kraji',
         href: '/prodejni-mista',
         icon: <MapPin size={24} />,
-        category: 'business',
+        category: 'business'
       },
       // Produkty
       {
@@ -84,21 +84,21 @@ export default function RozcestnikPage() {
         description: 'Naše nefiltrované ležáky a speciály.',
         href: '/produkty?produkt=profesor-12&kategorie=pivo',
         icon: <Beer size={24} />,
-        category: 'products',
+        category: 'products'
       },
       {
         title: 'Limonády',
         description: 'Osvěžující limonády z pramenité vody.',
         href: '/produkty?produkt=limonada-citron&kategorie=limo',
         icon: <Milk size={24} />,
-        category: 'products',
+        category: 'products'
       },
       {
         title: 'Voda',
         description: 'Pramenitá voda sycená i nesycená.',
         href: '/produkty?produkt=pramenita-voda-perliva&kategorie=voda',
         icon: <GlassWater size={24} />,
-        category: 'products',
+        category: 'products'
       },
       // Informace
       {
@@ -106,22 +106,22 @@ export default function RozcestnikPage() {
         description: 'Tradice pivovaru od roku 1736',
         href: '/historie',
         icon: <Calendar size={24} />,
-        category: 'info',
+        category: 'info'
       },
       {
         title: 'Blog',
         description: 'Články o pivovaru, receptech a událostech',
         href: '/clanky/cs',
         icon: <FileText size={24} />,
-        category: 'info',
+        category: 'info'
       },
       {
         title: 'GDPR',
         description: 'Zásady zpracování osobních údajů',
         href: '/gdpr',
         icon: <Globe size={24} />,
-        category: 'info',
-      },
+        category: 'info'
+      }
     ],
     en: [
       // Social Media
@@ -131,7 +131,7 @@ export default function RozcestnikPage() {
         href: 'https://www.facebook.com/stadioner.cz',
         icon: <Facebook size={24} />,
         external: true,
-        category: 'social',
+        category: 'social'
       },
       {
         title: 'Instagram',
@@ -139,7 +139,7 @@ export default function RozcestnikPage() {
         href: 'https://www.instagram.com/stadioner.cz/',
         icon: <Instagram size={24} />,
         external: true,
-        category: 'social',
+        category: 'social'
       },
 
       // Business Information
@@ -148,7 +148,7 @@ export default function RozcestnikPage() {
         description: 'Contact us for orders and inquiries',
         href: '/kontakt',
         icon: <Phone size={24} />,
-        category: 'business',
+        category: 'business'
       },
       {
         title: 'E-mail',
@@ -156,14 +156,14 @@ export default function RozcestnikPage() {
         href: 'mailto:info@stadioner.cz',
         icon: <Mail size={24} />,
         external: true,
-        category: 'business',
+        category: 'business'
       },
       {
         title: 'Sales Points',
         description: 'Where to find our products in the Plzeň Region',
         href: '/prodejni-mista',
         icon: <MapPin size={24} />,
-        category: 'business',
+        category: 'business'
       },
       // Products
       {
@@ -171,21 +171,21 @@ export default function RozcestnikPage() {
         description: 'Our unfiltered lagers and specials.',
         href: '/produkty?produkt=profesor-12&kategorie=pivo',
         icon: <Beer size={24} />,
-        category: 'products',
+        category: 'products'
       },
       {
         title: 'Lemonades',
         description: 'Refreshing lemonades from spring water.',
         href: '/produkty?produkt=limonada-citron&kategorie=limo',
         icon: <Milk size={24} />,
-        category: 'products',
+        category: 'products'
       },
       {
         title: 'Water',
         description: 'Spring water, sparkling and still.',
         href: '/produkty?produkt=pramenita-voda-perliva&kategorie=voda',
         icon: <GlassWater size={24} />,
-        category: 'products',
+        category: 'products'
       },
       // Information
       {
@@ -193,22 +193,22 @@ export default function RozcestnikPage() {
         description: 'Brewery tradition since 1736',
         href: '/historie',
         icon: <Calendar size={24} />,
-        category: 'info',
+        category: 'info'
       },
       {
         title: 'Blog',
         description: 'Articles about the brewery, recipes and events',
         href: '/clanky/en',
         icon: <FileText size={24} />,
-        category: 'info',
+        category: 'info'
       },
       {
         title: 'GDPR & Privacy',
         description: 'Personal data processing policy',
         href: '/gdpr',
         icon: <Globe size={24} />,
-        category: 'info',
-      },
+        category: 'info'
+      }
     ],
     de: [
       // Soziale Medien
@@ -219,7 +219,7 @@ export default function RozcestnikPage() {
         href: 'https://www.facebook.com/stadioner.cz',
         icon: <Facebook size={24} />,
         external: true,
-        category: 'social',
+        category: 'social'
       },
       {
         title: 'Instagram',
@@ -228,7 +228,7 @@ export default function RozcestnikPage() {
         href: 'https://www.instagram.com/stadioner.cz/',
         icon: <Instagram size={24} />,
         external: true,
-        category: 'social',
+        category: 'social'
       },
 
       // Geschäftsinformationen
@@ -237,7 +237,7 @@ export default function RozcestnikPage() {
         description: 'Kontaktieren Sie uns für Bestellungen und Anfragen',
         href: '/kontakt',
         icon: <Phone size={24} />,
-        category: 'business',
+        category: 'business'
       },
       {
         title: 'E-Mail',
@@ -245,14 +245,14 @@ export default function RozcestnikPage() {
         href: 'mailto:info@stadioner.cz',
         icon: <Mail size={24} />,
         external: true,
-        category: 'business',
+        category: 'business'
       },
       {
         title: 'Verkaufsstellen',
         description: 'Wo Sie unsere Produkte in der Region Pilsen finden',
         href: '/prodejni-mista',
         icon: <MapPin size={24} />,
-        category: 'business',
+        category: 'business'
       },
       // Produkte
       {
@@ -260,21 +260,21 @@ export default function RozcestnikPage() {
         description: 'Unsere ungefilterten Lager und Spezialitäten.',
         href: '/produkty?produkt=profesor-12&kategorie=pivo',
         icon: <Beer size={24} />,
-        category: 'products',
+        category: 'products'
       },
       {
         title: 'Limonaden',
         description: 'Erfrischende Limonaden aus Quellwasser.',
         href: '/produkty?produkt=limonada-citron&kategorie=limo',
         icon: <Milk size={24} />,
-        category: 'products',
+        category: 'products'
       },
       {
         title: 'Wasser',
         description: 'Quellwasser, mit und ohne Kohlensäure.',
         href: '/produkty?produkt=pramenita-voda-perliva&kategorie=voda',
         icon: <GlassWater size={24} />,
-        category: 'products',
+        category: 'products'
       },
       // Informationen
       {
@@ -282,23 +282,23 @@ export default function RozcestnikPage() {
         description: 'Brauereitradition seit 1736',
         href: '/historie',
         icon: <Calendar size={24} />,
-        category: 'info',
+        category: 'info'
       },
       {
         title: 'Blog',
         description: 'Artikel über die Brauerei, Rezepte und Veranstaltungen',
         href: '/clanky/de',
         icon: <FileText size={24} />,
-        category: 'info',
+        category: 'info'
       },
       {
         title: 'GDPR & Datenschutz',
         description: 'Richtlinien zur Verarbeitung personenbezogener Daten',
         href: '/gdpr',
         icon: <Globe size={24} />,
-        category: 'info',
-      },
-    ],
+        category: 'info'
+      }
+    ]
   }
 
   const currentLinks = links[language] || links.cs
@@ -316,7 +316,8 @@ export default function RozcestnikPage() {
       secondSegment &&
       isSupportedLanguage(secondSegment)
     ) {
-      const restPath = restSegments.length > 0 ? `/${restSegments.join('/')}` : ''
+      const restPath =
+        restSegments.length > 0 ? `/${restSegments.join('/')}` : ''
       return `/${language}/${firstSegment}${restPath}`
     }
 
@@ -334,22 +335,22 @@ export default function RozcestnikPage() {
         business: 'Obchodní informace',
         products: 'Produkty',
         info: 'Informace',
-        legal: 'Právní informace',
+        legal: 'Právní informace'
       },
       en: {
         social: 'Social Media',
         business: 'Business Information',
         products: 'Products',
         info: 'Information',
-        legal: 'Legal Information',
+        legal: 'Legal Information'
       },
       de: {
         social: 'Soziale Medien',
         business: 'Geschäftsinformationen',
         products: 'Produkte',
         info: 'Informationen',
-        legal: 'Rechtliche Informationen',
-      },
+        legal: 'Rechtliche Informationen'
+      }
     }
     return (
       titles[language as keyof typeof titles]?.[
@@ -361,15 +362,15 @@ export default function RozcestnikPage() {
   const categories = ['social', 'business', 'products', 'info'] as const
 
   return (
-    <main className='bg-brand-primary pt-32 md:pt-40 pb-20 min-h-screen'>
+    <main className='bg-brand-primary min-h-screen pt-32 pb-20 md:pt-40'>
       <Container>
-        <div className='text-center mb-16'>
-          <h1 className='text-4xl md:text-6xl font-bold text-brand-action mb-6'>
+        <div className='mb-16 text-center'>
+          <h1 className='text-brand-action mb-6 text-4xl font-bold md:text-6xl'>
             {language === 'cs' && 'Rozcestník'}
             {language === 'en' && 'Directory'}
             {language === 'de' && 'Verzeichnis'}
           </h1>
-          <p className='text-lg md:text-xl text-brand-action/80 max-w-2xl mx-auto'>
+          <p className='text-brand-action/80 mx-auto max-w-2xl text-lg md:text-xl'>
             {language === 'cs' && 'Všechny důležité odkazy na jednom místě'}
             {language === 'en' && 'All important links in one place'}
             {language === 'de' && 'Alle wichtigen Links an einem Ort'}
@@ -377,31 +378,37 @@ export default function RozcestnikPage() {
         </div>
 
         <div className='space-y-12'>
-          {categories.map(category => {
+          {categories.map((category) => {
             const categoryLinks = currentLinks.filter(
-              link => link.category === category
+              (link) => link.category === category
             )
             if (categoryLinks.length === 0) return null
 
             return (
-              <section key={category} className='space-y-6'>
-                <h2 className='text-2xl md:text-3xl font-bold text-brand-action border-b-2 border-brand-action/20 pb-2'>
+              <section
+                key={category}
+                className='space-y-6'
+              >
+                <h2 className='text-brand-action border-brand-action/20 border-b-2 pb-2 text-2xl font-bold md:text-3xl'>
                   {getCategoryTitle(category)}
                 </h2>
-                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-fr'>
+                <div className='grid auto-rows-fr grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3'>
                   {categoryLinks.map((link, index) => (
-                    <div key={index} className='h-full min-h-0'>
+                    <div
+                      key={index}
+                      className='h-full min-h-0'
+                    >
                       <Border className='h-full'>
-                        <div className='p-6 h-full flex flex-col group hover:bg-brand-secondary/20 transition-colors min-h-0'>
-                          <div className='flex items-start gap-4 mb-4 flex-1'>
-                            <div className='p-2 rounded-lg bg-brand-action text-brand-primary flex-shrink-0'>
+                        <div className='group hover:bg-brand-secondary/20 flex h-full min-h-0 flex-col p-6 transition-colors'>
+                          <div className='mb-4 flex flex-1 items-start gap-4'>
+                            <div className='bg-brand-action text-brand-primary flex-shrink-0 rounded-lg p-2'>
                               {link.icon}
                             </div>
-                            <div className='flex-1 min-w-0 flex flex-col'>
-                              <h3 className='text-lg font-semibold text-brand-action mb-2'>
+                            <div className='flex min-w-0 flex-1 flex-col'>
+                              <h3 className='text-brand-action mb-2 text-lg font-semibold'>
                                 {link.title}
                               </h3>
-                              <p className='text-sm text-brand-action/70 leading-relaxed flex-1'>
+                              <p className='text-brand-action/70 flex-1 text-sm leading-relaxed'>
                                 {link.description}
                               </p>
                             </div>
@@ -411,15 +418,15 @@ export default function RozcestnikPage() {
                             <Button
                               asChild
                               variant='green'
-                              className='w-full group-hover:scale-[1.02] transition-transform'
+                              className='w-full transition-transform group-hover:scale-[1.02]'
                             >
                               <Link
                                 href={getLocalizedHref(link.href)}
                                 target={link.external ? '_blank' : undefined}
                                 rel={
-                                  link.external
-                                    ? 'noopener noreferrer'
-                                    : undefined
+                                  link.external ?
+                                    'noopener noreferrer'
+                                  : undefined
                                 }
                                 className='flex items-center justify-center gap-2'
                               >
@@ -442,14 +449,14 @@ export default function RozcestnikPage() {
         </div>
 
         {/* Quick Contact Section */}
-        <section className='mt-16 pt-12 border-t border-brand-action/20'>
+        <section className='border-brand-action/20 mt-16 border-t pt-12'>
           <div className='text-center'>
-            <h2 className='text-2xl md:text-3xl font-bold text-brand-action mb-4'>
+            <h2 className='text-brand-action mb-4 text-2xl font-bold md:text-3xl'>
               {language === 'cs' && 'Rychlý kontakt'}
               {language === 'en' && 'Quick Contact'}
               {language === 'de' && 'Schneller Kontakt'}
             </h2>
-            <p className='text-brand-action/70 mb-8 max-w-2xl mx-auto'>
+            <p className='text-brand-action/70 mx-auto mb-8 max-w-2xl'>
               {language === 'cs' &&
                 'Potřebujete něco konkrétního? Kontaktujte nás přímo.'}
               {language === 'en' &&
@@ -457,8 +464,12 @@ export default function RozcestnikPage() {
               {language === 'de' &&
                 'Brauchen Sie etwas Spezifisches? Kontaktieren Sie uns direkt.'}
             </p>
-            <div className='flex flex-col sm:flex-row gap-4 justify-center'>
-              <Button asChild variant='secondary' size='lg'>
+            <div className='flex flex-col justify-center gap-4 sm:flex-row'>
+              <Button
+                asChild
+                variant='secondary'
+                size='lg'
+              >
                 <Link
                   href='mailto:info@stadioner.cz'
                   className='flex items-center gap-2'
@@ -467,7 +478,11 @@ export default function RozcestnikPage() {
                   info@stadioner.cz
                 </Link>
               </Button>
-              <Button asChild variant='green' size='lg'>
+              <Button
+                asChild
+                variant='green'
+                size='lg'
+              >
                 <Link
                   href='tel:+420601535416'
                   className='flex items-center gap-2'

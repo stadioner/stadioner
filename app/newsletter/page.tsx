@@ -11,32 +11,35 @@ export default function NewsletterPage() {
   const { language } = useLanguage()
   const localizedRootPath = `/${language}`
   const { email, setEmail, isSubmitting, submit, copy } = useNewsletterForm({
-    language,
+    language
   })
 
   return (
-    <div className='min-h-screen bg-brand-secondary pt-32'>
+    <div className='bg-brand-secondary min-h-screen pt-32'>
       <Container>
-        <div className='max-w-3xl mx-auto'>
+        <div className='mx-auto max-w-3xl'>
           <Border background>
             <div className='bg-brand-action p-8 lg:p-12'>
               {/* Header */}
-              <div className='text-center mb-8'>
-                <h1 className='text-brand-primary text-3xl lg:text-4xl font-bold mb-4'>
+              <div className='mb-8 text-center'>
+                <h1 className='text-brand-primary mb-4 text-3xl font-bold lg:text-4xl'>
                   {copy.heading}
                 </h1>
               </div>
 
               {/* Form */}
-              <form onSubmit={submit} className='space-y-6'>
+              <form
+                onSubmit={submit}
+                className='space-y-6'
+              >
                 <div>
                   <input
                     type='email'
                     value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder={copy.placeholder}
                     required
-                    className='px-4 py-3 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-full text-lg'
+                    className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action focus:ring-brand-action/50 w-full border px-4 py-3 text-lg focus:ring-2 focus:outline-none'
                   />
                 </div>
 
@@ -45,16 +48,16 @@ export default function NewsletterPage() {
                   disabled={isSubmitting}
                   variant='secondary'
                   size='lg'
-                  className='w-full text-lg py-3'
+                  className='w-full py-3 text-lg'
                 >
                   {isSubmitting ? copy.submitting : copy.submit}
                 </Button>
 
-                <p className='text-sm text-brand-primary/60 text-center'>
+                <p className='text-brand-primary/60 text-center text-sm'>
                   {copy.gdprPrefix}{' '}
                   <Link
                     href={`${localizedRootPath}/gdpr`}
-                    className='underline hover:text-brand-primary'
+                    className='hover:text-brand-primary underline'
                   >
                     {copy.gdprLink}
                   </Link>
@@ -63,15 +66,15 @@ export default function NewsletterPage() {
               </form>
 
               {/* Additional Info */}
-              <div className='mt-12 pt-8 border-t border-brand-primary/20'>
-                <h2 className='text-brand-primary text-xl font-semibold mb-4 text-center'>
+              <div className='border-brand-primary/20 mt-12 border-t pt-8'>
+                <h2 className='text-brand-primary mb-4 text-center text-xl font-semibold'>
                   {language === 'cs' && 'Co můžete očekávat?'}
                   {language === 'en' && 'What can you expect?'}
                   {language === 'de' && 'Was können Sie erwarten?'}
                 </h2>
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-brand-primary/80'>
+                <div className='text-brand-primary/80 grid grid-cols-1 gap-6 text-sm md:grid-cols-2'>
                   <div>
-                    <h3 className='font-semibold mb-1'>
+                    <h3 className='mb-1 font-semibold'>
                       {language === 'cs' && 'Novinky o produktech'}
                       {language === 'en' && 'Product news'}
                       {language === 'de' && 'Produktneuigkeiten'}
@@ -86,7 +89,7 @@ export default function NewsletterPage() {
                     </p>
                   </div>
                   <div>
-                    <h3 className='font-semibold mb-1'>
+                    <h3 className='mb-1 font-semibold'>
                       {language === 'cs' && 'Speciální akce'}
                       {language === 'en' && 'Special offers'}
                       {language === 'de' && 'Sonderangebote'}
@@ -101,7 +104,7 @@ export default function NewsletterPage() {
                     </p>
                   </div>
                   <div>
-                    <h3 className='font-semibold mb-1'>
+                    <h3 className='mb-1 font-semibold'>
                       {language === 'cs' && 'Události'}
                       {language === 'en' && 'Events'}
                       {language === 'de' && 'Veranstaltungen'}
@@ -116,7 +119,7 @@ export default function NewsletterPage() {
                     </p>
                   </div>
                   <div>
-                    <h3 className='font-semibold mb-1'>
+                    <h3 className='mb-1 font-semibold'>
                       {language === 'cs' && 'Příběhy z pivovaru'}
                       {language === 'en' && 'Brewery stories'}
                       {language === 'de' && 'Brauerei-Geschichten'}

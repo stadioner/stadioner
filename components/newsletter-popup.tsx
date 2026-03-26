@@ -12,7 +12,7 @@ import { useNewsletterForm } from '@/hooks/use-newsletter-form'
 import {
   NEWSLETTER_STORAGE_KEYS,
   getNewsletterPopupCloseCount,
-  increaseNewsletterPopupCloseCount,
+  increaseNewsletterPopupCloseCount
 } from '@/lib/newsletter/submit'
 
 export const NewsletterPopup = () => {
@@ -31,7 +31,7 @@ export const NewsletterPopup = () => {
       setTimeout(() => {
         setIsVisible(false)
       }, 2000)
-    },
+    }
   })
 
   useEffect(() => {
@@ -42,13 +42,13 @@ export const NewsletterPopup = () => {
 
     // Check if user has already dismissed the popup permanently
     const hasSeenPopup = localStorage.getItem(
-      NEWSLETTER_STORAGE_KEYS.popupDismissed,
+      NEWSLETTER_STORAGE_KEYS.popupDismissed
     )
     if (hasSeenPopup) return
 
     // Check if user has already subscribed
     const hasSubscribed = localStorage.getItem(
-      NEWSLETTER_STORAGE_KEYS.subscribed,
+      NEWSLETTER_STORAGE_KEYS.subscribed
     )
     if (hasSubscribed) return
 
@@ -67,15 +67,15 @@ export const NewsletterPopup = () => {
   if (!isVisible) return null
 
   return (
-    <div className='fixed left-0 right-0 top-28 z-[1001]'>
+    <div className='fixed top-28 right-0 left-0 z-[1001]'>
       <Container className='w-full'>
         <Border background>
           <div className='bg-brand-action'>
             {/* Mobile layout */}
             <div className='px-4 py-3 lg:hidden'>
               {/* Header with close button */}
-              <div className='flex items-start justify-between mb-3'>
-                <h3 className='text-brand-primary text-lg font-semibold pr-2'>
+              <div className='mb-3 flex items-start justify-between'>
+                <h3 className='text-brand-primary pr-2 text-lg font-semibold'>
                   {copy.heading}
                 </h3>
                 <Button
@@ -90,25 +90,28 @@ export const NewsletterPopup = () => {
               </div>
 
               {/* Description */}
-              <p className='text-brand-primary/80 text-sm mb-4'>
+              <p className='text-brand-primary/80 mb-4 text-sm'>
                 {copy.description}{' '}
                 <Link
                   href={`/${language}/gdpr`}
-                  className='underline hover:text-brand-primary'
+                  className='hover:text-brand-primary underline'
                 >
                   {copy.gdprLink}
                 </Link>
               </p>
 
               {/* Form */}
-              <form onSubmit={submit} className='flex flex-col gap-3'>
+              <form
+                onSubmit={submit}
+                className='flex flex-col gap-3'
+              >
                 <input
                   type='email'
                   value={email}
-                  onChange={e => setEmail(e.target.value)}
+                  onChange={(e) => setEmail(e.target.value)}
                   placeholder={copy.placeholder}
                   required
-                  className='px-3 py-2 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-full'
+                  className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action focus:ring-brand-action/50 w-full border px-3 py-2 focus:ring-2 focus:outline-none'
                 />
                 <Button
                   type='submit'
@@ -123,31 +126,34 @@ export const NewsletterPopup = () => {
             </div>
 
             {/* Desktop layout - original */}
-            <div className='hidden lg:flex items-center justify-between px-4 py-3'>
+            <div className='hidden items-center justify-between px-4 py-3 lg:flex'>
               <div className='flex-1'>
-                <h3 className='text-brand-primary text-lg font-semibold mb-1'>
+                <h3 className='text-brand-primary mb-1 text-lg font-semibold'>
                   {copy.heading}
                 </h3>
                 <p className='text-brand-primary/80 text-sm'>
                   {copy.description}{' '}
                   <Link
                     href={`/${language}/gdpr`}
-                    className='underline hover:text-brand-primary'
+                    className='hover:text-brand-primary underline'
                   >
                     {copy.gdprLink}
                   </Link>
                 </p>
               </div>
 
-              <form onSubmit={submit} className='flex items-center gap-3 ml-6'>
+              <form
+                onSubmit={submit}
+                className='ml-6 flex items-center gap-3'
+              >
                 <div className='relative'>
                   <input
                     type='email'
                     value={email}
-                    onChange={e => setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                     placeholder={copy.placeholder}
                     required
-                    className='px-3 py-2 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action focus:outline-none focus:ring-2 focus:ring-brand-action/50 w-64'
+                    className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action focus:ring-brand-action/50 w-64 border px-3 py-2 focus:ring-2 focus:outline-none'
                   />
                 </div>
                 <Button

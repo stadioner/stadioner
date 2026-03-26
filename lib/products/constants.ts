@@ -4,18 +4,18 @@ export const categories: Record<Language, Category[]> = {
   cs: [
     { id: 'pivo', label: 'Piva' },
     { id: 'limo', label: 'Limonády' },
-    { id: 'voda', label: 'Vody' },
+    { id: 'voda', label: 'Vody' }
   ],
   en: [
     { id: 'pivo', label: 'Beers' },
     { id: 'limo', label: 'Lemonades' },
-    { id: 'voda', label: 'Water' },
+    { id: 'voda', label: 'Water' }
   ],
   de: [
     { id: 'pivo', label: 'Biere' },
     { id: 'limo', label: 'Limonaden' },
-    { id: 'voda', label: 'Wasser' },
-  ],
+    { id: 'voda', label: 'Wasser' }
+  ]
 }
 
 export const uiLabels = {
@@ -38,7 +38,7 @@ export const uiLabels = {
     kegNewsTitle: 'NOVINKA OHLEDNĚ SUDŮ',
     kegNewsContent1:
       'Nově nabízíme možnost stočení jakéhokoliv našeho piva do sudů o objemu 10 a 20.5 litrů.',
-    kegNewsContent2: 'Objednávku je nutné provést alespoň týden předem.',
+    kegNewsContent2: 'Objednávku je nutné provést alespoň týden předem.'
   },
   en: {
     composition: 'Ingredients',
@@ -59,7 +59,7 @@ export const uiLabels = {
     kegNewsTitle: 'KEG NEWS',
     kegNewsContent1:
       'We now offer the option to fill any of our beers into 10 and 20.5 liter kegs.',
-    kegNewsContent2: 'Orders must be placed at least one week in advance.',
+    kegNewsContent2: 'Orders must be placed at least one week in advance.'
   },
   de: {
     composition: 'Zutaten',
@@ -81,6 +81,6 @@ export const uiLabels = {
     kegNewsContent1:
       'Ab sofort bieten wir die Möglichkeit, jedes unserer Biere in 10- und 20.5-Liter-Fässer abzufüllen.',
     kegNewsContent2:
-      'Die Bestellung muss mindestens eine Woche im Voraus erfolgen.',
-  },
+      'Die Bestellung muss mindestens eine Woche im Voraus erfolgen.'
+  }
 } as const

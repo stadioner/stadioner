@@ -31,7 +31,7 @@ const eventRsvpCopy: Record<
     helper: 'Zaškrtněte, pokud plánujete přijít.',
     saved: 'Vaše účast je zaznamenána.',
     updateError: 'Účast se nepodařilo uložit. Zkuste to prosím znovu.',
-    loadError: 'Nepodařilo se načíst účastníky.',
+    loadError: 'Nepodařilo se načíst účastníky.'
   },
   en: {
     title: 'Estimated attendance',
@@ -40,7 +40,7 @@ const eventRsvpCopy: Record<
     helper: 'Check this box if you plan to come.',
     saved: 'Your attendance has been recorded.',
     updateError: 'Could not save attendance. Please try again.',
-    loadError: 'Could not load attendance.',
+    loadError: 'Could not load attendance.'
   },
   de: {
     title: 'Geschätzte Teilnahme',
@@ -50,8 +50,8 @@ const eventRsvpCopy: Record<
     saved: 'Ihre Teilnahme wurde gespeichert.',
     updateError:
       'Die Teilnahme konnte nicht gespeichert werden. Bitte erneut versuchen.',
-    loadError: 'Teilnehmer konnten nicht geladen werden.',
-  },
+    loadError: 'Teilnehmer konnten nicht geladen werden.'
+  }
 }
 
 const isRsvpResponse = (value: unknown): value is RsvpResponse => {
@@ -81,7 +81,7 @@ export function EventRsvp({ eventId, language }: EventRsvpProps) {
         const response = await fetch(`/api/events/${eventId}/rsvp`, {
           method: 'GET',
           cache: 'no-store',
-          signal: controller.signal,
+          signal: controller.signal
         })
 
         if (!response.ok) {
@@ -120,9 +120,9 @@ export function EventRsvp({ eventId, language }: EventRsvpProps) {
       const response = await fetch(`/api/events/${eventId}/rsvp`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ participating: nextParticipating }),
+        body: JSON.stringify({ participating: nextParticipating })
       })
 
       if (!response.ok) {
@@ -144,19 +144,19 @@ export function EventRsvp({ eventId, language }: EventRsvpProps) {
   }
 
   return (
-    <section className='mt-8 border border-brand-action/20 bg-brand-action/5 p-4 md:p-5'>
-      <h2 className='text-lg font-bold text-brand-action uppercase font-mohave tracking-wide'>
+    <section className='border-brand-action/20 bg-brand-action/5 mt-8 border p-4 md:p-5'>
+      <h2 className='text-brand-action font-mohave text-lg font-bold tracking-wide uppercase'>
         {t.title}
       </h2>
 
       <div className='mt-3'>
-        <label className='inline-flex items-center gap-3 text-brand-action/90'>
+        <label className='text-brand-action/90 inline-flex items-center gap-3'>
           <input
             type='checkbox'
-            className='h-5 w-5 accent-brand-action cursor-pointer disabled:cursor-not-allowed'
+            className='accent-brand-action h-5 w-5 cursor-pointer disabled:cursor-not-allowed'
             checked={participating}
             disabled={isLoading || isUpdating}
-            onChange={event => {
+            onChange={(event) => {
               void handleToggle(event.target.checked)
             }}
           />
@@ -164,8 +164,12 @@ export function EventRsvp({ eventId, language }: EventRsvpProps) {
         </label>
       </div>
 
-      <p className='mt-3 text-sm text-brand-action/70'>
-        {isLoading ? t.loading : participating ? t.saved : t.helper}
+      <p className='text-brand-action/70 mt-3 text-sm'>
+        {isLoading ?
+          t.loading
+        : participating ?
+          t.saved
+        : t.helper}
       </p>
 
       {error && <p className='mt-2 text-sm text-red-700'>{error}</p>}

@@ -4,7 +4,7 @@ import type {
   Product,
   PackagingKey,
   PackagingAvailability,
-  Language,
+  Language
 } from '@/types/products'
 import { getProductMap } from '@/lib/products/data'
 import { deriveVariantUrls, checkImageAvailability } from '@/lib/products/utils'
@@ -99,21 +99,21 @@ export const useProducts = (activeLang: Language) => {
     if (availabilityBySlug[slug]) return
 
     const keys: PackagingKey[] = ['bottle', 'crate', 'barrel30', 'barrel50']
-    const urls = keys.map(k => productVariantUrls[k])
+    const urls = keys.map((k) => productVariantUrls[k])
 
-    Promise.all(urls.map(checkImageAvailability)).then(results => {
+    Promise.all(urls.map(checkImageAvailability)).then((results) => {
       const nextAvailability: PackagingAvailability = {
         bottle: results[0],
         crate: results[1],
         barrel30: results[2],
-        barrel50: results[3],
+        barrel50: results[3]
       }
-      setAvailabilityBySlug(prev => ({ ...prev, [slug]: nextAvailability }))
-      const defaultKey = keys.find(key => nextAvailability[key]) as
+      setAvailabilityBySlug((prev) => ({ ...prev, [slug]: nextAvailability }))
+      const defaultKey = keys.find((key) => nextAvailability[key]) as
         | PackagingKey
         | undefined
       if (defaultKey) {
-        setSelectedPackagingBySlug(prev => ({ ...prev, [slug]: defaultKey }))
+        setSelectedPackagingBySlug((prev) => ({ ...prev, [slug]: defaultKey }))
       }
     })
   }, [product?.slug, productVariantUrls, availabilityBySlug])
@@ -131,6 +131,6 @@ export const useProducts = (activeLang: Language) => {
     handleCategoryChange,
     handlePrev,
     handleNext,
-    handleSelect,
+    handleSelect
   }
 }

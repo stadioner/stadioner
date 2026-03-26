@@ -64,11 +64,11 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
         <div className='fixed inset-0 z-[1000] flex items-center justify-center'>
           {/* Custom overlay that doesn't block navbar */}
           <div className='absolute inset-0 bg-black/50' />
-          <div className='relative z-[1000] max-w-md w-full mx-4'>
+          <div className='relative z-[1000] mx-4 w-full max-w-md'>
             <Border backgroundLight>
               <div className='bg-brand-primary p-6 shadow-lg'>
                 <div className='text-center'>
-                  <h2 className='text-brand-action text-2xl mb-6 font-bold'>
+                  <h2 className='text-brand-action mb-6 text-2xl font-bold'>
                     {language === 'cs' && 'Je vám 18 let nebo více?'}
                     {language === 'en' && 'Are you 18 years old or older?'}
                     {language === 'de' && 'Sind Sie 18 Jahre alt oder älter?'}

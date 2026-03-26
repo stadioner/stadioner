@@ -1,104 +1,108 @@
-"use client";
+'use client'
 
-import { Container } from "@/components/container";
-import { RippedPaperSVG } from "@/components/ripped-paper-svg";
-import { useLanguage } from "@/store/use-language";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
+import { Container } from '@/components/container'
+import { RippedPaperSVG } from '@/components/ripped-paper-svg'
+import { useLanguage } from '@/store/use-language'
+import { cn } from '@/lib/utils'
+import Image from 'next/image'
 
 export const VydejniMisto = () => {
-  const { language } = useLanguage();
-  const currentDay = new Date().getDay();
+  const { language } = useLanguage()
+  const currentDay = new Date().getDay()
 
   const t = {
     monday:
-      language === "cs" ? "Pondělí" : language === "en" ? "Monday" : "Montag",
+      language === 'cs' ? 'Pondělí'
+      : language === 'en' ? 'Monday'
+      : 'Montag',
     tueThu:
-      language === "cs"
-        ? "Útery - Čtvrtek"
-        : language === "en"
-          ? "Tuesday - Thursday "
-          : "Dienstag – Donnerstag",
+      language === 'cs' ? 'Útery - Čtvrtek'
+      : language === 'en' ? 'Tuesday - Thursday '
+      : 'Dienstag – Donnerstag',
     friday:
-      language === "cs" ? "Pátek" : language === "en" ? "Friday" : "Freitag",
+      language === 'cs' ? 'Pátek'
+      : language === 'en' ? 'Friday'
+      : 'Freitag',
     saturday:
-      language === "cs" ? "Sobota" : language === "en" ? "Saturday" : "Samstag",
+      language === 'cs' ? 'Sobota'
+      : language === 'en' ? 'Saturday'
+      : 'Samstag',
     sunday:
-      language === "cs" ? "Neděle" : language === "en" ? "Sunday" : "Sonntag",
+      language === 'cs' ? 'Neděle'
+      : language === 'en' ? 'Sunday'
+      : 'Sonntag',
     closed:
-      language === "cs"
-        ? "ZAVŘENO"
-        : language === "en"
-          ? "CLOSED"
-          : "GESCHLOSSEN",
-  };
+      language === 'cs' ? 'ZAVŘENO'
+      : language === 'en' ? 'CLOSED'
+      : 'GESCHLOSSEN'
+  }
 
   const openingHours = [
     {
-      key: "mon",
+      key: 'mon',
       label: t.monday,
       value: t.closed,
       closed: true,
-      isToday: currentDay === 1,
+      isToday: currentDay === 1
     },
     {
-      key: "tue-thu",
+      key: 'tue-thu',
       label: t.tueThu,
-      value: "14:00 – 17:00",
+      value: '14:00 – 17:00',
       closed: false,
-      isToday: currentDay >= 2 && currentDay <= 4,
+      isToday: currentDay >= 2 && currentDay <= 4
     },
     {
-      key: "fri",
+      key: 'fri',
       label: t.friday,
-      value: "9:00 – 17:00",
+      value: '9:00 – 17:00',
       closed: false,
-      isToday: currentDay === 5,
+      isToday: currentDay === 5
     },
     {
-      key: "sat",
+      key: 'sat',
       label: t.saturday,
-      value: "9:00 - 12:00",
+      value: '9:00 - 12:00',
       closed: false,
-      isToday: currentDay === 6,
+      isToday: currentDay === 6
     },
     {
-      key: "sun",
+      key: 'sun',
       label: t.sunday,
       value: t.closed,
       closed: true,
-      isToday: currentDay === 0,
-    },
-  ];
+      isToday: currentDay === 0
+    }
+  ]
 
   return (
-    <section className="bg-brand-primary">
+    <section className='bg-brand-primary'>
       <RippedPaperSVG flip />
-      <div className="bg-brand-action py-12">
-        <Container className="grid md:grid-cols-[0.9fr_1.05fr] gap-10">
-          <div className="flex flex-col justify-between">
+      <div className='bg-brand-action py-12'>
+        <Container className='grid gap-10 md:grid-cols-[0.9fr_1.05fr]'>
+          <div className='flex flex-col justify-between'>
             <div>
               <div>
-                <h2 className="text-brand-primary text-3xl md:text-4xl lg:text-6xl font-bold flex-nowrap text-nowrap">
-                  {language === "cs" && "Výdejní Místo"}
-                  {language === "en" && "Distribution Point"}
-                  {language === "de" && "Verkaufsstelle"}
+                <h2 className='text-brand-primary flex-nowrap text-3xl font-bold text-nowrap md:text-4xl lg:text-6xl'>
+                  {language === 'cs' && 'Výdejní Místo'}
+                  {language === 'en' && 'Distribution Point'}
+                  {language === 'de' && 'Verkaufsstelle'}
                 </h2>
-                <p className="text-zinc-100 mt-1">
+                <p className='mt-1 text-zinc-100'>
                   Kout na Šumavě 2, 345 02 Kout na Šumavě
                 </p>
               </div>
               <Image
-                src="/vydejni-misto-zima.webp"
-                alt="Výdejní místo STADIONER (Kout na Šumavě)"
+                src='/vydejni-misto-zima.webp'
+                alt='Výdejní místo STADIONER (Kout na Šumavě)'
                 width={1200}
                 height={900}
-                sizes="100vw"
-                className="md:hidden py-4"
+                sizes='100vw'
+                className='py-4 md:hidden'
               />
-              <div className="text-zinc-100 md:mt-6 space-y-4">
+              <div className='space-y-4 text-zinc-100 md:mt-6'>
                 <p>
-                  {language === "cs" && (
+                  {language === 'cs' && (
                     <>
                       Hlavní výdejní místo pivovaru STADIONER se nachází přímo v
                       areálu pivovaru v Koutě na Šumavě. Zde si můžete zakoupit
@@ -108,7 +112,7 @@ export const VydejniMisto = () => {
                       i sudové pivo.
                     </>
                   )}
-                  {language === "en" && (
+                  {language === 'en' && (
                     <>
                       The main distribution point of STADIONER brewery is
                       located directly in the brewery premises in Kout na
@@ -118,7 +122,7 @@ export const VydejniMisto = () => {
                       returns. You can purchase both bottled and draft beer.
                     </>
                   )}
-                  {language === "de" && (
+                  {language === 'de' && (
                     <>
                       Die Hauptverkaufsstelle der STADIONER Brauerei befindet
                       sich direkt auf dem Brauereigelände in Kout na Šumavě.
@@ -131,20 +135,20 @@ export const VydejniMisto = () => {
                   )}
                 </p>
 
-                <div className="mt-3 text-sm text-zinc-200">
-                  {language === "cs" && (
+                <div className='mt-3 text-sm text-zinc-200'>
+                  {language === 'cs' && (
                     <p>
                       Zálohy: lahev 5 Kč, bedna 100 Kč, sud (30L, 50L) 1500 Kč,
                       sud (10L, 20.5L) 2000 Kč
                     </p>
                   )}
-                  {language === "en" && (
+                  {language === 'en' && (
                     <p>
                       Deposits: bottle 5 CZK, crate 100 CZK, keg (30L, 50L) 1500
                       CZK, keg (10L, 20.5L) 2000 CZK
                     </p>
                   )}
-                  {language === "de" && (
+                  {language === 'de' && (
                     <p>
                       Pfand: Flasche 5 CZK, Kiste 100 CZK, Fass (30L, 50L) 1500
                       CZK, Fass (10L, 20.5L) 2000 CZK
@@ -152,45 +156,45 @@ export const VydejniMisto = () => {
                   )}
                 </div>
 
-                <div className="text-sm text-zinc-200">
-                  {language === "cs" && (
+                <div className='text-sm text-zinc-200'>
+                  {language === 'cs' && (
                     <p>Platba možná na místě v hotovosti i kartou.</p>
                   )}
-                  {language === "en" && (
+                  {language === 'en' && (
                     <p>Payment possible on site by cash or card.</p>
                   )}
-                  {language === "de" && (
+                  {language === 'de' && (
                     <p>Zahlung vor Ort in bar oder mit Karte möglich.</p>
                   )}
                 </div>
 
                 {/* --- OTEVÍRACÍ DOBA --- */}
-                <div className="border-t border-zinc-600 pt-4">
-                  <h4 className="font-semibold text-brand-primary mb-2 text-xl">
-                    {language === "cs" && "Otevírací doba"}
-                    {language === "en" && "Opening hours"}
-                    {language === "de" && "Öffnungszeiten"}
+                <div className='border-t border-zinc-600 pt-4'>
+                  <h4 className='text-brand-primary mb-2 text-xl font-semibold'>
+                    {language === 'cs' && 'Otevírací doba'}
+                    {language === 'en' && 'Opening hours'}
+                    {language === 'de' && 'Öffnungszeiten'}
                   </h4>
 
-                  <div className="space-y-1">
+                  <div className='space-y-1'>
                     {openingHours.map((row) => (
                       <div
                         key={row.key}
                         className={cn(
-                          "flex items-center justify-between px-3 py-2 transition-colors",
-                          row.isToday && "bg-brand-primary text-brand-action",
+                          'flex items-center justify-between px-3 py-2 transition-colors',
+                          row.isToday && 'bg-brand-primary text-brand-action'
                         )}
                       >
-                        <div className="flex items-center gap-3">
-                          <span className={cn(row.isToday && "font-bold")}>
+                        <div className='flex items-center gap-3'>
+                          <span className={cn(row.isToday && 'font-bold')}>
                             {row.label}
                           </span>
                         </div>
                         <span
                           className={cn(
-                            "font-medium",
-                            row.closed && !row.isToday && "text-red-400",
-                            row.isToday && "font-bold",
+                            'font-medium',
+                            row.closed && !row.isToday && 'text-red-400',
+                            row.isToday && 'font-bold'
                           )}
                         >
                           {row.value}
@@ -204,16 +208,16 @@ export const VydejniMisto = () => {
           </div>
 
           <Image
-            src="/vydejni-misto-zima.webp"
-            alt="Výdejní místo STADIONER (Kout na Šumavě)"
+            src='/vydejni-misto-zima.webp'
+            alt='Výdejní místo STADIONER (Kout na Šumavě)'
             width={1200}
             height={900}
-            sizes="(min-width: 768px) 50vw, 100vw"
-            className="hidden md:block"
+            sizes='(min-width: 768px) 50vw, 100vw'
+            className='hidden md:block'
           />
         </Container>
       </div>
       <RippedPaperSVG />
     </section>
-  );
-};
+  )
+}

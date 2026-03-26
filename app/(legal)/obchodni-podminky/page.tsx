@@ -3,22 +3,22 @@ import Link from 'next/link'
 
 export default function TermsPage() {
   return (
-    <main className='bg-brand-primary pt-32 md:pt-40 pb-20'>
+    <main className='bg-brand-primary pt-32 pb-20 md:pt-40'>
       <Container className='max-w-4xl'>
         <div className='prose prose-lg max-w-none'>
-          <h1 className='text-4xl md:text-5xl font-bold text-brand-action mb-4'>
+          <h1 className='text-brand-action mb-4 text-4xl font-bold md:text-5xl'>
             Obchodní podmínky
           </h1>
-          <p className='text-gray-600 mb-8'>
+          <p className='mb-8 text-gray-600'>
             Poslední aktualizace: 1. října 2025
           </p>
 
           <div className='space-y-8'>
             <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
+              <h2 className='text-brand-action mb-4 text-2xl font-bold'>
                 I. Základní ustanovení
               </h2>
-              <p className='text-gray-700 leading-relaxed'>
+              <p className='leading-relaxed text-gray-700'>
                 Tyto všeobecné obchodní podmínky (dále jen „obchodní podmínky“)
                 jsou vydány dle § 1751 a násl. zákona č. 89/2012 Sb., občanský
                 zákoník (dále jen „občanský zákoník“).
@@ -60,7 +60,7 @@ export default function TermsPage() {
                   </p>
                 </div>
               </div>
-              <p className='text-gray-700 leading-relaxed mt-4'>
+              <p className='mt-4 leading-relaxed text-gray-700'>
                 Tyto obchodní podmínky upravují vzájemná práva a povinnosti
                 prodávajícího a kupujícího při nákupu zboží prostřednictvím
                 internetového obchodu na adrese
@@ -69,7 +69,7 @@ export default function TermsPage() {
                 smlouvy. Odchylná ujednání v kupní smlouvě mají přednost před
                 těmito podmínkami.
               </p>
-              <p className='text-gray-700 leading-relaxed'>
+              <p className='leading-relaxed text-gray-700'>
                 Tyto obchodní podmínky a kupní smlouva se uzavírají v českém
                 jazyce. Prodej alkoholických nápojů osobám mladším 18 let je
                 zakázán.
@@ -77,16 +77,16 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
+              <h2 className='text-brand-action mb-4 text-2xl font-bold'>
                 II. Informace o zboží a cenách
               </h2>
-              <p className='text-gray-700 mb-4'>
+              <p className='mb-4 text-gray-700'>
                 Informace o zboží, včetně cen a hlavních vlastností, jsou
                 uvedeny u jednotlivého zboží. Ceny jsou uváděny včetně DPH a
                 všech souvisejících poplatků. Nezahrnují náklady na dopravu,
                 pokud není uvedeno jinak.
               </p>
-              <ul className='list-disc list-inside space-y-2 text-gray-700'>
+              <ul className='list-inside list-disc space-y-2 text-gray-700'>
                 <li>
                   Prezentace zboží má informativní charakter, nejde o návrh na
                   uzavření smlouvy.
@@ -100,15 +100,15 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
+              <h2 className='text-brand-action mb-4 text-2xl font-bold'>
                 III. Objednávka a uzavření kupní smlouvy
               </h2>
-              <p className='text-gray-700 mb-4'>
+              <p className='mb-4 text-gray-700'>
                 Náklady na prostředky komunikace na dálku hradí kupující sám.
                 Objednávku lze provést z účtu nebo bez registrace vyplněním
                 formuláře.
               </p>
-              <ul className='list-disc list-inside space-y-2 text-gray-700'>
+              <ul className='list-inside list-disc space-y-2 text-gray-700'>
                 <li>Objednávku odešlete kliknutím na „Odeslat objednávku“.</li>
                 <li>Po obdržení objednávky zašleme potvrzení na váš e‑mail.</li>
                 <li>
@@ -123,10 +123,10 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
+              <h2 className='text-brand-action mb-4 text-2xl font-bold'>
                 IV. Platební podmínky a dodání zboží
               </h2>
-              <ul className='list-disc list-inside space-y-2 text-gray-700'>
+              <ul className='list-inside list-disc space-y-2 text-gray-700'>
                 <li>
                   Platba převodem, kartou přes platební bránu, nebo dobírkou.
                 </li>
@@ -146,13 +146,13 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
+              <h2 className='text-brand-action mb-4 text-2xl font-bold'>
                 V. Odstoupení od smlouvy (spotřebitel)
               </h2>
-              <p className='text-gray-700 mb-2'>
+              <p className='mb-2 text-gray-700'>
                 Máte právo odstoupit bez udání důvodu do 14 dní od převzetí.
               </p>
-              <ul className='list-disc list-inside space-y-2 text-gray-700 mb-4'>
+              <ul className='mb-4 list-inside list-disc space-y-2 text-gray-700'>
                 <li>Vrácení do 14 dní; náklady na vrácení nese kupující.</li>
                 <li>
                   Peněžní prostředky vrátíme do 14 dní stejným způsobem, pokud
@@ -171,10 +171,10 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
+              <h2 className='text-brand-action mb-4 text-2xl font-bold'>
                 VI. Práva z vadného plnění
               </h2>
-              <ul className='list-disc list-inside space-y-2 text-gray-700'>
+              <ul className='list-inside list-disc space-y-2 text-gray-700'>
                 <li>
                   Práva lze uplatnit do 24 měsíců od převzetí (není‑li uvedeno
                   jinak).
@@ -194,7 +194,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
+              <h2 className='text-brand-action mb-4 text-2xl font-bold'>
                 VII. Doručování
               </h2>
               <p className='text-gray-700'>
@@ -207,7 +207,7 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
+              <h2 className='text-brand-action mb-4 text-2xl font-bold'>
                 VIII. Osobní údaje
               </h2>
               <p className='text-gray-700'>
@@ -218,10 +218,10 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
+              <h2 className='text-brand-action mb-4 text-2xl font-bold'>
                 IX. Mimosoudní řešení sporů
               </h2>
-              <ul className='list-disc list-inside space-y-2 text-gray-700'>
+              <ul className='list-inside list-disc space-y-2 text-gray-700'>
                 <li>
                   ČOI: Štěpánská 567/15, 120 00 Praha 2,{' '}
                   <Link href='https://adr.coi.cz/cs'>
@@ -244,10 +244,10 @@ export default function TermsPage() {
             </section>
 
             <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
+              <h2 className='text-brand-action mb-4 text-2xl font-bold'>
                 X. Závěrečná ustanovení
               </h2>
-              <ul className='list-disc list-inside space-y-2 text-gray-700 mb-2'>
+              <ul className='mb-2 list-inside list-disc space-y-2 text-gray-700'>
                 <li>Vztah se řídí právem České republiky.</li>
                 <li>
                   Prodávající není vázán žádnými kodexy chování dle § 1826 odst.
@@ -274,21 +274,21 @@ export default function TermsPage() {
                   nejsou dotčena.
                 </li>
               </ul>
-              <p className='text-gray-700 font-semibold'>
+              <p className='font-semibold text-gray-700'>
                 Tyto obchodní podmínky nabývají účinnosti dnem 1. 10. 2025.
               </p>
             </section>
 
             <section>
-              <h2 className='text-2xl font-bold text-brand-action mb-4'>
+              <h2 className='text-brand-action mb-4 text-2xl font-bold'>
                 Příloha: Vzorový formulář pro odstoupení od smlouvy
               </h2>
-              <p className='text-gray-700 mb-2'>
+              <p className='mb-2 text-gray-700'>
                 Vyplňte a odešlete na e‑mail{' '}
                 <Link href='mailto:eshop@stadioner.cz'>eshop@stadioner.cz</Link>{' '}
                 nebo na doručovací adresu prodávajícího.
               </p>
-              <ul className='list-disc list-inside space-y-2 text-gray-700'>
+              <ul className='list-inside list-disc space-y-2 text-gray-700'>
                 <li>
                   Oznamuji, že tímto odstupuji od smlouvy o nákupu tohoto zboží:
                   [popis zboží].

@@ -3,7 +3,7 @@ import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   postVariantsByTranslationKeyQuery,
   postBySlugQuery,
-  postsPathsByLanguageQuery,
+  postsPathsByLanguageQuery
 } from '@/sanity/lib/queries'
 import { type SupportedLanguage } from '@/types/blog'
 import { notFound } from 'next/navigation'
@@ -14,22 +14,17 @@ import { Sidebar } from '../../_components/sidebar'
 import { Container } from '@/components/container'
 import {
   isSupportedLanguage,
-  supportedLanguages,
+  supportedLanguages
 } from '@/lib/i18n/site-languages'
 import { type Post as BlogPost } from '@/types/blog'
-import {
-  createLocalizedDetailAlternatesFromVariants,
-} from '@/lib/seo/alternates'
+import { createLocalizedDetailAlternatesFromVariants } from '@/lib/seo/alternates'
 import {
   isLocalizedSeoLocale,
   localizedSeoLocales,
   toAbsoluteUrl,
-  type LocalizedSeoLocale,
+  type LocalizedSeoLocale
 } from '@/lib/seo/site'
-import {
-  buildBlogPostingSchema,
-  jsonLdToHtml,
-} from '@/lib/seo/schema'
+import { buildBlogPostingSchema, jsonLdToHtml } from '@/lib/seo/schema'
 
 interface Props {
   params: Promise<{ lang: string; slug: string }>
@@ -55,7 +50,7 @@ const resolveBlogVariants = async (translationKey?: string) => {
       query: postVariantsByTranslationKeyQuery,
       params: { translationKey, languages: [...localizedSeoLocales] },
       tags: [`blog:variants:${translationKey}`],
-      revalidate: 300,
+      revalidate: 300
     }).catch(() => [])) ?? []
 
   return variants.reduce<Array<{ locale: LocalizedSeoLocale; slug: string }>>(
@@ -70,12 +65,12 @@ const resolveBlogVariants = async (translationKey?: string) => {
 
       acc.push({
         locale: variant.language,
-        slug: variant.slug,
+        slug: variant.slug
       })
 
       return acc
     },
-    [],
+    []
   )
 }
 
@@ -84,7 +79,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!isSupportedLanguage(lang)) {
     return {
-      title: 'Post Not Found',
+      title: 'Post Not Found'
     }
   }
 
@@ -92,12 +87,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     query: postBySlugQuery,
     params: { slug, language: lang },
     tags: [`blog:post:${lang}:${slug}`],
-    revalidate: 60,
+    revalidate: 60
   })
 
   if (!post) {
     return {
-      title: 'Post Not Found',
+      title: 'Post Not Found'
     }
   }
 
@@ -110,7 +105,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     'clanky',
     lang,
     slug,
-    variants,
+    variants
   )
   const canonicalUrl = toAbsoluteUrl(alternates.canonical)
 
@@ -126,39 +121,40 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: canonicalUrl,
       publishedTime: post.publishedAt,
       tags: keywords,
-      images: imageUrl
-        ? [
+      images:
+        imageUrl ?
+          [
             {
               url: imageUrl,
               width: 1200,
               height: 630,
-              alt: post.mainImage?.alt || post.title,
-            },
+              alt: post.mainImage?.alt || post.title
+            }
           ]
-        : [],
+        : []
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: imageUrl ? [imageUrl] : [],
-    },
+      images: imageUrl ? [imageUrl] : []
+    }
   }
 }
 
 export async function generateStaticParams() {
   const allPaths = await Promise.all(
-    supportedLanguages.map(async lang => {
+    supportedLanguages.map(async (lang) => {
       const posts = await sanityFetch<{ params: { slug: string } }[]>({
         query: postsPathsByLanguageQuery,
         params: { language: lang },
         tags: [`blog:paths:${lang}`],
-        revalidate: 300,
+        revalidate: 300
       })
 
       return posts.map((post: { params: { slug: string } }) => ({
         lang,
-        slug: post.params.slug,
+        slug: post.params.slug
       }))
     })
   )
@@ -180,7 +176,7 @@ export default async function Page({ params }: Props) {
     query: postBySlugQuery,
     params: { slug, language: lang },
     tags: [`blog:post:${lang}:${slug}`],
-    revalidate: 60,
+    revalidate: 60
   })
 
   if (!post) {
@@ -197,13 +193,13 @@ export default async function Page({ params }: Props) {
     datePublished: post.publishedAt,
     imageUrl,
     language: lang,
-    keywords: post.seo?.keywords || [],
+    keywords: post.seo?.keywords || []
   })
 
   return (
     <>
-      <main className='bg-brand-primary pt-32 md:pt-40 pb-20'>
-        <Container className='lg:grid grid-cols-[1.5fr_1fr] gap-10 lg:gap-20 relative'>
+      <main className='bg-brand-primary pt-32 pb-20 md:pt-40'>
+        <Container className='relative grid-cols-[1.5fr_1fr] gap-10 lg:grid lg:gap-20'>
           <Post post={post} />
           <Sidebar language={lang as SupportedLanguage} />
         </Container>

@@ -16,20 +16,20 @@ export const NavItem: FC<NavItemProps> = ({
   href,
   label,
   phone,
-  setIsOpen,
+  setIsOpen
 }) => {
   const pathname = usePathname()
   const isActive =
-    href === '/'
-      ? pathname === '/'
-      : pathname === href || pathname.startsWith(`${href}/`)
+    href === '/' ?
+      pathname === '/'
+    : pathname === href || pathname.startsWith(`${href}/`)
 
   return (
     <li
       onClick={() => setIsOpen && setIsOpen(false)}
       className={cn(
         phone ? 'text-brand-primary text-2xl' : 'text-brand-action text-lg',
-        isActive && 'font-bold',
+        isActive && 'font-bold'
       )}
     >
       <Link href={href}>{label}</Link>

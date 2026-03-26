@@ -1,12 +1,12 @@
 import {
   type SupportedLanguage,
-  isSupportedLanguage,
+  isSupportedLanguage
 } from '@/lib/i18n/site-languages'
 
 export type NewsletterLanguage = SupportedLanguage
 
 export const resolveNewsletterLanguage = (
-  language: string,
+  language: string
 ): NewsletterLanguage => {
   return isSupportedLanguage(language) ? language : 'cs'
 }
@@ -27,14 +27,15 @@ export const newsletterCopy: Record<
 > = {
   cs: {
     heading: 'Přihlaste se k odběru našeho newsletteru',
-    description: 'Získejte jako první informace o našich produktech, akcích apod.',
+    description:
+      'Získejte jako první informace o našich produktech, akcích apod.',
     info: 'Přihlaste se k odběru našeho newsletteru a získejte jako první informace o našich produktech, akcích apod.',
     placeholder: 'Váš email',
     submit: 'Přihlásit se',
     submitting: 'Odesílám...',
     success: 'Zkontrolujte svůj email a potvrďte přihlášení k odběru!',
     gdprPrefix: 'Odesláním souhlasíte s',
-    gdprLink: 'ochranou osobních údajů',
+    gdprLink: 'ochranou osobních údajů'
   },
   en: {
     heading: 'Subscribe to our newsletter',
@@ -46,7 +47,7 @@ export const newsletterCopy: Record<
     submitting: 'Sending...',
     success: 'Please check your email and confirm your subscription!',
     gdprPrefix: 'By submitting you agree to our',
-    gdprLink: 'personal data protection',
+    gdprLink: 'personal data protection'
   },
   de: {
     heading: 'Abonnieren Sie unseren Newsletter',
@@ -59,7 +60,6 @@ export const newsletterCopy: Record<
     success:
       'Bitte überprüfen Sie Ihre E-Mail und bestätigen Sie Ihr Abonnement!',
     gdprPrefix: 'Mit der Übermittlung stimmen Sie unserem',
-    gdprLink: 'Datenschutz',
-  },
+    gdprLink: 'Datenschutz'
+  }
 }
-

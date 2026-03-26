@@ -4,12 +4,12 @@ import { Container } from '@/components/container'
 import { Posts } from '../_components/posts'
 import {
   isSupportedLanguage,
-  supportedLanguages,
+  supportedLanguages
 } from '@/lib/i18n/site-languages'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   categoriesByLanguageQuery,
-  postsListByLanguageQuery,
+  postsListByLanguageQuery
 } from '@/sanity/lib/queries'
 import { type Category, type Post, type SupportedLanguage } from '@/types/blog'
 import { createLocalizedListingAlternates } from '@/lib/seo/alternates'
@@ -23,7 +23,7 @@ interface Props {
 const languageNames = {
   cs: 'Články',
   en: 'Articles',
-  de: 'Artikel',
+  de: 'Artikel'
 } as const
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -31,20 +31,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!isSupportedLanguage(lang)) {
     return {
-      title: 'Blog Not Found',
+      title: 'Blog Not Found'
     }
   }
 
   const title = languageNames[lang]
   const description =
-    lang === 'cs'
-      ? 'Přečtěte si nejnovější články a novinky ze světa piva a gastronomie.'
-      : lang === 'en'
-        ? 'Read the latest articles and news from the world of beer and gastronomy.'
-        : 'Lesen Sie die neuesten Artikel und Nachrichten aus der Welt des Bieres und der Gastronomie.'
+    lang === 'cs' ?
+      'Přečtěte si nejnovější články a novinky ze světa piva a gastronomie.'
+    : lang === 'en' ?
+      'Read the latest articles and news from the world of beer and gastronomy.'
+    : 'Lesen Sie die neuesten Artikel und Nachrichten aus der Welt des Bieres und der Gastronomie.'
   const alternates = createLocalizedListingAlternates(
     'clanky',
-    lang as LocalizedSeoLocale,
+    lang as LocalizedSeoLocale
   )
 
   return buildPageMetadata({
@@ -53,13 +53,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     canonicalPath: alternates.canonical,
     alternates,
     locale: lang as LocalizedSeoLocale,
-    twitterCard: 'summary',
+    twitterCard: 'summary'
   })
 }
 
 export async function generateStaticParams() {
-  return supportedLanguages.map(lang => ({
-    lang,
+  return supportedLanguages.map((lang) => ({
+    lang
   }))
 }
 
@@ -77,18 +77,18 @@ export default async function Page({ params }: Props) {
       query: postsListByLanguageQuery,
       params: { language: lang },
       tags: [`blog:posts:${lang}`],
-      revalidate: 60,
+      revalidate: 60
     }),
     sanityFetch<Category[]>({
       query: categoriesByLanguageQuery,
       params: { language: lang },
       tags: [`blog:categories:${lang}`],
-      revalidate: 300,
-    }),
+      revalidate: 300
+    })
   ])
 
   return (
-    <main className='bg-brand-primary pt-32 md:pt-40 pb-28'>
+    <main className='bg-brand-primary pt-32 pb-28 md:pt-40'>
       <h1 className='sr-only'>{languageNames[lang]}</h1>
       <Container>
         <Posts

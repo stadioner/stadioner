@@ -7,7 +7,7 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
+  DialogTrigger
 } from '@/components/ui/dialog'
 import type { Product } from '@/types/products'
 
@@ -38,18 +38,18 @@ export const ProductInfo = ({
   isPreparing = false,
   hideBuyButton = false,
   noteText,
-  cta,
+  cta
 }: ProductInfoProps) => {
   // Use slug as key to only animate on product change, not packaging change
   const productKey = product.slug
 
   return (
-    <div className='flex-1 flex flex-col justify-center'>
+    <div className='flex flex-1 flex-col justify-center'>
       <div className='mb-4 sm:mb-8'>
-        <p className='uppercase tracking-widest text-xs text-zinc-300 mb-1 sm:mb-4'>
+        <p className='mb-1 text-xs tracking-widest text-zinc-300 uppercase sm:mb-4'>
           {product.subtitle}
         </p>
-        <div className='flex items-center justify-between mb-2 sm:mb-4'>
+        <div className='mb-2 flex items-center justify-between sm:mb-4'>
           <AnimatePresence mode='wait'>
             <motion.h2
               key={productKey}
@@ -57,7 +57,7 @@ export const ProductInfo = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className='text-2xl sm:text-3xl md:text-6xl font-bold text-brand-primary'
+              className='text-brand-primary text-2xl font-bold sm:text-3xl md:text-6xl'
             >
               {product.name}
             </motion.h2>
@@ -65,7 +65,7 @@ export const ProductInfo = ({
           {!hideBuyButton && (
             <div className='flex items-center gap-2'>
               <Dialog>
-                <DialogTrigger className='border border-brand-primary text-brand-primary font-bold py-1 px-2 sm:px-3 mb-2 cursor-pointer hover:opacity-90 transition hover:bg-brand-primary hover:text-brand-action self-end text-xs sm:text-sm'>
+                <DialogTrigger className='border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-brand-action mb-2 cursor-pointer self-end border px-2 py-1 text-xs font-bold transition hover:opacity-90 sm:px-3 sm:text-sm'>
                   {labels.composition}
                 </DialogTrigger>
                 <DialogContent className='bg-brand-primary h-[500px]'>
@@ -80,7 +80,7 @@ export const ProductInfo = ({
                       alt='ingredients'
                       width={1200}
                       height={1600}
-                      className='max-h-[400px] h-auto w-auto'
+                      className='h-auto max-h-[400px] w-auto'
                     />
                   )}
                 </DialogContent>
@@ -95,7 +95,7 @@ export const ProductInfo = ({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.4, delay: 0.1 }}
-            className='text-zinc-200 mb-4 sm:mb-8 max-w-lg hidden sm:block'
+            className='mb-4 hidden max-w-lg text-zinc-200 sm:mb-8 sm:block'
           >
             {product.description}
           </motion.p>
@@ -118,39 +118,54 @@ export const ProductInfo = ({
                 </Link>
               </Button>
             )}
-            {noteText && <p className='text-xs text-zinc-300 mt-2'>{noteText}</p>}
+            {noteText && (
+              <p className='mt-2 text-xs text-zinc-300'>{noteText}</p>
+            )}
           </div>
         )}
 
         {!hideBuyButton && (
           <>
-            <div className='flex justify-between border-t border-zinc-600 pt-3 sm:pt-6 mb-3 sm:mb-6'>
-              {product.stats.map(stat => (
+            <div className='mb-3 flex justify-between border-t border-zinc-600 pt-3 sm:mb-6 sm:pt-6'>
+              {product.stats.map((stat) => (
                 <div
                   key={stat.label}
-                  className='flex flex-col items-center min-w-[70px] sm:min-w-[90px]'
+                  className='flex min-w-[70px] flex-col items-center sm:min-w-[90px]'
                 >
                   <span className='text-xs text-zinc-400'>{stat.label}</span>
-                  <span className='text-sm sm:text-lg font-bold text-brand-primary'>
+                  <span className='text-brand-primary text-sm font-bold sm:text-lg'>
                     {stat.value}
                   </span>
                 </div>
               ))}
             </div>
             <div className='inline-flex flex-col items-start'>
-              {isPreparing ? (
-                <Button variant={'shop'} className='w-fit' disabled>
+              {isPreparing ?
+                <Button
+                  variant={'shop'}
+                  className='w-fit'
+                  disabled
+                >
                   {labels.preparing}
                 </Button>
-              ) : (
-                <Button asChild variant={'shop'} className='w-fit'>
-                  <Link href={buyUrl} target='_blank' rel='noopener noreferrer'>
+              : <Button
+                  asChild
+                  variant={'shop'}
+                  className='w-fit'
+                >
+                  <Link
+                    href={buyUrl}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
                     {labels.buy}
                   </Link>
                 </Button>
-              )}
+              }
               {!isPreparing && (
-                <p className='text-xs text-zinc-400 mt-1'>{labels.depositNote}</p>
+                <p className='mt-1 text-xs text-zinc-400'>
+                  {labels.depositNote}
+                </p>
               )}
             </div>
           </>

@@ -3,7 +3,7 @@
 import {
   Popover,
   PopoverContent,
-  PopoverTrigger,
+  PopoverTrigger
 } from '@/components/ui/popover'
 import { Command, CommandGroup, CommandItem } from '@/components/ui/command'
 import { Check } from 'lucide-react'
@@ -16,19 +16,19 @@ import { Border } from '@/components/border'
 import { usePathname, useRouter } from 'next/navigation'
 import {
   isSupportedLanguage,
-  supportedLanguages,
+  supportedLanguages
 } from '@/lib/i18n/site-languages'
 import type { SupportedLanguage } from '@/lib/i18n/site-languages'
 
 const flagByLanguage = {
   cs: '/flags/cs.svg',
   en: '/flags/en.svg',
-  de: '/flags/de.svg',
+  de: '/flags/de.svg'
 } as const
 
-const languages = supportedLanguages.map(value => ({
+const languages = supportedLanguages.map((value) => ({
   value,
-  src: flagByLanguage[value],
+  src: flagByLanguage[value]
 }))
 
 type DetailSection = 'clanky' | 'udalosti'
@@ -37,13 +37,15 @@ const isDetailSection = (section: string): section is DetailSection => {
   return section === 'clanky' || section === 'udalosti'
 }
 
-const getAlternatePathForLocale = (locale: SupportedLanguage): string | null => {
+const getAlternatePathForLocale = (
+  locale: SupportedLanguage
+): string | null => {
   if (typeof document === 'undefined') {
     return null
   }
 
   const alternateLink = document.head.querySelector<HTMLLinkElement>(
-    `link[rel="alternate"][hreflang="${locale}"]`,
+    `link[rel="alternate"][hreflang="${locale}"]`
   )
 
   if (!alternateLink?.href) {
@@ -95,19 +97,25 @@ const isNavigablePath = async (path: string): Promise<boolean> => {
     const headResponse = await fetch(path, {
       method: 'HEAD',
       cache: 'no-store',
-      redirect: 'manual',
+      redirect: 'manual'
     })
 
     if (headResponse.status === 405) {
       const getResponse = await fetch(path, {
         method: 'GET',
         cache: 'no-store',
-        redirect: 'manual',
+        redirect: 'manual'
       })
-      return getResponse.ok || (getResponse.status >= 300 && getResponse.status < 400)
+      return (
+        getResponse.ok ||
+        (getResponse.status >= 300 && getResponse.status < 400)
+      )
     }
 
-    return headResponse.ok || (headResponse.status >= 300 && headResponse.status < 400)
+    return (
+      headResponse.ok ||
+      (headResponse.status >= 300 && headResponse.status < 400)
+    )
   } catch {
     return false
   }
@@ -115,7 +123,7 @@ const isNavigablePath = async (path: string): Promise<boolean> => {
 
 export const LanguageSelector = () => {
   useLanguageSync()
-  const { language, imgSrc, setLanguage } = useLanguage(state => state)
+  const { language, imgSrc, setLanguage } = useLanguage((state) => state)
   const pathname = usePathname()
   const router = useRouter()
   const pushPreservingScroll = (targetPath: string) => {
@@ -125,24 +133,32 @@ export const LanguageSelector = () => {
   const [open, setOpen] = useState<boolean>(false)
 
   return (
-    <Popover open={open} onOpenChange={setOpen}>
+    <Popover
+      open={open}
+      onOpenChange={setOpen}
+    >
       <PopoverTrigger asChild>
         <Button
           variant='outline'
           role='combobox'
           aria-expanded={open}
-          className='justify-between border-none !bg-transparent hover:bg-transparent cursor-pointer p-0 shadow-none'
+          className='cursor-pointer justify-between border-none !bg-transparent p-0 shadow-none hover:bg-transparent'
         >
-          <Image src={imgSrc(language)} width={30} height={30} alt={language} />
+          <Image
+            src={imgSrc(language)}
+            width={30}
+            height={30}
+            alt={language}
+          />
         </Button>
       </PopoverTrigger>
       <PopoverContent
         sideOffset={0}
-        className='z-[1112] w-[100px] bg-brand-secondary p-0 rounded-none mt-5 mr-5'
+        className='bg-brand-secondary z-[1112] mt-5 mr-5 w-[100px] rounded-none p-0'
       >
         <Border>
           <Command>
-            <CommandGroup className='space-y-2 bg-brand-secondary'>
+            <CommandGroup className='bg-brand-secondary space-y-2'>
               {languages.map(
                 ({ src, value }: { src: string; value: SupportedLanguage }) => (
                   <CommandItem
@@ -157,9 +173,13 @@ export const LanguageSelector = () => {
                       setOpen(false)
 
                       const query =
-                        typeof window !== 'undefined' ? window.location.search : ''
+                        typeof window !== 'undefined' ?
+                          window.location.search
+                        : ''
                       const hash =
-                        typeof window !== 'undefined' ? window.location.hash : ''
+                        typeof window !== 'undefined' ?
+                          window.location.hash
+                        : ''
                       const detailSection = getDetailSectionFromPath(pathname)
 
                       const alternatePath = getAlternatePathForLocale(value)
@@ -175,19 +195,24 @@ export const LanguageSelector = () => {
                           return
                         }
 
-                        pushPreservingScroll(`/${value}/${detailSection}${query}`)
+                        pushPreservingScroll(
+                          `/${value}/${detailSection}${query}`
+                        )
                         return
                       }
                       if (detailSection) {
-                        pushPreservingScroll(`/${value}/${detailSection}${query}`)
+                        pushPreservingScroll(
+                          `/${value}/${detailSection}${query}`
+                        )
                         return
                       }
 
                       const pathSegments = pathname.split('/').filter(Boolean)
                       const [firstSegment, ...remainingSegments] = pathSegments
 
-                      const normalizedPath = isSupportedLanguage(firstSegment)
-                        ? `/${remainingSegments.join('/')}`
+                      const normalizedPath =
+                        isSupportedLanguage(firstSegment) ?
+                          `/${remainingSegments.join('/')}`
                         : pathname
 
                       const basePath =
@@ -204,7 +229,12 @@ export const LanguageSelector = () => {
                         language === value ? 'opacity-100' : 'opacity-0'
                       )}
                     />
-                    <Image src={src} width={30} height={30} alt={value} />
+                    <Image
+                      src={src}
+                      width={30}
+                      height={30}
+                      alt={value}
+                    />
                   </CommandItem>
                 )
               )}

@@ -17,7 +17,7 @@ export const CookieConsent = () => {
     isHydrated,
     setConsented,
     cookiePreferences,
-    setCookiePreferences,
+    setCookiePreferences
   } = useCookieConsent()
   const [sessionDeclined, setSessionDeclined] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
@@ -42,7 +42,7 @@ export const CookieConsent = () => {
       essential: true,
       functional: true,
       analytics: true,
-      marketing: true,
+      marketing: true
     })
     setConsented(true)
   }
@@ -80,7 +80,7 @@ export const CookieConsent = () => {
       analytics: 'Analytické cookies',
       analyticsDesc: 'Pomáhají nám pochopit, jak používáte web',
       marketing: 'Marketingové cookies',
-      marketingDesc: 'Používají se pro zobrazování relevantních reklam',
+      marketingDesc: 'Používají se pro zobrazování relevantních reklam'
     },
     en: {
       title: 'This website uses cookies',
@@ -98,7 +98,7 @@ export const CookieConsent = () => {
       analytics: 'Analytics cookies',
       analyticsDesc: 'Help us understand how you use the website',
       marketing: 'Marketing cookies',
-      marketingDesc: 'Used to display relevant advertisements',
+      marketingDesc: 'Used to display relevant advertisements'
     },
     de: {
       title: 'Diese Website verwendet Cookies',
@@ -116,8 +116,8 @@ export const CookieConsent = () => {
       analytics: 'Analytische Cookies',
       analyticsDesc: 'Helfen uns zu verstehen, wie Sie die Website nutzen',
       marketing: 'Marketing-Cookies',
-      marketingDesc: 'Werden verwendet, um relevante Anzeigen anzuzeigen',
-    },
+      marketingDesc: 'Werden verwendet, um relevante Anzeigen anzuzeigen'
+    }
   }
 
   const t =
@@ -126,14 +126,14 @@ export const CookieConsent = () => {
   return (
     <div
       id='cookie-consent-banner'
-      className='fixed bottom-0 left-0 right-0 z-[1001] bg-brand-primary border-t border-brand-action p-4 shadow-lg'
+      className='bg-brand-primary border-brand-action fixed right-0 bottom-0 left-0 z-[1001] border-t p-4 shadow-lg'
     >
       <Container className='max-w-6xl'>
         <div className='space-y-4'>
           {/* Header */}
-          <div className='flex flex-col sm:flex-row items-start justify-between gap-4'>
-            <div className='text-sm text-brand-action flex-1'>
-              <h3 className='font-semibold text-base mb-2'>{t.title}</h3>
+          <div className='flex flex-col items-start justify-between gap-4 sm:flex-row'>
+            <div className='text-brand-action flex-1 text-sm'>
+              <h3 className='mb-2 text-base font-semibold'>{t.title}</h3>
               <p className='mb-2'>{t.description}</p>
               <Link
                 href={`/${language}/cookies`}
@@ -142,7 +142,7 @@ export const CookieConsent = () => {
                 {t.learnMore}
               </Link>
             </div>
-            <div className='flex gap-2 shrink-0'>
+            <div className='flex shrink-0 gap-2'>
               <Button
                 variant='outline'
                 onClick={handleDecline}
@@ -156,13 +156,14 @@ export const CookieConsent = () => {
                 className='text-brand-action border-brand-action'
               >
                 {t.customize}
-                {showDetails ? (
+                {showDetails ?
                   <ChevronUp className='ml-1 h-4 w-4' />
-                ) : (
-                  <ChevronDown className='ml-1 h-4 w-4' />
-                )}
+                : <ChevronDown className='ml-1 h-4 w-4' />}
               </Button>
-              <Button variant='green' onClick={handleAcceptAll}>
+              <Button
+                variant='green'
+                onClick={handleAcceptAll}
+              >
                 {t.acceptAll}
               </Button>
             </div>
@@ -170,12 +171,12 @@ export const CookieConsent = () => {
 
           {/* Detailed Preferences */}
           {showDetails && (
-            <div className='border-t border-brand-action pt-4'>
+            <div className='border-brand-action border-t pt-4'>
               <div className='grid gap-4'>
                 {/* Essential Cookies */}
                 <div className='flex items-center justify-between'>
                   <div className='flex-1'>
-                    <h4 className='font-medium text-brand-action'>
+                    <h4 className='text-brand-action font-medium'>
                       {t.essential}
                     </h4>
                     <p className='text-sm text-gray-600'>{t.essentialDesc}</p>
@@ -190,14 +191,14 @@ export const CookieConsent = () => {
                 {/* Functional Cookies */}
                 <div className='flex items-center justify-between'>
                   <div className='flex-1'>
-                    <h4 className='font-medium text-brand-action'>
+                    <h4 className='text-brand-action font-medium'>
                       {t.functional}
                     </h4>
                     <p className='text-sm text-gray-600'>{t.functionalDesc}</p>
                   </div>
                   <Switch
                     checked={cookiePreferences.functional}
-                    onCheckedChange={checked =>
+                    onCheckedChange={(checked) =>
                       handlePreferenceChange('functional', checked)
                     }
                   />
@@ -206,14 +207,14 @@ export const CookieConsent = () => {
                 {/* Analytics Cookies */}
                 <div className='flex items-center justify-between'>
                   <div className='flex-1'>
-                    <h4 className='font-medium text-brand-action'>
+                    <h4 className='text-brand-action font-medium'>
                       {t.analytics}
                     </h4>
                     <p className='text-sm text-gray-600'>{t.analyticsDesc}</p>
                   </div>
                   <Switch
                     checked={cookiePreferences.analytics}
-                    onCheckedChange={checked =>
+                    onCheckedChange={(checked) =>
                       handlePreferenceChange('analytics', checked)
                     }
                   />
@@ -222,14 +223,14 @@ export const CookieConsent = () => {
                 {/* Marketing Cookies */}
                 <div className='flex items-center justify-between'>
                   <div className='flex-1'>
-                    <h4 className='font-medium text-brand-action'>
+                    <h4 className='text-brand-action font-medium'>
                       {t.marketing}
                     </h4>
                     <p className='text-sm text-gray-600'>{t.marketingDesc}</p>
                   </div>
                   <Switch
                     checked={cookiePreferences.marketing}
-                    onCheckedChange={checked =>
+                    onCheckedChange={(checked) =>
                       handlePreferenceChange('marketing', checked)
                     }
                   />
@@ -237,7 +238,10 @@ export const CookieConsent = () => {
 
                 {/* Accept Selected Button */}
                 <div className='flex justify-end pt-2'>
-                  <Button variant='green' onClick={handleAcceptSelected}>
+                  <Button
+                    variant='green'
+                    onClick={handleAcceptSelected}
+                  >
                     {t.acceptSelected}
                   </Button>
                 </div>

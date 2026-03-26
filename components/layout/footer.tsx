@@ -1,81 +1,81 @@
-"use client";
+'use client'
 
-import { Container } from "@/components/container";
-import { useLanguage } from "@/store/use-language";
-import { ExternalLinkIcon, FacebookIcon, InstagramIcon } from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
-import { useNewsletterForm } from "@/hooks/use-newsletter-form";
+import { Container } from '@/components/container'
+import { useLanguage } from '@/store/use-language'
+import { ExternalLinkIcon, FacebookIcon, InstagramIcon } from 'lucide-react'
+import Link from 'next/link'
+import { Button } from '@/components/ui/button'
+import { useNewsletterForm } from '@/hooks/use-newsletter-form'
 
 export const Footer = () => {
-  const { language } = useLanguage();
-  const localizedRootPath = `/${language}`;
+  const { language } = useLanguage()
+  const localizedRootPath = `/${language}`
   const { email, setEmail, isSubmitting, submit, copy } = useNewsletterForm({
     language,
-    markSubscribed: false,
-  });
+    markSubscribed: false
+  })
 
   return (
-    <footer className="bg-brand-secondary pt-20 pb-10">
+    <footer className='bg-brand-secondary pt-20 pb-10'>
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-20 md:gap-10 lg:gap-12">
-          <div className="grid text-xl gap-2">
-            <h4 className="text-3xl font-bold text-brand-action">
-              {language === "cs" && "Odkazy"}
-              {language === "en" && "Links"}
-              {language === "de" && "Links"}
+        <div className='grid grid-cols-1 gap-x-8 gap-y-20 md:grid-cols-2 md:gap-10 lg:grid-cols-4 lg:gap-12'>
+          <div className='grid gap-2 text-xl'>
+            <h4 className='text-brand-action text-3xl font-bold'>
+              {language === 'cs' && 'Odkazy'}
+              {language === 'en' && 'Links'}
+              {language === 'de' && 'Links'}
             </h4>
             <Link href={localizedRootPath}>
-              {language === "cs" && "Domů"}
-              {language === "en" && "Home"}
-              {language === "de" && "Startseite"}
+              {language === 'cs' && 'Domů'}
+              {language === 'en' && 'Home'}
+              {language === 'de' && 'Startseite'}
             </Link>
             <Link href={`${localizedRootPath}/produkty`}>
-              {language === "cs" && "Produkty"}
-              {language === "en" && "Products"}
-              {language === "de" && "Produkte"}
+              {language === 'cs' && 'Produkty'}
+              {language === 'en' && 'Products'}
+              {language === 'de' && 'Produkte'}
             </Link>
             <Link href={`${localizedRootPath}/prodejni-mista`}>
-              {language === "cs" && "Prodejní Místa"}
-              {language === "en" && "Sales Locations"}
-              {language === "de" && "Verkaufsstellen"}
+              {language === 'cs' && 'Prodejní Místa'}
+              {language === 'en' && 'Sales Locations'}
+              {language === 'de' && 'Verkaufsstellen'}
             </Link>
             <Link href={`${localizedRootPath}/udalosti`}>
-              {language === "cs" && "Události"}
-              {language === "en" && "Events"}
-              {language === "de" && "Veranstaltungen"}
+              {language === 'cs' && 'Události'}
+              {language === 'en' && 'Events'}
+              {language === 'de' && 'Veranstaltungen'}
             </Link>
             <Link href={`${localizedRootPath}/clanky`}>
-              {language === "cs" && "Články"}
-              {language === "en" && "Articles"}
-              {language === "de" && "Artikel"}
+              {language === 'cs' && 'Články'}
+              {language === 'en' && 'Articles'}
+              {language === 'de' && 'Artikel'}
             </Link>
             <Link href={`${localizedRootPath}/historie`}>
-              {language === "cs" && "Historie"}
-              {language === "en" && "History"}
-              {language === "de" && "Geschichte"}
+              {language === 'cs' && 'Historie'}
+              {language === 'en' && 'History'}
+              {language === 'de' && 'Geschichte'}
             </Link>
             <Link href={`${localizedRootPath}/kontakt`}>
-              {language === "cs" && "Kontakt"}
-              {language === "en" && "Contact"}
-              {language === "de" && "Kontakt"}
+              {language === 'cs' && 'Kontakt'}
+              {language === 'en' && 'Contact'}
+              {language === 'de' && 'Kontakt'}
             </Link>
             <Link href={`${localizedRootPath}/cookies`}>
-              {language === "cs" && "Cookies"}
-              {language === "en" && "Cookies"}
-              {language === "de" && "Cookies"}
+              {language === 'cs' && 'Cookies'}
+              {language === 'en' && 'Cookies'}
+              {language === 'de' && 'Cookies'}
             </Link>
             <Link href={`${localizedRootPath}/gdpr`}>
-              {language === "cs" && "GDPR"}
-              {language === "en" && "GDPR"}
-              {language === "de" && "GDPR"}
+              {language === 'cs' && 'GDPR'}
+              {language === 'en' && 'GDPR'}
+              {language === 'de' && 'GDPR'}
             </Link>
           </div>
-          <div className="flex flex-col text-xl gap-2">
-            <h4 className="text-3xl font-bold text-brand-action">
-              {language === "cs" && "Produkty"}
-              {language === "en" && "Products"}
-              {language === "de" && "Produkte"}
+          <div className='flex flex-col gap-2 text-xl'>
+            <h4 className='text-brand-action text-3xl font-bold'>
+              {language === 'cs' && 'Produkty'}
+              {language === 'en' && 'Products'}
+              {language === 'de' && 'Produkte'}
             </h4>
             <Link
               href={`${localizedRootPath}/produkty?produkt=safar-15&kategorie=pivo`}
@@ -106,133 +106,146 @@ export const Footer = () => {
             <Link
               href={`${localizedRootPath}/produkty?produkt=limonada-pomeranc&kategorie=limo`}
             >
-              {language === "cs" && "Limonáda pomeranč"}
-              {language === "en" && "Orange Lemonade"}
-              {language === "de" && "Orangenlimonade"}
+              {language === 'cs' && 'Limonáda pomeranč'}
+              {language === 'en' && 'Orange Lemonade'}
+              {language === 'de' && 'Orangenlimonade'}
             </Link>
             <Link
               href={`${localizedRootPath}/produkty?produkt=limonada-citron&kategorie=limo`}
             >
-              {language === "cs" && "Limonáda citrón"}
-              {language === "en" && "Lemon Lemonade"}
-              {language === "de" && "Zitronenlimonade"}
+              {language === 'cs' && 'Limonáda citrón'}
+              {language === 'en' && 'Lemon Lemonade'}
+              {language === 'de' && 'Zitronenlimonade'}
             </Link>
             <Link
               href={`${localizedRootPath}/produkty?produkt=cola-mix&kategorie=limo`}
             >
-              {language === "cs" && "Cola mix"}
-              {language === "en" && "Cola mix"}
-              {language === "de" && "Cola Mix"}
+              {language === 'cs' && 'Cola mix'}
+              {language === 'en' && 'Cola mix'}
+              {language === 'de' && 'Cola Mix'}
             </Link>
             <Link
               href={`${localizedRootPath}/produkty?produkt=pramenita-voda-perliva&kategorie=voda`}
             >
-              {language === "cs" && "Pramenitá voda (Sycená)"}
-              {language === "en" && "Spring water (Sparkling)"}
-              {language === "de" && "Quellwasser (Kohlensäurehaltig)"}
+              {language === 'cs' && 'Pramenitá voda (Sycená)'}
+              {language === 'en' && 'Spring water (Sparkling)'}
+              {language === 'de' && 'Quellwasser (Kohlensäurehaltig)'}
             </Link>
             <Link
               href={`${localizedRootPath}/produkty?produkt=pramenita-voda-neperliva&kategorie=voda`}
             >
-              {language === "cs" && "Pramenitá voda (Nesycená)"}
-              {language === "en" && "Spring water (Still)"}
-              {language === "de" && "Quellwasser (Still)"}
+              {language === 'cs' && 'Pramenitá voda (Nesycená)'}
+              {language === 'en' && 'Spring water (Still)'}
+              {language === 'de' && 'Quellwasser (Still)'}
             </Link>
           </div>
-          <div className="flex flex-col text-xl gap-4">
+          <div className='flex flex-col gap-4 text-xl'>
             <div>
-              <h4 className="text-3xl font-bold text-brand-action">
-                {language === "cs" && "Adresa"}
-                {language === "en" && "Address"}
-                {language === "de" && "Adresse"}
+              <h4 className='text-brand-action text-3xl font-bold'>
+                {language === 'cs' && 'Adresa'}
+                {language === 'en' && 'Address'}
+                {language === 'de' && 'Adresse'}
               </h4>
               <p>Kout na Šumavě 2</p>
               <p>34502 Kout na Šumavě</p>
               <Link
-                href="https://maps.app.goo.gl/XQF36VsckwAMPkmRA"
-                target="_blank"
-                className="text-zinc-700 inline-flex items-center gap-1 mt-2"
+                href='https://maps.app.goo.gl/XQF36VsckwAMPkmRA'
+                target='_blank'
+                className='mt-2 inline-flex items-center gap-1 text-zinc-700'
               >
                 <ExternalLinkIcon size={15} />
 
-                {language === "cs" && "Trasa"}
-                {language === "en" && "Route"}
-                {language === "de" && "Strecke"}
+                {language === 'cs' && 'Trasa'}
+                {language === 'en' && 'Route'}
+                {language === 'de' && 'Strecke'}
               </Link>
             </div>
 
-            <div className="flex gap-4 w-min h-min">
+            <div className='flex h-min w-min gap-4'>
               <Link
-                href="https://www.facebook.com/stadioner.cz"
-                target="_blank"
+                href='https://www.facebook.com/stadioner.cz'
+                target='_blank'
               >
-                <FacebookIcon size={25} className="stroke-brand-action" />
+                <FacebookIcon
+                  size={25}
+                  className='stroke-brand-action'
+                />
               </Link>
               <Link
-                href="https://www.instagram.com/stadioner.cz/"
-                target="_blank"
+                href='https://www.instagram.com/stadioner.cz/'
+                target='_blank'
               >
-                <InstagramIcon size={25} className="stroke-brand-action" />
+                <InstagramIcon
+                  size={25}
+                  className='stroke-brand-action'
+                />
               </Link>
             </div>
           </div>
 
           {/* Newsletter Section */}
-          <div className="flex flex-col gap-4 text-xl">
-            <h4 className="text-3xl font-bold text-brand-action">
-              {language === "cs" && "Newsletter"}
-              {language === "en" && "Newsletter"}
-              {language === "de" && "Newsletter"}
+          <div className='flex flex-col gap-4 text-xl'>
+            <h4 className='text-brand-action text-3xl font-bold'>
+              {language === 'cs' && 'Newsletter'}
+              {language === 'en' && 'Newsletter'}
+              {language === 'de' && 'Newsletter'}
             </h4>
-            <p className="text-sm text-brand-action/80">{copy.info}</p>
+            <p className='text-brand-action/80 text-sm'>{copy.info}</p>
 
-            <form onSubmit={submit} className="flex flex-col gap-3">
+            <form
+              onSubmit={submit}
+              className='flex flex-col gap-3'
+            >
               <input
-                type="email"
+                type='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder={copy.placeholder}
                 required
-                className="px-3 py-2 bg-brand-primary text-brand-action placeholder:text-brand-action/60 border border-brand-action focus:outline-none focus:ring-2 focus:ring-brand-action/50"
+                className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action focus:ring-brand-action/50 border px-3 py-2 focus:ring-2 focus:outline-none'
               />
               <Button
-                type="submit"
+                type='submit'
                 disabled={isSubmitting}
-                variant="green"
-                size="sm"
-                className="w-fit"
+                variant='green'
+                size='sm'
+                className='w-fit'
               >
                 {isSubmitting ? copy.submitting : copy.submit}
               </Button>
 
-              <p className="text-xs text-brand-action/60">
-                {copy.gdprPrefix}{" "}
+              <p className='text-brand-action/60 text-xs'>
+                {copy.gdprPrefix}{' '}
                 <Link
                   href={`${localizedRootPath}/gdpr`}
-                  className="underline hover:text-brand-action"
+                  className='hover:text-brand-action underline'
                 >
                   {copy.gdprLink}
                 </Link>
-                {language === "de" && " zu"}
+                {language === 'de' && ' zu'}
               </p>
             </form>
           </div>
         </div>
 
-        <p className="pt-14 text-xs text-center">
-          &copy; {new Date().getFullYear()} STADIONER -{" "}
-          {language === "cs" && "Všechna práva vyhrazena"}
-          {language === "en" && "All rights reserved"}
-          {language === "de" && "Alle Rechte vorbehalten"}.{" "}
-          <br className="md:hidden" />
-          {language === "cs" && "Vytvořil"}
-          {language === "en" && "Created by"}
-          {language === "de" && "Erstellt von"}{" "}
-          <Link href="https://baudys.dev" target="_blank" className="underline">
+        <p className='pt-14 text-center text-xs'>
+          &copy; {new Date().getFullYear()} STADIONER -{' '}
+          {language === 'cs' && 'Všechna práva vyhrazena'}
+          {language === 'en' && 'All rights reserved'}
+          {language === 'de' && 'Alle Rechte vorbehalten'}.{' '}
+          <br className='md:hidden' />
+          {language === 'cs' && 'Vytvořil'}
+          {language === 'en' && 'Created by'}
+          {language === 'de' && 'Erstellt von'}{' '}
+          <Link
+            href='https://baudys.dev'
+            target='_blank'
+            className='underline'
+          >
             Daniel Anthony Baudyš
           </Link>
         </p>
       </Container>
     </footer>
-  );
-};
+  )
+}

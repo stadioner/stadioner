@@ -13,10 +13,10 @@ export const postType = defineType({
       type: 'string',
       title: 'Language',
       options: {
-        list: languages.map(lang => ({ title: lang.title, value: lang.id })),
-        layout: 'radio',
+        list: languages.map((lang) => ({ title: lang.title, value: lang.id })),
+        layout: 'radio'
       },
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required()
     }),
     defineField({
       name: 'translationKey',
@@ -24,53 +24,53 @@ export const postType = defineType({
       title: 'Translation Key',
       description:
         'Shared key across language variants of the same article (used for hreflang).',
-      initialValue: () => crypto.randomUUID(),
+      initialValue: () => crypto.randomUUID()
     }),
     defineField({
       name: 'title',
       type: 'string',
       title: 'Title',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required()
     }),
     defineField({
       name: 'slug',
       type: 'slug',
       title: 'Slug',
       options: {
-        source: 'title',
+        source: 'title'
       },
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required()
     }),
     defineField({
       name: 'mainImage',
       type: 'image',
       title: 'Main Image',
       options: {
-        hotspot: true,
+        hotspot: true
       },
       fields: [
         defineField({
           name: 'alt',
           type: 'string',
-          title: 'Alternative text',
-        }),
-      ],
+          title: 'Alternative text'
+        })
+      ]
     }),
     defineField({
       name: 'categories',
       type: 'array',
       title: 'Categories',
-      of: [defineArrayMember({ type: 'reference', to: { type: 'category' } })],
+      of: [defineArrayMember({ type: 'reference', to: { type: 'category' } })]
     }),
     defineField({
       name: 'publishedAt',
       type: 'datetime',
-      title: 'Published At',
+      title: 'Published At'
     }),
     defineField({
       name: 'body',
       type: 'blockContent',
-      title: 'Content',
+      title: 'Content'
     }),
     defineField({
       name: 'seo',
@@ -80,13 +80,13 @@ export const postType = defineType({
         defineField({
           name: 'metaTitle',
           type: 'string',
-          title: 'Meta Title',
+          title: 'Meta Title'
         }),
         defineField({
           name: 'metaDescription',
           type: 'text',
           title: 'Meta Description',
-          rows: 3,
+          rows: 3
         }),
         defineField({
           name: 'keywords',
@@ -94,47 +94,46 @@ export const postType = defineType({
           title: 'Keywords',
           of: [{ type: 'string' }],
           options: {
-            layout: 'tags',
-          },
-        }),
-      ],
-    }),
+            layout: 'tags'
+          }
+        })
+      ]
+    })
   ],
   preview: {
     select: {
       title: 'title',
       language: 'language',
       media: 'mainImage',
-      publishedAt: 'publishedAt',
+      publishedAt: 'publishedAt'
     },
     prepare(selection) {
       const { title, language, publishedAt } = selection
-      const lang = languages.find(l => l.id === language)
-      const date = publishedAt
-        ? new Date(publishedAt).toLocaleDateString()
-        : 'Draft'
+      const lang = languages.find((l) => l.id === language)
+      const date =
+        publishedAt ? new Date(publishedAt).toLocaleDateString() : 'Draft'
       return {
         title,
         subtitle: `${lang ? `${lang.flag} ` : ''} • ${date}}`,
-        media: selection.media,
+        media: selection.media
       }
-    },
+    }
   },
   orderings: [
     {
       title: 'Published Date, New',
       name: 'publishedAtDesc',
-      by: [{ field: 'publishedAt', direction: 'desc' }],
+      by: [{ field: 'publishedAt', direction: 'desc' }]
     },
     {
       title: 'Published Date, Old',
       name: 'publishedAtAsc',
-      by: [{ field: 'publishedAt', direction: 'asc' }],
+      by: [{ field: 'publishedAt', direction: 'asc' }]
     },
     {
       title: 'Title A-Z',
       name: 'titleAsc',
-      by: [{ field: 'title', direction: 'asc' }],
-    },
-  ],
+      by: [{ field: 'title', direction: 'asc' }]
+    }
+  ]
 })

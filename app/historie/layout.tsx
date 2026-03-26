@@ -1,22 +1,22 @@
-import { PropsWithChildren } from "react";
-import { Metadata } from "next";
-import { buildPageMetadata } from "@/lib/seo/metadata";
+import { PropsWithChildren } from 'react'
+import { Metadata } from 'next'
+import { buildPageMetadata } from '@/lib/seo/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Historie pivovaru",
+  title: 'Historie pivovaru',
   description:
-    "Poznejte bohatou historii pivovaru STADIONER v Koutě na Šumavě. Tradice, která pokračuje již po generace.",
-  canonicalPath: "/cs/historie",
+    'Poznejte bohatou historii pivovaru STADIONER v Koutě na Šumavě. Tradice, která pokračuje již po generace.',
+  canonicalPath: '/cs/historie',
   keywords: [
-    "historie",
-    "pivovar",
-    "STADIONER",
-    "Kout na Šumavě",
-    "tradice",
-    "Šumava",
-  ],
-});
+    'historie',
+    'pivovar',
+    'STADIONER',
+    'Kout na Šumavě',
+    'tradice',
+    'Šumava'
+  ]
+})
 
 export default function HistorieLayout({ children }: PropsWithChildren) {
-  return children;
+  return children
 }

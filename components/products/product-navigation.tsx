@@ -15,13 +15,13 @@ export const ProductNavigation = ({
   current,
   onPrev,
   onNext,
-  onSelect,
+  onSelect
 }: ProductNavigationProps) => {
   return (
-    <div className='flex items-center justify-center gap-2 sm:gap-4 mt-3 sm:mt-6'>
+    <div className='mt-3 flex items-center justify-center gap-2 sm:mt-6 sm:gap-4'>
       <button
         onClick={onPrev}
-        className='size-8 sm:size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+        className='text-brand-primary hover:bg-brand-secondary/10 flex size-8 cursor-pointer items-center justify-center rounded-full border border-zinc-500 transition disabled:opacity-50 sm:size-10'
         aria-label='Previous product'
       >
         &#8592;
@@ -32,7 +32,7 @@ export const ProductNavigation = ({
           <motion.button
             key={p.name}
             onClick={() => onSelect(idx)}
-            className={`rounded-full border-2 cursor-pointer ${
+            className={`cursor-pointer rounded-full border-2 ${
               current === idx ? 'border-brand-secondary' : 'border-transparent'
             } bg-zinc-800`}
             whileTap={{ scale: 0.9 }}
@@ -45,7 +45,7 @@ export const ProductNavigation = ({
               alt={p.name}
               width={56}
               height={56}
-              className='size-10 sm:size-12 md:size-14 object-cover rounded-full'
+              className='size-10 rounded-full object-cover sm:size-12 md:size-14'
             />
           </motion.button>
         ))}
@@ -54,7 +54,7 @@ export const ProductNavigation = ({
       <button
         onClick={onNext}
         aria-label='Next product'
-        className='size-8 sm:size-10 rounded-full border border-zinc-500 flex items-center justify-center text-brand-primary hover:bg-brand-secondary/10 transition disabled:opacity-50 cursor-pointer'
+        className='text-brand-primary hover:bg-brand-secondary/10 flex size-8 cursor-pointer items-center justify-center rounded-full border border-zinc-500 transition disabled:opacity-50 sm:size-10'
       >
         &#8594;
       </button>

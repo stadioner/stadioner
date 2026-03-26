@@ -6,7 +6,11 @@ export const FaqAccordion = ({ items }: { items: B2BFaqItem[] }) => {
   return (
     <div className='space-y-3'>
       {items.map((item, index) => (
-        <FaqRow key={`${item.question}-${index}`} item={item} index={index} />
+        <FaqRow
+          key={`${item.question}-${index}`}
+          item={item}
+          index={index}
+        />
       ))}
     </div>
   )
@@ -18,12 +22,12 @@ const FaqRow = ({ item, index }: { item: B2BFaqItem; index: number }) => {
 
   return (
     <details
-      className='group border border-brand-action/30 bg-brand-primary/55 open:bg-brand-primary'
+      className='group border-brand-action/30 bg-brand-primary/55 open:bg-brand-primary border'
       name='b2b-faq'
     >
       <summary
         id={buttonId}
-        className='list-none cursor-pointer px-4 py-4 md:px-5 md:py-4 flex items-start justify-between gap-3 text-brand-action font-semibold'
+        className='text-brand-action flex cursor-pointer list-none items-start justify-between gap-3 px-4 py-4 font-semibold md:px-5 md:py-4'
         aria-controls={panelId}
       >
         <span className='text-lg leading-tight'>{item.question}</span>
@@ -38,7 +42,7 @@ const FaqRow = ({ item, index }: { item: B2BFaqItem; index: number }) => {
         id={panelId}
         role='region'
         aria-labelledby={buttonId}
-        className='px-4 pb-4 md:px-5 md:pb-5 text-brand-action/85 text-base'
+        className='text-brand-action/85 px-4 pb-4 text-base md:px-5 md:pb-5'
       >
         {item.answer}
       </div>

@@ -14,18 +14,18 @@ export const B2BTypes = () => {
     <section className='bg-brand-secondary py-20'>
       <Container>
         <div className='max-w-3xl'>
-          <h2 className='text-brand-action text-3xl md:text-4xl lg:text-5xl font-bold'>
+          <h2 className='text-brand-action text-3xl font-bold md:text-4xl lg:text-5xl'>
             {copy.types.title}
           </h2>
-          <p className='mt-4 text-brand-action/90 text-lg'>
+          <p className='text-brand-action/90 mt-4 text-lg'>
             {copy.types.description}
           </p>
         </div>
 
-        <div className='mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4'>
-          {copy.types.cards.map(card => (
+        <div className='mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4'>
+          {copy.types.cards.map((card) => (
             <Border key={card.id}>
-              <article className='group relative h-[320px] md:h-[360px] overflow-hidden'>
+              <article className='group relative h-[320px] overflow-hidden md:h-[360px]'>
                 <Image
                   src='/b2b/restaruace.webp'
                   alt={card.title}
@@ -33,23 +33,23 @@ export const B2BTypes = () => {
                   sizes='(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw'
                   className='absolute inset-0 size-full object-cover transition-transform duration-500 group-hover:scale-105'
                 />
-                <div className='absolute inset-0 bg-brand-action/45' />
-                <div className='absolute inset-0 bg-gradient-to-t from-brand-action/90 via-brand-action/40 to-brand-action/15' />
+                <div className='bg-brand-action/45 absolute inset-0' />
+                <div className='from-brand-action/90 via-brand-action/40 to-brand-action/15 absolute inset-0 bg-gradient-to-t' />
 
                 <Image
                   src={card.icon}
                   alt={card.title}
                   width={44}
                   height={44}
-                  className='absolute right-2 top-2 z-20 size-11 rounded-full bg-brand-primary p-1 border border-brand-action/40'
+                  className='bg-brand-primary border-brand-action/40 absolute top-2 right-2 z-20 size-11 rounded-full border p-1'
                 />
 
-                <div className='relative z-10 h-full p-5 md:p-6 flex flex-col justify-end'>
+                <div className='relative z-10 flex h-full flex-col justify-end p-5 md:p-6'>
                   <div className='max-w-[34ch]'>
-                    <h3 className='text-2xl font-bold text-brand-primary'>
+                    <h3 className='text-brand-primary text-2xl font-bold'>
                       {card.title}
                     </h3>
-                    <p className='mt-2 text-brand-primary/90 text-sm leading-relaxed'>
+                    <p className='text-brand-primary/90 mt-2 text-sm leading-relaxed'>
                       {card.description}
                     </p>
                   </div>

@@ -2,10 +2,10 @@
 
 import {
   createContext,
-  useContext,
-  useState,
+  type ReactNode,
   useCallback,
-  ReactNode,
+  useContext,
+  useState
 } from 'react'
 import { Border } from './border'
 
@@ -38,10 +38,10 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
       const id = Math.random().toString(36).substr(2, 9)
       const newToast: Toast = { id, message, type, duration }
 
-      setToasts(prev => [...prev, newToast])
+      setToasts((prev) => [...prev, newToast])
 
       setTimeout(() => {
-        setToasts(prev => prev.filter(toast => toast.id !== id))
+        setToasts((prev) => prev.filter((toast) => toast.id !== id))
       }, duration)
     },
     []
@@ -50,9 +50,12 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
   return (
     <ToastContext.Provider value={{ showToast }}>
       {children}
-      <div className='fixed bottom-4 right-4 z-[1002] space-y-2'>
-        {toasts.map(toast => (
-          <ToastItem key={toast.id} toast={toast} />
+      <div className='fixed right-4 bottom-4 z-[1002] space-y-2'>
+        {toasts.map((toast) => (
+          <ToastItem
+            key={toast.id}
+            toast={toast}
+          />
         ))}
       </div>
     </ToastContext.Provider>
@@ -64,13 +67,14 @@ const ToastItem = ({ toast }: { toast: Toast }) => {
     switch (toast.type) {
       case 'success':
         return (
-          <div className='w-4 h-4 bg-brand-action rounded-full flex items-center justify-center flex-shrink-0'>
+          <div className='bg-brand-action flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full'>
             <svg
-              className='w-3 h-3 text-white'
+              className='h-3 w-3 text-white'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
             >
+              <title>success</title>
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
@@ -82,13 +86,14 @@ const ToastItem = ({ toast }: { toast: Toast }) => {
         )
       case 'error':
         return (
-          <div className='w-4 h-4 bg-red-600 rounded-full flex items-center justify-center flex-shrink-0'>
+          <div className='flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-red-600'>
             <svg
-              className='w-3 h-3 text-white'
+              className='h-3 w-3 text-white'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
             >
+              <title>error</title>
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
@@ -100,13 +105,14 @@ const ToastItem = ({ toast }: { toast: Toast }) => {
         )
       case 'info':
         return (
-          <div className='w-4 h-4 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0'>
+          <div className='flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full bg-blue-600'>
             <svg
-              className='w-3 h-3 text-white'
+              className='h-3 w-3 text-white'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
             >
+              <title>info</title>
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
@@ -121,8 +127,11 @@ const ToastItem = ({ toast }: { toast: Toast }) => {
 
   return (
     <div className='animate-in slide-in-from-right-2 duration-300'>
-      <Border backgroundLight className='w-full max-w-sm'>
-        <div className='bg-brand-primary p-4 text-brand-action font-mohave flex items-start gap-3'>
+      <Border
+        backgroundLight
+        className='w-full max-w-sm'
+      >
+        <div className='bg-brand-primary text-brand-action font-mohave flex items-start gap-3 p-4'>
           {getIcon()}
           <div className='flex-1'>
             <p className='text-sm font-medium'>{toast.message}</p>

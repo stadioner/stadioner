@@ -13,40 +13,40 @@ export const categoryType = defineType({
       type: 'string',
       title: 'Language',
       options: {
-        list: languages.map(lang => ({ title: lang.title, value: lang.id })),
-        layout: 'radio',
+        list: languages.map((lang) => ({ title: lang.title, value: lang.id })),
+        layout: 'radio'
       },
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required()
     }),
     defineField({
       name: 'title',
       type: 'string',
       title: 'Title',
-      validation: Rule => Rule.required(),
+      validation: (Rule) => Rule.required()
     }),
     defineField({
       name: 'slug',
       type: 'slug',
       title: 'Slug',
       options: {
-        source: 'title',
+        source: 'title'
       },
-      validation: Rule => Rule.required(),
-    }),
+      validation: (Rule) => Rule.required()
+    })
   ],
   preview: {
     select: {
       title: 'title',
       language: 'language',
-      color: 'color',
+      color: 'color'
     },
     prepare(selection) {
       const { title, language } = selection
-      const lang = languages.find(l => l.id === language)
+      const lang = languages.find((l) => l.id === language)
       return {
         title,
-        subtitle: lang ? `${lang.flag} ${lang.title}` : language,
+        subtitle: lang ? `${lang.flag} ${lang.title}` : language
       }
-    },
-  },
+    }
+  }
 })

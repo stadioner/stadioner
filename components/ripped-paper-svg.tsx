@@ -31,7 +31,7 @@ export const RippedPaperSVG = ({ flip = false }: { flip?: boolean }) => {
         transform: flip ? 'scaleY(-1)' : undefined,
         border: 'none',
         outline: 'none',
-        lineHeight: 0,
+        lineHeight: 0
       }}
     >
       <path

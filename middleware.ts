@@ -3,7 +3,7 @@ import {
   defaultLocale,
   isLocalizedSeoLocale,
   localizedSeoLocales,
-  type LocalizedSeoLocale,
+  type LocalizedSeoLocale
 } from '@/lib/seo/site'
 
 const BOT_USER_AGENT_PATTERN =
@@ -14,7 +14,7 @@ const isBypassPath = (pathname: string): boolean => {
 }
 
 const getLocaleFromAcceptLanguage = (
-  header: string | null,
+  header: string | null
 ): LocalizedSeoLocale | null => {
   if (!header) {
     return null
@@ -22,8 +22,8 @@ const getLocaleFromAcceptLanguage = (
 
   const firstLanguage = header
     .split(',')
-    .map(item => item.trim())
-    .map(item => item.split(';')[0]?.toLowerCase() ?? '')
+    .map((item) => item.trim())
+    .map((item) => item.split(';')[0]?.toLowerCase() ?? '')
     .find(Boolean)
 
   if (!firstLanguage) {
@@ -56,17 +56,17 @@ const resolvePreferredLocale = (request: NextRequest): LocalizedSeoLocale => {
 
 const withLocaleCookies = (
   response: NextResponse,
-  locale: LocalizedSeoLocale,
+  locale: LocalizedSeoLocale
 ): NextResponse => {
   response.cookies.set('NEXT_LOCALE', locale, {
     path: '/',
     maxAge: 60 * 60 * 24 * 365,
-    sameSite: 'lax',
+    sameSite: 'lax'
   })
   response.cookies.set('language-storage', locale, {
     path: '/',
     maxAge: 60 * 60 * 24 * 365,
-    sameSite: 'lax',
+    sameSite: 'lax'
   })
 
   return response
@@ -74,7 +74,7 @@ const withLocaleCookies = (
 
 const mapLocalizedPathToInternalRoute = (
   locale: LocalizedSeoLocale,
-  restPath: string,
+  restPath: string
 ) => {
   if (!restPath || restPath === '/') {
     return '/'
@@ -113,7 +113,10 @@ export function middleware(request: NextRequest) {
   const parts = pathname.split('/')
   const maybeLocale = parts[1]
 
-  if (maybeLocale && localizedSeoLocales.includes(maybeLocale as LocalizedSeoLocale)) {
+  if (
+    maybeLocale &&
+    localizedSeoLocales.includes(maybeLocale as LocalizedSeoLocale)
+  ) {
     const locale = maybeLocale as LocalizedSeoLocale
     const restPath = pathname.slice(locale.length + 1)
     const internalPath = mapLocalizedPathToInternalRoute(locale, restPath)
@@ -128,5 +131,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/((?!_next|.*\\..*).*)'],
+  matcher: ['/((?!_next|.*\\..*).*)']
 }

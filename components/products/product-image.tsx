@@ -14,7 +14,7 @@ export const ProductImage = ({
   alt,
   productSlug,
   className = 'max-h-[470px] drop-shadow-2xl animate-bottle relative z-10',
-  shadowClassName = 'absolute bottom-0 left-1/2 transform -translate-x-1/2 w-56 h-14 bg-black/60 rounded-full blur-lg animate-bottle-shadow',
+  shadowClassName = 'absolute bottom-0 left-1/2 transform -translate-x-1/2 w-56 h-14 bg-black/60 rounded-full blur-lg animate-bottle-shadow'
 }: ProductImageProps) => {
   const prevProductSlugRef = useRef<string | undefined>(productSlug)
   const [isProductChange, setIsProductChange] = useState(false)
@@ -31,7 +31,10 @@ export const ProductImage = ({
 
   return (
     <div className='relative'>
-      <AnimatePresence mode='wait' initial={false}>
+      <AnimatePresence
+        mode='wait'
+        initial={false}
+      >
         <motion.img
           key={animationKey}
           src={src}
@@ -41,7 +44,7 @@ export const ProductImage = ({
           exit={isProductChange ? { opacity: 0, x: -40 } : { opacity: 0 }}
           transition={{
             duration: isProductChange ? 0.5 : 0.15,
-            ease: 'easeInOut',
+            ease: 'easeInOut'
           }}
           className={className}
         />

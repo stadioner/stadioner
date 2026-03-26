@@ -10,11 +10,9 @@ export const FixedInquiryCta = () => {
   const [bottomOffset, setBottomOffset] = useState(16)
   const [isFormVisible, setIsFormVisible] = useState(false)
   const buttonLabel =
-    language === 'en'
-      ? 'Non-binding order'
-      : language === 'de'
-        ? 'Unverbindliche Bestellung'
-        : 'Nezávazná objednávka'
+    language === 'en' ? 'Non-binding order'
+    : language === 'de' ? 'Unverbindliche Bestellung'
+    : 'Nezávazná objednávka'
 
   useEffect(() => {
     const cookieBannerId = 'cookie-consent-banner'
@@ -49,7 +47,7 @@ export const FixedInquiryCta = () => {
     const mutationObserver = new MutationObserver(observeCookieBanner)
     mutationObserver.observe(document.body, {
       childList: true,
-      subtree: true,
+      subtree: true
     })
 
     observeCookieBanner()
@@ -70,13 +68,13 @@ export const FixedInquiryCta = () => {
     }
 
     const observer = new IntersectionObserver(
-      entries => {
+      (entries) => {
         const [entry] = entries
         setIsFormVisible(entry.isIntersecting)
       },
       {
-        threshold: 0.15,
-      },
+        threshold: 0.15
+      }
     )
 
     observer.observe(form)
@@ -99,7 +97,7 @@ export const FixedInquiryCta = () => {
 
     window.scrollTo({
       top: Math.max(targetPosition, 0),
-      behavior: 'smooth',
+      behavior: 'smooth'
     })
   }
 
@@ -109,15 +107,18 @@ export const FixedInquiryCta = () => {
       style={{
         bottom: `${bottomOffset}px`,
         opacity: isFormVisible ? 0 : 1,
-        pointerEvents: isFormVisible ? 'none' : 'auto',
+        pointerEvents: isFormVisible ? 'none' : 'auto'
       }}
     >
       <Container>
-        <Border shop className='w-full'>
+        <Border
+          shop
+          className='w-full'
+        >
           <button
             type='button'
             onClick={handleClick}
-            className='block w-full bg-brand-shop px-6 py-3 text-center text-base font-bold text-brand-primary transition-colors hover:bg-brand-shop/90'
+            className='bg-brand-shop text-brand-primary hover:bg-brand-shop/90 block w-full px-6 py-3 text-center text-base font-bold transition-colors'
           >
             {buttonLabel}
           </button>

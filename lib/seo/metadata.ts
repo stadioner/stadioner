@@ -1,8 +1,5 @@
 import type { Metadata } from 'next'
-import {
-  toAbsoluteUrl,
-  type LocalizedSeoLocale,
-} from '@/lib/seo/site'
+import { toAbsoluteUrl, type LocalizedSeoLocale } from '@/lib/seo/site'
 
 interface BuildPageMetadataInput {
   title: string
@@ -20,7 +17,7 @@ interface BuildPageMetadataInput {
 const ogLocaleMap: Record<LocalizedSeoLocale, string> = {
   cs: 'cs_CZ',
   en: 'en_US',
-  de: 'de_DE',
+  de: 'de_DE'
 }
 
 export const buildPageMetadata = ({
@@ -33,7 +30,7 @@ export const buildPageMetadata = ({
   openGraphType = 'website',
   twitterCard = 'summary',
   openGraphImages,
-  twitterImages,
+  twitterImages
 }: BuildPageMetadataInput): Metadata => {
   const canonicalUrl = toAbsoluteUrl(canonicalPath)
 
@@ -42,7 +39,7 @@ export const buildPageMetadata = ({
     description,
     keywords,
     alternates: alternates ?? {
-      canonical: canonicalPath,
+      canonical: canonicalPath
     },
     openGraph: {
       title,
@@ -50,13 +47,13 @@ export const buildPageMetadata = ({
       type: openGraphType,
       url: canonicalUrl,
       locale: ogLocaleMap[locale],
-      images: openGraphImages,
+      images: openGraphImages
     },
     twitter: {
       card: twitterCard,
       title,
       description,
-      images: twitterImages,
-    },
+      images: twitterImages
+    }
   }
 }

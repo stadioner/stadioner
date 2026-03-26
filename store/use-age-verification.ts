@@ -10,11 +10,11 @@ interface AgeVerificationStore {
 
 export const useAgeVerification = create(
   persist<AgeVerificationStore>(
-    set => ({
+    (set) => ({
       isVerified: false,
       setVerified: (verified: boolean) => {
         set({ isVerified: verified })
-      },
+      }
     }),
     {
       name: 'age-verification',
@@ -37,11 +37,11 @@ export const useAgeVerification = create(
             },
             removeItem: (name: string) => {
               document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`
-            },
+            }
           }
         }
         return localStorage
-      }),
+      })
     }
   )
 )

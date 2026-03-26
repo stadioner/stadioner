@@ -36,4 +36,3 @@ export interface PackagingOption {
   url: string
   available: boolean
 }
-

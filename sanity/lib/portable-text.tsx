@@ -1,7 +1,7 @@
 import type {
   PortableTextComponents,
   ReactPortableTextList,
-  ReactPortableTextListItem,
+  ReactPortableTextListItem
 } from '@portabletext/react'
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/utils'
@@ -30,17 +30,18 @@ export interface PortableTextBlockLike {
   children?: PortableTextSpanLike[]
 }
 
-const BULLET_LIST_STYLES = ['list-disc', 'list-[circle]', 'list-[square]'] as const
+const BULLET_LIST_STYLES = [
+  'list-disc',
+  'list-[circle]',
+  'list-[square]'
+] as const
 const NUMBER_LIST_STYLES = [
   'list-decimal',
   'list-[lower-alpha]',
-  'list-[lower-roman]',
+  'list-[lower-roman]'
 ] as const
 
-function getListStyleClass(
-  level: number,
-  styles: readonly string[],
-): string {
+function getListStyleClass(level: number, styles: readonly string[]): string {
   return styles[Math.min(Math.max(level, 1), styles.length) - 1]
 }
 
@@ -48,12 +49,12 @@ function getSharedListClassName(level: number, className?: string): string {
   return cn(
     'space-y-2 list-outside pl-6',
     level > 1 ? 'mt-3 mb-2' : 'my-4',
-    className,
+    className
   )
 }
 
 export function createPortableTextListComponents(
-  options: PortableTextListStyleOptions = {},
+  options: PortableTextListStyleOptions = {}
 ): Pick<PortableTextComponents, 'list' | 'listItem'> {
   return {
     list: {
@@ -63,8 +64,8 @@ export function createPortableTextListComponents(
             value.level,
             cn(
               getListStyleClass(value.level, BULLET_LIST_STYLES),
-              options.listClassName,
-            ),
+              options.listClassName
+            )
           )}
         >
           {children}
@@ -76,35 +77,35 @@ export function createPortableTextListComponents(
             value.level,
             cn(
               getListStyleClass(value.level, NUMBER_LIST_STYLES),
-              options.listClassName,
-            ),
+              options.listClassName
+            )
           )}
         >
           {children}
         </ol>
-      ),
+      )
     },
     listItem: ({ children }: PortableTextListItemProps) => (
       <li
         className={cn(
           'pl-1 marker:text-current [&>ol]:mt-3 [&>ul]:mt-3',
-          options.listItemClassName,
+          options.listItemClassName
         )}
       >
         {children}
       </li>
-    ),
+    )
   }
 }
 
 export function isPortableTextBlockEmpty(
-  value?: PortableTextBlockLike,
+  value?: PortableTextBlockLike
 ): boolean {
   if (!value?.children?.length) {
     return true
   }
 
   return value.children.every(
-    child => child._type === 'span' && (child.text ?? '').trim().length === 0,
+    (child) => child._type === 'span' && (child.text ?? '').trim().length === 0
   )
 }

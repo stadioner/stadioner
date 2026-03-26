@@ -6,7 +6,7 @@ import { notFound } from 'next/navigation'
 import { Metadata } from 'next'
 import {
   isSupportedLanguage,
-  supportedLanguages,
+  supportedLanguages
 } from '@/lib/i18n/site-languages'
 import { type Event } from '@/types/event'
 import { createLocalizedListingAlternates } from '@/lib/seo/alternates'
@@ -20,7 +20,7 @@ interface Props {
 const languageNames = {
   cs: 'Události',
   en: 'Events',
-  de: 'Veranstaltungen',
+  de: 'Veranstaltungen'
 } as const
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -28,20 +28,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!isSupportedLanguage(lang)) {
     return {
-      title: 'Events Not Found',
+      title: 'Events Not Found'
     }
   }
 
   const title = `${languageNames[lang as keyof typeof languageNames]}`
   const description =
-    lang === 'cs'
-      ? 'Nadcházející události a akce.'
-      : lang === 'en'
-        ? 'Upcoming events and actions.'
-        : 'Kommende Veranstaltungen und Aktionen.'
+    lang === 'cs' ? 'Nadcházející události a akce.'
+    : lang === 'en' ? 'Upcoming events and actions.'
+    : 'Kommende Veranstaltungen und Aktionen.'
   const alternates = createLocalizedListingAlternates(
     'udalosti',
-    lang as LocalizedSeoLocale,
+    lang as LocalizedSeoLocale
   )
 
   return buildPageMetadata({
@@ -50,13 +48,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     canonicalPath: alternates.canonical,
     alternates,
     locale: lang as LocalizedSeoLocale,
-    twitterCard: 'summary',
+    twitterCard: 'summary'
   })
 }
 
 export async function generateStaticParams() {
-  return supportedLanguages.map(lang => ({
-    lang,
+  return supportedLanguages.map((lang) => ({
+    lang
   }))
 }
 
@@ -74,7 +72,7 @@ export default async function Page({ params }: Props) {
     query: eventsListByLanguageQuery,
     params: { language: lang },
     tags: [`events:list:${lang}`],
-    revalidate: 60,
+    revalidate: 60
   })
 
   return (
@@ -82,7 +80,10 @@ export default async function Page({ params }: Props) {
       <h1 className='sr-only'>
         {languageNames[lang as keyof typeof languageNames]}
       </h1>
-      <EventsPage events={events} language={lang as SupportedLanguage} />
+      <EventsPage
+        events={events}
+        language={lang as SupportedLanguage}
+      />
     </>
   )
 }

@@ -22,21 +22,21 @@ interface CookieConsentStore {
 
 export const useCookieConsent = create(
   persist<CookieConsentStore>(
-    set => ({
+    (set) => ({
       hasConsented: false,
       isHydrated: false,
       cookiePreferences: {
         essential: true, // Always true, can't be disabled
         functional: false,
         analytics: false,
-        marketing: false,
+        marketing: false
       },
       setConsented: (consented: boolean) => {
         set({ hasConsented: consented })
       },
-      setCookiePreferences: preferences => {
-        set(state => ({
-          cookiePreferences: { ...state.cookiePreferences, ...preferences },
+      setCookiePreferences: (preferences) => {
+        set((state) => ({
+          cookiePreferences: { ...state.cookiePreferences, ...preferences }
         }))
       },
       resetPreferences: () => {
@@ -45,13 +45,13 @@ export const useCookieConsent = create(
             essential: true,
             functional: false,
             analytics: false,
-            marketing: false,
-          },
+            marketing: false
+          }
         })
       },
       setHydrated: (hydrated: boolean) => {
         set({ isHydrated: hydrated })
-      },
+      }
     }),
     {
       name: 'cookie-consent',
@@ -74,14 +74,14 @@ export const useCookieConsent = create(
             },
             removeItem: (name: string) => {
               document.cookie = `${name}=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT`
-            },
+            }
           }
         }
         return localStorage
       }),
-      onRehydrateStorage: () => state => {
+      onRehydrateStorage: () => (state) => {
         state?.setHydrated(true)
-      },
+      }
     }
   )
 )

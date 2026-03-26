@@ -12,7 +12,7 @@ const sanitizeSiteUrl = (url: string): string => {
 }
 
 export const siteUrl = sanitizeSiteUrl(
-  process.env.SITE_URL || 'https://stadioner.cz',
+  process.env.SITE_URL || 'https://stadioner.cz'
 )
 
 export const defaultLocale = 'cs' as const
@@ -22,7 +22,7 @@ export const localizedSeoLocales = ['cs', 'en', 'de'] as const
 export type LocalizedSeoLocale = (typeof localizedSeoLocales)[number]
 
 export const isLocalizedSeoLocale = (
-  locale: string,
+  locale: string
 ): locale is LocalizedSeoLocale => {
   return localizedSeoLocales.includes(locale as LocalizedSeoLocale)
 }
@@ -38,7 +38,7 @@ export const toAbsoluteUrl = (path: string): string => {
 
 export const toLocalePath = (
   locale: LocalizedSeoLocale,
-  path = '/',
+  path = '/'
 ): string => {
   const normalizedPath = path.startsWith('/') ? path : `/${path}`
   const withoutTrailingSlash =

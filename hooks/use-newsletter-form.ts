@@ -2,10 +2,13 @@
 
 import { type FormEvent, useState } from 'react'
 import { useToast } from '@/components/custom-toast'
-import { newsletterCopy, resolveNewsletterLanguage } from '@/lib/newsletter/copy'
+import {
+  newsletterCopy,
+  resolveNewsletterLanguage
+} from '@/lib/newsletter/copy'
 import {
   markNewsletterSubscribed,
-  submitNewsletterSafely,
+  submitNewsletterSafely
 } from '@/lib/newsletter/submit'
 
 type UseNewsletterFormOptions = {
@@ -17,7 +20,7 @@ type UseNewsletterFormOptions = {
 export const useNewsletterForm = ({
   language,
   onSubmitted,
-  markSubscribed = true,
+  markSubscribed = true
 }: UseNewsletterFormOptions) => {
   const { showToast } = useToast()
   const lang = resolveNewsletterLanguage(language)
@@ -49,6 +52,6 @@ export const useNewsletterForm = ({
     isSubmitting,
     submit,
     copy: newsletterCopy[lang],
-    language: lang,
+    language: lang
   }
 }
