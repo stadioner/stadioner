@@ -27,7 +27,7 @@ export const NewsletterPopup = () => {
 
   const { email, setEmail, isSubmitting, submit, copy } = useNewsletterForm({
     language,
-    onSubmitted: () => {
+    onSubmittedAction: () => {
       setTimeout(() => {
         setIsVisible(false)
       }, 2000)
