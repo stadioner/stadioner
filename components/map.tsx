@@ -11,6 +11,7 @@ import {
 } from 'react-leaflet'
 import Link from 'next/link'
 import { FC, ReactNode, useEffect, useMemo, useState } from 'react'
+import { Border } from '@/components/border'
 import { cn } from '@/lib/utils'
 
 import 'leaflet/dist/leaflet.css'
@@ -479,9 +480,9 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
       popupContent:
         marker.variant === 'pickup' ?
           <div className='space-y-2'>
-            <span className='inline-flex border border-[#2e6a4a] bg-[#c6e7c1] px-1 py-0.5 text-[10px] font-semibold tracking-[0.16em] text-[#1f4d35] uppercase opacity-80'>
+            <div className='text-brand-action bg-brand-primary border-brand-action w-min border px-1 text-xs font-medium tracking-tight whitespace-nowrap'>
               Výdejní místo
-            </span>
+            </div>
             <div>{marker.popupContent}</div>
           </div>
         : marker.popupContent,
