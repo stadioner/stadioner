@@ -11,7 +11,6 @@ import {
 } from 'react-leaflet'
 import Link from 'next/link'
 import { FC, ReactNode, useEffect, useMemo, useState } from 'react'
-import { Border } from '@/components/border'
 import { cn } from '@/lib/utils'
 
 import 'leaflet/dist/leaflet.css'
