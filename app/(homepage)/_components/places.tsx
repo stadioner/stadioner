@@ -36,9 +36,9 @@ export const Places = () => {
                   className='font-bold underline'
                 >
                   rezervovat online
-                </Link>
+                </Link>{' '}
                 a vyzvednout na výdejním místě. Chcete mít přehled, kde nás
-                najdete dál?
+                najdete dál?{' '}
                 <Link
                   href='/cs/newsletter'
                   className='font-bold underline'
