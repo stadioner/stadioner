@@ -26,9 +26,36 @@ L.Icon.Default.mergeOptions({
   shadowUrl: markerShadow.src
 })
 
-const createImageIcon = (imageUrl: string) => {
+type MarkerVariant = 'default' | 'pickup'
+
+const markerVariantStyles: Record<
+  MarkerVariant,
+  {
+    background: string
+    border: string
+    foreground: string
+  }
+> = {
+  default: {
+    background: 'rgba(238,226,184,0.95)',
+    border: '#3b492b',
+    foreground: '#3f4d2a'
+  },
+  pickup: {
+    background: 'rgba(198,231,193,0.98)',
+    border: '#2e6a4a',
+    foreground: '#1f4d35'
+  }
+}
+
+const createImageIcon = (
+  imageUrl: string,
+  variant: MarkerVariant = 'default'
+) => {
+  const styles = markerVariantStyles[variant]
+
   return L.divIcon({
-    html: `<div style="width:40px;height:40px;border-radius:9999px;background:rgba(238,226,184,0.95);border:2px solid #3f4d2a;color:#3f4d2a;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.18);"><img src="${imageUrl}" alt="" style="width:30px;height:30px;object-fit:contain;" /></div>`,
+    html: `<div style="width:40px;height:40px;border-radius:9999px;background:${styles.background};border:2px solid ${styles.border};color:${styles.foreground};display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,0.18);"><img src="${imageUrl}" alt="" style="width:30px;height:30px;object-fit:contain;" /></div>`,
     className: 'custom-image-icon',
     iconSize: [40, 40],
     iconAnchor: [20, 20],
@@ -170,6 +197,7 @@ type ExternalMarker = {
   position: LatLngExpression
   iconUrl: string
   popupContent: ReactNode
+  variant?: MarkerVariant
 }
 
 const defaultMarkers: ExternalMarker[] = [
@@ -352,6 +380,7 @@ const defaultMarkers: ExternalMarker[] = [
   {
     position: [49.35975333741444, 13.358563380620216],
     iconUrl: '/map/pivoteka.svg',
+    variant: 'pickup',
     popupContent: (
       <>
         <Link
@@ -446,8 +475,16 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
   const resolvedMarkers = (markers?.length ? markers : defaultMarkers).map(
     (marker) => ({
       position: marker.position,
-      icon: createImageIcon(marker.iconUrl),
-      popupContent: marker.popupContent,
+      icon: createImageIcon(marker.iconUrl, marker.variant),
+      popupContent:
+        marker.variant === 'pickup' ?
+          <div className='space-y-2'>
+            <span className='inline-flex border border-[#2e6a4a] bg-[#c6e7c1] px-1 py-0.5 text-[10px] font-semibold tracking-[0.16em] text-[#1f4d35] uppercase opacity-80'>
+              Výdejní místo
+            </span>
+            <div>{marker.popupContent}</div>
+          </div>
+        : marker.popupContent,
       flexible: areMarkersInteractive
     })
   )
