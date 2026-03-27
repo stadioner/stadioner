@@ -51,6 +51,19 @@ export const MapLegend = () => {
           </p>
           <p className='flex items-center'>
             <Image
+              src='/map/limo.svg'
+              className='size-7'
+              alt=''
+              width={28}
+              height={28}
+            />
+
+            {language === 'cs' && 'Obchod'}
+            {language === 'en' && 'Shop'}
+            {language === 'de' && 'Geschäft'}
+          </p>
+          <p className='flex items-center'>
+            <Image
               src='/map/restaurace.svg'
               className='size-7'
               alt=''

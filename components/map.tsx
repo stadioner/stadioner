@@ -379,7 +379,7 @@ const defaultMarkers: ExternalMarker[] = [
   },
   {
     position: [49.35975333741444, 13.358563380620216],
-    iconUrl: '/map/pivoteka.svg',
+    iconUrl: '/map/limo.svg',
     variant: 'pickup',
     popupContent: (
       <>
