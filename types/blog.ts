@@ -1,4 +1,4 @@
-import { TypedObject } from 'sanity'
+import { PortableTextBlock } from 'sanity'
 
 export interface Category {
   _id: string
@@ -7,12 +7,6 @@ export interface Category {
     current: string
   }
   language: string
-}
-
-export interface SEO {
-  metaTitle?: string
-  metaDescription?: string
-  keywords?: string[]
 }
 
 export interface Post {
@@ -33,8 +27,7 @@ export interface Post {
   publishedAt: string
   featured: boolean
   categories: Category[]
-  body: TypedObject[]
-  seo?: SEO
+  body: PortableTextBlock[]
 }
 
 export interface Language {

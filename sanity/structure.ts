@@ -1,60 +1,29 @@
-import { CalendarIcon } from '@sanity/icons'
+import { CalendarIcon, DocumentTextIcon, TagIcon } from '@sanity/icons'
 import type { StructureResolver } from 'sanity/structure'
-import { languages } from './lib/languages'
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
 export const structure: StructureResolver = (S) =>
   S.list()
     .title('Blog')
     .items([
-      // Posts organized by language
       S.listItem()
         .title('Posts')
+        .icon(DocumentTextIcon)
         .child(
-          S.list()
-            .title('Posts by Language')
-            .items([
-              ...languages.map((lang) =>
-                S.listItem()
-                  .title(`${lang.flag} ${lang.title} Posts`)
-                  .child(
-                    S.documentList()
-                      .title(`${lang.title} Posts`)
-                      .filter(`_type == "post" && language == "${lang.id}"`)
-                      .defaultOrdering([
-                        { field: 'publishedAt', direction: 'desc' }
-                      ])
-                  )
-              ),
-              S.divider(),
-              S.listItem().title('All Posts').child(S.documentTypeList('post'))
-            ])
+          S.documentTypeList('unifiedPost').defaultOrdering([
+            { field: 'publishedAt', direction: 'desc' }
+          ])
         ),
 
-      // Categories organized by language
       S.listItem()
         .title('Categories')
+        .icon(TagIcon)
         .child(
-          S.list()
-            .title('Categories by Language')
-            .items([
-              ...languages.map((lang) =>
-                S.listItem()
-                  .title(`${lang.flag} ${lang.title} Categories`)
-                  .child(
-                    S.documentList()
-                      .title(`${lang.title} Categories`)
-                      .filter(`_type == "category" && language == "${lang.id}"`)
-                  )
-              ),
-              S.divider(),
-              S.listItem()
-                .title('All Categories')
-                .child(S.documentTypeList('category'))
-            ])
+          S.documentTypeList('unifiedCategory').defaultOrdering([
+            { field: '_updatedAt', direction: 'desc' }
+          ])
         ),
 
-      // Events organized by language
       S.listItem()
         .title('Events')
         .icon(CalendarIcon)
@@ -68,6 +37,13 @@ export const structure: StructureResolver = (S) =>
       ...S.documentTypeListItems().filter(
         (item) =>
           item.getId() &&
-          !['post', 'category', 'event', 'unifiedEvent'].includes(item.getId()!)
+          ![
+            'post',
+            'category',
+            'event',
+            'unifiedEvent',
+            'unifiedPost',
+            'unifiedCategory'
+          ].includes(item.getId()!)
       )
     ])

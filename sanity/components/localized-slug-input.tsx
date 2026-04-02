@@ -121,8 +121,8 @@ export function LocalizedSlugInput(
       >
         <Stack space={3}>
           <Text size={1}>
-            Generate localized slugs from the matching event titles only when
-            you click a button.
+            Generate localized slugs from the matching localized titles only
+            when you click a button.
           </Text>
           <Flex
             gap={2}

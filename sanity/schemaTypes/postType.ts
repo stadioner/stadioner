@@ -71,33 +71,6 @@ export const postType = defineType({
       name: 'body',
       type: 'blockContent',
       title: 'Content'
-    }),
-    defineField({
-      name: 'seo',
-      type: 'object',
-      title: 'SEO',
-      fields: [
-        defineField({
-          name: 'metaTitle',
-          type: 'string',
-          title: 'Meta Title'
-        }),
-        defineField({
-          name: 'metaDescription',
-          type: 'text',
-          title: 'Meta Description',
-          rows: 3
-        }),
-        defineField({
-          name: 'keywords',
-          type: 'array',
-          title: 'Keywords',
-          of: [{ type: 'string' }],
-          options: {
-            layout: 'tags'
-          }
-        })
-      ]
     })
   ],
   preview: {

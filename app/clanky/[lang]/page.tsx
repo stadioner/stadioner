@@ -9,12 +9,20 @@ import {
 import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   categoriesByLanguageQuery,
-  postsListByLanguageQuery
+  postsListByLanguageQuery,
+  unifiedCategoriesQuery,
+  unifiedPostsQuery
 } from '@/sanity/lib/queries'
 import { type Category, type Post, type SupportedLanguage } from '@/types/blog'
 import { createLocalizedListingAlternates } from '@/lib/seo/alternates'
 import { type LocalizedSeoLocale } from '@/lib/seo/site'
 import { buildPageMetadata } from '@/lib/seo/metadata'
+import {
+  mapUnifiedCategoryToCategory,
+  mapUnifiedPostToPost
+} from '@/lib/blog/unified-post-mapper'
+import { type UnifiedCategory } from '@/types/unified-category'
+import { type UnifiedPost } from '@/types/unified-post'
 
 interface Props {
   params: Promise<{ lang: string }>
@@ -73,27 +81,54 @@ export default async function Page({ params }: Props) {
   }
 
   const [posts, categories] = await Promise.all([
-    sanityFetch<Post[]>({
-      query: postsListByLanguageQuery,
-      params: { language: lang },
-      tags: [`blog:posts:${lang}`],
+    sanityFetch<UnifiedPost[]>({
+      query: unifiedPostsQuery,
+      tags: ['blog:unified:posts:list'],
       revalidate: 60
     }),
-    sanityFetch<Category[]>({
-      query: categoriesByLanguageQuery,
-      params: { language: lang },
-      tags: [`blog:categories:${lang}`],
+    sanityFetch<UnifiedCategory[]>({
+      query: unifiedCategoriesQuery,
+      tags: ['blog:unified:categories:list'],
       revalidate: 300
     })
   ])
+
+  const mappedUnifiedPosts = posts
+    .map((post) => mapUnifiedPostToPost(post, lang as SupportedLanguage))
+    .filter((post): post is Post => post !== null)
+  const mappedUnifiedCategories = categories
+    .map((category) =>
+      mapUnifiedCategoryToCategory(category, lang as SupportedLanguage)
+    )
+    .filter((category): category is Category => category !== null)
+
+  const resolvedPosts =
+    mappedUnifiedPosts.length > 0 ?
+      mappedUnifiedPosts
+    : await sanityFetch<Post[]>({
+        query: postsListByLanguageQuery,
+        params: { language: lang },
+        tags: [`blog:posts:${lang}`],
+        revalidate: 60
+      })
+
+  const resolvedCategories =
+    mappedUnifiedCategories.length > 0 ?
+      mappedUnifiedCategories
+    : await sanityFetch<Category[]>({
+        query: categoriesByLanguageQuery,
+        params: { language: lang },
+        tags: [`blog:categories:${lang}`],
+        revalidate: 300
+      })
 
   return (
     <main className='bg-brand-primary pt-32 pb-28 md:pt-40'>
       <h1 className='sr-only'>{languageNames[lang]}</h1>
       <Container>
         <Posts
-          posts={posts}
-          categories={categories}
+          posts={resolvedPosts}
+          categories={resolvedCategories}
           language={lang as SupportedLanguage}
         />
       </Container>

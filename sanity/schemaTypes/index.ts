@@ -7,7 +7,9 @@ import { eventType } from './event'
 import { localizedBlockContentType } from './objects/localizedBlockContent'
 import { localizedSlugType } from './objects/localizedSlug'
 import { localizedStringType } from './objects/localizedString'
+import { unifiedCategoryType } from './unifiedCategoryType'
 import { unifiedEventType } from './unifiedEventType'
+import { unifiedPostType } from './unifiedPostType'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -18,6 +20,8 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     categoryType,
     postType,
     eventType,
-    unifiedEventType
+    unifiedEventType,
+    unifiedCategoryType,
+    unifiedPostType
   ]
 }

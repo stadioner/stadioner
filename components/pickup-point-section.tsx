@@ -219,7 +219,9 @@ export const PickupPointSection = ({
           />
         </Container>
       </div>
-      {showBottomRippedPaper ? <RippedPaperSVG /> : null}
+      {showBottomRippedPaper ?
+        <RippedPaperSVG />
+      : null}
     </section>
   )
 }

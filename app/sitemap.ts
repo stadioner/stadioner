@@ -3,7 +3,8 @@ import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   eventsForSitemapByLanguageQuery,
   postsForSitemapByLanguageQuery,
-  unifiedEventsForSitemapQuery
+  unifiedEventsForSitemapQuery,
+  unifiedPostsForSitemapQuery
 } from '@/sanity/lib/queries'
 import { canAccessEventDetail } from '@/lib/events/visibility'
 import { localizedSeoLocales, toAbsoluteUrl } from '@/lib/seo/site'
@@ -13,6 +14,8 @@ import {
   getUnifiedEventVariants
 } from '@/lib/events/unified-event-mapper'
 import { type UnifiedEvent } from '@/types/unified-event'
+import { type UnifiedPost } from '@/types/unified-post'
+import { getUnifiedPostVariants } from '@/lib/blog/unified-post-mapper'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
@@ -79,6 +82,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postsByLanguage = await Promise.all(
     localizedSeoLocales.map(async (lang) => {
+      const unifiedPosts = await sanityFetch<UnifiedPost[]>({
+        query: unifiedPostsForSitemapQuery,
+        tags: ['blog:unified:sitemap'],
+        revalidate: 300
+      }).catch(() => [])
+
+      if (unifiedPosts.length > 0) {
+        return unifiedPosts
+          .map((post) => {
+            const variant = getUnifiedPostVariants(post).find(
+              (item) => item.locale === lang
+            )
+
+            if (!variant) {
+              return null
+            }
+
+            return createEntry(
+              `/${lang}/clanky/${variant.slug}`,
+              'weekly',
+              0.6,
+              post._updatedAt ? new Date(post._updatedAt)
+              : post.publishedAt ? new Date(post.publishedAt)
+              : now
+            )
+          })
+          .filter(
+            (post): post is MetadataRoute.Sitemap[number] => post !== null
+          )
+      }
+
       const posts =
         (await sanityFetch<
           {

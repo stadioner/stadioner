@@ -3,7 +3,9 @@ import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   postVariantsByTranslationKeyQuery,
   postBySlugQuery,
-  postsPathsByLanguageQuery
+  postsPathsByLanguageQuery,
+  unifiedPostByLocalizedSlugQuery,
+  unifiedPostsQuery
 } from '@/sanity/lib/queries'
 import { type SupportedLanguage } from '@/types/blog'
 import { notFound } from 'next/navigation'
@@ -24,7 +26,16 @@ import {
   toAbsoluteUrl,
   type LocalizedSeoLocale
 } from '@/lib/seo/site'
-import { buildBlogPostingSchema, jsonLdToHtml } from '@/lib/seo/schema'
+import {
+  buildBlogPostingSchema,
+  jsonLdToHtml,
+  portableTextToPlainText
+} from '@/lib/seo/schema'
+import {
+  getUnifiedPostVariants,
+  mapUnifiedPostToPost
+} from '@/lib/blog/unified-post-mapper'
+import { type UnifiedPost } from '@/types/unified-post'
 
 interface Props {
   params: Promise<{ lang: string; slug: string }>
@@ -74,6 +85,51 @@ const resolveBlogVariants = async (translationKey?: string) => {
   )
 }
 
+const getUnifiedPost = async (slug: string): Promise<UnifiedPost | null> =>
+  sanityFetch<UnifiedPost | null>({
+    query: unifiedPostByLocalizedSlugQuery,
+    params: { slug },
+    tags: [`blog:unified:detail:${slug}`],
+    revalidate: 60
+  })
+
+const getLocalizedPost = async (
+  slug: string,
+  language: SupportedLanguage
+): Promise<{
+  post: BlogPost
+  variants: Array<{ locale: LocalizedSeoLocale; slug: string }>
+} | null> => {
+  const unifiedPost = await getUnifiedPost(slug)
+
+  if (unifiedPost) {
+    const mappedPost = mapUnifiedPostToPost(unifiedPost, language)
+
+    if (mappedPost) {
+      return {
+        post: mappedPost,
+        variants: getUnifiedPostVariants(unifiedPost)
+      }
+    }
+  }
+
+  const legacyPost = await sanityFetch<BlogPost | null>({
+    query: postBySlugQuery,
+    params: { slug, language },
+    tags: [`blog:post:${language}:${slug}`],
+    revalidate: 60
+  })
+
+  if (!legacyPost) {
+    return null
+  }
+
+  return {
+    post: legacyPost,
+    variants: await resolveBlogVariants(legacyPost.translationKey)
+  }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params
 
@@ -83,24 +139,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const post = await sanityFetch<BlogPost | null>({
-    query: postBySlugQuery,
-    params: { slug, language: lang },
-    tags: [`blog:post:${lang}:${slug}`],
-    revalidate: 60
-  })
+  const localizedPost = await getLocalizedPost(slug, lang as SupportedLanguage)
 
-  if (!post) {
+  if (!localizedPost) {
     return {
       title: 'Post Not Found'
     }
   }
 
-  const title = post.seo?.metaTitle || post.title
-  const description = post.seo?.metaDescription || post.title
-  const keywords = post.seo?.keywords || []
+  const { post, variants } = localizedPost
+  const title = post.title
+  const description = portableTextToPlainText(post.body) || post.title
   const imageUrl = getPostImageUrl(post)
-  const variants = await resolveBlogVariants(post.translationKey)
   const alternates = createLocalizedDetailAlternatesFromVariants(
     'clanky',
     lang,
@@ -112,7 +162,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title,
     description,
-    keywords,
     alternates,
     openGraph: {
       title,
@@ -120,7 +169,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: 'article',
       url: canonicalUrl,
       publishedTime: post.publishedAt,
-      tags: keywords,
       images:
         imageUrl ?
           [
@@ -143,6 +191,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
+  const unifiedPosts = await sanityFetch<UnifiedPost[]>({
+    query: unifiedPostsQuery,
+    tags: ['blog:unified:paths'],
+    revalidate: 300
+  })
+
+  if (unifiedPosts.length > 0) {
+    return unifiedPosts.flatMap((post) =>
+      getUnifiedPostVariants(post).map((variant) => ({
+        lang: variant.locale,
+        slug: variant.slug
+      }))
+    )
+  }
+
   const allPaths = await Promise.all(
     supportedLanguages.map(async (lang) => {
       const posts = await sanityFetch<{ params: { slug: string } }[]>({
@@ -172,19 +235,15 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
-  const post = await sanityFetch<BlogPost | null>({
-    query: postBySlugQuery,
-    params: { slug, language: lang },
-    tags: [`blog:post:${lang}:${slug}`],
-    revalidate: 60
-  })
+  const localizedPost = await getLocalizedPost(slug, lang as SupportedLanguage)
 
-  if (!post) {
+  if (!localizedPost) {
     notFound()
   }
 
-  const title = post.seo?.metaTitle || post.title
-  const description = post.seo?.metaDescription || post.title
+  const { post } = localizedPost
+  const title = post.title
+  const description = portableTextToPlainText(post.body) || post.title
   const imageUrl = getPostImageUrl(post) || undefined
   const articleSchema = buildBlogPostingSchema({
     headline: title,
@@ -192,8 +251,7 @@ export default async function Page({ params }: Props) {
     url: toAbsoluteUrl(`/${lang}/clanky/${encodeURIComponent(slug)}`),
     datePublished: post.publishedAt,
     imageUrl,
-    language: lang,
-    keywords: post.seo?.keywords || []
+    language: lang
   })
 
   return (

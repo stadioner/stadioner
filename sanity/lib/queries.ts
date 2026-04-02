@@ -8,6 +8,19 @@ const postCategoryProjection = `
   }
 `
 
+const unifiedCategoryProjection = `
+  _id,
+  _updatedAt,
+  title,
+  slug
+`
+
+const unifiedPostCategoryProjection = `
+  categories[]->{
+    ${unifiedCategoryProjection}
+  }
+`
+
 const postListProjection = `
   _id,
   title,
@@ -45,6 +58,18 @@ const unifiedEventProjection = `
   slug,
   description,
   recap
+`
+
+const unifiedPostProjection = `
+  _id,
+  _updatedAt,
+  mainImage,
+  publishedAt,
+  featured,
+  title,
+  slug,
+  body,
+  ${unifiedPostCategoryProjection}
 `
 
 // Language-specific queries
@@ -87,8 +112,7 @@ export const postBySlugQuery = groq`
     publishedAt,
     featured,
     ${postCategoryProjection},
-    body,
-    seo
+    body
   }
 `
 
@@ -99,6 +123,12 @@ export const categoriesByLanguageQuery = groq`
     slug,
     description,
     color
+  }
+`
+
+export const unifiedCategoriesQuery = groq`
+  *[_type == "unifiedCategory"] | order(coalesce(title.cs, title.en, title.de) asc) {
+    ${unifiedCategoryProjection}
   }
 `
 
@@ -129,6 +159,40 @@ export const postsByCategoryQuery = groq`
 export const postsPathsByLanguageQuery = groq`
   *[_type == "post" && language == $language && defined(slug.current)][]{
     "params": { "slug": slug.current }
+  }
+`
+
+export const unifiedPostsQuery = groq`
+  *[_type == "unifiedPost"] | order(publishedAt desc) {
+    ${unifiedPostProjection}
+  }
+`
+
+export const unifiedPostByLocalizedSlugQuery = groq`
+  *[
+    _type == "unifiedPost" &&
+    (
+      slug.cs.current == $slug ||
+      slug.en.current == $slug ||
+      slug.de.current == $slug
+    )
+  ][0] {
+    ${unifiedPostProjection}
+  }
+`
+
+export const unifiedRecentPostsQuery = groq`
+  *[_type == "unifiedPost"] | order(publishedAt desc) [0...$limit] {
+    ${unifiedPostProjection}
+  }
+`
+
+export const unifiedPostsForSitemapQuery = groq`
+  *[_type == "unifiedPost" && defined(publishedAt)] | order(publishedAt desc) {
+    _id,
+    _updatedAt,
+    publishedAt,
+    slug
   }
 `
 
