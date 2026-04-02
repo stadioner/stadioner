@@ -83,7 +83,7 @@ export const About = () => {
   const { language } = useLanguage()
 
   return (
-    <section className='bg-brand-secondary overflow-hidden pt-8 pb-24'>
+    <section className='bg-brand-secondary overflow-hidden pt-20 pb-24 md:pt-10'>
       <Container className='flex flex-col gap-10 lg:flex-row'>
         <div className='flex-1'>
           <h2 className='text-brand-action text-3xl font-bold sm:text-5xl'>

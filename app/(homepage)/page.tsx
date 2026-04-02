@@ -12,6 +12,10 @@ import {
   jsonLdToHtml
 } from '@/lib/seo/schema'
 import { buildPageMetadata } from '@/lib/seo/metadata'
+import { sanityFetch } from '@/sanity/lib/fetch'
+import { upcomingEventsQuery } from '@/sanity/lib/queries'
+import { type Event } from '@/types/event'
+import { type SupportedLanguage } from '@/types/blog'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Pivovar Kout na Šumavě',
@@ -41,7 +45,18 @@ export const metadata: Metadata = buildPageMetadata({
   twitterImages: ['/hero/main.svg']
 })
 
-export default function HomePage() {
+export default async function HomePage() {
+  const upcomingEventsPromise = Promise.all(
+    (['cs', 'en', 'de'] as const).map(async (language) => {
+      const events = await sanityFetch<Event[]>({
+        query: upcomingEventsQuery,
+        params: { language },
+        tags: [`events:homepage:${language}`]
+      })
+
+      return [language, events[0] ?? null] as const
+    })
+  )
   const organizationSchema = buildOrganizationSchema()
   const websiteSchema = buildWebSiteSchema()
 
@@ -49,8 +64,11 @@ export default function HomePage() {
     <>
       <main className='overflow-hidden'>
         <Intro />
-
-        <Hero />
+        <Hero
+          upcomingEventsByLanguage={Object.fromEntries(
+            await upcomingEventsPromise
+          ) as Record<SupportedLanguage, Event | null>}
+        />
         <About />
         <Suspense
           fallback={<div className='bg-brand-action py-8'>Loading...</div>}
