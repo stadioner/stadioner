@@ -257,7 +257,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <main className='bg-brand-primary pt-32 pb-20 md:pt-40'>
-        <Container className='relative grid-cols-[1.5fr_1fr] gap-10 lg:grid lg:gap-20'>
+        <Container className='relative grid-cols-[auto_auto] gap-10 lg:grid'>
           <Post post={post} />
           <Sidebar language={lang as SupportedLanguage} />
         </Container>

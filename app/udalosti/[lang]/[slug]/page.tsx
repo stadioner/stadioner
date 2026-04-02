@@ -12,6 +12,7 @@ import { Metadata } from 'next'
 import createImageUrlBuilder from '@sanity/image-url'
 import { dataset, projectId } from '@/sanity/env'
 import { Container } from '@/components/container'
+import { Sidebar } from '@/app/clanky/_components/sidebar'
 import { EventDetail } from '../_components/event-detail'
 import {
   isSupportedLanguage,
@@ -291,11 +292,12 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <main className='bg-brand-primary pt-32 pb-20 md:pt-40'>
-        <Container>
+        <Container className='relative grid-cols-[auto_auto] gap-10 lg:grid'>
           <EventDetail
             event={event}
             language={lang as SupportedLanguage}
           />
+          <Sidebar language={lang as SupportedLanguage} />
         </Container>
       </main>
       <script

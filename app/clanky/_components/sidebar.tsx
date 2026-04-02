@@ -64,7 +64,7 @@ export const Sidebar = async ({ language }: SidebarProps) => {
       })
 
   return (
-    <Border className='ml-auto h-min max-w-[370px] self-start lg:sticky lg:top-28 lg:max-h-[calc(100vh-6rem)] lg:overflow-hidden'>
+    <Border className='mt-8 ml-auto h-min max-w-[370px] self-start lg:sticky lg:top-28 lg:max-h-[calc(100vh-6rem)] lg:overflow-hidden'>
       <section className='space-y-8 p-2'>
         <div>
           <h3 className='text-brand-action mb-3 text-xl font-bold'>
