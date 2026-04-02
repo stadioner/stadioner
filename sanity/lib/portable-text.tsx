@@ -22,12 +22,25 @@ interface PortableTextListStyleOptions {
 }
 
 interface PortableTextSpanLike {
+  _key?: string
   _type?: string
   text?: string
 }
 
 export interface PortableTextBlockLike {
+  _key?: string
+  _type?: string
   children?: PortableTextSpanLike[]
+}
+
+export function hasPortableTextContent(
+  value?: PortableTextBlockLike[]
+): boolean {
+  if (!value?.length) {
+    return false
+  }
+
+  return value.some((block) => !isPortableTextBlockEmpty(block))
 }
 
 const BULLET_LIST_STYLES = [

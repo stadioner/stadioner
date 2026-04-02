@@ -19,4 +19,5 @@ export interface Event {
     alt?: string
   }
   description?: PortableTextBlock[]
+  recap?: PortableTextBlock[]
 }

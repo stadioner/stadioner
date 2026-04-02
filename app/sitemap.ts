@@ -4,8 +4,9 @@ import {
   eventsForSitemapByLanguageQuery,
   postsForSitemapByLanguageQuery
 } from '@/sanity/lib/queries'
-import { isEventPast } from '@/lib/events/date-time'
+import { canAccessEventDetail } from '@/lib/events/visibility'
 import { localizedSeoLocales, toAbsoluteUrl } from '@/lib/seo/site'
+import { type PortableTextBlock } from 'sanity'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
@@ -104,6 +105,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             slug: { current: string }
             dateTime?: string
             endDateTime?: string
+            recap?: PortableTextBlock[]
             _updatedAt?: string
           }[]
         >({
@@ -119,7 +121,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             return false
           }
 
-          return !isEventPast(event, now)
+          return canAccessEventDetail(event, now)
         })
         .map((event) =>
           createEntry(

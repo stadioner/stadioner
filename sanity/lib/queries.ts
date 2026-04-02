@@ -27,7 +27,8 @@ const eventListProjection = `
   dateTime,
   endDateTime,
   location,
-  isComingSoon
+  isComingSoon,
+  recap
 `
 
 // Language-specific queries
@@ -159,7 +160,8 @@ export const eventBySlugQuery = groq`
     location,
     isComingSoon,
     mainImage,
-    description
+    description,
+    recap
   }
 `
 
@@ -174,6 +176,7 @@ export const eventsForSitemapByLanguageQuery = groq`
     slug,
     dateTime,
     endDateTime,
+    recap,
     _updatedAt
   }
 `

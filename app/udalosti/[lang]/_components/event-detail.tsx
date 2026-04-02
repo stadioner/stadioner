@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { urlFor } from '@/sanity/lib/image'
 import {
   createPortableTextListComponents,
+  hasPortableTextContent,
   isPortableTextBlockEmpty
 } from '@/sanity/lib/portable-text'
 import { Event } from '@/types/event'
@@ -99,6 +100,13 @@ const eventRichTextComponents: PortableTextComponents = {
 }
 
 export function EventDetail({ event, language }: EventDetailProps) {
+  const hasDescription = hasPortableTextContent(event.description)
+  const hasRecap = hasPortableTextContent(event.recap)
+  const recapHeading =
+    language === 'cs' ? 'Recap akce'
+    : language === 'de' ? 'Rückblick auf die Veranstaltung'
+    : 'Event recap'
+
   return (
     <div>
       <Link
@@ -153,19 +161,32 @@ export function EventDetail({ event, language }: EventDetailProps) {
             </div>
 
             <div className='prose prose-invert prose-lg text-brand-action/80 max-w-none'>
-              {event.description ?
+              {hasDescription ?
                 <PortableText
-                  value={event.description}
+                  value={event.description!}
                   components={eventRichTextComponents}
                 />
-              : <p className='text-brand-action/60 italic'>
+              : !hasRecap ?
+                <p className='text-brand-action/60 italic'>
                   {language === 'cs' ?
                     'Bez popisu.'
                   : language === 'de' ?
                     'Keine Beschreibung.'
                   : 'No description.'}
                 </p>
-              }
+              : null}
+
+              {hasRecap && (
+                <div className={hasDescription ? 'mt-10' : undefined}>
+                  <h2 className='text-brand-action font-mohave mb-5 text-2xl font-bold uppercase md:text-3xl'>
+                    {recapHeading}
+                  </h2>
+                  <PortableText
+                    value={event.recap!}
+                    components={eventRichTextComponents}
+                  />
+                </div>
+              )}
             </div>
 
             <EventRsvp

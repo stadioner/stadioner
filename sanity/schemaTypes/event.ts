@@ -100,6 +100,13 @@ export const eventType = defineType({
       name: 'description',
       type: 'blockContent',
       title: 'Description'
+    }),
+    defineField({
+      name: 'recap',
+      type: 'blockContent',
+      title: 'Recap',
+      description:
+        'Optional. If filled in, the event detail stays publicly accessible even after the event has ended.'
     })
   ],
   preview: {
@@ -109,10 +116,12 @@ export const eventType = defineType({
       media: 'mainImage',
       dateTime: 'dateTime',
       endDateTime: 'endDateTime',
-      rsvpCount: 'rsvpCount'
+      rsvpCount: 'rsvpCount',
+      recap: 'recap'
     },
     prepare(selection) {
-      const { title, language, dateTime, endDateTime, rsvpCount } = selection
+      const { title, language, dateTime, endDateTime, rsvpCount, recap } =
+        selection
       const lang = languages.find((l) => l.id === language)
 
       const startDate = dateTime ? new Date(dateTime) : null
@@ -142,7 +151,7 @@ export const eventType = defineType({
 
       return {
         title,
-        subtitle: `${lang ? `${lang.flag} ` : ''} • ${dateString} • RSVP: ${typeof rsvpCount === 'number' ? rsvpCount : 0}`,
+        subtitle: `${lang ? `${lang.flag} ` : ''} • ${dateString} • RSVP: ${typeof rsvpCount === 'number' ? rsvpCount : 0}${Array.isArray(recap) && recap.length > 0 ? ' • Recap' : ''}`,
         media: selection.media
       }
     }

@@ -15,7 +15,6 @@ import {
   isSupportedLanguage,
   supportedLanguages
 } from '@/lib/i18n/site-languages'
-import { isEventPast } from '@/lib/events/date-time'
 import { type Event } from '@/types/event'
 import { createLocalizedDetailAlternatesFromVariants } from '@/lib/seo/alternates'
 import {
@@ -29,6 +28,7 @@ import {
   jsonLdToHtml,
   portableTextToPlainText
 } from '@/lib/seo/schema'
+import { canAccessEventDetail } from '@/lib/events/visibility'
 
 interface Props {
   params: Promise<{ lang: string; slug: string }>
@@ -100,8 +100,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
+  if (!canAccessEventDetail(event)) {
+    return {
+      title: 'Event Not Found'
+    }
+  }
+
   const title = event.title
-  const description = portableTextToPlainText(event.description) || title
+  const description =
+    portableTextToPlainText(event.description) ||
+    portableTextToPlainText(event.recap) ||
+    title
   const imageUrl = getEventImageUrl(event)
   const variants = await resolveEventVariants(event.translationKey)
   const alternates = createLocalizedDetailAlternatesFromVariants(
@@ -185,11 +194,14 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
-  if (isEventPast(event)) {
+  if (!canAccessEventDetail(event)) {
     notFound()
   }
 
-  const description = portableTextToPlainText(event.description) || event.title
+  const description =
+    portableTextToPlainText(event.description) ||
+    portableTextToPlainText(event.recap) ||
+    event.title
   const imageUrl = getEventImageUrl(event) || undefined
   const eventSchema = buildEventSchema({
     name: event.title,

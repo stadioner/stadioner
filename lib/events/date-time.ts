@@ -25,6 +25,33 @@ const formatInEventTimeZone = (
   }).format(date)
 }
 
+const getDatePartsInEventTimeZone = (
+  isoDateTime: string
+): { day: string; month: string; year: string } | null => {
+  const date = new Date(isoDateTime)
+
+  if (Number.isNaN(date.getTime())) {
+    return null
+  }
+
+  const parts = new Intl.DateTimeFormat('en-CA', {
+    timeZone: EVENT_TIME_ZONE,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(date)
+
+  const year = parts.find((part) => part.type === 'year')?.value
+  const month = parts.find((part) => part.type === 'month')?.value
+  const day = parts.find((part) => part.type === 'day')?.value
+
+  if (!year || !month || !day) {
+    return null
+  }
+
+  return { day, month, year }
+}
+
 const getDateKeyInEventTimeZone = (date: Date): string | null => {
   if (Number.isNaN(date.getTime())) {
     return null
@@ -76,6 +103,16 @@ export const formatEventDate = (
     dateStyle: 'long'
   })
 
+export const formatEventDateNumeric = (isoDateTime: string): string => {
+  const parts = getDatePartsInEventTimeZone(isoDateTime)
+
+  if (!parts) {
+    return ''
+  }
+
+  return `${Number(parts.day)}.${Number(parts.month)}.${parts.year}`
+}
+
 export const formatEventTime = (
   isoDateTime: string,
   language: SupportedLanguage
@@ -84,28 +121,4 @@ export const formatEventTime = (
     hour: '2-digit',
     minute: '2-digit',
     hourCycle: 'h23'
-  })
-
-export const formatEventDay = (
-  isoDateTime: string,
-  language: SupportedLanguage
-): string =>
-  formatInEventTimeZone(isoDateTime, language, {
-    day: 'numeric'
-  })
-
-export const formatEventMonthShort = (
-  isoDateTime: string,
-  language: SupportedLanguage
-): string =>
-  formatInEventTimeZone(isoDateTime, language, {
-    month: 'short'
-  })
-
-export const formatEventYear = (
-  isoDateTime: string,
-  language: SupportedLanguage
-): string =>
-  formatInEventTimeZone(isoDateTime, language, {
-    year: 'numeric'
   })

@@ -14,12 +14,11 @@ import { Container } from '@/components/container'
 import { Event } from '@/types/event'
 import { SupportedLanguage } from '@/types/blog'
 import {
-  formatEventDay,
-  formatEventMonthShort,
+  formatEventDateNumeric,
   formatEventTime,
-  formatEventYear,
   isEventPast
 } from '@/lib/events/date-time'
+import { eventHasRecap } from '@/lib/events/visibility'
 
 interface EventsPageProps {
   events: Event[]
@@ -85,20 +84,14 @@ export function EventsPage({ events, language }: EventsPageProps) {
                   <AnimatePresence mode='popLayout'>
                     {upcomingEvents.map((event) => {
                       const EventContent = (
-                        <div className='flex items-center gap-4'>
-                          <div className='border-brand-action/20 bg-brand-primary flex min-w-[80px] flex-col items-center justify-center border px-4 py-2'>
-                            <span className='text-brand-action font-mohave text-2xl font-bold'>
-                              {formatEventDay(event.dateTime, language)}
-                            </span>
-                            <span className='text-brand-action/80 text-xs font-bold tracking-wider uppercase'>
-                              {formatEventMonthShort(event.dateTime, language)}
-                            </span>
-                            <span className='text-brand-action/70 mt-0.5 text-[0.6rem] font-medium tracking-[0.18em] uppercase'>
-                              {formatEventYear(event.dateTime, language)}
+                        <div className='flex items-stretch gap-4'>
+                          <div className='border-brand-action/20 bg-brand-primary flex min-w-[104px] items-center justify-center self-stretch border px-3 py-2 text-center'>
+                            <span className='text-brand-action text-sm font-semibold whitespace-nowrap md:text-base'>
+                              {formatEventDateNumeric(event.dateTime)}
                             </span>
                           </div>
 
-                          <div className='min-w-0 flex-1'>
+                          <div className='flex min-w-0 flex-1 flex-col justify-center'>
                             <h4 className='text-brand-primary group-hover:text-brand-primary font-mohave mb-2 truncate py-1 text-xl font-bold uppercase transition-colors md:text-2xl'>
                               {event.title}
                             </h4>
@@ -140,6 +133,9 @@ export function EventsPage({ events, language }: EventsPageProps) {
                         </div>
                       )
 
+                      const isPastEvent = isEventPast(event, now)
+                      const canOpenEvent = !isPastEvent || eventHasRecap(event)
+
                       return (
                         <motion.div
                           key={event._id}
@@ -147,20 +143,21 @@ export function EventsPage({ events, language }: EventsPageProps) {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, x: -20 }}
                           className={`border-brand-primary/20 group border bg-transparent transition-colors ${
-                            event.isComingSoon ?
-                              'cursor-default opacity-80'
+                            event.isComingSoon ? 'cursor-default opacity-80'
+                            : !canOpenEvent ? 'cursor-not-allowed opacity-60'
                             : 'hover:bg-brand-primary/5 cursor-pointer'
                           }`}
                         >
                           {event.isComingSoon ?
                             <div className='block p-4'>{EventContent}</div>
-                          : <Link
+                          : canOpenEvent ?
+                            <Link
                               href={`/udalosti/${language}/${event.slug.current}`}
                               className='block p-4'
                             >
                               {EventContent}
                             </Link>
-                          }
+                          : <div className='block p-4'>{EventContent}</div>}
                         </motion.div>
                       )
                     })}
@@ -180,54 +177,93 @@ export function EventsPage({ events, language }: EventsPageProps) {
 
                   <div className='space-y-4'>
                     <AnimatePresence mode='popLayout'>
-                      {pastEvents.map((event) => (
-                        <motion.div
-                          key={event._id}
-                          initial={{ opacity: 0, y: 20 }}
-                          animate={{ opacity: 1, y: 0 }}
-                          exit={{ opacity: 0, x: -20 }}
-                          className='border-brand-primary/15 cursor-not-allowed border bg-transparent opacity-60'
-                        >
-                          <div className='block p-4'>
-                            <div className='flex items-center gap-4'>
-                              <div className='border-brand-primary/10 bg-brand-primary/80 flex min-w-[80px] flex-col items-center justify-center border px-4 py-2'>
-                                <span className='text-brand-action/70 font-mohave text-2xl font-bold'>
-                                  {formatEventDay(event.dateTime, language)}
-                                </span>
-                                <span className='text-brand-action/60 text-xs font-bold tracking-wider uppercase'>
-                                  {formatEventMonthShort(
-                                    event.dateTime,
-                                    language
-                                  )}
-                                </span>
-                                <span className='text-brand-action/35 mt-0.5 text-[0.6rem] font-medium tracking-[0.18em] uppercase'>
-                                  {formatEventYear(event.dateTime, language)}
-                                </span>
-                              </div>
+                      {pastEvents.map((event) => {
+                        const canOpenEvent = eventHasRecap(event)
 
-                              <div className='min-w-0 flex-1'>
-                                <h4 className='text-brand-primary/60 font-mohave mb-2 truncate text-xl font-bold uppercase transition-colors md:text-2xl'>
-                                  {event.title}
-                                </h4>
-                                <div className='text-brand-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
-                                  <div className='flex items-center gap-1.5'>
-                                    <Clock className='h-4 w-4' />
-                                    {formatEventTime(event.dateTime, language)}
-                                    {event.endDateTime &&
-                                      ` - ${formatEventTime(event.endDateTime, language)}`}
+                        return (
+                          <motion.div
+                            key={event._id}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, x: -20 }}
+                            className={`border-brand-primary/15 border bg-transparent opacity-60 ${
+                              canOpenEvent ?
+                                'group hover:bg-brand-primary/5 cursor-pointer transition-colors'
+                              : 'cursor-not-allowed'
+                            }`}
+                          >
+                            {canOpenEvent ?
+                              <Link
+                                href={`/udalosti/${language}/${event.slug.current}`}
+                                className='block p-4'
+                              >
+                                <div className='flex items-stretch gap-4'>
+                                  <div className='border-brand-primary/10 bg-brand-primary/80 flex min-w-[104px] items-center justify-center self-stretch border px-3 py-2 text-center'>
+                                    <span className='text-brand-action/70 text-sm font-semibold whitespace-nowrap md:text-base'>
+                                      {formatEventDateNumeric(event.dateTime)}
+                                    </span>
                                   </div>
-                                  {event.location && (
-                                    <div className='flex items-center gap-1.5'>
-                                      <MapPin className='h-4 w-4' />
-                                      {event.location}
+
+                                  <div className='flex min-w-0 flex-1 flex-col justify-center'>
+                                    <h4 className='text-brand-primary/60 font-mohave mb-2 truncate text-xl font-bold uppercase transition-colors md:text-2xl'>
+                                      {event.title}
+                                    </h4>
+                                    <div className='text-brand-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
+                                      <div className='flex items-center gap-1.5'>
+                                        <Clock className='h-4 w-4' />
+                                        {formatEventTime(
+                                          event.dateTime,
+                                          language
+                                        )}
+                                        {event.endDateTime &&
+                                          ` - ${formatEventTime(event.endDateTime, language)}`}
+                                      </div>
+                                      {event.location && (
+                                        <div className='flex items-center gap-1.5'>
+                                          <MapPin className='h-4 w-4' />
+                                          {event.location}
+                                        </div>
+                                      )}
                                     </div>
-                                  )}
+                                  </div>
+                                </div>
+                              </Link>
+                            : <div className='block p-4'>
+                                <div className='flex items-stretch gap-4'>
+                                  <div className='border-brand-primary/10 bg-brand-primary/80 flex min-w-[104px] items-center justify-center self-stretch border px-3 py-2 text-center'>
+                                    <span className='text-brand-action/70 text-sm font-semibold whitespace-nowrap md:text-base'>
+                                      {formatEventDateNumeric(event.dateTime)}
+                                    </span>
+                                  </div>
+
+                                  <div className='flex min-w-0 flex-1 flex-col justify-center'>
+                                    <h4 className='text-brand-primary/60 font-mohave mb-2 truncate text-xl font-bold uppercase transition-colors md:text-2xl'>
+                                      {event.title}
+                                    </h4>
+                                    <div className='text-brand-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
+                                      <div className='flex items-center gap-1.5'>
+                                        <Clock className='h-4 w-4' />
+                                        {formatEventTime(
+                                          event.dateTime,
+                                          language
+                                        )}
+                                        {event.endDateTime &&
+                                          ` - ${formatEventTime(event.endDateTime, language)}`}
+                                      </div>
+                                      {event.location && (
+                                        <div className='flex items-center gap-1.5'>
+                                          <MapPin className='h-4 w-4' />
+                                          {event.location}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
-                            </div>
-                          </div>
-                        </motion.div>
-                      ))}
+                            }
+                          </motion.div>
+                        )
+                      })}
                     </AnimatePresence>
                   </div>
                 </div>
