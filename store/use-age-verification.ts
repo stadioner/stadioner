@@ -5,15 +5,21 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 
 interface AgeVerificationStore {
   isVerified: boolean
+  isHydrated: boolean
   setVerified: (verified: boolean) => void
+  setHydrated: (hydrated: boolean) => void
 }
 
 export const useAgeVerification = create(
   persist<AgeVerificationStore>(
     (set) => ({
       isVerified: false,
+      isHydrated: false,
       setVerified: (verified: boolean) => {
         set({ isVerified: verified })
+      },
+      setHydrated: (hydrated: boolean) => {
+        set({ isHydrated: hydrated })
       }
     }),
     {
@@ -41,7 +47,10 @@ export const useAgeVerification = create(
           }
         }
         return localStorage
-      })
+      }),
+      onRehydrateStorage: () => (state) => {
+        state?.setHydrated(true)
+      }
     }
   )
 )

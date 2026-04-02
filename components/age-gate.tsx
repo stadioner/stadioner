@@ -8,12 +8,19 @@ import { useCookieConsent } from '@/store/use-cookie-consent'
 import { useLanguage } from '@/store/use-language'
 import { Border } from './border'
 
+const ageGateSessionKey = 'age-verification-session'
+
 export const AgeGate = ({ children }: { children: React.ReactNode }) => {
   const { language } = useLanguage()
-  const { isVerified, setVerified } = useAgeVerification()
-  const { hasConsented } = useCookieConsent()
+  const {
+    isVerified,
+    isHydrated: isAgeStoreHydrated,
+    setVerified
+  } = useAgeVerification()
+  const { hasConsented, isHydrated: isConsentStoreHydrated } =
+    useCookieConsent()
   const [sessionVerified, setSessionVerified] = useState(false)
-  const [isHydrated, setIsHydrated] = useState(false)
+  const [isClientHydrated, setIsClientHydrated] = useState(false)
   const pathname = usePathname()
   const currentPath = pathname ?? ''
   const isExcludedPage =
@@ -22,13 +29,24 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
     currentPath.includes('/studio') ||
     currentPath === '/newsletter'
 
+  const isHydrated =
+    isClientHydrated && isAgeStoreHydrated && isConsentStoreHydrated
   const shouldShowAgeGate = !(isVerified || sessionVerified) && !isExcludedPage
 
   const [open, setOpen] = useState(false)
 
-  // Wait for stores to hydrate before showing age gate
   useEffect(() => {
-    setIsHydrated(true)
+    setIsClientHydrated(true)
+  }, [])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') {
+      return
+    }
+
+    setSessionVerified(
+      window.sessionStorage.getItem(ageGateSessionKey) === 'true'
+    )
   }, [])
 
   useEffect(() => {
@@ -46,21 +64,32 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
   const handleVerify = () => {
     if (hasConsented) {
       setVerified(true)
+      if (typeof window !== 'undefined') {
+        window.sessionStorage.removeItem(ageGateSessionKey)
+      }
     } else {
       setSessionVerified(true)
+      if (typeof window !== 'undefined') {
+        window.sessionStorage.setItem(ageGateSessionKey, 'true')
+      }
     }
     setOpen(false)
   }
 
-  // Pokud není souhlas s cookies, nikdy neukládej ověření a vždy se ptej znovu po reloadu
   useEffect(() => {
+    if (!isHydrated) {
+      return
+    }
+
     if (!hasConsented && isVerified) {
       setVerified(false)
-      setOpen(true)
+      setSessionVerified(true)
+      if (typeof window !== 'undefined') {
+        window.sessionStorage.setItem(ageGateSessionKey, 'true')
+      }
     }
-  }, [hasConsented, isVerified, setVerified])
+  }, [hasConsented, isHydrated, isVerified, setVerified])
 
-  // Don't render anything until hydrated to prevent flash
   if (!isHydrated) {
     return <section className='bg-brand-action'>{children}</section>
   }
