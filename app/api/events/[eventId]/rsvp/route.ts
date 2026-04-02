@@ -70,6 +70,7 @@ const cacheControlHeaders = {
 }
 
 const liveReadClient = client.withConfig({ useCdn: false })
+const readClient = hasSanityWriteToken ? writeClient : liveReadClient
 
 const toVisitorHash = (visitorToken: string): string =>
   createHash('sha256').update(visitorToken).digest('hex')
@@ -77,19 +78,16 @@ const toVisitorHash = (visitorToken: string): string =>
 const getEventIdentity = async (
   eventId: string
 ): Promise<EventIdentity | null> =>
-  liveReadClient.fetch<EventIdentity | null>(eventIdentityByIdQuery, {
+  readClient.fetch<EventIdentity | null>(eventIdentityByIdQuery, {
     eventId
   })
 
 const getUnifiedEventIdentity = async (
   eventId: string
 ): Promise<UnifiedEventIdentity | null> =>
-  liveReadClient.fetch<UnifiedEventIdentity | null>(
-    unifiedEventIdentityByIdQuery,
-    {
-      eventId
-    }
-  )
+  readClient.fetch<UnifiedEventIdentity | null>(unifiedEventIdentityByIdQuery, {
+    eventId
+  })
 
 const toHashSet = (hashes?: string[]): Set<string> =>
   new Set(Array.isArray(hashes) ? hashes.filter(Boolean) : [])
@@ -214,7 +212,7 @@ export async function POST(request: NextRequest, context: RouteContext) {
     const translationKey = legacyEventIdentity?.translationKey
 
     if (translationKey && !unifiedEventIdentity) {
-      const variants = await liveReadClient.fetch<EventIdentity[]>(
+      const variants = await readClient.fetch<EventIdentity[]>(
         eventsByTranslationKeyQuery,
         { translationKey }
       )
@@ -240,7 +238,7 @@ export async function POST(request: NextRequest, context: RouteContext) {
     const eventIds =
       unifiedEventIdentity ? [eventIdentity._id]
       : translationKey ?
-        await liveReadClient.fetch<string[]>(
+        await readClient.fetch<string[]>(
           `*[_type == "event" && translationKey == $translationKey]._id`,
           { translationKey }
         )
