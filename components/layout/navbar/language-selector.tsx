@@ -88,40 +88,6 @@ const getDetailSectionFromPath = (pathname: string): DetailSection | null => {
   return maybeLanguage ? section : null
 }
 
-const isNavigablePath = async (path: string): Promise<boolean> => {
-  if (typeof window === 'undefined') {
-    return false
-  }
-
-  try {
-    const headResponse = await fetch(path, {
-      method: 'HEAD',
-      cache: 'no-store',
-      redirect: 'manual'
-    })
-
-    if (headResponse.status === 405) {
-      const getResponse = await fetch(path, {
-        method: 'GET',
-        cache: 'no-store',
-        redirect: 'manual'
-      })
-
-      return (
-        getResponse.ok ||
-        (getResponse.status >= 300 && getResponse.status < 400)
-      )
-    }
-
-    return (
-      headResponse.ok ||
-      (headResponse.status >= 300 && headResponse.status < 400)
-    )
-  } catch {
-    return false
-  }
-}
-
 export const LanguageSelector = () => {
   useLanguageSync()
   const { language, imgSrc, setLanguage } = useLanguage((state) => state)
@@ -191,17 +157,7 @@ export const LanguageSelector = () => {
                         return
                       }
                       if (alternatePath && detailSection) {
-                        const canNavigateToAlternate =
-                          await isNavigablePath(alternatePath)
-
-                        if (canNavigateToAlternate) {
-                          pushPreservingScroll(alternatePath)
-                          return
-                        }
-
-                        pushPreservingScroll(
-                          `/${value}/${detailSection}${query}`
-                        )
+                        pushPreservingScroll(alternatePath)
                         return
                       }
                       if (detailSection) {

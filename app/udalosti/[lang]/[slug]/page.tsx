@@ -36,6 +36,7 @@ import {
   mapUnifiedEventToEvent
 } from '@/lib/events/unified-event-mapper'
 import { type UnifiedEvent } from '@/types/unified-event'
+import { hasSanityWriteToken, writeClient } from '@/sanity/lib/write-client'
 
 interface Props {
   params: Promise<{ lang: string; slug: string }>
@@ -86,12 +87,16 @@ const resolveEventVariants = async (translationKey?: string) => {
 }
 
 const getUnifiedEvent = async (slug: string): Promise<UnifiedEvent | null> =>
-  sanityFetch<UnifiedEvent | null>({
-    query: unifiedEventByLocalizedSlugQuery,
-    params: { slug },
-    tags: [`events:unified:detail:${slug}`],
-    revalidate: 60
-  })
+  hasSanityWriteToken ?
+    writeClient.fetch<UnifiedEvent | null>(unifiedEventByLocalizedSlugQuery, {
+      slug
+    })
+  : sanityFetch<UnifiedEvent | null>({
+      query: unifiedEventByLocalizedSlugQuery,
+      params: { slug },
+      tags: [`events:unified:detail:${slug}`],
+      revalidate: 60
+    })
 
 const getLocalizedEvent = async (
   slug: string,
@@ -204,11 +209,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const unifiedEvents = await sanityFetch<UnifiedEvent[]>({
-    query: unifiedEventsQuery,
-    tags: ['events:unified:paths'],
-    revalidate: 300
-  })
+  const unifiedEvents =
+    hasSanityWriteToken ?
+      await writeClient.fetch<UnifiedEvent[]>(unifiedEventsQuery)
+    : await sanityFetch<UnifiedEvent[]>({
+        query: unifiedEventsQuery,
+        tags: ['events:unified:paths'],
+        revalidate: 300
+      })
 
   if (unifiedEvents.length > 0) {
     return unifiedEvents.flatMap((event) =>

@@ -17,6 +17,7 @@ import { createLocalizedListingAlternates } from '@/lib/seo/alternates'
 import { type LocalizedSeoLocale } from '@/lib/seo/site'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { type UnifiedEvent } from '@/types/unified-event'
+import { hasSanityWriteToken, writeClient } from '@/sanity/lib/write-client'
 
 interface Props {
   params: Promise<{ lang: string }>
@@ -73,11 +74,14 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
-  const unifiedEvents = await sanityFetch<UnifiedEvent[]>({
-    query: unifiedEventsQuery,
-    tags: ['events:unified:list'],
-    revalidate: 60
-  })
+  const unifiedEvents =
+    hasSanityWriteToken ?
+      await writeClient.fetch<UnifiedEvent[]>(unifiedEventsQuery)
+    : await sanityFetch<UnifiedEvent[]>({
+        query: unifiedEventsQuery,
+        tags: ['events:unified:list'],
+        revalidate: 60
+      })
 
   const mappedUnifiedEvents = unifiedEvents
     .map((event) => mapUnifiedEventToEvent(event, lang as SupportedLanguage))

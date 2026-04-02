@@ -16,6 +16,7 @@ import {
 import { type UnifiedEvent } from '@/types/unified-event'
 import { type UnifiedPost } from '@/types/unified-post'
 import { getUnifiedPostVariants } from '@/lib/blog/unified-post-mapper'
+import { hasSanityWriteToken, writeClient } from '@/sanity/lib/write-client'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
@@ -143,7 +144,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         query: unifiedEventsForSitemapQuery,
         tags: ['events:unified:sitemap'],
         revalidate: 300
-      }).catch(() => [])
+      })
+        .catch(async () =>
+          hasSanityWriteToken ?
+            writeClient.fetch<UnifiedEvent[]>(unifiedEventsForSitemapQuery)
+          : []
+        )
+        .catch(() => [])
 
       if (unifiedEvents.length > 0) {
         return unifiedEvents
