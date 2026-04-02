@@ -121,7 +121,11 @@ const dayToRowKey: Partial<Record<number, OpeningHourRow['key']>> = {
   6: 'sat'
 }
 
-export const PickupPointSection = () => {
+export const PickupPointSection = ({
+  showBottomRippedPaper = true
+}: {
+  showBottomRippedPaper?: boolean
+}) => {
   const language = useLanguage((state) => state.language)
   const currentLanguage = isSupportedLanguage(language) ? language : 'cs'
   const content = contentByLanguage[currentLanguage]
@@ -215,7 +219,7 @@ export const PickupPointSection = () => {
           />
         </Container>
       </div>
-      <RippedPaperSVG />
+      {showBottomRippedPaper ? <RippedPaperSVG /> : null}
     </section>
   )
 }
