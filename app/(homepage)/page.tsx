@@ -5,7 +5,7 @@ import { Intro } from './_components/intro'
 import { About } from './_components/about'
 import { Products } from '@/components/products'
 import { Metadata } from 'next'
-import { OpeningHours } from './_components/opening-hours'
+import { PickupPointSection } from '@/components/pickup-point-section'
 import {
   buildOrganizationSchema,
   buildWebSiteSchema,
@@ -76,7 +76,7 @@ export default async function HomePage() {
           <Products rippedPaper />
         </Suspense>
         <Places />
-        <OpeningHours />
+        <PickupPointSection />
       </main>
       <script
         type='application/ld+json'

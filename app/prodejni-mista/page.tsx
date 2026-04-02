@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
-import { VydejniMisto } from './_components/vydejni-misto'
 import { Intro } from './_components/intro'
 import { buildPageMetadata } from '@/lib/seo/metadata'
+import { PickupPointSection } from '@/components/pickup-point-section'
 
 export const metadata: Metadata = buildPageMetadata({
   title: 'Prodejní místa - Kde koupit naše produkty',
@@ -25,7 +25,7 @@ export default function ProdejniMistaPage() {
   return (
     <main className='bg-brand-primary pt-40'>
       <h1 className='sr-only'>Prodejní místa STADIONER</h1>
-      <VydejniMisto />
+      <PickupPointSection />
       <Intro />
       {/* <PojizdnaProdejna /> */}
     </main>
