@@ -4,6 +4,7 @@ import { cookies } from 'next/headers'
 import { NextRequest, NextResponse } from 'next/server'
 import { client } from '@/sanity/lib/client'
 import { hasSanityWriteToken, writeClient } from '@/sanity/lib/write-client'
+import { isEventPast } from '@/lib/events/date-time'
 
 const RSVP_COOKIE_NAME = 'stadioner-rsvp-id'
 const RSVP_COOKIE_MAX_AGE = 60 * 60 * 24 * 365 * 5
@@ -12,6 +13,8 @@ const eventIdentityByIdQuery = groq`
   *[_type == "event" && _id == $eventId][0]{
     _id,
     translationKey,
+    dateTime,
+    endDateTime,
     rsvpCount,
     rsvpVoterHashes
   }
@@ -20,6 +23,8 @@ const eventIdentityByIdQuery = groq`
 const eventsByTranslationKeyQuery = groq`
   *[_type == "event" && translationKey == $translationKey]{
     _id,
+    dateTime,
+    endDateTime,
     rsvpCount,
     rsvpVoterHashes
   }
@@ -32,6 +37,8 @@ type RouteContext = {
 type EventIdentity = {
   _id: string
   translationKey?: string
+  dateTime?: string
+  endDateTime?: string
   rsvpCount?: number
   rsvpVoterHashes?: string[]
 }
@@ -156,6 +163,13 @@ export async function POST(request: NextRequest, context: RouteContext) {
       return NextResponse.json(
         { error: 'Event not found' },
         { status: 404, headers: cacheControlHeaders }
+      )
+    }
+
+    if (isEventPast(eventIdentity)) {
+      return NextResponse.json(
+        { error: 'Event has already ended' },
+        { status: 409, headers: cacheControlHeaders }
       )
     }
 

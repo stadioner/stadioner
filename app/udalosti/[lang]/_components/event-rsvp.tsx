@@ -6,6 +6,7 @@ import { type SupportedLanguage } from '@/types/blog'
 interface EventRsvpProps {
   eventId: string
   language: SupportedLanguage
+  isPastEvent: boolean
 }
 
 type RsvpResponse = {
@@ -19,6 +20,7 @@ const eventRsvpCopy: Record<
     checkboxLabel: string
     loading: string
     helper: string
+    pastEventHelper: string
     saved: string
     updateError: string
     loadError: string
@@ -29,6 +31,7 @@ const eventRsvpCopy: Record<
     checkboxLabel: 'Zúčastním se akce',
     loading: 'Načítám stav účasti...',
     helper: 'Zaškrtněte, pokud plánujete přijít.',
+    pastEventHelper: 'Účast už nelze měnit, akce proběhla.',
     saved: 'Vaše účast je zaznamenána.',
     updateError: 'Účast se nepodařilo uložit. Zkuste to prosím znovu.',
     loadError: 'Nepodařilo se načíst účastníky.'
@@ -38,6 +41,8 @@ const eventRsvpCopy: Record<
     checkboxLabel: 'I will attend this event',
     loading: 'Loading attendance...',
     helper: 'Check this box if you plan to come.',
+    pastEventHelper:
+      'Attendance can no longer be changed, the event has already taken place.',
     saved: 'Your attendance has been recorded.',
     updateError: 'Could not save attendance. Please try again.',
     loadError: 'Could not load attendance.'
@@ -47,6 +52,8 @@ const eventRsvpCopy: Record<
     checkboxLabel: 'Ich nehme an der Veranstaltung teil',
     loading: 'Teilnahme wird geladen...',
     helper: 'Bitte markieren, wenn Sie teilnehmen möchten.',
+    pastEventHelper:
+      'Die Teilnahme kann nicht mehr geändert werden, die Veranstaltung hat bereits stattgefunden.',
     saved: 'Ihre Teilnahme wurde gespeichert.',
     updateError:
       'Die Teilnahme konnte nicht gespeichert werden. Bitte erneut versuchen.',
@@ -63,7 +70,7 @@ const isRsvpResponse = (value: unknown): value is RsvpResponse => {
   return typeof response.participating === 'boolean'
 }
 
-export function EventRsvp({ eventId, language }: EventRsvpProps) {
+export function EventRsvp({ eventId, language, isPastEvent }: EventRsvpProps) {
   const t = eventRsvpCopy[language]
   const [participating, setParticipating] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
@@ -111,6 +118,10 @@ export function EventRsvp({ eventId, language }: EventRsvpProps) {
   }, [eventId, t.loadError])
 
   const handleToggle = async (nextParticipating: boolean) => {
+    if (isPastEvent) {
+      return
+    }
+
     const previousValue = participating
     setParticipating(nextParticipating)
     setIsUpdating(true)
@@ -155,7 +166,7 @@ export function EventRsvp({ eventId, language }: EventRsvpProps) {
             type='checkbox'
             className='accent-brand-action h-5 w-5 cursor-pointer disabled:cursor-not-allowed'
             checked={participating}
-            disabled={isLoading || isUpdating}
+            disabled={isLoading || isUpdating || isPastEvent}
             onChange={(event) => {
               void handleToggle(event.target.checked)
             }}
@@ -167,6 +178,8 @@ export function EventRsvp({ eventId, language }: EventRsvpProps) {
       <p className='text-brand-action/70 mt-3 text-sm'>
         {isLoading ?
           t.loading
+        : isPastEvent ?
+          t.pastEventHelper
         : participating ?
           t.saved
         : t.helper}

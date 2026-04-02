@@ -19,7 +19,11 @@ import { Event } from '@/types/event'
 import { SupportedLanguage } from '@/types/blog'
 import { type ReactNode } from 'react'
 import { EventRsvp } from './event-rsvp'
-import { formatEventDate, formatEventTime } from '@/lib/events/date-time'
+import {
+  formatEventDate,
+  formatEventTime,
+  isEventPast
+} from '@/lib/events/date-time'
 
 interface EventDetailProps {
   event: Event
@@ -102,6 +106,7 @@ const eventRichTextComponents: PortableTextComponents = {
 export function EventDetail({ event, language }: EventDetailProps) {
   const hasDescription = hasPortableTextContent(event.description)
   const hasRecap = hasPortableTextContent(event.recap)
+  const isPastEvent = isEventPast(event)
   const recapHeading =
     language === 'cs' ? 'Recap akce'
     : language === 'de' ? 'Rückblick auf die Veranstaltung'
@@ -192,6 +197,7 @@ export function EventDetail({ event, language }: EventDetailProps) {
             <EventRsvp
               eventId={event._id}
               language={language}
+              isPastEvent={isPastEvent}
             />
           </div>
         </div>
