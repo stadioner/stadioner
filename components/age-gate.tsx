@@ -15,11 +15,12 @@ export const AgeGate = ({ children }: { children: React.ReactNode }) => {
   const [sessionVerified, setSessionVerified] = useState(false)
   const [isHydrated, setIsHydrated] = useState(false)
   const pathname = usePathname()
+  const currentPath = pathname ?? ''
   const isExcludedPage =
-    pathname === '/rozcestnik' ||
-    pathname === '/qr' ||
-    pathname.includes('/studio') ||
-    pathname === '/newsletter'
+    currentPath === '/rozcestnik' ||
+    currentPath === '/qr' ||
+    currentPath.includes('/studio') ||
+    currentPath === '/newsletter'
 
   const shouldShowAgeGate = !(isVerified || sessionVerified) && !isExcludedPage
 

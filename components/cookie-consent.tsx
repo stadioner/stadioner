@@ -22,6 +22,7 @@ export const CookieConsent = () => {
   const [sessionDeclined, setSessionDeclined] = useState(false)
   const [showDetails, setShowDetails] = useState(false)
   const pathname = usePathname()
+  const currentPath = pathname ?? ''
 
   // Don't render until hydrated to prevent flash
   if (!isHydrated) {
@@ -29,7 +30,7 @@ export const CookieConsent = () => {
   }
 
   // Don't show cookie consent on studio pages
-  if (pathname.includes('/studio')) {
+  if (currentPath.includes('/studio')) {
     return null
   }
 

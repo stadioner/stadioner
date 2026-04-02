@@ -19,10 +19,11 @@ export const NavItem: FC<NavItemProps> = ({
   setIsOpen
 }) => {
   const pathname = usePathname()
+  const currentPath = pathname ?? ''
   const isActive =
     href === '/' ?
-      pathname === '/'
-    : pathname === href || pathname.startsWith(`${href}/`)
+      currentPath === '/'
+    : currentPath === href || currentPath.startsWith(`${href}/`)
 
   return (
     <li

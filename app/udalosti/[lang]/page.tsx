@@ -1,5 +1,8 @@
 import { sanityFetch } from '@/sanity/lib/fetch'
-import { eventsListByLanguageQuery } from '@/sanity/lib/queries'
+import {
+  eventsListByLanguageQuery,
+  unifiedEventsQuery
+} from '@/sanity/lib/queries'
 import { EventsPage } from './_components/events-page'
 import { type SupportedLanguage } from '@/types/blog'
 import { notFound } from 'next/navigation'
@@ -9,9 +12,11 @@ import {
   supportedLanguages
 } from '@/lib/i18n/site-languages'
 import { type Event } from '@/types/event'
+import { mapUnifiedEventToEvent } from '@/lib/events/unified-event-mapper'
 import { createLocalizedListingAlternates } from '@/lib/seo/alternates'
 import { type LocalizedSeoLocale } from '@/lib/seo/site'
 import { buildPageMetadata } from '@/lib/seo/metadata'
+import { type UnifiedEvent } from '@/types/unified-event'
 
 interface Props {
   params: Promise<{ lang: string }>
@@ -68,12 +73,25 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
-  const events = await sanityFetch<Event[]>({
-    query: eventsListByLanguageQuery,
-    params: { language: lang },
-    tags: [`events:list:${lang}`],
+  const unifiedEvents = await sanityFetch<UnifiedEvent[]>({
+    query: unifiedEventsQuery,
+    tags: ['events:unified:list'],
     revalidate: 60
   })
+
+  const mappedUnifiedEvents = unifiedEvents
+    .map((event) => mapUnifiedEventToEvent(event, lang as SupportedLanguage))
+    .filter((event): event is Event => event !== null)
+
+  const events =
+    mappedUnifiedEvents.length > 0 ?
+      mappedUnifiedEvents
+    : await sanityFetch<Event[]>({
+        query: eventsListByLanguageQuery,
+        params: { language: lang },
+        tags: [`events:list:${lang}`],
+        revalidate: 60
+      })
 
   return (
     <>

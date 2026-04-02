@@ -31,6 +31,22 @@ const eventListProjection = `
   recap
 `
 
+const unifiedEventProjection = `
+  _id,
+  _updatedAt,
+  dateTime,
+  endDateTime,
+  location,
+  isComingSoon,
+  mainImage,
+  rsvpCount,
+  rsvpVoterHashes,
+  title,
+  slug,
+  description,
+  recap
+`
+
 // Language-specific queries
 export const postsByLanguageQuery = groq`
   *[_type == "post" && language == $language] | order(publishedAt desc) {${postListProjection}}
@@ -192,4 +208,23 @@ export const eventVariantsByTranslationKeyQuery = groq`
     language,
     "slug": slug.current
   }
+`
+
+export const unifiedEventsQuery = groq`
+  *[_type == "unifiedEvent"] | order(dateTime asc) {${unifiedEventProjection}}
+`
+
+export const unifiedEventByLocalizedSlugQuery = groq`
+  *[
+    _type == "unifiedEvent" &&
+    (
+      slug.cs.current == $slug ||
+      slug.en.current == $slug ||
+      slug.de.current == $slug
+    )
+  ][0] {${unifiedEventProjection}}
+`
+
+export const unifiedEventsForSitemapQuery = groq`
+  *[_type == "unifiedEvent"] | order(dateTime asc) {${unifiedEventProjection}}
 `

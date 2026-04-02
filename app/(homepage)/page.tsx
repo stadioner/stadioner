@@ -76,7 +76,7 @@ export default async function HomePage() {
           <Products rippedPaper />
         </Suspense>
         <Places />
-        <PickupPointSection />
+        <PickupPointSection showBottomRippedPaper={false} />
       </main>
       <script
         type='application/ld+json'

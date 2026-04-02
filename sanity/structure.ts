@@ -1,3 +1,4 @@
+import { CalendarIcon } from '@sanity/icons'
 import type { StructureResolver } from 'sanity/structure'
 import { languages } from './lib/languages'
 
@@ -56,32 +57,17 @@ export const structure: StructureResolver = (S) =>
       // Events organized by language
       S.listItem()
         .title('Events')
+        .icon(CalendarIcon)
         .child(
-          S.list()
-            .title('Events by Language')
-            .items([
-              ...languages.map((lang) =>
-                S.listItem()
-                  .title(`${lang.flag} ${lang.title} Events`)
-                  .child(
-                    S.documentList()
-                      .title(`${lang.title} Events`)
-                      .filter(`_type == "event" && language == "${lang.id}"`)
-                      .defaultOrdering([
-                        { field: 'dateTime', direction: 'asc' }
-                      ])
-                  )
-              ),
-              S.divider(),
-              S.listItem()
-                .title('All Events')
-                .child(S.documentTypeList('event'))
-            ])
+          S.documentTypeList('unifiedEvent').defaultOrdering([
+            { field: 'dateTime', direction: 'asc' }
+          ])
         ),
 
       S.divider(),
       ...S.documentTypeListItems().filter(
         (item) =>
-          item.getId() && !['post', 'category', 'event'].includes(item.getId()!)
+          item.getId() &&
+          !['post', 'category', 'event', 'unifiedEvent'].includes(item.getId()!)
       )
     ])

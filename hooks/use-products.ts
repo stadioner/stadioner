@@ -14,6 +14,7 @@ type CategoryKey = 'pivo' | 'limo' | 'voda'
 export const useProducts = (activeLang: Language) => {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const currentSearchParams = searchParams ?? new URLSearchParams()
   const [selectedCategory, setSelectedCategory] = useState<CategoryKey>('pivo')
   const [current, setCurrent] = useState(0)
   const [availabilityBySlug, setAvailabilityBySlug] = useState<
@@ -27,8 +28,10 @@ export const useProducts = (activeLang: Language) => {
   const filteredProducts = productMap[selectedCategory] || []
 
   useEffect(() => {
-    const productSlug = searchParams.get('produkt')
-    const categoryParam = searchParams.get('kategorie') as CategoryKey | null
+    const productSlug = currentSearchParams.get('produkt')
+    const categoryParam = currentSearchParams.get(
+      'kategorie'
+    ) as CategoryKey | null
 
     if (categoryParam && categoryParam in productMap) {
       setSelectedCategory(categoryParam)
@@ -45,7 +48,7 @@ export const useProducts = (activeLang: Language) => {
       }
     }
     setCurrent(idx)
-  }, [searchParams, productMap, selectedCategory])
+  }, [currentSearchParams, productMap, selectedCategory])
 
   const updateURL = (productIndex: number, category?: CategoryKey) => {
     const targetCategory = (category || selectedCategory) as CategoryKey
@@ -56,7 +59,7 @@ export const useProducts = (activeLang: Language) => {
     )
     const product = targetFilteredProducts[safeIndex]
     if (!product) return
-    const params = new URLSearchParams(searchParams.toString())
+    const params = new URLSearchParams(currentSearchParams.toString())
     params.set('produkt', product.slug)
     params.set('kategorie', targetCategory)
     router.push(`?${params.toString()}`, { scroll: false })

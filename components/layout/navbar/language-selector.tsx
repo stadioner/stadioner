@@ -106,6 +106,7 @@ const isNavigablePath = async (path: string): Promise<boolean> => {
         cache: 'no-store',
         redirect: 'manual'
       })
+
       return (
         getResponse.ok ||
         (getResponse.status >= 300 && getResponse.status < 400)
@@ -125,6 +126,7 @@ export const LanguageSelector = () => {
   useLanguageSync()
   const { language, imgSrc, setLanguage } = useLanguage((state) => state)
   const pathname = usePathname()
+  const currentPath = pathname ?? '/'
   const router = useRouter()
   const pushPreservingScroll = (targetPath: string) => {
     router.push(targetPath, { scroll: false })
@@ -180,7 +182,8 @@ export const LanguageSelector = () => {
                         typeof window !== 'undefined' ?
                           window.location.hash
                         : ''
-                      const detailSection = getDetailSectionFromPath(pathname)
+                      const detailSection =
+                        getDetailSectionFromPath(currentPath)
 
                       const alternatePath = getAlternatePathForLocale(value)
                       if (alternatePath && !detailSection) {
@@ -190,6 +193,7 @@ export const LanguageSelector = () => {
                       if (alternatePath && detailSection) {
                         const canNavigateToAlternate =
                           await isNavigablePath(alternatePath)
+
                         if (canNavigateToAlternate) {
                           pushPreservingScroll(alternatePath)
                           return
@@ -207,13 +211,15 @@ export const LanguageSelector = () => {
                         return
                       }
 
-                      const pathSegments = pathname.split('/').filter(Boolean)
+                      const pathSegments = currentPath
+                        .split('/')
+                        .filter(Boolean)
                       const [firstSegment, ...remainingSegments] = pathSegments
 
                       const normalizedPath =
                         isSupportedLanguage(firstSegment) ?
                           `/${remainingSegments.join('/')}`
-                        : pathname
+                        : currentPath
 
                       const basePath =
                         normalizedPath === '/' ? '' : normalizedPath

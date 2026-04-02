@@ -20,6 +20,16 @@ const eventIdentityByIdQuery = groq`
   }
 `
 
+const unifiedEventIdentityByIdQuery = groq`
+  *[_type == "unifiedEvent" && _id == $eventId][0]{
+    _id,
+    dateTime,
+    endDateTime,
+    rsvpCount,
+    rsvpVoterHashes
+  }
+`
+
 const eventsByTranslationKeyQuery = groq`
   *[_type == "event" && translationKey == $translationKey]{
     _id,
@@ -37,6 +47,14 @@ type RouteContext = {
 type EventIdentity = {
   _id: string
   translationKey?: string
+  dateTime?: string
+  endDateTime?: string
+  rsvpCount?: number
+  rsvpVoterHashes?: string[]
+}
+
+type UnifiedEventIdentity = {
+  _id: string
   dateTime?: string
   endDateTime?: string
   rsvpCount?: number
@@ -62,6 +80,16 @@ const getEventIdentity = async (
   liveReadClient.fetch<EventIdentity | null>(eventIdentityByIdQuery, {
     eventId
   })
+
+const getUnifiedEventIdentity = async (
+  eventId: string
+): Promise<UnifiedEventIdentity | null> =>
+  liveReadClient.fetch<UnifiedEventIdentity | null>(
+    unifiedEventIdentityByIdQuery,
+    {
+      eventId
+    }
+  )
 
 const toHashSet = (hashes?: string[]): Set<string> =>
   new Set(Array.isArray(hashes) ? hashes.filter(Boolean) : [])
@@ -109,7 +137,10 @@ const readVisitorToken = async (): Promise<string | null> => {
 export async function GET(_request: NextRequest, context: RouteContext) {
   try {
     const eventId = await getEventIdFromContext(context)
-    const eventIdentity = await getEventIdentity(eventId)
+    const unifiedEventIdentity = await getUnifiedEventIdentity(eventId)
+    const legacyEventIdentity =
+      unifiedEventIdentity ? null : await getEventIdentity(eventId)
+    const eventIdentity = unifiedEventIdentity ?? legacyEventIdentity
 
     if (!eventIdentity) {
       return NextResponse.json({ error: 'Event not found' }, { status: 404 })
@@ -157,7 +188,10 @@ export async function POST(request: NextRequest, context: RouteContext) {
     }
 
     const eventId = await getEventIdFromContext(context)
-    const eventIdentity = await getEventIdentity(eventId)
+    const unifiedEventIdentity = await getUnifiedEventIdentity(eventId)
+    const legacyEventIdentity =
+      unifiedEventIdentity ? null : await getEventIdentity(eventId)
+    const eventIdentity = unifiedEventIdentity ?? legacyEventIdentity
 
     if (!eventIdentity) {
       return NextResponse.json(
@@ -177,10 +211,12 @@ export async function POST(request: NextRequest, context: RouteContext) {
     const visitorHash = toVisitorHash(visitorToken)
     let hashSet = toHashSet(eventIdentity.rsvpVoterHashes)
 
-    if (eventIdentity.translationKey) {
+    const translationKey = legacyEventIdentity?.translationKey
+
+    if (translationKey && !unifiedEventIdentity) {
       const variants = await liveReadClient.fetch<EventIdentity[]>(
         eventsByTranslationKeyQuery,
-        { translationKey: eventIdentity.translationKey }
+        { translationKey }
       )
 
       hashSet = variants.reduce<Set<string>>((acc, item) => {
@@ -202,10 +238,11 @@ export async function POST(request: NextRequest, context: RouteContext) {
     const count = nextHashes.length
 
     const eventIds =
-      eventIdentity.translationKey ?
+      unifiedEventIdentity ? [eventIdentity._id]
+      : translationKey ?
         await liveReadClient.fetch<string[]>(
           `*[_type == "event" && translationKey == $translationKey]._id`,
-          { translationKey: eventIdentity.translationKey }
+          { translationKey }
         )
       : [eventIdentity._id]
 

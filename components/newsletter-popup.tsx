@@ -18,6 +18,7 @@ import {
 export const NewsletterPopup = () => {
   const { language } = useLanguage()
   const pathname = usePathname()
+  const currentPath = pathname ?? ''
   const [isVisible, setIsVisible] = useState(false)
 
   const handleClose = () => {
@@ -36,7 +37,10 @@ export const NewsletterPopup = () => {
 
   useEffect(() => {
     // Don't show popup on newsletter or studio pages
-    if (pathname.endsWith('/newsletter') || pathname.includes('/studio')) {
+    if (
+      currentPath.endsWith('/newsletter') ||
+      currentPath.includes('/studio')
+    ) {
       return
     }
 
@@ -62,7 +66,7 @@ export const NewsletterPopup = () => {
     }, 10000)
 
     return () => clearTimeout(timer)
-  }, [pathname])
+  }, [currentPath])
 
   if (!isVisible) return null
 

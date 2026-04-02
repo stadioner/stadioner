@@ -2,7 +2,9 @@ import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   eventVariantsByTranslationKeyQuery,
   eventBySlugQuery,
-  eventsPathsByLanguageQuery
+  eventsPathsByLanguageQuery,
+  unifiedEventByLocalizedSlugQuery,
+  unifiedEventsQuery
 } from '@/sanity/lib/queries'
 import { type SupportedLanguage } from '@/types/blog'
 import { notFound } from 'next/navigation'
@@ -29,6 +31,11 @@ import {
   portableTextToPlainText
 } from '@/lib/seo/schema'
 import { canAccessEventDetail } from '@/lib/events/visibility'
+import {
+  getUnifiedEventVariants,
+  mapUnifiedEventToEvent
+} from '@/lib/events/unified-event-mapper'
+import { type UnifiedEvent } from '@/types/unified-event'
 
 interface Props {
   params: Promise<{ lang: string; slug: string }>
@@ -78,6 +85,51 @@ const resolveEventVariants = async (translationKey?: string) => {
   )
 }
 
+const getUnifiedEvent = async (slug: string): Promise<UnifiedEvent | null> =>
+  sanityFetch<UnifiedEvent | null>({
+    query: unifiedEventByLocalizedSlugQuery,
+    params: { slug },
+    tags: [`events:unified:detail:${slug}`],
+    revalidate: 60
+  })
+
+const getLocalizedEvent = async (
+  slug: string,
+  language: SupportedLanguage
+): Promise<{
+  event: Event
+  variants: Array<{ locale: LocalizedSeoLocale; slug: string }>
+} | null> => {
+  const unifiedEvent = await getUnifiedEvent(slug)
+
+  if (unifiedEvent) {
+    const mappedEvent = mapUnifiedEventToEvent(unifiedEvent, language)
+
+    if (mappedEvent) {
+      return {
+        event: mappedEvent,
+        variants: getUnifiedEventVariants(unifiedEvent)
+      }
+    }
+  }
+
+  const legacyEvent = await sanityFetch<Event | null>({
+    query: eventBySlugQuery,
+    params: { slug, language },
+    tags: [`events:detail:${language}:${slug}`],
+    revalidate: 60
+  })
+
+  if (!legacyEvent) {
+    return null
+  }
+
+  return {
+    event: legacyEvent,
+    variants: await resolveEventVariants(legacyEvent.translationKey)
+  }
+}
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang, slug } = await params
 
@@ -87,18 +139,18 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const event = await sanityFetch<Event | null>({
-    query: eventBySlugQuery,
-    params: { slug, language: lang },
-    tags: [`events:detail:${lang}:${slug}`],
-    revalidate: 60
-  })
+  const localizedEvent = await getLocalizedEvent(
+    slug,
+    lang as SupportedLanguage
+  )
 
-  if (!event) {
+  if (!localizedEvent) {
     return {
       title: 'Event Not Found'
     }
   }
+
+  const { event, variants } = localizedEvent
 
   if (!canAccessEventDetail(event)) {
     return {
@@ -112,7 +164,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     portableTextToPlainText(event.recap) ||
     title
   const imageUrl = getEventImageUrl(event)
-  const variants = await resolveEventVariants(event.translationKey)
   const alternates = createLocalizedDetailAlternatesFromVariants(
     'udalosti',
     lang,
@@ -153,6 +204,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
+  const unifiedEvents = await sanityFetch<UnifiedEvent[]>({
+    query: unifiedEventsQuery,
+    tags: ['events:unified:paths'],
+    revalidate: 300
+  })
+
+  if (unifiedEvents.length > 0) {
+    return unifiedEvents.flatMap((event) =>
+      getUnifiedEventVariants(event).map((variant) => ({
+        lang: variant.locale,
+        slug: variant.slug
+      }))
+    )
+  }
+
   const allPaths = await Promise.all(
     supportedLanguages.map(async (lang) => {
       const events = await sanityFetch<{ params: { slug: string } }[]>({
@@ -183,16 +249,16 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
-  const event = await sanityFetch<Event | null>({
-    query: eventBySlugQuery,
-    params: { slug, language: lang },
-    tags: [`events:detail:${lang}:${slug}`],
-    revalidate: 60
-  })
+  const localizedEvent = await getLocalizedEvent(
+    slug,
+    lang as SupportedLanguage
+  )
 
-  if (!event) {
+  if (!localizedEvent) {
     notFound()
   }
+
+  const { event } = localizedEvent
 
   if (!canAccessEventDetail(event)) {
     notFound()

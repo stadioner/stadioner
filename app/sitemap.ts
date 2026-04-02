@@ -2,11 +2,17 @@ import { MetadataRoute } from 'next'
 import { sanityFetch } from '@/sanity/lib/fetch'
 import {
   eventsForSitemapByLanguageQuery,
-  postsForSitemapByLanguageQuery
+  postsForSitemapByLanguageQuery,
+  unifiedEventsForSitemapQuery
 } from '@/sanity/lib/queries'
 import { canAccessEventDetail } from '@/lib/events/visibility'
 import { localizedSeoLocales, toAbsoluteUrl } from '@/lib/seo/site'
 import { type PortableTextBlock } from 'sanity'
+import {
+  getLocalizedRecap,
+  getUnifiedEventVariants
+} from '@/lib/events/unified-event-mapper'
+import { type UnifiedEvent } from '@/types/unified-event'
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const now = new Date()
@@ -99,6 +105,52 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const eventsByLanguage = await Promise.all(
     localizedSeoLocales.map(async (lang) => {
+      const unifiedEvents = await sanityFetch<UnifiedEvent[]>({
+        query: unifiedEventsForSitemapQuery,
+        tags: ['events:unified:sitemap'],
+        revalidate: 300
+      }).catch(() => [])
+
+      if (unifiedEvents.length > 0) {
+        return unifiedEvents
+          .filter((event) =>
+            getUnifiedEventVariants(event).some(
+              (variant) => variant.locale === lang
+            )
+          )
+          .filter((event) =>
+            canAccessEventDetail(
+              {
+                dateTime: event.dateTime,
+                endDateTime: event.endDateTime,
+                recap: getLocalizedRecap(event, lang)
+              },
+              now
+            )
+          )
+          .map((event) => {
+            const variant = getUnifiedEventVariants(event).find(
+              (item) => item.locale === lang
+            )
+
+            if (!variant) {
+              return null
+            }
+
+            return createEntry(
+              `/${lang}/udalosti/${variant.slug}`,
+              'weekly',
+              0.6,
+              event._updatedAt ? new Date(event._updatedAt)
+              : event.endDateTime ? new Date(event.endDateTime)
+              : new Date(event.dateTime)
+            )
+          })
+          .filter(
+            (event): event is MetadataRoute.Sitemap[number] => event !== null
+          )
+      }
+
       const events =
         (await sanityFetch<
           {
