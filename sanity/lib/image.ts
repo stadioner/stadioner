@@ -9,3 +9,8 @@ const builder = createImageUrlBuilder({ projectId, dataset })
 export const urlFor = (source: SanityImageSource) => {
   return builder.image(source).url()
 }
+
+/** Portable text body: whole image visible (no hotspot/crop rectangle), capped width. */
+export const urlForPortableBodyImage = (source: SanityImageSource) => {
+  return builder.image(source).width(1600).fit('max').auto('format').url()
+}

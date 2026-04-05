@@ -1,5 +1,6 @@
 import type { PortableTextComponents } from '@portabletext/react'
-import { urlFor } from '@/sanity/lib/image'
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
+import { urlForPortableBodyImage } from '@/sanity/lib/image'
 import Image from 'next/image'
 import {
   createPortableTextListComponents,
@@ -9,19 +10,29 @@ import {
 import Link from 'next/link'
 import { PropsWithChildren } from 'react'
 
+type BodyImageValue = SanityImageSource & { alt?: string }
+
 export const RichText: PortableTextComponents = {
   types: {
-    image: ({ value }: { value: string }) => (
-      <div className='relative mb-10 aspect-video overflow-hidden'>
-        <Image
-          src={urlFor(value)}
-          alt='Blog Post Image'
-          fill
-          sizes='100vw'
-          className='object-cover'
-        />
-      </div>
-    )
+    image: ({ value }: { value: BodyImageValue }) => {
+      const alt =
+        typeof value.alt === 'string' && value.alt.length > 0 ?
+          value.alt
+        : 'Article image'
+
+      return (
+        <figure className='my-10 w-full'>
+          <Image
+            src={urlForPortableBodyImage(value)}
+            alt={alt}
+            width={1600}
+            height={1200}
+            sizes='(max-width: 768px) 100vw, min(896px, 85vw)'
+            className='h-auto w-full max-w-full object-contain'
+          />
+        </figure>
+      )
+    }
   },
 
   ...createPortableTextListComponents({
