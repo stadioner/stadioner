@@ -191,38 +191,44 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export async function generateStaticParams() {
-  const unifiedPosts = await sanityFetch<UnifiedPost[]>({
-    query: unifiedPostsQuery,
-    tags: ['blog:unified:paths'],
-    revalidate: 300
-  })
-
-  if (unifiedPosts.length > 0) {
-    return unifiedPosts.flatMap((post) =>
-      getUnifiedPostVariants(post).map((variant) => ({
-        lang: variant.locale,
-        slug: variant.slug
-      }))
-    )
-  }
-
-  const allPaths = await Promise.all(
-    supportedLanguages.map(async (lang) => {
-      const posts = await sanityFetch<{ params: { slug: string } }[]>({
+  const [unifiedPosts, ...legacyPostsByLang] = await Promise.all([
+    sanityFetch<UnifiedPost[]>({
+      query: unifiedPostsQuery,
+      tags: ['blog:unified:paths'],
+      revalidate: 300
+    }),
+    ...supportedLanguages.map((lang) =>
+      sanityFetch<{ params: { slug: string } }[]>({
         query: postsPathsByLanguageQuery,
         params: { language: lang },
         tags: [`blog:paths:${lang}`],
         revalidate: 300
       })
+    )
+  ])
 
-      return posts.map((post: { params: { slug: string } }) => ({
+  const paramKey = (p: { lang: string; slug: string }) => `${p.lang}:${p.slug}`
+
+  const fromUnified = unifiedPosts.flatMap((post) =>
+    getUnifiedPostVariants(post).map((variant) => ({
+      lang: variant.locale,
+      slug: variant.slug
+    }))
+  )
+
+  const unifiedKeys = new Set(fromUnified.map(paramKey))
+
+  const fromLegacy = supportedLanguages.flatMap((lang, index) => {
+    const posts = legacyPostsByLang[index] ?? []
+    return posts
+      .map((post: { params: { slug: string } }) => ({
         lang,
         slug: post.params.slug
       }))
-    })
-  )
+      .filter((p) => !unifiedKeys.has(paramKey(p)))
+  })
 
-  return allPaths.flat()
+  return [...fromUnified, ...fromLegacy]
 }
 
 // Enable ISR with 60 second revalidation

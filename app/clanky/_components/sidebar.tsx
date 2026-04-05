@@ -8,6 +8,7 @@ import { urlFor } from '@/sanity/lib/image'
 import { Facebook, Instagram } from 'lucide-react'
 import { NewsletterMiniForm } from './newsletter-mini-form'
 import { type UnifiedPost } from '@/types/unified-post'
+import { mergeUnifiedAndLegacyPosts } from '@/lib/blog/merge-unified-legacy'
 import { mapUnifiedPostToPost } from '@/lib/blog/unified-post-mapper'
 
 interface SidebarProps {
@@ -35,33 +36,37 @@ const t = {
   }
 } as const
 
+const recentCandidatesLimit = 24
+
 export const Sidebar = async ({ language }: SidebarProps) => {
-  const unifiedRecentPosts = await sanityFetch<UnifiedPost[]>({
-    query: unifiedRecentPostsQuery,
-    params: {
-      limit: 12
-    },
-    tags: ['blog:unified:recent'],
-    revalidate: 120
-  })
+  const [unifiedRecentPosts, legacyRecentPosts] = await Promise.all([
+    sanityFetch<UnifiedPost[]>({
+      query: unifiedRecentPostsQuery,
+      params: {
+        limit: recentCandidatesLimit
+      },
+      tags: ['blog:unified:recent'],
+      revalidate: 120
+    }),
+    sanityFetch<Post[]>({
+      query: recentPostsQuery,
+      params: {
+        language,
+        limit: recentCandidatesLimit
+      },
+      tags: [`blog:recent:${language}`],
+      revalidate: 120
+    })
+  ])
 
   const mappedUnifiedPosts = unifiedRecentPosts
     .map((post) => mapUnifiedPostToPost(post, language))
     .filter((post): post is Post => post !== null)
-    .slice(0, 2)
 
-  const recentPosts =
-    mappedUnifiedPosts.length > 0 ?
-      mappedUnifiedPosts
-    : await sanityFetch<Post[]>({
-        query: recentPostsQuery,
-        params: {
-          language,
-          limit: 2
-        },
-        tags: [`blog:recent:${language}`],
-        revalidate: 120
-      })
+  const recentPosts = mergeUnifiedAndLegacyPosts(
+    mappedUnifiedPosts,
+    legacyRecentPosts
+  ).slice(0, 2)
 
   return (
     <Border className='mt-8 ml-auto h-min max-w-[370px] self-start lg:sticky lg:top-28 lg:max-h-[calc(100vh-6rem)] lg:overflow-hidden'>

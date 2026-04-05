@@ -18,6 +18,10 @@ import { createLocalizedListingAlternates } from '@/lib/seo/alternates'
 import { type LocalizedSeoLocale } from '@/lib/seo/site'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import {
+  mergeUnifiedAndLegacyCategories,
+  mergeUnifiedAndLegacyPosts
+} from '@/lib/blog/merge-unified-legacy'
+import {
   mapUnifiedCategoryToCategory,
   mapUnifiedPostToPost
 } from '@/lib/blog/unified-post-mapper'
@@ -80,7 +84,7 @@ export default async function Page({ params }: Props) {
     notFound()
   }
 
-  const [posts, categories] = await Promise.all([
+  const [posts, categories, legacyPosts, legacyCategories] = await Promise.all([
     sanityFetch<UnifiedPost[]>({
       query: unifiedPostsQuery,
       tags: ['blog:unified:posts:list'],
@@ -89,6 +93,18 @@ export default async function Page({ params }: Props) {
     sanityFetch<UnifiedCategory[]>({
       query: unifiedCategoriesQuery,
       tags: ['blog:unified:categories:list'],
+      revalidate: 300
+    }),
+    sanityFetch<Post[]>({
+      query: postsListByLanguageQuery,
+      params: { language: lang },
+      tags: [`blog:posts:${lang}`],
+      revalidate: 60
+    }),
+    sanityFetch<Category[]>({
+      query: categoriesByLanguageQuery,
+      params: { language: lang },
+      tags: [`blog:categories:${lang}`],
       revalidate: 300
     })
   ])
@@ -102,25 +118,14 @@ export default async function Page({ params }: Props) {
     )
     .filter((category): category is Category => category !== null)
 
-  const resolvedPosts =
-    mappedUnifiedPosts.length > 0 ?
-      mappedUnifiedPosts
-    : await sanityFetch<Post[]>({
-        query: postsListByLanguageQuery,
-        params: { language: lang },
-        tags: [`blog:posts:${lang}`],
-        revalidate: 60
-      })
-
-  const resolvedCategories =
-    mappedUnifiedCategories.length > 0 ?
-      mappedUnifiedCategories
-    : await sanityFetch<Category[]>({
-        query: categoriesByLanguageQuery,
-        params: { language: lang },
-        tags: [`blog:categories:${lang}`],
-        revalidate: 300
-      })
+  const resolvedPosts = mergeUnifiedAndLegacyPosts(
+    mappedUnifiedPosts,
+    legacyPosts
+  )
+  const resolvedCategories = mergeUnifiedAndLegacyCategories(
+    mappedUnifiedCategories,
+    legacyCategories
+  )
 
   return (
     <main className='bg-brand-primary pt-32 pb-28 md:pt-40'>

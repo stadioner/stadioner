@@ -83,58 +83,70 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const postsByLanguage = await Promise.all(
     localizedSeoLocales.map(async (lang) => {
-      const unifiedPosts = await sanityFetch<UnifiedPost[]>({
-        query: unifiedPostsForSitemapQuery,
-        tags: ['blog:unified:sitemap'],
-        revalidate: 300
-      }).catch(() => [])
-
-      if (unifiedPosts.length > 0) {
-        return unifiedPosts
-          .map((post) => {
-            const variant = getUnifiedPostVariants(post).find(
-              (item) => item.locale === lang
-            )
-
-            if (!variant) {
-              return null
-            }
-
-            return createEntry(
-              `/${lang}/clanky/${variant.slug}`,
-              'weekly',
-              0.6,
-              post._updatedAt ? new Date(post._updatedAt)
-              : post.publishedAt ? new Date(post.publishedAt)
-              : now
-            )
-          })
-          .filter(
-            (post): post is MetadataRoute.Sitemap[number] => post !== null
-          )
-      }
-
-      const posts =
-        (await sanityFetch<
-          {
-            slug: { current: string }
-            publishedAt?: string
-          }[]
-        >({
-          query: postsForSitemapByLanguageQuery,
-          params: { language: lang },
-          tags: [`blog:sitemap:${lang}`],
+      const [unifiedPosts, legacyPosts] = await Promise.all([
+        sanityFetch<UnifiedPost[]>({
+          query: unifiedPostsForSitemapQuery,
+          tags: ['blog:unified:sitemap'],
           revalidate: 300
-        }).catch(() => [])) ?? []
+        }).catch(() => []),
+        (
+          await sanityFetch<
+            {
+              slug: { current: string }
+              publishedAt?: string
+            }[]
+          >({
+            query: postsForSitemapByLanguageQuery,
+            params: { language: lang },
+            tags: [`blog:sitemap:${lang}`],
+            revalidate: 300
+          }).catch(() => [])
+        ) ?? []
+      ])
 
-      return posts.map((post) =>
-        createEntry(
-          `/${lang}/clanky/${post.slug.current}`,
-          'weekly',
-          0.6,
-          post.publishedAt ? new Date(post.publishedAt) : now
+      const unifiedSlugsForLang = new Set(
+        unifiedPosts.flatMap((post) =>
+          getUnifiedPostVariants(post)
+            .filter((item) => item.locale === lang)
+            .map((item) => item.slug)
         )
       )
+
+      const fromUnified = unifiedPosts
+        .map((post) => {
+          const variant = getUnifiedPostVariants(post).find(
+            (item) => item.locale === lang
+          )
+
+          if (!variant) {
+            return null
+          }
+
+          return createEntry(
+            `/${lang}/clanky/${variant.slug}`,
+            'weekly',
+            0.6,
+            post._updatedAt ? new Date(post._updatedAt)
+            : post.publishedAt ? new Date(post.publishedAt)
+            : now
+          )
+        })
+        .filter(
+          (post): post is MetadataRoute.Sitemap[number] => post !== null
+        )
+
+      const fromLegacy = legacyPosts
+        .filter((post) => !unifiedSlugsForLang.has(post.slug.current))
+        .map((post) =>
+          createEntry(
+            `/${lang}/clanky/${post.slug.current}`,
+            'weekly',
+            0.6,
+            post.publishedAt ? new Date(post.publishedAt) : now
+          )
+        )
+
+      return [...fromUnified, ...fromLegacy]
     })
   )
 
