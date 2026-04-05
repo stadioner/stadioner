@@ -57,6 +57,10 @@ export const mapUnifiedPostToPost = (
     categories:
       unifiedPost.categories
         ?.map((category) => {
+          if (category == null || typeof category !== 'object') {
+            return null
+          }
+
           if (!('title' in category) || !('slug' in category)) {
             return null
           }
