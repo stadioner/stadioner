@@ -164,8 +164,9 @@ export const Posts = ({ posts, categories, language }: PostsProps) => {
                     className='absolute inset-0 aspect-square overflow-hidden object-cover transition hover:scale-[102%]'
                   />
 
-                  <div className='absolute top-0 left-0 flex flex-col gap-1'>
+                  <div className='pointer-events-none absolute top-0 left-0 z-10 flex flex-col gap-1'>
                     {post.categories &&
+                      post.categories.length > 0 &&
                       post.categories.map((category, index) => (
                         <p
                           key={category._id || `category-${index}`}

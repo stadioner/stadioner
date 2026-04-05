@@ -48,7 +48,7 @@ export const unifiedPostType = defineType({
       of: [
         defineArrayMember({
           type: 'reference',
-          to: [{ type: 'unifiedCategory' }]
+          to: [{ type: 'unifiedCategory' }, { type: 'category' }]
         })
       ]
     }),

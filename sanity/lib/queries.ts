@@ -15,9 +15,15 @@ const unifiedCategoryProjection = `
   slug
 `
 
+// Resolves both unifiedCategory and legacy category references (see unifiedPost schema).
 const unifiedPostCategoryProjection = `
   categories[]->{
-    ${unifiedCategoryProjection}
+    _id,
+    _updatedAt,
+    _type,
+    title,
+    slug,
+    language
   }
 `
 
