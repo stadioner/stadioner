@@ -10,20 +10,12 @@ const blogListTags = [
   'blog:unified:sitemap'
 ] as const
 
-type SlugField =
-  | { current?: string }
-  | {
-      cs?: { current?: string }
-      en?: { current?: string }
-      de?: { current?: string }
-    }
-
 const collectSlugStrings = (slug: unknown): string[] => {
   if (!slug || typeof slug !== 'object') {
     return []
   }
 
-  const s = slug as SlugField
+  const s = slug as Record<string, unknown>
   const out: string[] = []
 
   if ('current' in s && typeof s.current === 'string' && s.current.length > 0) {
