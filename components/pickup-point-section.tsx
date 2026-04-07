@@ -41,7 +41,7 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       'Zálohy: lahev 5 Kč, bedna 100 Kč, sud (30L, 50L) 1500 Kč, sud (10L, 20.5L) 2000 Kč',
     paymentInfo: 'Platba možná na místě v hotovosti i kartou.',
     taproomNote:
-      'Od 3. 4. 2026 je na výdejním místě otevřen i výčep, a to ve stejné otevírací době jako výdejní místo. Na čepu je Hvozdář 12°, Safář 15° a žhavá novinka Atlet 8°. Informace o tom, jaké pivo a kdy bude na čepu, najdete na našich sociálních sítích.',
+      'Od 3. 4. 2026 je na výdejním místě otevřen i výčep, a to ve stejné otevírací době jako výdejní místo. Na čepu je Atlet 8°. Informace o tom, jaké pivo a kdy bude na čepu, najdete na našich sociálních sítích.',
     openingHoursTitle: 'Otevírací doba',
     openingHours: [
       { key: 'mon', label: 'Pondělí', value: 'ZAVŘENO', closed: true },
@@ -67,7 +67,7 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       'Deposits: bottle 5 CZK, crate 100 CZK, keg (30L, 50L) 1500 CZK, keg (10L, 20.5L) 2000 CZK',
     paymentInfo: 'Payment on site is possible both in cash and by card.',
     taproomNote:
-      'From April 3, 2026, a taproom is also open at the pickup point during the same opening hours as the pickup point. On tap you can find Hvozdar 12°, Safar 15°, and the hot new Atlet 8°. Updates on which beer will be on tap and when will be shared on our social media.',
+      'From April 3, 2026, a taproom is also open at the pickup point during the same opening hours as the pickup point. On tap you can find Atlet 8°. Updates on which beer will be on tap and when will be shared on our social media.',
     openingHoursTitle: 'Opening hours',
     openingHours: [
       { key: 'mon', label: 'Monday', value: 'CLOSED', closed: true },
@@ -93,7 +93,7 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       'Pfand: Flasche 5 CZK, Kiste 100 CZK, Fass (30L, 50L) 1500 CZK, Fass (10L, 20.5L) 2000 CZK',
     paymentInfo: 'Zahlung vor Ort ist bar oder mit Karte möglich.',
     taproomNote:
-      'Ab dem 3. 4. 2026 ist an der Abholstelle auch ein Ausschank geöffnet, und zwar zu denselben Öffnungszeiten wie die Abholstelle. Vom Fass gibt es Hvozdar 12°, Safar 15° und die heiße Neuheit Atlet 8°. Informationen dazu, welches Bier wann vom Fass ausgeschenkt wird, finden Sie in unseren sozialen Netzwerken.',
+      'Ab dem 3. 4. 2026 ist an der Abholstelle auch ein Ausschank geöffnet, und zwar zu denselben Öffnungszeiten wie die Abholstelle. Vom Fass gibt es Atlet 8°. Informationen dazu, welches Bier wann vom Fass ausgeschenkt wird, finden Sie in unseren sozialen Netzwerken.',
     openingHoursTitle: 'Öffnungszeiten',
     openingHours: [
       { key: 'mon', label: 'Montag', value: 'GESCHLOSSEN', closed: true },
