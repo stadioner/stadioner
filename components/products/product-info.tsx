@@ -62,7 +62,7 @@ export const ProductInfo = ({
               {product.name}
             </motion.h2>
           </AnimatePresence>
-          {!hideBuyButton && (
+          {!hideBuyButton && product.ingredients ?
             <div className='flex items-center gap-2'>
               <Dialog>
                 <DialogTrigger className='border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-brand-action mb-2 cursor-pointer self-end border px-2 py-1 text-xs font-bold transition hover:opacity-90 sm:px-3 sm:text-sm'>
@@ -74,19 +74,17 @@ export const ProductInfo = ({
                       {labels.compositionTitle}
                     </DialogTitle>
                   </DialogHeader>
-                  {product.ingredients && (
-                    <Image
-                      src={product.ingredients}
-                      alt='ingredients'
-                      width={1200}
-                      height={1600}
-                      className='h-auto max-h-[400px] w-auto'
-                    />
-                  )}
+                  <Image
+                    src={product.ingredients}
+                    alt='ingredients'
+                    width={1200}
+                    height={1600}
+                    className='h-auto max-h-[400px] w-auto'
+                  />
                 </DialogContent>
               </Dialog>
             </div>
-          )}
+          : null}
         </div>
         <AnimatePresence mode='wait'>
           <motion.p

@@ -92,6 +92,24 @@ export const beersCs: Product[] = [
     image: '/products/pivo/10/bottle.webp',
     icon: '/products/pivo/10/icon.svg',
     ingredients: '/products/pivo/10/etiq.webp'
+  },
+  {
+    name: 'Atlet 8°',
+    subtitle: 'Lehká osmička pro snadné pití a rychlé osvěžení',
+    category: 'pivo',
+    categoryLabel: 'Pivo',
+    slug: 'atlet-8',
+    url: 'https://eshop.stadioner.cz/products/atlet-8',
+    description:
+      'Atlet 8° je lehké výčepní pivo s čistou chutí a jemnou hořkostí. Nižší stupňovitost z něj dělá ideální volbu na dlouhé posezení, po sportu nebo když chcete pivo, které neunaví, ale pořád má říz a poctivý pivní charakter.',
+    stats: [
+      { label: 'TYP', value: 'Světlé výčepní' },
+      { label: 'ABV', value: '3.2%' },
+      { label: 'STUPEŇ', value: '8°' }
+    ],
+    image: '/products/pivo/atlet/bottle.webp',
+    icon: '/products/pivo/atlet/icon.svg',
+    ingredients: ''
   }
 ]
 
@@ -288,6 +306,24 @@ export const beersEn: Product[] = [
     image: '/products/pivo/10/bottle.webp',
     icon: '/products/pivo/10/icon.svg',
     ingredients: '/products/pivo/10/etiq.webp'
+  },
+  {
+    name: 'Atlet 8°',
+    subtitle: 'Light eight-degree beer for easy drinking and quick refreshment',
+    category: 'pivo',
+    categoryLabel: 'Beer',
+    slug: 'atlet-8',
+    url: 'https://eshop.stadioner.cz/products/atlet-8',
+    description:
+      'Atlet 8° is a light tap beer with a clean taste and gentle bitterness. Its lower original gravity makes it ideal for long sessions, after sports, or whenever you want a beer that stays refreshing without losing honest lager character.',
+    stats: [
+      { label: 'TYPE', value: 'Light tap beer' },
+      { label: 'ABV', value: '3.2%' },
+      { label: 'DEGREE', value: '8°' }
+    ],
+    image: '/products/pivo/atlet/bottle.webp',
+    icon: '/products/pivo/atlet/icon.svg',
+    ingredients: ''
   }
 ]
 
@@ -484,6 +520,24 @@ export const beersDe: Product[] = [
     image: '/products/pivo/10/bottle.webp',
     icon: '/products/pivo/10/icon.svg',
     ingredients: '/products/pivo/10/etiq.webp'
+  },
+  {
+    name: 'Atlet 8°',
+    subtitle: 'Leichtes Achter für leichtes Trinken und schnelle Erfrischung',
+    category: 'pivo',
+    categoryLabel: 'Bier',
+    slug: 'atlet-8',
+    url: 'https://eshop.stadioner.cz/products/atlet-8',
+    description:
+      'Atlet 8° ist ein leichtes Schankbier mit sauberem Geschmack und milder Bittere. Die niedrigere Stammwürze macht es ideal für lange Runden, nach dem Sport oder wenn Sie ein Bier möchten, das erfrischend bleibt und trotzdem ehrlichen Lagercharakter behält.',
+    stats: [
+      { label: 'TYP', value: 'Helles Schankbier' },
+      { label: 'ABV', value: '3.2%' },
+      { label: 'GRAD', value: '8°' }
+    ],
+    image: '/products/pivo/atlet/bottle.webp',
+    icon: '/products/pivo/atlet/icon.svg',
+    ingredients: ''
   }
 ]
 
