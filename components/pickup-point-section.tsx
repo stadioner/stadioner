@@ -51,7 +51,12 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
         value: '14:00 - 17:00',
         closed: false
       },
-      { key: 'fri', label: 'Pátek', value: '9:00 - 17:00', closed: false },
+      {
+        key: 'fri',
+        label: 'Pátek',
+        value: '9:00 - 11:30 | 12:30 - 17:00',
+        closed: false
+      },
       { key: 'sat', label: 'Sobota', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Neděle', value: 'ZAVŘENO', closed: true }
     ],
@@ -77,7 +82,12 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
         value: '14:00 - 17:00',
         closed: false
       },
-      { key: 'fri', label: 'Friday', value: '9:00 - 17:00', closed: false },
+      {
+        key: 'fri',
+        label: 'Friday',
+        value: '9:00 - 11:30 | 12:30 - 17:00',
+        closed: false
+      },
       { key: 'sat', label: 'Saturday', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Sunday', value: 'CLOSED', closed: true }
     ],
@@ -103,7 +113,12 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
         value: '14:00 - 17:00',
         closed: false
       },
-      { key: 'fri', label: 'Freitag', value: '9:00 - 17:00', closed: false },
+      {
+        key: 'fri',
+        label: 'Freitag',
+        value: '9:00 - 11:30 | 12:30 - 17:00',
+        closed: false
+      },
       { key: 'sat', label: 'Samstag', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Sonntag', value: 'GESCHLOSSEN', closed: true }
     ],
