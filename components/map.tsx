@@ -470,7 +470,7 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
     (flexible ?
       [49.49119659685226, 13.210585066693985]
     : [49.402084920025644, 13.00085318237539])
-  const resolvedZoom = zoom ?? (flexible ? 8 : 9)
+  const resolvedZoom = zoom ?? (flexible ? 7 : 8)
   const areMarkersInteractive = Boolean(markers?.length)
   const resolvedMarkers = (markers?.length ? markers : defaultMarkers).map(
     (marker) => ({
