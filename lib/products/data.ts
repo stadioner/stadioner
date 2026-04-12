@@ -109,7 +109,7 @@ export const beersCs: Product[] = [
     ],
     image: '/products/pivo/atlet/bottle.webp',
     icon: '/products/pivo/atlet/icon.svg',
-    ingredients: ''
+    ingredients: '/products/pivo/atlet/etiq.webp'
   }
 ]
 
@@ -323,7 +323,7 @@ export const beersEn: Product[] = [
     ],
     image: '/products/pivo/atlet/bottle.webp',
     icon: '/products/pivo/atlet/icon.svg',
-    ingredients: ''
+    ingredients: '/products/pivo/atlet/etiq.webp'
   }
 ]
 
@@ -537,7 +537,7 @@ export const beersDe: Product[] = [
     ],
     image: '/products/pivo/atlet/bottle.webp',
     icon: '/products/pivo/atlet/icon.svg',
-    ingredients: ''
+    ingredients: '/products/pivo/atlet/etiq.webp'
   }
 ]
 
