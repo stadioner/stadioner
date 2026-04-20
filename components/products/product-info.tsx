@@ -99,7 +99,7 @@ export const ProductInfo = ({
           </motion.p>
         </AnimatePresence>
 
-        {hideBuyButton && (
+        {/*{hideBuyButton && (
           <div className='mt-2 sm:mt-3'>
             {cta && (
               <Button
@@ -167,7 +167,7 @@ export const ProductInfo = ({
               )}
             </div>
           </>
-        )}
+        )}*/}
       </div>
     </div>
   )
