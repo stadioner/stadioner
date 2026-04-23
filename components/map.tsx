@@ -425,6 +425,22 @@ const defaultMarkers: ExternalMarker[] = [
         <p>Národní obrany 789/49, 160 00 Praha 6</p>
       </>
     )
+  },
+  {
+    position: [50.102595712567584, 14.396810835306159],
+    iconUrl: '/map/penzion.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.resortceskyles.cz/gastro'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+          Resort Český les
+        </Link>
+        <p>Železná 37, 345 24 Bělá nad Radbuzou</p>
+      </>
+    )
   }
 ]
 
