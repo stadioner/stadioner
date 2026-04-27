@@ -427,7 +427,7 @@ const defaultMarkers: ExternalMarker[] = [
     )
   },
   {
-    position: [50.102595712567584, 14.396810835306159],
+    position: [49.58628737360202, 12.587947561971284],
     iconUrl: '/map/penzion.svg',
     popupContent: (
       <>
