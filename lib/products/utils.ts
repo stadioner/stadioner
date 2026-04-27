@@ -1,5 +1,10 @@
 import type { ProductVariantUrls } from '@/types/products'
 
+export const formatPriceCzk = (amount: number): string =>
+  new Intl.NumberFormat('cs-CZ', {
+    maximumFractionDigits: 0
+  }).format(amount)
+
 export const deriveVariantUrls = (
   baseImagePath: string,
   category: string

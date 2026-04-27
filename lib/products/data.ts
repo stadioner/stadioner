@@ -18,7 +18,10 @@ export const beersCs: Product[] = [
     ],
     image: '/products/pivo/15/bottle.webp',
     icon: '/products/pivo/15/icon.svg',
-    ingredients: '/products/pivo/15/etiq.webp'
+    ingredients: '/products/pivo/15/etiq.webp',
+    bottlePriceCzk: 33,
+    cratePriceCzk: 660,
+    kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
   },
   {
     name: 'Profesor 12°',
@@ -37,7 +40,10 @@ export const beersCs: Product[] = [
     ],
     image: '/products/pivo/12/bottle.webp',
     icon: '/products/pivo/12/icon.svg',
-    ingredients: '/products/pivo/12/etiq.webp'
+    ingredients: '/products/pivo/12/etiq.webp',
+    bottlePriceCzk: 29,
+    cratePriceCzk: 580,
+    kegPricesCzk: { barrel30: 1680, barrel50: 2800 }
   },
   {
     name: 'Hvozdář 12°',
@@ -55,7 +61,10 @@ export const beersCs: Product[] = [
     ],
     image: '/products/pivo/12-tmava/bottle.webp',
     icon: '/products/pivo/12-tmava/icon.svg',
-    ingredients: '/products/pivo/12-tmava/etiq.webp'
+    ingredients: '/products/pivo/12-tmava/etiq.webp',
+    bottlePriceCzk: 33,
+    cratePriceCzk: 660,
+    kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
   },
   {
     name: 'Experiment 11°',
@@ -73,7 +82,10 @@ export const beersCs: Product[] = [
     ],
     image: '/products/pivo/11/bottle.webp',
     icon: '/products/pivo/11/icon.svg',
-    ingredients: '/products/pivo/11/etiq.webp'
+    ingredients: '/products/pivo/11/etiq.webp',
+    bottlePriceCzk: 29,
+    cratePriceCzk: 580,
+    kegPricesCzk: { barrel30: 1620, barrel50: 2700 }
   },
   {
     name: 'Požárník 10°',
@@ -91,7 +103,10 @@ export const beersCs: Product[] = [
     ],
     image: '/products/pivo/10/bottle.webp',
     icon: '/products/pivo/10/icon.svg',
-    ingredients: '/products/pivo/10/etiq.webp'
+    ingredients: '/products/pivo/10/etiq.webp',
+    bottlePriceCzk: 27,
+    cratePriceCzk: 540,
+    kegPricesCzk: { barrel30: 1560, barrel50: 2600 }
   },
   {
     name: 'Atlet 8°',
@@ -109,7 +124,10 @@ export const beersCs: Product[] = [
     ],
     image: '/products/pivo/atlet/bottle.webp',
     icon: '/products/pivo/atlet/icon.svg',
-    ingredients: '/products/pivo/atlet/etiq.webp'
+    ingredients: '/products/pivo/atlet/etiq.webp',
+    bottlePriceCzk: 27,
+    cratePriceCzk: 540,
+    kegPricesCzk: { barrel30: 1680, barrel50: 2600 }
   }
 ]
 
@@ -131,7 +149,9 @@ export const limosCs: Product[] = [
     ],
     image: '/products/limo/citron/bottle.webp',
     icon: '/products/limo/citron/icon.svg',
-    ingredients: '/products/limo/citron/etiq.webp'
+    ingredients: '/products/limo/citron/etiq.webp',
+    bottlePriceCzk: 16,
+    cratePriceCzk: 320
   },
   {
     name: 'Limonáda pomeranč',
@@ -150,7 +170,9 @@ export const limosCs: Product[] = [
     ],
     image: '/products/limo/pomeranc/bottle.webp',
     icon: '/products/limo/pomeranc/icon.svg',
-    ingredients: '/products/limo/pomeranc/etiq.webp'
+    ingredients: '/products/limo/pomeranc/etiq.webp',
+    bottlePriceCzk: 16,
+    cratePriceCzk: 320
   },
   {
     name: 'Cola mix',
@@ -169,7 +191,9 @@ export const limosCs: Product[] = [
     ],
     image: '/products/limo/colamix/bottle.webp',
     icon: '/products/limo/colamix/icon.svg',
-    ingredients: '/products/limo/colamix/etiq.webp'
+    ingredients: '/products/limo/colamix/etiq.webp',
+    bottlePriceCzk: 17,
+    cratePriceCzk: 340
   }
 ]
 
@@ -191,7 +215,9 @@ export const watersCs: Product[] = [
     ],
     image: '/products/voda/perliva/bottle.webp',
     icon: '/products/voda/perliva/icon.svg',
-    ingredients: '/products/voda/perliva/etiq.webp'
+    ingredients: '/products/voda/perliva/etiq.webp',
+    bottlePriceCzk: 13,
+    cratePriceCzk: 260
   },
   {
     name: 'Pramenitá voda (Neperlivá)',
@@ -210,7 +236,9 @@ export const watersCs: Product[] = [
     ],
     image: '/products/voda/neperliva/bottle.webp',
     icon: '/products/voda/neperliva/icon.svg',
-    ingredients: '/products/voda/neperliva/etiq.webp'
+    ingredients: '/products/voda/neperliva/etiq.webp',
+    bottlePriceCzk: 13,
+    cratePriceCzk: 260
   }
 ]
 
@@ -232,7 +260,10 @@ export const beersEn: Product[] = [
     ],
     image: '/products/pivo/15/bottle.webp',
     icon: '/products/pivo/15/icon.svg',
-    ingredients: '/products/pivo/15/etiq.webp'
+    ingredients: '/products/pivo/15/etiq.webp',
+    bottlePriceCzk: 33,
+    cratePriceCzk: 660,
+    kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
   },
   {
     name: 'Professor 12°',
@@ -251,7 +282,10 @@ export const beersEn: Product[] = [
     ],
     image: '/products/pivo/12/bottle.webp',
     icon: '/products/pivo/12/icon.svg',
-    ingredients: '/products/pivo/12/etiq.webp'
+    ingredients: '/products/pivo/12/etiq.webp',
+    bottlePriceCzk: 29,
+    cratePriceCzk: 580,
+    kegPricesCzk: { barrel30: 1680, barrel50: 2800 }
   },
   {
     name: 'Hvozdář 12°',
@@ -269,7 +303,10 @@ export const beersEn: Product[] = [
     ],
     image: '/products/pivo/12-tmava/bottle.webp',
     icon: '/products/pivo/12-tmava/icon.svg',
-    ingredients: '/products/pivo/12-tmava/etiq.webp'
+    ingredients: '/products/pivo/12-tmava/etiq.webp',
+    bottlePriceCzk: 33,
+    cratePriceCzk: 660,
+    kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
   },
   {
     name: 'Experiment 11°',
@@ -287,7 +324,10 @@ export const beersEn: Product[] = [
     ],
     image: '/products/pivo/11/bottle.webp',
     icon: '/products/pivo/11/icon.svg',
-    ingredients: '/products/pivo/11/etiq.webp'
+    ingredients: '/products/pivo/11/etiq.webp',
+    bottlePriceCzk: 29,
+    cratePriceCzk: 580,
+    kegPricesCzk: { barrel30: 1620, barrel50: 2700 }
   },
   {
     name: 'Požárník 10°',
@@ -305,7 +345,10 @@ export const beersEn: Product[] = [
     ],
     image: '/products/pivo/10/bottle.webp',
     icon: '/products/pivo/10/icon.svg',
-    ingredients: '/products/pivo/10/etiq.webp'
+    ingredients: '/products/pivo/10/etiq.webp',
+    bottlePriceCzk: 27,
+    cratePriceCzk: 540,
+    kegPricesCzk: { barrel30: 1560, barrel50: 2600 }
   },
   {
     name: 'Atlet 8°',
@@ -323,7 +366,10 @@ export const beersEn: Product[] = [
     ],
     image: '/products/pivo/atlet/bottle.webp',
     icon: '/products/pivo/atlet/icon.svg',
-    ingredients: '/products/pivo/atlet/etiq.webp'
+    ingredients: '/products/pivo/atlet/etiq.webp',
+    bottlePriceCzk: 27,
+    cratePriceCzk: 540,
+    kegPricesCzk: { barrel30: 1680, barrel50: 2600 }
   }
 ]
 
@@ -345,7 +391,9 @@ export const limosEn: Product[] = [
     ],
     image: '/products/limo/citron/bottle.webp',
     icon: '/products/limo/citron/icon.svg',
-    ingredients: '/products/limo/citron/etiq.webp'
+    ingredients: '/products/limo/citron/etiq.webp',
+    bottlePriceCzk: 16,
+    cratePriceCzk: 320
   },
   {
     name: 'Orange Lemonade',
@@ -364,7 +412,9 @@ export const limosEn: Product[] = [
     ],
     image: '/products/limo/pomeranc/bottle.webp',
     icon: '/products/limo/pomeranc/icon.svg',
-    ingredients: '/products/limo/pomeranc/etiq.webp'
+    ingredients: '/products/limo/pomeranc/etiq.webp',
+    bottlePriceCzk: 16,
+    cratePriceCzk: 320
   },
   {
     name: 'Cola mix',
@@ -383,7 +433,9 @@ export const limosEn: Product[] = [
     ],
     image: '/products/limo/colamix/bottle.webp',
     icon: '/products/limo/colamix/icon.svg',
-    ingredients: '/products/limo/colamix/etiq.webp'
+    ingredients: '/products/limo/colamix/etiq.webp',
+    bottlePriceCzk: 17,
+    cratePriceCzk: 340
   }
 ]
 
@@ -405,7 +457,9 @@ export const watersEn: Product[] = [
     ],
     image: '/products/voda/perliva/bottle.webp',
     icon: '/products/voda/perliva/icon.svg',
-    ingredients: '/products/voda/perliva/etiq.webp'
+    ingredients: '/products/voda/perliva/etiq.webp',
+    bottlePriceCzk: 13,
+    cratePriceCzk: 260
   },
   {
     name: 'Spring water (Still)',
@@ -424,7 +478,9 @@ export const watersEn: Product[] = [
     ],
     image: '/products/voda/neperliva/bottle.webp',
     icon: '/products/voda/neperliva/icon.svg',
-    ingredients: '/products/voda/neperliva/etiq.webp'
+    ingredients: '/products/voda/neperliva/etiq.webp',
+    bottlePriceCzk: 13,
+    cratePriceCzk: 260
   }
 ]
 
@@ -446,7 +502,10 @@ export const beersDe: Product[] = [
     ],
     image: '/products/pivo/15/bottle.webp',
     icon: '/products/pivo/15/icon.svg',
-    ingredients: '/products/pivo/15/etiq.webp'
+    ingredients: '/products/pivo/15/etiq.webp',
+    bottlePriceCzk: 33,
+    cratePriceCzk: 660,
+    kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
   },
   {
     name: 'Professor 12°',
@@ -465,7 +524,10 @@ export const beersDe: Product[] = [
     ],
     image: '/products/pivo/12/bottle.webp',
     icon: '/products/pivo/12/icon.svg',
-    ingredients: '/products/pivo/12/etiq.webp'
+    ingredients: '/products/pivo/12/etiq.webp',
+    bottlePriceCzk: 29,
+    cratePriceCzk: 580,
+    kegPricesCzk: { barrel30: 1680, barrel50: 2800 }
   },
   {
     name: 'Hvozdář 12°',
@@ -483,7 +545,10 @@ export const beersDe: Product[] = [
     ],
     image: '/products/pivo/12-tmava/bottle.webp',
     icon: '/products/pivo/12-tmava/icon.svg',
-    ingredients: '/products/pivo/12-tmava/etiq.webp'
+    ingredients: '/products/pivo/12-tmava/etiq.webp',
+    bottlePriceCzk: 33,
+    cratePriceCzk: 660,
+    kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
   },
   {
     name: 'Experiment 11°',
@@ -501,7 +566,10 @@ export const beersDe: Product[] = [
     ],
     image: '/products/pivo/11/bottle.webp',
     icon: '/products/pivo/11/icon.svg',
-    ingredients: '/products/pivo/11/etiq.webp'
+    ingredients: '/products/pivo/11/etiq.webp',
+    bottlePriceCzk: 29,
+    cratePriceCzk: 580,
+    kegPricesCzk: { barrel30: 1620, barrel50: 2700 }
   },
   {
     name: 'Požárník 10°',
@@ -519,7 +587,10 @@ export const beersDe: Product[] = [
     ],
     image: '/products/pivo/10/bottle.webp',
     icon: '/products/pivo/10/icon.svg',
-    ingredients: '/products/pivo/10/etiq.webp'
+    ingredients: '/products/pivo/10/etiq.webp',
+    bottlePriceCzk: 27,
+    cratePriceCzk: 540,
+    kegPricesCzk: { barrel30: 1560, barrel50: 2600 }
   },
   {
     name: 'Atlet 8°',
@@ -537,7 +608,10 @@ export const beersDe: Product[] = [
     ],
     image: '/products/pivo/atlet/bottle.webp',
     icon: '/products/pivo/atlet/icon.svg',
-    ingredients: '/products/pivo/atlet/etiq.webp'
+    ingredients: '/products/pivo/atlet/etiq.webp',
+    bottlePriceCzk: 27,
+    cratePriceCzk: 540,
+    kegPricesCzk: { barrel30: 1680, barrel50: 2600 }
   }
 ]
 
@@ -559,7 +633,9 @@ export const limosDe: Product[] = [
     ],
     image: '/products/limo/citron/bottle.webp',
     icon: '/products/limo/citron/icon.svg',
-    ingredients: '/products/limo/citron/etiq.webp'
+    ingredients: '/products/limo/citron/etiq.webp',
+    bottlePriceCzk: 16,
+    cratePriceCzk: 320
   },
   {
     name: 'Orangenlimonade',
@@ -578,7 +654,9 @@ export const limosDe: Product[] = [
     ],
     image: '/products/limo/pomeranc/bottle.webp',
     icon: '/products/limo/pomeranc/icon.svg',
-    ingredients: '/products/limo/pomeranc/etiq.webp'
+    ingredients: '/products/limo/pomeranc/etiq.webp',
+    bottlePriceCzk: 16,
+    cratePriceCzk: 320
   },
   {
     name: 'Cola Mix',
@@ -597,7 +675,9 @@ export const limosDe: Product[] = [
     ],
     image: '/products/limo/colamix/bottle.webp',
     icon: '/products/limo/colamix/icon.svg',
-    ingredients: '/products/limo/colamix/etiq.webp'
+    ingredients: '/products/limo/colamix/etiq.webp',
+    bottlePriceCzk: 17,
+    cratePriceCzk: 340
   }
 ]
 
@@ -619,7 +699,9 @@ export const watersDe: Product[] = [
     ],
     image: '/products/voda/perliva/bottle.webp',
     icon: '/products/voda/perliva/icon.svg',
-    ingredients: '/products/voda/perliva/etiq.webp'
+    ingredients: '/products/voda/perliva/etiq.webp',
+    bottlePriceCzk: 13,
+    cratePriceCzk: 260
   },
   {
     name: 'Quellwasser (Still)',
@@ -638,7 +720,9 @@ export const watersDe: Product[] = [
     ],
     image: '/products/voda/neperliva/bottle.webp',
     icon: '/products/voda/neperliva/icon.svg',
-    ingredients: '/products/voda/neperliva/etiq.webp'
+    ingredients: '/products/voda/neperliva/etiq.webp',
+    bottlePriceCzk: 13,
+    cratePriceCzk: 260
   }
 ]
 

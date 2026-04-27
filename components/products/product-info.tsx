@@ -9,10 +9,31 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import type { Product } from '@/types/products'
+import type { PackagingKey, Product } from '@/types/products'
+import { formatPriceCzk } from '@/lib/products/utils'
+
+function resolvePriceLine(
+  product: Product,
+  packaging: PackagingKey
+): string | null {
+  if (packaging === 'bottle' && product.bottlePriceCzk != null) {
+    return `${formatPriceCzk(product.bottlePriceCzk)} Kč`
+  }
+  if (packaging === 'crate' && product.cratePriceCzk != null) {
+    return `${formatPriceCzk(product.cratePriceCzk)} Kč`
+  }
+  if (packaging === 'barrel30' || packaging === 'barrel50') {
+    const amount = product.kegPricesCzk?.[packaging]
+    if (amount != null) {
+      return `${formatPriceCzk(amount)} Kč`
+    }
+  }
+  return null
+}
 
 interface ProductInfoProps {
   product: Product
+  selectedPackaging: PackagingKey
   buyUrl: string
   labels: {
     composition: string
@@ -33,6 +54,7 @@ interface ProductInfoProps {
 
 export const ProductInfo = ({
   product,
+  selectedPackaging,
   buyUrl,
   labels,
   isPreparing = false,
@@ -42,6 +64,7 @@ export const ProductInfo = ({
 }: ProductInfoProps) => {
   // Use slug as key to only animate on product change, not packaging change
   const productKey = product.slug
+  const priceLine = resolvePriceLine(product, selectedPackaging)
 
   return (
     <div className='flex flex-1 flex-col justify-center'>
@@ -57,9 +80,14 @@ export const ProductInfo = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className='text-brand-primary text-2xl font-bold sm:text-3xl md:text-6xl'
+              className='text-brand-primary flex min-w-0 flex-1 flex-wrap items-baseline gap-x-2 pr-2 text-2xl font-bold sm:gap-x-3 sm:pr-4 sm:text-3xl md:text-6xl'
             >
-              {product.name}
+              <span>{product.name}</span>
+              {priceLine ?
+                <span className='text-lg font-normal text-zinc-400'>
+                  {priceLine}
+                </span>
+              : null}
             </motion.h2>
           </AnimatePresence>
           {!hideBuyButton && product.ingredients ?

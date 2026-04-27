@@ -166,6 +166,7 @@ export const Products = ({
 
             <ProductInfo
               product={product}
+              selectedPackaging={selectedPackaging}
               buyUrl={buyUrl}
               isPreparing={isPreparing}
               hideBuyButton={b2bMode}

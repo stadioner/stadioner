@@ -1,4 +1,5 @@
 import { Products } from '@/components/products'
+import { CompletePriceList } from '@/components/products/complete-price-list'
 import { Suspense } from 'react'
 import { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo/metadata'
@@ -46,6 +47,7 @@ export default function ProduktyPage() {
         >
           <Products hScreen />
         </Suspense>
+        <CompletePriceList />
       </main>
       {productSchemas.map((schema, index) => (
         <script

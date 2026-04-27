@@ -10,6 +10,12 @@ export interface Product {
   image: string
   icon: string
   ingredients: string
+  /** Cena za lahev / jednotku v Kč */
+  bottlePriceCzk?: number
+  /** Cena za bednu (20 ks) v Kč */
+  cratePriceCzk?: number
+  /** Ceny sudů v Kč (barrel30 = menší sud v e-shopu, barrel50 = 50 l) */
+  kegPricesCzk?: Partial<Record<'barrel30' | 'barrel50', number>>
 }
 
 export type PackagingKey = 'bottle' | 'crate' | 'barrel30' | 'barrel50'
