@@ -43,8 +43,7 @@ export const Hero = ({ upcomingEventsByLanguage }: HeroProps) => {
     language === 'en' || language === 'de' ? language : 'cs'
   const upcomingEvent = upcomingEventsByLanguage[activeLanguage]
   const panelCopy = heroPanelCopy[activeLanguage]
-  const hasSchedule =
-    Boolean(upcomingEvent?.dateTime) && !upcomingEvent?.isComingSoon
+  const hasSchedule = Boolean(upcomingEvent?.dateTime)
 
   return (
     <section className='relative h-[70vh] w-full sm:h-[86vh]'>
