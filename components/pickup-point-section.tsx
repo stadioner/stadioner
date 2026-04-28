@@ -28,6 +28,8 @@ type PickupPointContent = {
   openingHoursTitle: string
   openingHours: OpeningHourRow[]
   closedLabel: string
+  holidayClosingLabel: string
+  holidayClosures: string[]
 }
 
 const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
@@ -60,7 +62,9 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sat', label: 'Sobota', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Neděle', value: 'ZAVŘENO', closed: true }
     ],
-    closedLabel: 'ZAVŘENO'
+    closedLabel: 'ZAVŘENO',
+    holidayClosingLabel: 'Sváteční zavírací dny',
+    holidayClosures: ['1. 5. 2026: ZAVŘENO', '8. 5. 2026: ZAVŘENO']
   },
   en: {
     sectionTitle: 'Pickup Point',
@@ -91,7 +95,9 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sat', label: 'Saturday', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Sunday', value: 'CLOSED', closed: true }
     ],
-    closedLabel: 'CLOSED'
+    closedLabel: 'CLOSED',
+    holidayClosingLabel: 'Holiday closures',
+    holidayClosures: ['May 1, 2026: CLOSED', 'May 8, 2026: CLOSED']
   },
   de: {
     sectionTitle: 'Abholstelle',
@@ -122,7 +128,12 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sat', label: 'Samstag', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Sonntag', value: 'GESCHLOSSEN', closed: true }
     ],
-    closedLabel: 'GESCHLOSSEN'
+    closedLabel: 'GESCHLOSSEN',
+    holidayClosingLabel: 'Feiertagsschließungen',
+    holidayClosures: [
+      '1. 5. 2026: GESCHLOSSEN',
+      '8. 5. 2026: GESCHLOSSEN'
+    ]
   }
 }
 
@@ -218,6 +229,17 @@ export const PickupPointSection = ({
                         </div>
                       )
                     })}
+                  </div>
+
+                  <div className='mt-4 border-t border-zinc-600 pt-3 text-sm text-zinc-100'>
+                    <p className='text-brand-primary font-semibold'>
+                      {content.holidayClosingLabel}
+                    </p>
+                    {content.holidayClosures.map((holiday) => (
+                      <p key={holiday} className='text-red-400'>
+                        {holiday}
+                      </p>
+                    ))}
                   </div>
                 </div>
               </div>

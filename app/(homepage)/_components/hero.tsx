@@ -18,22 +18,26 @@ const heroPanelCopy: Record<
     eyebrow: string
     pending: string
     locationFallback: string
+    holidayClosing: string
   }
 > = {
   cs: {
     eyebrow: 'Nejbližší akce',
     pending: 'Termín brzy upřesníme',
-    locationFallback: 'Místo bude doplněno'
+    locationFallback: 'Místo bude doplněno',
+    holidayClosing: '1. 5. 2026 a 8. 5. 2026 máme zavřeno.'
   },
   en: {
     eyebrow: 'Next event',
     pending: 'Date coming soon',
-    locationFallback: 'Location to be announced'
+    locationFallback: 'Location to be announced',
+    holidayClosing: 'Closed on May 1, 2026 and May 8, 2026.'
   },
   de: {
     eyebrow: 'Nächste Veranstaltung',
     pending: 'Termin folgt in Kürze',
-    locationFallback: 'Ort wird noch ergänzt'
+    locationFallback: 'Ort wird noch ergänzt',
+    holidayClosing: 'Am 1. 5. 2026 und 8. 5. 2026 haben wir geschlossen.'
   }
 }
 
@@ -67,6 +71,9 @@ export const Hero = ({ upcomingEventsByLanguage }: HeroProps) => {
               'Eine Brauerei, in der das Erbe der Adelsfamilie, das Handwerk und der Geschmack wieder zum Leben erweckt werden.'}
           </h3>
           <p className='text-lg md:text-2xl'>est. 1736</p>
+          <p className='mt-2 max-w-xl text-sm font-semibold md:text-base'>
+            {panelCopy.holidayClosing}
+          </p>
 
           {upcomingEvent && (
             <div className='mt-8 flex place-content-end'>
