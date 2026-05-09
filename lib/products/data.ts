@@ -128,6 +128,27 @@ export const beersCs: Product[] = [
     bottlePriceCzk: 27,
     cratePriceCzk: 540,
     kegPricesCzk: { barrel30: 1680, barrel50: 2600 }
+  },
+  {
+    name: 'Indianhead 12°',
+    subtitle: 'New England IPA s tropickým aroma a jemnou hořkostí',
+    category: 'pivo',
+    categoryLabel: 'Pivo',
+    slug: 'indianhead-12',
+    url: 'https://eshop.stadioner.cz/products/indianhead-12',
+    description:
+      'Indianhead 12° je svrchně kvašené pivo stylu New England IPA. Vyniká plnějším tělem, šťavnatým projevem a výraznou chmelovou aromatikou. Chmely Sabro a Strata přinášejí tóny tropického ovoce, citrusů a jemný dozvuk peckovin.',
+    stats: [
+      { label: 'TYP', value: 'New England IPA' },
+      { label: 'ABV', value: '5.1%' },
+      { label: 'STUPEŇ', value: '12°' }
+    ],
+    image: '/products/pivo/indianhead/bottle.webp',
+    icon: '/products/pivo/indianhead/icon.svg',
+    ingredients: '/products/pivo/12/etiq.webp',
+    bottlePriceCzk: 49,
+    cratePriceCzk: 980,
+    kegPricesCzk: { barrel30: 2460 }
   }
 ]
 
@@ -280,7 +301,7 @@ export const beersEn: Product[] = [
       { label: 'DEGREE', value: '12°' },
       { label: 'FILTRATION', value: 'Unfiltered' }
     ],
-    image: '/products/pivo/12/bottle.webp',
+    image: '/products/pivo/indianhead/bottle.webp',
     icon: '/products/pivo/12/icon.svg',
     ingredients: '/products/pivo/12/etiq.webp',
     bottlePriceCzk: 29,
@@ -370,6 +391,27 @@ export const beersEn: Product[] = [
     bottlePriceCzk: 27,
     cratePriceCzk: 540,
     kegPricesCzk: { barrel30: 1680, barrel50: 2600 }
+  },
+  {
+    name: 'Indianhead 12°',
+    subtitle: 'New England IPA with tropical aroma and smooth bitterness',
+    category: 'pivo',
+    categoryLabel: 'Beer',
+    slug: 'indianhead-12',
+    url: 'https://eshop.stadioner.cz/products/indianhead-12',
+    description:
+      'Indianhead 12° is a top-fermented New England IPA with a juicy profile, fuller body, and expressive hop aroma. Sabro and Strata hops bring notes of tropical fruit, citrus, and a gentle stone-fruit finish.',
+    stats: [
+      { label: 'TYPE', value: 'New England IPA' },
+      { label: 'ABV', value: '5.1%' },
+      { label: 'DEGREE', value: '12°' }
+    ],
+    image: '/products/pivo/indianhead/bottle.webp',
+    icon: '/products/pivo/indianhead/icon.svg',
+    ingredients: '/products/pivo/12/etiq.webp',
+    bottlePriceCzk: 49,
+    cratePriceCzk: 980,
+    kegPricesCzk: { barrel30: 2460 }
   }
 ]
 
@@ -612,6 +654,27 @@ export const beersDe: Product[] = [
     bottlePriceCzk: 27,
     cratePriceCzk: 540,
     kegPricesCzk: { barrel30: 1680, barrel50: 2600 }
+  },
+  {
+    name: 'Indianhead 12°',
+    subtitle: 'New England IPA mit tropischem Aroma und sanfter Bittere',
+    category: 'pivo',
+    categoryLabel: 'Bier',
+    slug: 'indianhead-12',
+    url: 'https://eshop.stadioner.cz/products/indianhead-12',
+    description:
+      'Indianhead 12° ist ein obergäriges New England IPA mit saftigem Charakter, vollerem Körper und ausgeprägter Hopfenaromatik. Die Hopfensorten Sabro und Strata bringen tropische Frucht, Zitrusnoten und einen milden Nachklang von Steinobst.',
+    stats: [
+      { label: 'TYP', value: 'New England IPA' },
+      { label: 'ABV', value: '5.1%' },
+      { label: 'GRAD', value: '12°' }
+    ],
+    image: '/products/pivo/indianhead/bottle.webp',
+    icon: '/products/pivo/indianhead/icon.svg',
+    ingredients: '/products/pivo/12/etiq.webp',
+    bottlePriceCzk: 49,
+    cratePriceCzk: 980,
+    kegPricesCzk: { barrel30: 2460 }
   }
 ]
 
