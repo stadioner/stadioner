@@ -130,10 +130,7 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
     ],
     closedLabel: 'GESCHLOSSEN',
     holidayClosingLabel: 'Feiertagsschließungen',
-    holidayClosures: [
-      '1. 5. 2026: GESCHLOSSEN',
-      '8. 5. 2026: GESCHLOSSEN'
-    ]
+    holidayClosures: ['1. 5. 2026: GESCHLOSSEN', '8. 5. 2026: GESCHLOSSEN']
   }
 }
 
@@ -231,7 +228,7 @@ export const PickupPointSection = ({
                     })}
                   </div>
 
-                  <div className='mt-4 border-t border-zinc-600 pt-3 text-sm text-zinc-100'>
+                  {/*<div className='mt-4 border-t border-zinc-600 pt-3 text-sm text-zinc-100'>
                     <p className='text-brand-primary font-semibold'>
                       {content.holidayClosingLabel}
                     </p>
@@ -240,7 +237,7 @@ export const PickupPointSection = ({
                         {holiday}
                       </p>
                     ))}
-                  </div>
+                  </div>*/}
                 </div>
               </div>
             </div>
