@@ -47,7 +47,7 @@ export default function ProduktyPage() {
         >
           <Products hScreen />
         </Suspense>
-        <CompletePriceList />
+        {/*<CompletePriceList />*/}
       </main>
       {productSchemas.map((schema, index) => (
         <script
