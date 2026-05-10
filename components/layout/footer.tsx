@@ -102,6 +102,16 @@ export const Footer = () => {
             >
               Požárník 10
             </Link>
+            <Link
+              href={`${localizedRootPath}/produkty?produkt=atlet-8&kategorie=pivo`}
+            >
+              Atlet 8
+            </Link>
+            <Link
+              href={`${localizedRootPath}/produkty?produkt=indianhead-12&kategorie=pivo`}
+            >
+              Indianhead 12
+            </Link>
 
             <Link
               href={`${localizedRootPath}/produkty?produkt=limonada-pomeranc&kategorie=limo`}
