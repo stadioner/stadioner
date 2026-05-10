@@ -83,11 +83,11 @@ export const ProductInfo = ({
               className='text-brand-primary flex min-w-0 flex-1 flex-wrap items-baseline gap-x-2 pr-2 text-2xl font-bold sm:gap-x-3 sm:pr-4 sm:text-3xl md:text-6xl'
             >
               <span>{product.name}</span>
-              {priceLine ?
+              {/*{priceLine && (
                 <span className='text-lg font-normal text-zinc-400'>
                   {priceLine}
                 </span>
-              : null}
+              )}*/}
             </motion.h2>
           </AnimatePresence>
           {!hideBuyButton && product.ingredients ?
