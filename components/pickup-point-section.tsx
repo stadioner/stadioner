@@ -1,6 +1,7 @@
 'use client'
 
 import Image from 'next/image'
+import { useCallback, useLayoutEffect, useRef, useState } from 'react'
 import { Container } from '@/components/container'
 import { RippedPaperSVG } from '@/components/ripped-paper-svg'
 import {
@@ -36,7 +37,8 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
   cs: {
     sectionTitle: 'Výdejní Místo',
     address: 'Kout na Šumavě 2, 345 02 Kout na Šumavě',
-    imageAlt: 'Výdejní místo STADIONER v Koutě na Šumavě',
+    imageAlt:
+      'Skladový sklep s klenutým stropem a bednami nápojů STADIONER na paletách',
     intro:
       'Hlavní výdejní místo pivovaru STADIONER se nachází přímo v areálu pivovaru v Koutě na Šumavě. Zde si můžete zakoupit všechny naše produkty přímo od výrobce, včetně čerstvých piv, limonád a vod ze šumavských pramenů. Nabízíme také možnost vrácení prázdných lahví. Možnost zakoupit lahvové i sudové pivo.',
     depositInfo:
@@ -69,7 +71,8 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
   en: {
     sectionTitle: 'Pickup Point',
     address: 'Kout na Šumavě 2, 345 02 Kout na Šumavě',
-    imageAlt: 'STADIONER pickup point in Kout na Šumavě',
+    imageAlt:
+      'Storage cellar with vaulted ceiling and stacks of STADIONER beverage crates on pallets',
     intro:
       'The main pickup point of STADIONER brewery is located directly in the brewery premises in Kout na Šumavě. Here you can purchase all our products directly from the producer, including fresh beers, lemonades, and water from Šumava springs. We also offer bottle returns. You can purchase both bottled and keg beer.',
     depositInfo:
@@ -102,7 +105,8 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
   de: {
     sectionTitle: 'Abholstelle',
     address: 'Kout na Šumavě 2, 345 02 Kout na Šumavě',
-    imageAlt: 'STADIONER Abholstelle in Kout na Šumavě',
+    imageAlt:
+      'Lagerkeller mit Gewölbedecke und Stapeln von STADIONER-Getränkekisten auf Paletten',
     intro:
       'Die Hauptabholstelle der Brauerei STADIONER befindet sich direkt auf dem Brauereigelände in Kout na Šumavě. Hier können Sie alle unsere Produkte direkt vom Hersteller kaufen, einschließlich frischer Biere, Limonaden und Wasser aus den Böhmerwaldquellen. Wir bieten auch die Rückgabe leerer Flaschen an. Sie können sowohl Flaschenbier als auch Bier im Fass kaufen.',
     depositInfo:
@@ -154,13 +158,33 @@ export const PickupPointSection = ({
   const content = contentByLanguage[currentLanguage]
   const currentDayKey = dayToRowKey[new Date().getDay()]
 
+  const textColumnRef = useRef<HTMLDivElement>(null)
+  const [textColumnHeightPx, setTextColumnHeightPx] = useState<number | null>(
+    null
+  )
+
+  const syncTextColumnHeight = useCallback(() => {
+    const el = textColumnRef.current
+    if (!el) return
+    setTextColumnHeightPx(Math.ceil(el.getBoundingClientRect().height))
+  }, [])
+
+  useLayoutEffect(() => {
+    syncTextColumnHeight()
+    const el = textColumnRef.current
+    if (!el || typeof ResizeObserver === 'undefined') return
+    const ro = new ResizeObserver(() => syncTextColumnHeight())
+    ro.observe(el)
+    return () => ro.disconnect()
+  }, [syncTextColumnHeight, currentLanguage])
+
   return (
     <section className='bg-brand-primary'>
       <RippedPaperSVG flip />
       <div className='bg-brand-action py-12'>
-        <Container className='grid gap-10 md:grid-cols-2'>
+        <Container className='grid gap-10 md:grid-cols-2 md:items-start'>
           <div className='flex flex-col justify-between'>
-            <div>
+            <div ref={textColumnRef}>
               <div>
                 <h2 className='text-brand-primary flex-nowrap text-3xl font-bold text-nowrap md:text-4xl lg:text-6xl'>
                   {content.sectionTitle}
@@ -169,10 +193,10 @@ export const PickupPointSection = ({
               </div>
 
               <Image
-                src='/vydejni-misto-zima.webp'
+                src='/vydejni-misto-sklad.png'
                 alt={content.imageAlt}
-                width={1200}
-                height={900}
+                width={768}
+                height={1024}
                 sizes='100vw'
                 className='py-4 md:hidden'
               />
@@ -243,14 +267,25 @@ export const PickupPointSection = ({
             </div>
           </div>
 
-          <Image
-            src='/vydejni-misto-zima.webp'
-            alt={content.imageAlt}
-            width={1200}
-            height={900}
-            sizes='(min-width: 768px) 50vw, 100vw'
-            className='hidden md:block'
-          />
+          <div
+            className={cn(
+              'relative hidden w-full overflow-hidden md:block',
+              textColumnHeightPx == null && 'md:min-h-[20rem]'
+            )}
+            style={
+              textColumnHeightPx != null ?
+                { height: textColumnHeightPx }
+              : undefined
+            }
+          >
+            <Image
+              src='/vydejni-misto-sklad.png'
+              alt={content.imageAlt}
+              fill
+              sizes='(min-width: 768px) 50vw, 100vw'
+              className='object-cover object-bottom'
+            />
+          </div>
         </Container>
       </div>
       {showBottomRippedPaper ?
