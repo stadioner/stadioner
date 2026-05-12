@@ -18,8 +18,12 @@ import { createLocalizedListingAlternates } from '@/lib/seo/alternates'
 import { type LocalizedSeoLocale } from '@/lib/seo/site'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import {
+  dedupeCategoriesByDisplayTitle,
+  excludeEventsNavFromCategoryList,
   mergeUnifiedAndLegacyCategories,
-  mergeUnifiedAndLegacyPosts
+  mergeUnifiedAndLegacyPosts,
+  normalizePostCategoriesAgainstList,
+  stripEventsNavFromPostCategories
 } from '@/lib/blog/merge-unified-legacy'
 import {
   mapUnifiedCategoryToCategory,
@@ -122,9 +126,16 @@ export default async function Page({ params }: Props) {
     mappedUnifiedPosts,
     legacyPosts
   )
-  const resolvedCategories = mergeUnifiedAndLegacyCategories(
+  const mergedCategories = mergeUnifiedAndLegacyCategories(
     mappedUnifiedCategories,
     legacyCategories
+  )
+  const resolvedCategories = excludeEventsNavFromCategoryList(
+    dedupeCategoriesByDisplayTitle(mergedCategories)
+  )
+
+  const postsForListing = stripEventsNavFromPostCategories(
+    normalizePostCategoriesAgainstList(resolvedPosts, resolvedCategories)
   )
 
   return (
@@ -132,7 +143,7 @@ export default async function Page({ params }: Props) {
       <h1 className='sr-only'>{languageNames[lang]}</h1>
       <Container>
         <Posts
-          posts={resolvedPosts}
+          posts={postsForListing}
           categories={resolvedCategories}
           language={lang as SupportedLanguage}
         />

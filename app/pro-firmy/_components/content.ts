@@ -5,6 +5,8 @@ export interface B2BTypeCard {
   title: string
   description: string
   icon: string
+  /** Cover photo behind the card (full-bleed) */
+  coverImage: string
   productImage: string
   ambience: string
 }
@@ -113,6 +115,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'Výčepní pivo i lahve pro stálé hosty, kteří se rádi vrací.',
           icon: '/map/hospoda.svg',
+          coverImage: '/b2b/type-hospoda.png',
           productImage: '/products/pivo/barrel-50.webp',
           ambience: 'bg-gradient-to-br from-brand-secondary to-brand-primary'
         },
@@ -122,6 +125,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'Párování piva k menu, stabilní dodávky a podpora prezentace.',
           icon: '/map/restaurace.svg',
+          coverImage: '/b2b/restaruace.webp',
           productImage: '/products/pivo/12/bottle.webp',
           ambience: 'bg-gradient-to-br from-brand-primary to-brand-secondary'
         },
@@ -131,6 +135,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'Lahve a bedny do regálu s jasným brandem a prodejní podporou.',
           icon: '/map/pivoteka.svg',
+          coverImage: '/b2b/type-maloobchod.png',
           productImage: '/products/pivo/crate.webp',
           ambience: 'bg-gradient-to-br from-brand-secondary to-brand-primary'
         },
@@ -140,6 +145,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'Kvalitní doplnění nabídky minibaru, lobby baru nebo restaurace.',
           icon: '/map/penzion.svg',
+          coverImage: '/b2b/type-hotel.png',
           productImage: '/products/limo/citron/bottle.webp',
           ambience: 'bg-gradient-to-br from-brand-primary to-brand-secondary'
         }
@@ -302,6 +308,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'Draft beer and bottles for regular guests who come back.',
           icon: '/map/hospoda.svg',
+          coverImage: '/b2b/type-hospoda.png',
           productImage: '/products/pivo/barrel-50.webp',
           ambience: 'bg-gradient-to-br from-brand-secondary to-brand-primary'
         },
@@ -311,6 +318,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'Beer pairing with menu items, reliable supply, and strong presentation.',
           icon: '/map/restaurace.svg',
+          coverImage: '/b2b/restaruace.webp',
           productImage: '/products/pivo/12/bottle.webp',
           ambience: 'bg-gradient-to-br from-brand-primary to-brand-secondary'
         },
@@ -320,6 +328,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'Bottles and crates for shelf sales with clear brand visibility.',
           icon: '/map/pivoteka.svg',
+          coverImage: '/b2b/type-maloobchod.png',
           productImage: '/products/pivo/crate.webp',
           ambience: 'bg-gradient-to-br from-brand-secondary to-brand-primary'
         },
@@ -329,6 +338,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'A quality addition to minibar, lobby bar, or restaurant offer.',
           icon: '/map/penzion.svg',
+          coverImage: '/b2b/type-hotel.png',
           productImage: '/products/limo/citron/bottle.webp',
           ambience: 'bg-gradient-to-br from-brand-primary to-brand-secondary'
         }
@@ -490,6 +500,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'Fassbier und Flaschen für Stammgäste, die gerne wiederkommen.',
           icon: '/map/hospoda.svg',
+          coverImage: '/b2b/type-hospoda.png',
           productImage: '/products/pivo/barrel-50.webp',
           ambience: 'bg-gradient-to-br from-brand-secondary to-brand-primary'
         },
@@ -499,6 +510,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'Bier passend zur Speisekarte, stabile Lieferungen und Präsentation.',
           icon: '/map/restaurace.svg',
+          coverImage: '/b2b/restaruace.webp',
           productImage: '/products/pivo/12/bottle.webp',
           ambience: 'bg-gradient-to-br from-brand-primary to-brand-secondary'
         },
@@ -508,6 +520,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'Flaschen und Kisten mit starker Markenpräsenz im Regal.',
           icon: '/map/pivoteka.svg',
+          coverImage: '/b2b/type-maloobchod.png',
           productImage: '/products/pivo/crate.webp',
           ambience: 'bg-gradient-to-br from-brand-secondary to-brand-primary'
         },
@@ -517,6 +530,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           description:
             'Qualitative Ergänzung für Minibar, Lobbybar oder Restaurant.',
           icon: '/map/penzion.svg',
+          coverImage: '/b2b/type-hotel.png',
           productImage: '/products/limo/citron/bottle.webp',
           ambience: 'bg-gradient-to-br from-brand-primary to-brand-secondary'
         }

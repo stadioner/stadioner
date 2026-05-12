@@ -35,6 +35,7 @@ import {
   getUnifiedPostVariants,
   mapUnifiedPostToPost
 } from '@/lib/blog/unified-post-mapper'
+import { stripEventsNavCategoriesFromPost } from '@/lib/blog/merge-unified-legacy'
 import { type UnifiedPost } from '@/types/unified-post'
 
 interface Props {
@@ -107,7 +108,7 @@ const getLocalizedPost = async (
 
     if (mappedPost) {
       return {
-        post: mappedPost,
+        post: stripEventsNavCategoriesFromPost(mappedPost),
         variants: getUnifiedPostVariants(unifiedPost)
       }
     }
@@ -125,7 +126,7 @@ const getLocalizedPost = async (
   }
 
   return {
-    post: legacyPost,
+    post: stripEventsNavCategoriesFromPost(legacyPost),
     variants: await resolveBlogVariants(legacyPost.translationKey)
   }
 }

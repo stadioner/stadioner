@@ -30,7 +30,7 @@ export const B2BTypes = () => {
             <Border key={card.id}>
               <article className='group relative h-[320px] overflow-hidden md:h-[360px]'>
                 <Image
-                  src='/b2b/restaruace.webp'
+                  src={card.coverImage}
                   alt={card.title}
                   fill
                   sizes='(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw'

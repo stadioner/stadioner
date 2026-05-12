@@ -8,7 +8,10 @@ import { urlFor } from '@/sanity/lib/image'
 import { Facebook, Instagram } from 'lucide-react'
 import { NewsletterMiniForm } from './newsletter-mini-form'
 import { type UnifiedPost } from '@/types/unified-post'
-import { mergeUnifiedAndLegacyPosts } from '@/lib/blog/merge-unified-legacy'
+import {
+  mergeUnifiedAndLegacyPosts,
+  stripEventsNavFromPostCategories
+} from '@/lib/blog/merge-unified-legacy'
 import { mapUnifiedPostToPost } from '@/lib/blog/unified-post-mapper'
 
 interface SidebarProps {
@@ -63,9 +66,8 @@ export const Sidebar = async ({ language }: SidebarProps) => {
     .map((post) => mapUnifiedPostToPost(post, language))
     .filter((post): post is Post => post !== null)
 
-  const recentPosts = mergeUnifiedAndLegacyPosts(
-    mappedUnifiedPosts,
-    legacyRecentPosts
+  const recentPosts = stripEventsNavFromPostCategories(
+    mergeUnifiedAndLegacyPosts(mappedUnifiedPosts, legacyRecentPosts)
   ).slice(0, 2)
 
   return (
