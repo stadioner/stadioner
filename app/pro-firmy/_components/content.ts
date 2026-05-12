@@ -36,8 +36,6 @@ export interface B2BFormCopy {
   contactName: string
   email: string
   phone: string
-  address: string
-  vatNumber: string
   message: string
   submit: string
   submitting: string
@@ -245,9 +243,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       contactName: 'Jméno kontaktní osoby',
       email: 'Email',
       phone: 'Telefon',
-      address: 'Adresa společnosti',
-      vatNumber: 'IČO (volitelné)',
-      message: 'Vaše zpráva',
+      message: 'Vaše zpráva (volitelné)',
       submit: 'Získat nabídku',
       submitting: 'Odesílám...',
       success:
@@ -435,9 +431,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       contactName: 'Contact person name',
       email: 'Email',
       phone: 'Phone',
-      address: 'Company address',
-      vatNumber: 'VAT number (optional)',
-      message: 'Your message',
+      message: 'Your message (optional)',
       submit: 'Send inquiry',
       submitting: 'Sending...',
       success:
@@ -626,9 +620,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       contactName: 'Name der Kontaktperson',
       email: 'E-Mail',
       phone: 'Telefon',
-      address: 'Firmenadresse',
-      vatNumber: 'Umsatzsteuer-ID (optional)',
-      message: 'Ihre Nachricht',
+      message: 'Ihre Nachricht (optional)',
       submit: 'Anfrage senden',
       submitting: 'Sende...',
       success:

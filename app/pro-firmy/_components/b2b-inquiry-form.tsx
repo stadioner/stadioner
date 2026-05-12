@@ -13,8 +13,6 @@ interface FormData {
   contactName: string
   email: string
   phone: string
-  address: string
-  vatNumber: string
   message: string
 }
 
@@ -29,8 +27,6 @@ export const B2BInquiryForm = () => {
     contactName: '',
     email: '',
     phone: '',
-    address: '',
-    vatNumber: '',
     message: ''
   })
 
@@ -59,9 +55,7 @@ export const B2BInquiryForm = () => {
         contact_name: formData.contactName,
         email: formData.email,
         phone: formData.phone,
-        address: formData.address,
-        vat_number: formData.vatNumber || null,
-        message: formData.message,
+        message: formData.message || '',
         language:
           language === 'cs' ? 'Čeština'
           : language === 'en' ? 'Angličtina'
@@ -86,8 +80,6 @@ export const B2BInquiryForm = () => {
         contactName: '',
         email: '',
         phone: '',
-        address: '',
-        vatNumber: '',
         message: ''
       })
     } catch (error) {
@@ -182,52 +174,16 @@ export const B2BInquiryForm = () => {
 
       <div>
         <label
-          htmlFor='address'
-          className='text-brand-primary mb-2 block text-sm font-medium'
-        >
-          {copy.address} *
-        </label>
-        <input
-          type='text'
-          id='address'
-          name='address'
-          value={formData.address}
-          onChange={handleChange}
-          required
-          className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none'
-        />
-      </div>
-
-      <div>
-        <label
-          htmlFor='vatNumber'
-          className='text-brand-primary mb-2 block text-sm font-medium'
-        >
-          {copy.vatNumber}
-        </label>
-        <input
-          type='text'
-          id='vatNumber'
-          name='vatNumber'
-          value={formData.vatNumber}
-          onChange={handleChange}
-          className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none'
-        />
-      </div>
-
-      <div>
-        <label
           htmlFor='message'
           className='text-brand-primary mb-2 block text-sm font-medium'
         >
-          {copy.message} *
+          {copy.message}
         </label>
         <textarea
           id='message'
           name='message'
           value={formData.message}
           onChange={handleChange}
-          required
           rows={6}
           className='bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full resize-none border px-4 py-3 text-base focus:ring-2 focus:outline-none'
         />
