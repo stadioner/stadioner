@@ -5,12 +5,14 @@ import { B2BPackagingConfigurator } from './_components/packaging-configurator'
 import { B2BCooperationFlow } from './_components/cooperation-flow'
 import { B2BContactFaq } from './_components/contact-faq'
 import { FixedInquiryCta } from './_components/fixed-inquiry-cta'
+import { B2BPostHogAnalytics } from './_components/b2b-posthog-analytics'
 import { RippedPaperSVG } from '@/components/ripped-paper-svg'
 import { Suspense } from 'react'
 
 export default function ProFirmyPage() {
   return (
     <main className='bg-brand-primary pb-36'>
+      <B2BPostHogAnalytics />
       <B2BHero />
       <B2BTypes />
       <B2BCoverageMap />

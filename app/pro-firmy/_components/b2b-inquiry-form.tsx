@@ -7,6 +7,7 @@ import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/store/use-language'
 import { useToast } from '@/components/custom-toast'
 import { b2bContent, getB2BLanguage } from './content'
+import { captureB2bEvent } from '@/lib/b2b-posthog'
 
 interface FormData {
   companyName: string
@@ -73,6 +74,11 @@ export const B2BInquiryForm = () => {
         publicKey
       })
 
+      captureB2bEvent('b2b_inquiry_submitted', {
+        language: getB2BLanguage(language),
+        has_message: Boolean(formData.message.trim())
+      })
+
       showToast(copy.success, 'success')
 
       setFormData({
@@ -84,6 +90,9 @@ export const B2BInquiryForm = () => {
       })
     } catch (error) {
       console.error('EmailJS error:', error)
+      captureB2bEvent('b2b_inquiry_submit_failed', {
+        language: getB2BLanguage(language)
+      })
       showToast(copy.error, 'error')
     } finally {
       setIsSubmitting(false)

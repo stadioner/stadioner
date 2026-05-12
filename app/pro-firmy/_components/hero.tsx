@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/store/use-language'
 import { motion } from 'framer-motion'
 import { B2BLanguage, b2bContent, getB2BLanguage } from './content'
+import { captureB2bEvent } from '@/lib/b2b-posthog'
 
 export const B2BHero = () => {
   const { language } = useLanguage()
@@ -60,7 +61,17 @@ export const B2BHero = () => {
                     size='lg'
                     variant='green'
                   >
-                    <a href='#b2b-contact'>{copy.hero.ctaPrimary}</a>
+                    <a
+                      href='#b2b-contact'
+                      onClick={() =>
+                        captureB2bEvent('b2b_hero_cta_click', {
+                          target: 'b2b-contact',
+                          language: currentLanguage
+                        })
+                      }
+                    >
+                      {copy.hero.ctaPrimary}
+                    </a>
                   </Button>
                   <Button
                     asChild
@@ -68,7 +79,17 @@ export const B2BHero = () => {
                     size='lg'
                     className='border-brand-action text-brand-action hover:bg-brand-action bg-transparent'
                   >
-                    <a href='#b2b-coverage'>{copy.hero.ctaSecondary}</a>
+                    <a
+                      href='#b2b-coverage'
+                      onClick={() =>
+                        captureB2bEvent('b2b_hero_cta_click', {
+                          target: 'b2b-coverage',
+                          language: currentLanguage
+                        })
+                      }
+                    >
+                      {copy.hero.ctaSecondary}
+                    </a>
                   </Button>
                 </div>
               </div>

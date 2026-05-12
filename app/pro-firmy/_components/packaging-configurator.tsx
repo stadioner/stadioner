@@ -9,7 +9,10 @@ export const B2BPackagingConfigurator = () => {
   const copy = b2bContent[getB2BLanguage(language)]
 
   return (
-    <section className='bg-brand-action py-8'>
+    <section
+      id='b2b-packaging'
+      className='bg-brand-action py-8'
+    >
       <Products
         hScreen
         b2bMode

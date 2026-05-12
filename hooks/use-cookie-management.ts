@@ -2,6 +2,10 @@
 
 import { useEffect, useRef } from 'react'
 import { useCookieConsent } from '@/store/use-cookie-consent'
+import {
+  disablePosthogAnalytics,
+  enablePosthogAnalytics
+} from '@/lib/posthog-consent'
 
 type TrackingParams = [command: string, ...values: unknown[]]
 type ScriptKey = 'ga' | 'fb'
@@ -86,6 +90,12 @@ export const useCookieManagement = () => {
 
   useEffect(() => {
     if (!hasConsented) return
+
+    if (cookiePreferences.analytics) {
+      enablePosthogAnalytics()
+    } else {
+      disablePosthogAnalytics()
+    }
 
     // Clear existing analytics cookies if disabled
     if (!cookiePreferences.analytics) {

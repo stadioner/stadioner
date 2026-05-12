@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react'
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
 import { useLanguage } from '@/store/use-language'
+import { captureB2bEvent } from '@/lib/b2b-posthog'
+import { getB2BLanguage } from './content'
 
 export const FixedInquiryCta = () => {
   const { language } = useLanguage()
@@ -85,6 +87,10 @@ export const FixedInquiryCta = () => {
   }, [])
 
   const handleClick = () => {
+    captureB2bEvent('b2b_fixed_cta_click', {
+      language: getB2BLanguage(language)
+    })
+
     const form = document.getElementById('b2b-form')
 
     if (!form) {

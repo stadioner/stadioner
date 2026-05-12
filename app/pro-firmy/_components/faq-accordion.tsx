@@ -1,6 +1,7 @@
 'use client'
 
 import { B2BFaqItem } from './content'
+import { captureB2bEvent } from '@/lib/b2b-posthog'
 
 export const FaqAccordion = ({ items }: { items: B2BFaqItem[] }) => {
   return (
@@ -24,6 +25,12 @@ const FaqRow = ({ item, index }: { item: B2BFaqItem; index: number }) => {
     <details
       className='group border-brand-action/30 bg-brand-primary/55 open:bg-brand-primary border'
       name='b2b-faq'
+      onToggle={(event) => {
+        const target = event.currentTarget
+        if (target.open) {
+          captureB2bEvent('b2b_faq_opened', { faq_index: index })
+        }
+      }}
     >
       <summary
         id={buttonId}

@@ -11,7 +11,10 @@ export const B2BTypes = () => {
   const copy = b2bContent[getB2BLanguage(language)]
 
   return (
-    <section className='bg-brand-secondary py-20'>
+    <section
+      id='b2b-types'
+      className='bg-brand-secondary py-20'
+    >
       <Container>
         <div className='max-w-3xl'>
           <h2 className='text-brand-action text-3xl font-bold md:text-4xl lg:text-5xl'>
