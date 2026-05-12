@@ -283,7 +283,7 @@ export const PickupPointSection = ({
               alt={content.imageAlt}
               fill
               sizes='(min-width: 768px) 50vw, 100vw'
-              className='object-cover object-bottom'
+              className='object-cover object-[center_62%]'
             />
           </div>
         </Container>
