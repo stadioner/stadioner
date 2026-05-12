@@ -32,25 +32,29 @@ const eventsPageTranslations: Record<
     noUpcoming: string
     comingSoon: string
     pastTitle: string
+    recapBadge: string
   }
 > = {
   cs: {
     upcomingTitle: 'Nadcházející události',
     noUpcoming: 'Žádné nadcházející události.',
     comingSoon: 'Připravujeme',
-    pastTitle: 'Již proběhlo'
+    pastTitle: 'Již proběhlo',
+    recapBadge: 'Recap'
   },
   en: {
     upcomingTitle: 'Upcoming Events',
     noUpcoming: 'No upcoming events.',
     comingSoon: 'Coming Soon',
-    pastTitle: 'Past Events'
+    pastTitle: 'Past Events',
+    recapBadge: 'Recap'
   },
   de: {
     upcomingTitle: 'Kommende Veranstaltungen',
     noUpcoming: 'Keine bevorstehenden Veranstaltungen.',
     comingSoon: 'In Vorbereitung',
-    pastTitle: 'Vergangene Veranstaltungen'
+    pastTitle: 'Vergangene Veranstaltungen',
+    recapBadge: 'Rückblick'
   }
 }
 
@@ -178,7 +182,62 @@ export function EventsPage({ events, language }: EventsPageProps) {
                   <div className='space-y-4'>
                     <AnimatePresence mode='popLayout'>
                       {pastEvents.map((event) => {
-                        const canOpenEvent = eventHasRecap(event)
+                        const hasRecap = eventHasRecap(event)
+
+                        const pastRow = (
+                          <div className='flex items-stretch gap-4'>
+                            <div className='border-brand-primary/10 bg-brand-primary/80 flex min-w-[104px] items-center justify-center self-stretch border px-3 py-2 text-center'>
+                              <span className='text-brand-action/70 text-sm font-semibold whitespace-nowrap md:text-base'>
+                                {formatEventDateNumeric(event.dateTime)}
+                              </span>
+                            </div>
+
+                            <div className='flex min-w-0 flex-1 flex-col justify-center'>
+                              <h4 className='text-brand-primary/60 font-mohave mb-2 truncate text-xl font-bold uppercase transition-colors md:text-2xl'>
+                                {event.title}
+                              </h4>
+                              <div className='text-brand-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
+                                <div className='flex items-center gap-1.5'>
+                                  <Clock className='h-4 w-4' />
+                                  {formatEventTime(
+                                    event.dateTime,
+                                    language
+                                  )}
+                                  {event.endDateTime &&
+                                    ` - ${formatEventTime(event.endDateTime, language)}`}
+                                </div>
+                                {event.location && (
+                                  <div className='flex items-center gap-1.5'>
+                                    <MapPin className='h-4 w-4' />
+                                    {event.location}
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+
+                            {hasRecap && (
+                              <>
+                                <div className='bg-brand-primary/10 flex shrink-0 items-center self-center px-3 py-1'>
+                                  <span className='text-brand-primary/80 flex items-center gap-2 text-xs font-bold tracking-wider uppercase'>
+                                    {t.recapBadge}
+                                  </span>
+                                </div>
+                                <div className='hidden shrink-0 self-center sm:block'>
+                                  <Button
+                                    size='icon'
+                                    variant='ghost'
+                                    className='text-brand-primary/70 hover:bg-brand-primary/10'
+                                    asChild
+                                  >
+                                    <span>
+                                      <ChevronRight className='h-4 w-4' />
+                                    </span>
+                                  </Button>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        )
 
                         return (
                           <motion.div
@@ -187,80 +246,19 @@ export function EventsPage({ events, language }: EventsPageProps) {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, x: -20 }}
                             className={`border-brand-primary/15 border bg-transparent opacity-60 ${
-                              canOpenEvent ?
+                              hasRecap ?
                                 'group hover:bg-brand-primary/5 cursor-pointer transition-colors'
                               : 'cursor-not-allowed'
                             }`}
                           >
-                            {canOpenEvent ?
+                            {hasRecap ?
                               <Link
                                 href={`/udalosti/${language}/${event.slug.current}`}
                                 className='block p-4'
                               >
-                                <div className='flex items-stretch gap-4'>
-                                  <div className='border-brand-primary/10 bg-brand-primary/80 flex min-w-[104px] items-center justify-center self-stretch border px-3 py-2 text-center'>
-                                    <span className='text-brand-action/70 text-sm font-semibold whitespace-nowrap md:text-base'>
-                                      {formatEventDateNumeric(event.dateTime)}
-                                    </span>
-                                  </div>
-
-                                  <div className='flex min-w-0 flex-1 flex-col justify-center'>
-                                    <h4 className='text-brand-primary/60 font-mohave mb-2 truncate text-xl font-bold uppercase transition-colors md:text-2xl'>
-                                      {event.title}
-                                    </h4>
-                                    <div className='text-brand-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
-                                      <div className='flex items-center gap-1.5'>
-                                        <Clock className='h-4 w-4' />
-                                        {formatEventTime(
-                                          event.dateTime,
-                                          language
-                                        )}
-                                        {event.endDateTime &&
-                                          ` - ${formatEventTime(event.endDateTime, language)}`}
-                                      </div>
-                                      {event.location && (
-                                        <div className='flex items-center gap-1.5'>
-                                          <MapPin className='h-4 w-4' />
-                                          {event.location}
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
-                                </div>
+                                {pastRow}
                               </Link>
-                            : <div className='block p-4'>
-                                <div className='flex items-stretch gap-4'>
-                                  <div className='border-brand-primary/10 bg-brand-primary/80 flex min-w-[104px] items-center justify-center self-stretch border px-3 py-2 text-center'>
-                                    <span className='text-brand-action/70 text-sm font-semibold whitespace-nowrap md:text-base'>
-                                      {formatEventDateNumeric(event.dateTime)}
-                                    </span>
-                                  </div>
-
-                                  <div className='flex min-w-0 flex-1 flex-col justify-center'>
-                                    <h4 className='text-brand-primary/60 font-mohave mb-2 truncate text-xl font-bold uppercase transition-colors md:text-2xl'>
-                                      {event.title}
-                                    </h4>
-                                    <div className='text-brand-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
-                                      <div className='flex items-center gap-1.5'>
-                                        <Clock className='h-4 w-4' />
-                                        {formatEventTime(
-                                          event.dateTime,
-                                          language
-                                        )}
-                                        {event.endDateTime &&
-                                          ` - ${formatEventTime(event.endDateTime, language)}`}
-                                      </div>
-                                      {event.location && (
-                                        <div className='flex items-center gap-1.5'>
-                                          <MapPin className='h-4 w-4' />
-                                          {event.location}
-                                        </div>
-                                      )}
-                                    </div>
-                                  </div>
-                                </div>
-                              </div>
-                            }
+                            : <div className='block p-4'>{pastRow}</div>}
                           </motion.div>
                         )
                       })}
