@@ -126,5 +126,35 @@ export function B2BPostHogAnalytics() {
     }
   }, [analyticsActive, locale])
 
+  useEffect(() => {
+    if (!analyticsActive) {
+      return
+    }
+
+    let cancelled = false
+
+    const tryStartRecording = () => {
+      if (cancelled || !isPosthogCaptureAllowed()) {
+        return
+      }
+      posthog.startSessionRecording()
+    }
+
+    tryStartRecording()
+    const startRetryId = window.setTimeout(tryStartRecording, 150)
+
+    return () => {
+      cancelled = true
+      window.clearTimeout(startRetryId)
+      try {
+        if (posthog.__loaded && !posthog.has_opted_out_capturing()) {
+          posthog.stopSessionRecording?.()
+        }
+      } catch {
+        // ignore
+      }
+    }
+  }, [analyticsActive])
+
   return null
 }

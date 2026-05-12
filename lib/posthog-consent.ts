@@ -45,7 +45,8 @@ export function enablePosthogAnalytics(): void {
   if (!posthog.__loaded) {
     posthog.init(token, {
       api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
-      defaults: '2026-01-30'
+      defaults: '2026-01-30',
+      disable_session_recording: true
     })
     return
   }
