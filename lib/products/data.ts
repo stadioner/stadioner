@@ -145,7 +145,7 @@ export const beersCs: Product[] = [
     ],
     image: '/products/pivo/indianhead/bottle.webp',
     icon: '/products/pivo/indianhead/icon.svg',
-    ingredients: '/products/pivo/12/etiq.webp',
+    ingredients: '/products/pivo/indianhead/etiq.webp',
     bottlePriceCzk: 49,
     cratePriceCzk: 980,
     kegPricesCzk: { barrel30: 2460 }
@@ -301,7 +301,7 @@ export const beersEn: Product[] = [
       { label: 'DEGREE', value: '12°' },
       { label: 'FILTRATION', value: 'Unfiltered' }
     ],
-    image: '/products/pivo/indianhead/bottle.webp',
+    image: '/products/pivo/12/bottle.webp',
     icon: '/products/pivo/12/icon.svg',
     ingredients: '/products/pivo/12/etiq.webp',
     bottlePriceCzk: 29,
@@ -408,7 +408,7 @@ export const beersEn: Product[] = [
     ],
     image: '/products/pivo/indianhead/bottle.webp',
     icon: '/products/pivo/indianhead/icon.svg',
-    ingredients: '/products/pivo/12/etiq.webp',
+    ingredients: '/products/pivo/indianhead/etiq.webp',
     bottlePriceCzk: 49,
     cratePriceCzk: 980,
     kegPricesCzk: { barrel30: 2460 }
@@ -671,7 +671,7 @@ export const beersDe: Product[] = [
     ],
     image: '/products/pivo/indianhead/bottle.webp',
     icon: '/products/pivo/indianhead/icon.svg',
-    ingredients: '/products/pivo/12/etiq.webp',
+    ingredients: '/products/pivo/indianhead/etiq.webp',
     bottlePriceCzk: 49,
     cratePriceCzk: 980,
     kegPricesCzk: { barrel30: 2460 }
