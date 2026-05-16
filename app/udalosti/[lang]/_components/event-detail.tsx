@@ -19,11 +19,13 @@ import { Event } from '@/types/event'
 import { SupportedLanguage } from '@/types/blog'
 import { type ReactNode } from 'react'
 import { EventRsvp } from './event-rsvp'
+import { EventTeamInfoSection } from './event-team-info'
 import {
   formatEventDate,
   formatEventTime,
   isEventPast
 } from '@/lib/events/date-time'
+import { getEventTeamInfo } from '@/lib/events/team-info'
 
 interface EventDetailProps {
   event: Event
@@ -107,6 +109,7 @@ export function EventDetail({ event, language }: EventDetailProps) {
   const hasDescription = hasPortableTextContent(event.description)
   const hasRecap = hasPortableTextContent(event.recap)
   const isPastEvent = isEventPast(event)
+  const teamInfo = getEventTeamInfo(event.slug.current, language)
   const recapHeading =
     language === 'cs' ? 'Recap akce'
     : language === 'de' ? 'Rückblick auf die Veranstaltung'
@@ -164,6 +167,13 @@ export function EventDetail({ event, language }: EventDetailProps) {
                 )}
               </div>
             </div>
+
+            {teamInfo && (
+              <EventTeamInfoSection
+                info={teamInfo}
+                language={language}
+              />
+            )}
 
             <div className='prose prose-invert prose-lg text-brand-action/80 max-w-none'>
               {hasDescription ?
