@@ -1,4 +1,4 @@
-import { Users } from 'lucide-react'
+import { Calendar, MapPin, UserCheck, Users } from 'lucide-react'
 import { type EventTeamInfo } from '@/lib/events/team-info'
 import { type SupportedLanguage } from '@/types/blog'
 
@@ -84,6 +84,55 @@ export function EventTeamInfoSection({
           </p>
         ))}
       </div>
+
+      <div className='border-brand-action/25 mt-6 border-t pt-6'>
+        <h3 className='text-brand-action font-mohave text-xl font-bold tracking-wide uppercase md:text-2xl'>
+          {info.meeting.heading}
+        </h3>
+        <ul className='text-brand-action mt-4 space-y-3 text-[1.0625rem] leading-[1.75] md:text-[1.125rem]'>
+          <li className='flex gap-3'>
+            <Calendar
+              className='text-brand-shop mt-1 h-5 w-5 shrink-0'
+              aria-hidden='true'
+            />
+            <span>{info.meeting.date}</span>
+          </li>
+          <li className='flex gap-3'>
+            <MapPin
+              className='text-brand-shop mt-1 h-5 w-5 shrink-0'
+              aria-hidden='true'
+            />
+            <span>{info.meeting.location}</span>
+          </li>
+          <li className='flex gap-3'>
+            <Users
+              className='text-brand-shop mt-1 h-5 w-5 shrink-0'
+              aria-hidden='true'
+            />
+            <span>{info.meeting.purpose}</span>
+          </li>
+          <li className='flex gap-3'>
+            <UserCheck
+              className='text-brand-shop mt-1 h-5 w-5 shrink-0'
+              aria-hidden='true'
+            />
+            <span>{info.meeting.attendance}</span>
+          </li>
+        </ul>
+
+        <div className='bg-brand-action text-brand-primary mt-5 px-4 py-4 md:px-5'>
+          <p className='text-brand-primary/80 text-xs font-bold tracking-wide uppercase'>
+            {info.meeting.bringLabel}
+          </p>
+          <p className='font-mohave mt-1 text-xl font-bold uppercase md:text-2xl'>
+            {info.meeting.bringItem}
+          </p>
+        </div>
+      </div>
+
+      <p className='text-brand-action border-brand-action/25 mt-6 border-t pt-6 text-[1.0625rem] leading-[1.75] font-medium md:text-[1.125rem]'>
+        {info.charityPurpose}
+      </p>
     </aside>
   )
 }
