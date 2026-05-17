@@ -14,7 +14,6 @@ import { PackagingSelector } from './packaging-selector'
 import { ProductImage } from './product-image'
 import { ProductInfo } from './product-info'
 import type { PackagingKey, PackagingOption } from '@/types/products'
-import { KegNewsDialog } from '@/components/products/keg-news-dialog'
 
 export const Products = ({
   rippedPaper,
@@ -157,8 +156,6 @@ export const Products = ({
             selectedPackagingLabel={selectedPackagingLabel}
             onPackagingChange={handlePackagingChange}
           />
-
-          {!b2bMode && <KegNewsDialog />}
 
           <div className='mt-4 flex flex-col items-stretch gap-4 sm:mt-6 sm:gap-8 md:mt-12 md:grid md:grid-cols-[2fr_1fr]'>
             <div className='relative flex flex-1 items-center justify-center md:hidden'>
