@@ -5,7 +5,8 @@ import { Container } from '@/components/container'
 import { Button } from '@/components/ui/button'
 import { useLanguage } from '@/store/use-language'
 import { motion } from 'framer-motion'
-import { B2BLanguage, b2bContent, getB2BLanguage } from './content'
+import Image from 'next/image'
+import { b2bContent, getB2BLanguage } from './content'
 import { captureB2bEvent } from '@/lib/b2b-posthog'
 
 export const B2BHero = () => {
@@ -13,28 +14,11 @@ export const B2BHero = () => {
   const currentLanguage = getB2BLanguage(language)
   const copy = b2bContent[currentLanguage]
 
-  const cooperationModelCopy: Record<
-    B2BLanguage,
-    { badge: string; title: string }
-  > = {
-    cs: {
-      badge: 'Model spolupráce',
-      title: 'Jednoduše: my dodáme, vy prodáváte, oba rosteme'
-    },
-    en: {
-      badge: 'Cooperation model',
-      title: 'Simple setup: we supply, you sell, both sides grow'
-    },
-    de: {
-      badge: 'Kooperationsmodell',
-      title: 'Einfach: wir liefern, Sie verkaufen, beide wachsen'
-    }
-  }
-
-  const heroPanel = cooperationModelCopy[currentLanguage]
-
   return (
-    <section className='bg-brand-primary pt-36 pb-20 md:pt-44 md:pb-24'>
+    <section
+      id='b2b-hero'
+      className='bg-brand-primary scroll-mt-16 pt-36 pb-20 md:pt-44 md:pb-28 lg:pb-24'
+    >
       <Container>
         <Border background>
           <motion.div
@@ -43,12 +27,12 @@ export const B2BHero = () => {
             transition={{ duration: 0.55 }}
             className='bg-brand-secondary relative overflow-hidden p-6 md:p-9 lg:p-10'
           >
-            <div className='relative z-10 grid gap-7 lg:grid-cols-[1.2fr_0.8fr] lg:gap-8'>
+            <div className='relative z-10 grid items-start gap-7 lg:grid-cols-2 lg:items-stretch lg:gap-10'>
               <div>
                 <p className='border-brand-action/35 bg-brand-primary/65 text-brand-action/80 inline-flex border px-3 py-1 text-sm font-semibold tracking-[0.18em] uppercase'>
                   {copy.hero.eyebrow}
                 </p>
-                <h1 className='text-brand-action mt-4 text-4xl leading-[1.05] font-bold md:text-5xl lg:text-6xl'>
+                <h1 className='text-brand-action mt-4 text-4xl leading-[1.05] font-bold md:text-4xl lg:text-5xl xl:text-6xl'>
                   {copy.hero.title}
                 </h1>
                 <p className='text-brand-action/90 mt-5 max-w-[60ch] text-lg leading-relaxed md:text-xl'>
@@ -80,10 +64,10 @@ export const B2BHero = () => {
                     className='border-brand-action text-brand-action hover:bg-brand-action bg-transparent'
                   >
                     <a
-                      href='#b2b-coverage'
+                      href='#b2b-packaging'
                       onClick={() =>
                         captureB2bEvent('b2b_hero_cta_click', {
-                          target: 'b2b-coverage',
+                          target: 'b2b-packaging',
                           language: currentLanguage
                         })
                       }
@@ -94,24 +78,31 @@ export const B2BHero = () => {
                 </div>
               </div>
 
-              <div>
+              <motion.div className='h-full w-full lg:flex lg:min-h-full lg:flex-col'>
                 <Border
                   backgroundLight
-                  className='h-full'
+                  className='h-full lg:flex lg:flex-1 lg:flex-col'
                 >
-                  <div className='bg-brand-primary h-full p-5 md:p-6 lg:p-7'>
-                    <p className='text-brand-action/70 text-sm font-semibold tracking-[0.16em] uppercase'>
-                      {heroPanel.badge}
-                    </p>
-                    <h2 className='text-brand-action mt-3 text-2xl leading-tight font-bold md:text-3xl'>
-                      {heroPanel.title}
-                    </h2>
-                    <p className='text-brand-action/85 mt-5 text-base leading-relaxed md:text-lg'>
-                      {copy.hero.philosophy}
-                    </p>
-                  </div>
+                  <motion.div className='relative h-full aspect-[16/10] w-full overflow-hidden sm:aspect-[5/3] lg:aspect-auto lg:min-h-[28rem] lg:flex-1 xl:min-h-[32rem]'>
+                    <Image
+                      src='/b2b/crates-warehouse.png'
+                      alt={copy.hero.imageAlt}
+                      fill
+                      priority
+                      sizes='100vw'
+                      className='object-cover lg:hidden'
+                    />
+                    <Image
+                      src='/vydejni-misto-sklad.png'
+                      alt={copy.hero.imageAlt}
+                      fill
+                      priority
+                      sizes='(min-width: 1024px) 50vw, 0px'
+                      className='hidden object-cover lg:block'
+                    />
+                  </motion.div>
                 </Border>
-              </div>
+              </motion.div>
             </div>
           </motion.div>
         </Border>

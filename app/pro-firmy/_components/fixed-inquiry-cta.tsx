@@ -11,6 +11,7 @@ export const FixedInquiryCta = () => {
   const { language } = useLanguage()
   const [bottomOffset, setBottomOffset] = useState(16)
   const [isFormVisible, setIsFormVisible] = useState(false)
+  const [isHeroVisible, setIsHeroVisible] = useState(true)
   const buttonLabel =
     language === 'en' ? 'Non-binding order'
     : language === 'de' ? 'Unverbindliche Bestellung'
@@ -86,6 +87,31 @@ export const FixedInquiryCta = () => {
     }
   }, [])
 
+  useEffect(() => {
+    const hero = document.getElementById('b2b-hero')
+    if (!hero) {
+      setIsHeroVisible(false)
+      return
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries
+        setIsHeroVisible(entry.isIntersecting)
+      },
+      {
+        threshold: 0.15,
+        rootMargin: '0px 0px -80px 0px'
+      }
+    )
+
+    observer.observe(hero)
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
+
   const handleClick = () => {
     captureB2bEvent('b2b_fixed_cta_click', {
       language: getB2BLanguage(language)
@@ -112,8 +138,8 @@ export const FixedInquiryCta = () => {
       className='fixed inset-x-0 z-[1002] transition-opacity duration-200'
       style={{
         bottom: `${bottomOffset}px`,
-        opacity: isFormVisible ? 0 : 1,
-        pointerEvents: isFormVisible ? 'none' : 'auto'
+        opacity: isFormVisible || isHeroVisible ? 0 : 1,
+        pointerEvents: isFormVisible || isHeroVisible ? 'none' : 'auto'
       }}
     >
       <Container>

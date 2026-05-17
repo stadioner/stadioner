@@ -20,6 +20,7 @@ export const Products = ({
   rippedPaper,
   hScreen,
   b2bMode = false,
+  b2bTitle,
   b2bNote,
   b2bCtaLabel,
   b2bCtaHref
@@ -27,6 +28,7 @@ export const Products = ({
   rippedPaper?: boolean
   hScreen?: boolean
   b2bMode?: boolean
+  b2bTitle?: string
   b2bNote?: string
   b2bCtaLabel?: string
   b2bCtaHref?: string
@@ -130,6 +132,11 @@ export const Products = ({
           </div>
         )}
         <Container className=''>
+          {b2bMode && b2bTitle ?
+            <h2 className='text-brand-primary mb-6 text-center text-3xl font-bold md:mb-8 md:text-4xl lg:text-5xl'>
+              {b2bTitle}
+            </h2>
+          : null}
           <CategorySelector
             categories={categoriesList}
             selectedCategory={selectedCategory}

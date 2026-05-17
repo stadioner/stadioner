@@ -51,8 +51,8 @@ export interface B2BSectionCopy {
   hero: {
     eyebrow: string
     title: string
-    philosophy: string
     description: string
+    imageAlt: string
     ctaPrimary: string
     ctaSecondary: string
   }
@@ -95,14 +95,13 @@ export const getB2BLanguage = (language: string): B2BLanguage =>
 export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
   cs: {
     hero: {
-      eyebrow: 'B2B partnerství pro váš podnik',
-      title: 'Stabilní dodávky, silná značka a vyšší obrat',
-      philosophy:
-        'Nechceme jít do řetězců. Chceme budovat síť vesnických obchodů, které mají vztah se zákazníky. My vám dodáme produkt a uděláme marketing. Vy na tom vyděláte na každé lahvi a ještě získáte objednávky z e-shopu.',
+      eyebrow: 'Pro hospody, restaurace a místní obchody',
+      title: 'Dodáme produkt i marketing. Vy prodáváte — my vás podpoříme.',
       description:
-        'Vyplňte krátký formulář a pošleme vám nezávazný návrh spolupráce, závozu i podpory prodeje pro váš provoz.',
+        'Spolupracujeme s provozy, kde se prodává kvalita a osobní přístup. Po krátké poptávce připravíme nezávazný návrh závozu, sortimentu a podpory prodeje — obvykle do 24 hodin.',
+      imageAlt: 'Sklad beden STADIONER v pivovaru',
       ctaPrimary: 'Chci nezávaznou nabídku',
-      ctaSecondary: 'Podívat se na působnost'
+      ctaSecondary: 'Naše produkty'
     },
     types: {
       title: 'Pro koho je spolupráce určená',
@@ -152,12 +151,12 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       ]
     },
     coverage: {
-      title: 'Kde už dnes působíme',
+      title: 'Chcete být také na mapě?',
       description:
-        'Síť partnerů rozšiřujeme z Koutu na Šumavě do dalších měst. Přidejte se i vy a získejte lokální značku, která se prodává.'
+        'Naši partneři jsou vidět tady i na sociálních sítích. Přidejte se k síti provozů kolem Koutu na Šumavě — váš podnik budeme sdílet a představíme ho našim fanouškům.'
     },
     packaging: {
-      title: 'Balení pro každý typ provozu',
+      title: 'Naše produkty – lahve a sudy',
       description:
         'Porovnejte varianty balení a vyberte to, co nejlépe sedí vaší výtoči i skladovým možnostem.',
       priceListNote:
@@ -238,14 +237,14 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       title: 'Vyplňte formulář a ozveme se vám',
       description:
         'Stačí pár základních údajů. Připravíme návrh spolupráce podle vašeho typu provozu.',
-      formTitle: 'Nezávazná B2B poptávka',
+      formTitle: 'Nezávazná poptávka spolupráce',
       faqTitle: 'Nejčastější otázky před startem'
     },
     form: {
-      title: 'Pro firmy',
+      title: 'Pro váš provoz',
       subtitle:
         'Vyplňte krátký formulář a do 24 hodin se vám ozveme s návrhem spolupráce.',
-      companyName: 'Název firmy',
+      companyName: 'Název provozu nebo firmy',
       contactName: 'Jméno kontaktní osoby',
       email: 'Email',
       phone: 'Telefon',
@@ -265,7 +264,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           'Minimální odběr nastavujeme individuálně podle typu provozu a frekvence závozu. Cílem je, aby spolupráce dávala smysl ekonomicky vám i nám.'
       },
       {
-        question: 'Jaká balení jsou pro B2B dostupná?',
+        question: 'Jaká balení nabízíte?',
         answer:
           'Standardně nabízíme lahve, bedny, sudy 30 l a 50 l. Malé sudy 10 l a 20.5 l řešíme na objednávku podle typu akce nebo provozu.'
       },
@@ -282,20 +281,19 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       {
         question: 'Jak řešíte dopravu a fakturaci?',
         answer:
-          'Dopravu plánujeme podle lokality a objemu odběru. Fakturace probíhá standardně B2B podle předem domluvených podmínek.'
+          'Dopravu plánujeme podle lokality a objemu odběru. Fakturaci řešíme na firmu podle předem domluvených podmínek.'
       }
     ]
   },
   en: {
     hero: {
-      eyebrow: 'B2B cooperation',
-      title: 'A partner for pubs, restaurants, and local businesses',
-      philosophy:
-        'We do not want to go into chains. We want to build a network of local businesses with real customer relationships. We deliver product and marketing. You earn on every bottle and gain additional orders from our e-shop.',
+      eyebrow: 'For pubs, restaurants, and local stores',
+      title: 'We supply product and marketing. You sell — we support you.',
       description:
-        'STADIONER builds cooperation on long-term partnerships, quality products, and practical sales support for your venue.',
-      ctaPrimary: 'Start cooperation',
-      ctaSecondary: 'Where we operate'
+        'We work with venues where quality and personal service matter. Send a quick inquiry and we will prepare a no-obligation proposal for delivery, range, and sales support, usually within 24 hours.',
+      imageAlt: 'STADIONER crate storage at the brewery',
+      ctaPrimary: 'Request a no-obligation offer',
+      ctaSecondary: 'Our products'
     },
     types: {
       title: 'Who this cooperation is for',
@@ -345,12 +343,12 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       ]
     },
     coverage: {
-      title: 'Where we already operate',
+      title: 'Want to be on the map too?',
       description:
-        'We are gradually expanding our partner network from Kout na Šumavě to more cities and venues.'
+        'Our partners are visible here and on social media. Join the network around Kout na Šumavě — we will share your venue and introduce it to our community.'
     },
     packaging: {
-      title: 'B2B packaging overview',
+      title: 'Our products – bottles and kegs',
       description:
         'Choose a format that fits your venue. We supply multiple packaging variants.',
       priceListNote:
@@ -431,13 +429,13 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       title: 'Let us start together',
       description:
         'Send us your basic details. Frequently asked questions are on the right.',
-      formTitle: 'Inquiry form',
+      formTitle: 'No-obligation partnership inquiry',
       faqTitle: 'Frequently asked questions'
     },
     form: {
-      title: 'For Companies',
+      title: 'For your venue',
       subtitle: 'Interested in cooperation? Contact us!',
-      companyName: 'Company name',
+      companyName: 'Venue or company name',
       contactName: 'Contact person name',
       email: 'Email',
       phone: 'Phone',
@@ -457,7 +455,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           'Minimum volume is set individually based on your venue type and delivery frequency. We define it during the first call.'
       },
       {
-        question: 'Which packaging formats are available for B2B?',
+        question: 'Which packaging do you offer?',
         answer:
           'We typically supply bottles, crates, 30 l kegs, and 50 l kegs. Small 10 l and 20.5 l kegs are available via pre-order.'
       },
@@ -474,20 +472,20 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       {
         question: 'How do delivery and invoicing work?',
         answer:
-          'Delivery is planned by location and volume. Invoicing follows standard B2B process under agreed conditions.'
+          'Delivery is planned by location and volume. We invoice your business under agreed terms.'
       }
     ]
   },
   de: {
     hero: {
-      eyebrow: 'B2B-Zusammenarbeit',
-      title: 'Partner für Kneipen, Restaurants und lokale Betriebe',
-      philosophy:
-        'Wir wollen nicht in Ketten gehen. Wir bauen ein Netzwerk lokaler Betriebe mit direktem Kundenbezug auf. Wir liefern Produkt und Marketing. Sie verdienen an jeder Flasche und gewinnen zusätzliche Bestellungen aus unserem E-Shop.',
+      eyebrow: 'Für Kneipen, Restaurants und lokale Läden',
+      title:
+        'Wir liefern Produkt und Marketing. Sie verkaufen — wir unterstützen Sie.',
       description:
-        'STADIONER setzt auf langfristige Partnerschaften, Qualitätsprodukte und praxisnahe Verkaufsunterstützung.',
-      ctaPrimary: 'Zusammenarbeit starten',
-      ctaSecondary: 'Wo wir aktiv sind'
+        'Wir arbeiten mit Betrieben, in denen Qualität und persönlicher Service zählen. Senden Sie eine kurze Anfrage und wir erstellen unverbindlich ein Angebot für Lieferung, Sortiment und Verkaufsunterstützung — meist innerhalb von 24 Stunden.',
+      imageAlt: 'STADIONER-Kistenlager in der Brauerei',
+      ctaPrimary: 'Unverbindliches Angebot anfordern',
+      ctaSecondary: 'Unsere Produkte'
     },
     types: {
       title: 'Für wen die Zusammenarbeit passt',
@@ -537,12 +535,12 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       ]
     },
     coverage: {
-      title: 'Wo wir bereits aktiv sind',
+      title: 'Möchten Sie auch auf der Karte stehen?',
       description:
-        'Unser Partnernetz wächst schrittweise von Kout na Šumavě in weitere Städte.'
+        'Unsere Partner sind hier und in den sozialen Medien sichtbar. Werden Sie Teil des Netzwerks rund um Kout na Šumavě — wir stellen Ihren Betrieb vor und teilen ihn mit unserer Community.'
     },
     packaging: {
-      title: 'B2B-Verpackungsübersicht',
+      title: 'Unsere Produkte – Flaschen und Fässer',
       description:
         'Wählen Sie das Format, das zu Ihrem Betrieb passt. Wir liefern mehrere Verpackungsvarianten.',
       priceListNote:
@@ -624,13 +622,13 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       title: 'Lassen Sie uns starten',
       description:
         'Senden Sie uns die wichtigsten Infos. Rechts finden Sie die häufigsten Fragen.',
-      formTitle: 'Anfrageformular',
+      formTitle: 'Unverbindliche Kooperationsanfrage',
       faqTitle: 'Häufige Fragen'
     },
     form: {
-      title: 'Für Unternehmen',
+      title: 'Für Ihren Betrieb',
       subtitle: 'Interessiert an Zusammenarbeit? Kontaktieren Sie uns!',
-      companyName: 'Firmenname',
+      companyName: 'Name des Betriebs oder der Firma',
       contactName: 'Name der Kontaktperson',
       email: 'E-Mail',
       phone: 'Telefon',
@@ -651,7 +649,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           'Die Mindestabnahme legen wir individuell nach Betriebstyp und Lieferfrequenz fest. Das klären wir im Erstgespräch.'
       },
       {
-        question: 'Welche Verpackungen sind für B2B verfügbar?',
+        question: 'Welche Verpackungen bieten Sie an?',
         answer:
           'Standardmäßig bieten wir Flaschen, Kisten, 30-l- und 50-l-Fässer. Kleine 10-l- und 20.5-l-Fässer sind auf Vorbestellung möglich.'
       },
@@ -668,7 +666,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       {
         question: 'Wie funktionieren Lieferung und Abrechnung?',
         answer:
-          'Lieferungen planen wir nach Standort und Volumen. Die Abrechnung läuft im üblichen B2B-Prozess nach Vereinbarung.'
+          'Lieferungen planen wir nach Standort und Volumen. Die Rechnung stellen wir an Ihre Firma nach Vereinbarung aus.'
       }
     ]
   }

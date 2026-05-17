@@ -16,6 +16,7 @@ export const B2BPackagingConfigurator = () => {
       <Products
         hScreen
         b2bMode
+        b2bTitle={copy.packaging.title}
         b2bNote={copy.packaging.priceListNote}
         b2bCtaLabel={copy.packaging.requestPriceList}
         b2bCtaHref='#b2b-contact'
