@@ -23,8 +23,6 @@ export function EventTeamInfoSection({
   info,
   language
 }: EventTeamInfoSectionProps) {
-  const spotsLeft = Math.max(info.teamCapacity - info.registeredTeams, 0)
-
   return (
     <aside
       className='border-brand-action bg-brand-shop/10 mb-8 border-2 p-5 md:p-6'
@@ -63,15 +61,6 @@ export function EventTeamInfoSection({
             </span>
           </p>
         </div>
-        {spotsLeft > 0 && (
-          <p className='text-brand-action text-sm font-medium'>
-            {language === 'cs' ?
-              `Zbývá ${spotsLeft} volných míst`
-            : language === 'de' ?
-              `Noch ${spotsLeft} Plätze frei`
-            : `${spotsLeft} spots still available`}
-          </p>
-        )}
       </div>
 
       <div className='mt-5 space-y-3'>

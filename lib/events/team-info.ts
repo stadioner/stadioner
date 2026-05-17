@@ -30,7 +30,6 @@ const goulashBattleTeamInfo: Record<SupportedLanguage, EventTeamInfo> = {
     title: 'Info pro týmy',
     paragraphs: [
       '29. 5. od 16:00 u nás v pivovaru (Kout na Šumavě 2) proběhne první setkání týmů k akci Souboj gulášů. Upřesníme důležité informace a předáme startovací čísla.',
-      'Aktuálně je přihlášeno 15 týmů, kapacita je 30, takže stále je prostor pro další přihlášení. Zajistíme vám maso a základní suroviny.',
       'Setkání je otevřené i pro veřejnost.'
     ],
     meeting: {
@@ -51,7 +50,6 @@ const goulashBattleTeamInfo: Record<SupportedLanguage, EventTeamInfo> = {
     title: 'Info for teams',
     paragraphs: [
       'On 29 May from 4:00 p.m. at our brewery (Kout na Šumavě 2) we will hold the first team meeting for the Goulash Battle. We will go over important details and hand out starting numbers.',
-      '15 teams are registered so far, capacity is 30, so there is still room for more sign-ups. We will provide meat and basic ingredients.',
       'The meeting is also open to the public.'
     ],
     meeting: {
@@ -72,7 +70,6 @@ const goulashBattleTeamInfo: Record<SupportedLanguage, EventTeamInfo> = {
     title: 'Info für Teams',
     paragraphs: [
       'Am 29. 5. ab 16:00 Uhr in unserer Brauerei (Kout na Šumavě 2) findet das erste Teamtreffen zur Aktion „Gulasch-Schlacht“ statt. Wir klären wichtige Informationen und geben Startnummern aus.',
-      'Derzeit sind 15 Teams angemeldet, die Kapazität beträgt 30 – es ist also noch Platz für weitere Anmeldungen. Wir stellen Fleisch und Grundzutaten bereit.',
       'Das Treffen ist auch für die Öffentlichkeit zugänglich.'
     ],
     meeting: {
