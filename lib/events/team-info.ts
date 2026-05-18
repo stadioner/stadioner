@@ -6,8 +6,6 @@ export interface EventTeamMeetingInfo {
   location: string
   purpose: string
   attendance: string
-  bringLabel: string
-  bringItem: string
 }
 
 export interface EventTeamInfo {
@@ -37,9 +35,7 @@ const goulashBattleTeamInfo: Record<SupportedLanguage, EventTeamInfo> = {
       date: '29. 5. od 16:00',
       location: 'U sudu na prodejně.',
       purpose: 'Ať společně vymyslíme, co nám chybí.',
-      attendance: 'Nutná účast alespoň jednoho člena týmu.',
-      bringLabel: 'Co si vzít s sebou?',
-      bringItem: '1 kotlík s topeništěm'
+      attendance: 'Nutná účast alespoň jednoho člena týmu.'
     },
     charityPurpose:
       'Charitativní akce – výtěžek z prodeje gulášů půjde na koupi vozíku pro Tomáška a na Diakonii Merklín.',
@@ -57,9 +53,7 @@ const goulashBattleTeamInfo: Record<SupportedLanguage, EventTeamInfo> = {
       date: '29 May, 4:00 p.m.',
       location: 'At the barrel in the shop.',
       purpose: 'Let’s figure out together what we still need.',
-      attendance: 'At least one team member must attend.',
-      bringLabel: 'What to bring?',
-      bringItem: '1 cauldron with a firebox'
+      attendance: 'At least one team member must attend.'
     },
     charityPurpose:
       'Charity event – proceeds from goulash sales will go towards a wheelchair for Tomášek and Diakonie Merklín.',
@@ -77,9 +71,7 @@ const goulashBattleTeamInfo: Record<SupportedLanguage, EventTeamInfo> = {
       date: '29. 5., 16:00 Uhr',
       location: 'Am Fass im Verkauf.',
       purpose: 'Gemeinsam klären wir, was uns noch fehlt.',
-      attendance: 'Mindestens ein Teammitglied muss teilnehmen.',
-      bringLabel: 'Was mitbringen?',
-      bringItem: '1 Kessel mit Feuerstelle'
+      attendance: 'Mindestens ein Teammitglied muss teilnehmen.'
     },
     charityPurpose:
       'Wohltätigkeitsaktion – der Erlös aus dem Verkauf der Gulaschgerichte geht für einen Rollstuhl für Tomášek und an die Diakonie Merklín.',

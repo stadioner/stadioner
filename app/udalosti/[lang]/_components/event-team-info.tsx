@@ -108,15 +108,6 @@ export function EventTeamInfoSection({
             <span>{info.meeting.attendance}</span>
           </li>
         </ul>
-
-        <div className='bg-brand-action text-brand-primary mt-5 px-4 py-4 md:px-5'>
-          <p className='text-brand-primary/80 text-xs font-bold tracking-wide uppercase'>
-            {info.meeting.bringLabel}
-          </p>
-          <p className='font-mohave mt-1 text-xl font-bold uppercase md:text-2xl'>
-            {info.meeting.bringItem}
-          </p>
-        </div>
       </div>
 
       <p className='text-brand-action border-brand-action/25 mt-6 border-t pt-6 text-[1.0625rem] leading-[1.75] font-medium md:text-[1.125rem]'>
