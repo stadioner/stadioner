@@ -71,9 +71,9 @@ export const Hero = ({ upcomingEventsByLanguage }: HeroProps) => {
               'Eine Brauerei, in der das Erbe der Adelsfamilie, das Handwerk und der Geschmack wieder zum Leben erweckt werden.'}
           </h3>
           <p className='text-lg md:text-2xl'>est. 1736</p>
-          <p className='mt-2 max-w-xl text-sm font-semibold md:text-base'>
+          {/* <p className='mt-2 max-w-xl text-sm font-semibold md:text-base'>
             {panelCopy.holidayClosing}
-          </p>
+          </p> */}
 
           {upcomingEvent && (
             <div className='mt-8 flex place-content-end'>
