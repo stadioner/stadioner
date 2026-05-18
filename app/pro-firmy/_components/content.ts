@@ -96,7 +96,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
   cs: {
     hero: {
       eyebrow: 'Pro hospody, restaurace a místní obchody',
-      title: 'Dodáme produkt i marketing. Vy prodáváte — my vás podpoříme.',
+      title: 'Dodáme produkt i marketing. Vy prodáváte — my Vás podpoříme.',
       description:
         'Spolupracujeme s provozy, kde se prodává kvalita a osobní přístup. Po krátké poptávce připravíme nezávazný návrh závozu, sortimentu a podpory prodeje — obvykle do 24 hodin.',
       imageAlt: 'Sklad beden STADIONER v pivovaru',
@@ -106,7 +106,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
     types: {
       title: 'Pro koho je spolupráce určená',
       description:
-        'Ať provozujete hospodu, restauraci nebo obchod, nastavíme spolupráci podle vašeho provozu a obratu.',
+        'Ať provozujete hospodu, restauraci nebo obchod, nastavíme spolupráci podle Vašeho provozu a obratu.',
       cards: [
         {
           id: 'pub',
@@ -153,12 +153,12 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
     coverage: {
       title: 'Chcete být také na mapě?',
       description:
-        'Naši partneři jsou vidět tady i na sociálních sítích. Přidejte se k síti provozů kolem Koutu na Šumavě — váš podnik budeme sdílet a představíme ho našim fanouškům.'
+        'Naši partneři jsou vidět tady i na sociálních sítích. Přidejte se k síti provozů kolem Koutu na Šumavě — Váš podnik budeme sdílet a představíme ho našim fanouškům.'
     },
     packaging: {
       title: 'Naše produkty – lahve a sudy',
       description:
-        'Porovnejte varianty balení a vyberte to, co nejlépe sedí vaší výtoči i skladovým možnostem.',
+        'Porovnejte varianty balení a Vyberte to, co nejlépe sedí Vaší výtoči i skladovým možnostem.',
       priceListNote:
         'Přesný ceník a obchodní podmínky posíláme po vyplnění formuláře. Odezva obvykle do 24 hodin.',
       requestPriceList: 'Poslat ceník',
@@ -208,14 +208,14 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           badge: '1. krok',
           title: 'Kontakt',
           description:
-            'Vyplníte 2minutový formulář. Ozveme se vám s konkrétním návrhem dalšího postupu.'
+            'Vyplníte 2minutový formulář. Ozveme se Vám s konkrétním návrhem dalšího postupu.'
         },
         {
           id: 'tasting',
           badge: '2. krok',
           title: 'Schůzka a degustace',
           description:
-            'Projdeme váš provoz, doporučíme vhodné produkty a domluvíme podmínky.'
+            'Projdeme Váš provoz, doporučíme vhodné produkty a domluvíme podmínky.'
         },
         {
           id: 'pilot',
@@ -229,21 +229,21 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           badge: '4. krok',
           title: 'Pravidelný odběr + marketing',
           description:
-            'Dlouhodobá spolupráce, podpora prodeje a rozvoj vašeho obratu.'
+            'Dlouhodobá spolupráce, podpora prodeje a rozvoj Vašeho obratu.'
         }
       ]
     },
     contactFaq: {
-      title: 'Vyplňte formulář a ozveme se vám',
+      title: 'Vyplňte formulář a ozveme se Vám',
       description:
-        'Stačí pár základních údajů. Připravíme návrh spolupráce podle vašeho typu provozu.',
+        'Stačí pár základních údajů. Připravíme návrh spolupráce podle Vašeho typu provozu.',
       formTitle: 'Nezávazná poptávka spolupráce',
       faqTitle: 'Nejčastější otázky před startem'
     },
     form: {
-      title: 'Pro váš provoz',
+      title: 'Pro Váš provoz',
       subtitle:
-        'Vyplňte krátký formulář a do 24 hodin se vám ozveme s návrhem spolupráce.',
+        'Vyplňte krátký formulář a do 24 hodin se Vám ozveme s návrhem spolupráce.',
       companyName: 'Název provozu nebo firmy',
       contactName: 'Jméno kontaktní osoby',
       email: 'Email',
@@ -252,7 +252,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       submit: 'Získat nabídku',
       submitting: 'Odesílám...',
       success:
-        'Děkujeme! Poptávku máme a brzy se vám ozveme s konkrétním návrhem spolupráce.',
+        'Děkujeme! Poptávku máme a brzy se Vám ozveme s konkrétním návrhem spolupráce.',
       error: 'Omlouváme se, došlo k chybě. Zkuste to prosím znovu.',
       gdprPrefix: 'Odesláním souhlasíte s',
       gdprLink: 'ochranou osobních údajů'
@@ -261,7 +261,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       {
         question: 'Jaký je minimální odběr?',
         answer:
-          'Minimální odběr nastavujeme individuálně podle typu provozu a frekvence závozu. Cílem je, aby spolupráce dávala smysl ekonomicky vám i nám.'
+          'Minimální odběr nastavujeme individuálně podle typu provozu a frekvence závozu. Cílem je, aby spolupráce dávala smysl ekonomicky Vám i nám.'
       },
       {
         question: 'Jaká balení nabízíte?',
@@ -271,7 +271,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
       {
         question: 'Kde získám ceník a obchodní podmínky?',
         answer:
-          'Ceník i podmínky posíláme po vyplnění formuláře. Připravíme je podle vašeho provozu, lokality a očekávaného odběru.'
+          'Ceník i podmínky posíláme po vyplnění formuláře. Připravíme je podle Vašeho provozu, lokality a očekávaného odběru.'
       },
       {
         question: 'Pomáháte partnerům i s marketingem?',
