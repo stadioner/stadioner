@@ -153,7 +153,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
     coverage: {
       title: 'Chcete být také na mapě?',
       description:
-        'Naši partneři jsou vidět tady i na sociálních sítích. Přidejte se k síti provozů kolem Koutu na Šumavě — Váš podnik budeme sdílet a představíme ho našim fanouškům.'
+        'Prodejní místa zobrazujeme na mapě i na sociálních sítích — Přidejte se k naší síti partnerů a Váš podnik budeme sdílet a představíme ho našim fanouškům.'
     },
     packaging: {
       title: 'Naše produkty – lahve a sudy',
@@ -345,7 +345,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
     coverage: {
       title: 'Want to be on the map too?',
       description:
-        'Our partners are visible here and on social media. Join the network around Kout na Šumavě — we will share your venue and introduce it to our community.'
+        'We list sales locations on the map and on social media — join our partner network and we will share your venue and introduce it to our community.'
     },
     packaging: {
       title: 'Our products – bottles and kegs',
@@ -537,7 +537,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
     coverage: {
       title: 'Möchten Sie auch auf der Karte stehen?',
       description:
-        'Unsere Partner sind hier und in den sozialen Medien sichtbar. Werden Sie Teil des Netzwerks rund um Kout na Šumavě — wir stellen Ihren Betrieb vor und teilen ihn mit unserer Community.'
+        'Verkaufsstellen zeigen wir auf der Karte und in den sozialen Medien — werden Sie Teil unseres Partnernetzwerks und wir stellen Ihren Betrieb vor und teilen ihn mit unserer Community.'
     },
     packaging: {
       title: 'Unsere Produkte – Flaschen und Fässer',
