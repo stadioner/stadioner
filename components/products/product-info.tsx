@@ -96,7 +96,7 @@ export const ProductInfo = ({
                 <DialogTrigger className='border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-brand-action mb-2 cursor-pointer self-end border px-2 py-1 text-xs font-bold transition hover:opacity-90 sm:px-3 sm:text-sm'>
                   {labels.composition}
                 </DialogTrigger>
-                <DialogContent className='bg-brand-primary h-[500px]'>
+                <DialogContent className='bg-brand-primary w-fit max-w-[calc(100vw-2rem)] gap-3 rounded-none p-4 sm:max-w-none'>
                   <DialogHeader>
                     <DialogTitle className='text-brand-action text-2xl'>
                       {labels.compositionTitle}
@@ -105,9 +105,9 @@ export const ProductInfo = ({
                   <Image
                     src={product.ingredients}
                     alt='ingredients'
-                    width={1200}
-                    height={1600}
-                    className='h-auto max-h-[400px] w-auto'
+                    width={1443}
+                    height={2048}
+                    className='h-auto max-h-[min(75vh,42rem)] w-auto max-w-[calc(100vw-3rem)]'
                   />
                 </DialogContent>
               </Dialog>
