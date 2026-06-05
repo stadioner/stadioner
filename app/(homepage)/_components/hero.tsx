@@ -86,10 +86,6 @@ export const Hero = ({ upcomingEventsByLanguage }: HeroProps) => {
                   className='max-w-[320px] shadow-[0_20px_45px_rgba(60,74,43,0.08)]'
                 >
                   <div className='bg-brand-primary/95 flex flex-col gap-4 px-5 py-4 backdrop-blur-[2px]'>
-                    <p className='text-brand-action/80 text-xs font-semibold tracking-[0.24em] uppercase'>
-                      {panelCopy.eyebrow}
-                    </p>
-
                     <div className='space-y-3'>
                       <h4 className='text-brand-action text-2xl leading-none font-bold uppercase'>
                         {upcomingEvent.title}
