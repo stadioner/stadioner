@@ -10,6 +10,7 @@ import { localizedStringType } from './objects/localizedString'
 import { unifiedCategoryType } from './unifiedCategoryType'
 import { unifiedEventType } from './unifiedEventType'
 import { unifiedPostType } from './unifiedPostType'
+import { salandaWeeklyProgramType } from './salandaWeeklyProgramType'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
   types: [
@@ -22,6 +23,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     eventType,
     unifiedEventType,
     unifiedCategoryType,
-    unifiedPostType
+    unifiedPostType,
+    salandaWeeklyProgramType
   ]
 }

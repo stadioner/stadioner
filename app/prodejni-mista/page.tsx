@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { Intro } from './_components/intro'
+import { VycepNaSaladeSection } from './_components/vycep-na-salade'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { PickupPointSection } from '@/components/pickup-point-section'
 
@@ -25,9 +26,9 @@ export default function ProdejniMistaPage() {
   return (
     <main className='bg-brand-primary pt-40'>
       <h1 className='sr-only'>Prodejní místa STADIONER</h1>
-      <PickupPointSection />
       <Intro />
-      {/* <PojizdnaProdejna /> */}
+      <PickupPointSection showBottomRippedPaper={true}  />
+      <VycepNaSaladeSection />
     </main>
   )
 }

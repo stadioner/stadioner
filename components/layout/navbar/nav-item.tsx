@@ -29,8 +29,11 @@ export const NavItem: FC<NavItemProps> = ({
     <li
       onClick={() => setIsOpen && setIsOpen(false)}
       className={cn(
-        phone ? 'text-brand-primary text-2xl' : 'text-brand-action text-lg',
-        isActive && 'font-bold'
+        phone ?
+          'text-brand-primary w-full text-2xl font-bold md:text-3xl'
+        : 'text-brand-action text-lg',
+        phone && isActive && 'underline underline-offset-4',
+        !phone && isActive && 'font-bold'
       )}
     >
       <Link href={href}>{label}</Link>

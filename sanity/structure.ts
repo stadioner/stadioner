@@ -1,4 +1,9 @@
-import { CalendarIcon, DocumentTextIcon, TagIcon } from '@sanity/icons'
+import {
+  CalendarIcon,
+  DocumentTextIcon,
+  TagIcon,
+  TiersIcon
+} from '@sanity/icons'
 import type { StructureResolver } from 'sanity/structure'
 
 // https://www.sanity.io/docs/structure-builder-cheat-sheet
@@ -33,6 +38,15 @@ export const structure: StructureResolver = (S) =>
           ])
         ),
 
+      S.listItem()
+        .title('Šalanda – program týdne')
+        .icon(TiersIcon)
+        .child(
+          S.documentTypeList('salandaWeeklyProgram').defaultOrdering([
+            { field: 'weekStart', direction: 'desc' }
+          ])
+        ),
+
       S.divider(),
       ...S.documentTypeListItems().filter(
         (item) =>
@@ -43,7 +57,8 @@ export const structure: StructureResolver = (S) =>
             'event',
             'unifiedEvent',
             'unifiedPost',
-            'unifiedCategory'
+            'unifiedCategory',
+            'salandaWeeklyProgram'
           ].includes(item.getId()!)
       )
     ])

@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { useLanguage } from '@/store/use-language'
 import { AnimatePresence } from 'framer-motion'
 import { NavItem } from '@/components/layout/navbar/nav-item'
+import { SalesLocationsNav } from '@/components/layout/navbar/sales-locations-nav'
 import { Border } from '@/components/border'
 import { LanguageSelector } from '@/components/layout/navbar/language-selector'
 import { Menu } from './menu'
@@ -22,7 +23,7 @@ export const Navbar = () => {
     <>
       <nav
         className={cn(
-          'fixed top-7 right-0 left-0 z-[1001] hidden items-center transition md:grid'
+          'fixed top-7 right-0 left-0 z-[1001] hidden items-center transition lg:grid'
         )}
       >
         <Container className='w-full'>
@@ -45,17 +46,7 @@ export const Navbar = () => {
                     }
                     href={`${localizedRootPath}/produkty`}
                   />
-                  <NavItem
-                    label={
-                      language === 'cs' ? 'Prodejní Místa'
-                      : language === 'en' ?
-                        'Sales Locations'
-                      : language === 'de' ?
-                        'Verkaufsstellen'
-                      : ''
-                    }
-                    href={`${localizedRootPath}/prodejni-mista`}
-                  />
+                  <SalesLocationsNav />
                   <NavItem
                     label={
                       language === 'cs' ? 'Pro Firmy'
@@ -146,7 +137,7 @@ export const Navbar = () => {
 
       <nav
         className={cn(
-          'fixed top-5 right-0 left-0 z-[1001] mx-auto grid items-center transition md:hidden'
+          'fixed top-5 right-0 left-0 z-[1001] mx-auto grid items-center transition lg:hidden'
         )}
       >
         <Container className='w-full'>

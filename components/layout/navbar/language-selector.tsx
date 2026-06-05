@@ -8,11 +8,18 @@ import {
 import { Command, CommandGroup, CommandItem } from '@/components/ui/command'
 import { Check } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { useState } from 'react'
 import Image from 'next/image'
+import { useRef } from 'react'
 import { cn } from '@/lib/utils'
 import { useLanguage, useLanguageSync } from '@/store/use-language'
 import { Border } from '@/components/border'
+import {
+  NAV_DROPDOWN_SIDE_OFFSET,
+  navDropdownContentClassName,
+  navDropdownTriggerClassName,
+  useNavDropdownHover,
+  useNavDropdownMobileAlign
+} from '@/components/layout/navbar/nav-dropdown'
 import { usePathname, useRouter } from 'next/navigation'
 import {
   isSupportedLanguage,
@@ -98,7 +105,13 @@ export const LanguageSelector = () => {
     router.push(targetPath, { scroll: false })
   }
 
-  const [open, setOpen] = useState<boolean>(false)
+  const triggerRef = useRef<HTMLButtonElement>(null)
+  const { open, setOpen, openMenu, scheduleClose, closeMenu } =
+    useNavDropdownHover()
+  const { align, alignOffset, isMobile } = useNavDropdownMobileAlign(
+    triggerRef,
+    open
+  )
 
   return (
     <Popover
@@ -107,10 +120,15 @@ export const LanguageSelector = () => {
     >
       <PopoverTrigger asChild>
         <Button
+          ref={triggerRef}
           variant='outline'
           role='combobox'
           aria-expanded={open}
-          className='cursor-pointer justify-between border-none !bg-transparent p-0 shadow-none hover:bg-transparent'
+          onMouseEnter={openMenu}
+          onMouseLeave={scheduleClose}
+          className={navDropdownTriggerClassName(
+            'cursor-pointer justify-between border-none !bg-transparent p-0 shadow-none hover:bg-transparent'
+          )}
         >
           <Image
             src={imgSrc(language)}
@@ -121,9 +139,20 @@ export const LanguageSelector = () => {
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        sideOffset={0}
-        className='bg-brand-secondary z-[1112] mt-5 mr-5 w-[100px] rounded-none p-0'
+        sideOffset={NAV_DROPDOWN_SIDE_OFFSET}
+        align={align}
+        alignOffset={alignOffset}
+        onMouseEnter={openMenu}
+        onMouseLeave={scheduleClose}
+        className={navDropdownContentClassName(
+          'relative w-[100px]',
+          !isMobile && 'mr-5'
+        )}
       >
+        <div
+          aria-hidden
+          className='absolute -top-5 right-0 left-0 h-5'
+        />
         <Border>
           <Command>
             <CommandGroup className='bg-brand-secondary space-y-2'>
@@ -133,12 +162,12 @@ export const LanguageSelector = () => {
                     key={value}
                     onSelect={async () => {
                       if (value === language) {
-                        setOpen(false)
+                        closeMenu()
                         return
                       }
 
                       setLanguage(value)
-                      setOpen(false)
+                      closeMenu()
 
                       const query =
                         typeof window !== 'undefined' ?

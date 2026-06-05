@@ -298,3 +298,26 @@ export const unifiedEventByLocalizedSlugQuery = groq`
 export const unifiedEventsForSitemapQuery = groq`
   *[_type == "unifiedEvent"] | order(dateTime asc) {${unifiedEventProjection}}
 `
+
+const salandaWeeklyProgramProjection = `
+  _id,
+  title,
+  weekStart,
+  weekEnd,
+  isActive,
+  programItems[] {
+    day,
+    time,
+    title,
+    description
+  }
+`
+
+export const activeSalandaWeeklyProgramQuery = groq`
+  coalesce(
+    *[_type == "salandaWeeklyProgram" && isActive == true] | order(weekStart desc) [0],
+    *[_type == "salandaWeeklyProgram"] | order(weekStart desc) [0]
+  ) {
+    ${salandaWeeklyProgramProjection}
+  }
+`

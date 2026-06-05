@@ -8,6 +8,7 @@ import {
   isSupportedLanguage,
   type SupportedLanguage
 } from '@/lib/i18n/site-languages'
+import { salesLocationsSectionIds } from '@/lib/i18n/sales-locations-nav'
 import { cn } from '@/lib/utils'
 import { useLanguage } from '@/store/use-language'
 
@@ -25,7 +26,6 @@ type PickupPointContent = {
   intro: string
   depositInfo: string
   paymentInfo: string
-  taproomNote: string
   openingHoursTitle: string
   openingHours: OpeningHourRow[]
   closedLabel: string
@@ -44,8 +44,6 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
     depositInfo:
       'Zálohy: lahev 5 Kč, bedna 100 Kč, sud (30L, 50L) 1500 Kč, sud (10L, 20.5L) 2000 Kč',
     paymentInfo: 'Platba možná na místě v hotovosti i kartou.',
-    taproomNote:
-      'Od 3. 4. 2026 je na výdejním místě otevřen i výčep, a to ve stejné otevírací době jako výdejní místo. Na čepu je Atlet 8°. Informace o tom, jaké pivo a kdy bude na čepu, najdete na našich sociálních sítích.',
     openingHoursTitle: 'Otevírací doba',
     openingHours: [
       { key: 'mon', label: 'Pondělí', value: 'ZAVŘENO', closed: true },
@@ -78,8 +76,6 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
     depositInfo:
       'Deposits: bottle 5 CZK, crate 100 CZK, keg (30L, 50L) 1500 CZK, keg (10L, 20.5L) 2000 CZK',
     paymentInfo: 'Payment on site is possible both in cash and by card.',
-    taproomNote:
-      'From April 3, 2026, a taproom is also open at the pickup point during the same opening hours as the pickup point. On tap you can find Atlet 8°. Updates on which beer will be on tap and when will be shared on our social media.',
     openingHoursTitle: 'Opening hours',
     openingHours: [
       { key: 'mon', label: 'Monday', value: 'CLOSED', closed: true },
@@ -112,8 +108,6 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
     depositInfo:
       'Pfand: Flasche 5 CZK, Kiste 100 CZK, Fass (30L, 50L) 1500 CZK, Fass (10L, 20.5L) 2000 CZK',
     paymentInfo: 'Zahlung vor Ort ist bar oder mit Karte möglich.',
-    taproomNote:
-      'Ab dem 3. 4. 2026 ist an der Abholstelle auch ein Ausschank geöffnet, und zwar zu denselben Öffnungszeiten wie die Abholstelle. Vom Fass gibt es Atlet 8°. Informationen dazu, welches Bier wann vom Fass ausgeschenkt wird, finden Sie in unseren sozialen Netzwerken.',
     openingHoursTitle: 'Öffnungszeiten',
     openingHours: [
       { key: 'mon', label: 'Montag', value: 'GESCHLOSSEN', closed: true },
@@ -179,7 +173,10 @@ export const PickupPointSection = ({
   }, [syncTextColumnHeight, currentLanguage])
 
   return (
-    <section className='bg-brand-primary'>
+    <section
+      id={salesLocationsSectionIds.pickup}
+      className='scroll-mt-36 bg-brand-primary'
+    >
       <RippedPaperSVG flip />
       <div className='bg-brand-action py-12'>
         <Container className='grid gap-10 md:grid-cols-2 md:items-start'>
@@ -203,10 +200,6 @@ export const PickupPointSection = ({
 
               <div className='space-y-4 text-zinc-100 md:mt-6'>
                 <p>{content.intro}</p>
-
-                <div className='text-brand-primary border-t border-zinc-600 pt-4 text-sm font-bold md:text-base'>
-                  <p>{content.taproomNote}</p>
-                </div>
 
                 <div className='text-sm text-zinc-200'>
                   <p>{content.depositInfo}</p>

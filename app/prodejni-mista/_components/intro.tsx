@@ -3,6 +3,7 @@
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
 import { MapLegend } from '@/components/map-legend'
+import { salesLocationsSectionIds } from '@/lib/i18n/sales-locations-nav'
 import { useLanguage } from '@/store/use-language'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -16,9 +17,12 @@ export const Intro = () => {
   const { language } = useLanguage()
 
   return (
-    <main className='bg-brand-primary pt-32 pb-20 md:pt-40'>
+    <section
+      id={salesLocationsSectionIds.partners}
+      className='scroll-mt-36 bg-brand-primary pb-20'
+    >
       <Container className='pb-20'>
-        <section>
+        <div>
           <div className='pb-6'>
             <h2 className='text-brand-action text-3xl font-bold md:text-4xl lg:text-6xl'>
               {language === 'cs' && 'Kde koupit STADIONER?'}
@@ -105,8 +109,8 @@ export const Intro = () => {
             </Border>
             <MapLegend />
           </div>
-        </section>
+        </div>
       </Container>
-    </main>
+    </section>
   )
 }
