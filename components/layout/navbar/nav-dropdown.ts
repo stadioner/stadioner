@@ -8,6 +8,7 @@ import {
   useState,
   type RefObject
 } from 'react'
+import { type ClassValue } from 'clsx'
 import { cn } from '@/lib/utils'
 
 /** Tailwind `lg` — below this width the compact mobile navbar is used. */
@@ -16,13 +17,13 @@ export const NAVBAR_MOBILE_MEDIA_QUERY = '(max-width: 1023px)'
 /** Vertical gap between navbar trigger and dropdown (matches previous `mt-5`). */
 export const NAV_DROPDOWN_SIDE_OFFSET = 20
 
-export const navDropdownContentClassName = (...extra: string[]) =>
+export const navDropdownContentClassName = (...extra: ClassValue[]) =>
   cn(
     'bg-brand-secondary z-[1112] rounded-none border-none p-0 shadow-none',
     ...extra
   )
 
-export const navDropdownTriggerClassName = (...extra: string[]) =>
+export const navDropdownTriggerClassName = (...extra: ClassValue[]) =>
   cn(
     'relative after:absolute after:inset-x-0 after:top-full after:h-5 after:content-[""]',
     ...extra
