@@ -1,6 +1,8 @@
 'use client'
 
 import { useMemo } from 'react'
+import { Mail, Phone } from 'lucide-react'
+import Link from 'next/link'
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
 import {
@@ -56,7 +58,11 @@ export const SalandaSection = ({
             {content.sectionTitle}
           </h2>
           <p className='text-brand-action/90 mt-1'>{content.address}</p>
-          <p className='text-brand-action mt-4'>{content.intro}</p>
+          <div className='text-brand-action mt-4 space-y-3'>
+            {content.introParagraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+          </div>
         </div>
 
         <div className='mt-8 grid gap-6 lg:grid-cols-2 lg:items-start'>
@@ -104,6 +110,31 @@ export const SalandaSection = ({
               <h3 className='text-brand-primary text-2xl font-bold md:text-3xl'>
                 {content.programTitle}
               </h3>
+
+              <p className='mt-4 text-zinc-200'>{content.programIntro}</p>
+
+              <div className='bg-brand-primary text-brand-action mt-4 border border-zinc-600/40 p-4'>
+                <p className='font-bold'>{content.programContactTitle}</p>
+                <p className='mt-2 text-sm leading-relaxed text-zinc-700'>
+                  {content.programContactDescription}
+                </p>
+                <div className='mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-5'>
+                  <Link
+                    href='mailto:info@stadioner.cz'
+                    className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
+                  >
+                    <Mail className='size-4 shrink-0' aria-hidden />
+                    info@stadioner.cz
+                  </Link>
+                  <Link
+                    href='tel:+420721980257'
+                    className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
+                  >
+                    <Phone className='size-4 shrink-0' aria-hidden />
+                    +420 721 980 257
+                  </Link>
+                </div>
+              </div>
 
               {weeklyProgram ?
                 <div className='mt-4 space-y-5'>
