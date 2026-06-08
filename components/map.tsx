@@ -460,7 +460,7 @@ const defaultMarkers: ExternalMarker[] = [
   },
   {
     position: [49.59131963693144, 12.717987349372834],
-    iconUrl: '/map/restaurant.svg',
+    iconUrl: '/map/restaurace.svg',
     popupContent: (
       <>
         <Link
@@ -476,7 +476,7 @@ const defaultMarkers: ExternalMarker[] = [
   },
   {
     position: [49.38327022959632, 12.784055130034066],
-    iconUrl: '/map/restaurant.svg',
+    iconUrl: '/map/restaurace.svg',
     popupContent: (
       <>
         <Link
@@ -493,7 +493,7 @@ const defaultMarkers: ExternalMarker[] = [
   },
   {
     position: [49.40765328144299, 12.95631134219726],
-    iconUrl: '/map/restaurant.svg',
+    iconUrl: '/map/restaurace.svg',
     popupContent: (
       <>
         <Link
@@ -509,7 +509,7 @@ const defaultMarkers: ExternalMarker[] = [
   },
   {
     position: [49.953438519231156, 12.780106871640633],
-    iconUrl: '/map/restaurant.svg',
+    iconUrl: '/map/restaurace.svg',
     popupContent: (
       <>
         <Link
