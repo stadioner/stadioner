@@ -441,6 +441,88 @@ const defaultMarkers: ExternalMarker[] = [
         <p>Železná 37, 345 24 Bělá nad Radbuzou</p>
       </>
     )
+  },
+  {
+    position: [49.3995805565029, 12.859689055145052],
+    iconUrl: '/map/limo.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://eso-market.edan.io/'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+        Eso Market
+        </Link>
+        <p>Babylon 83, 344 01 Babylon</p>
+      </>
+    )
+  },
+  {
+    position: [49.59131963693144, 12.717987349372834],
+    iconUrl: '/map/restaurant.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.facebook.com/people/Medov%C3%A1-kav%C3%A1rna/100057436630458/?sznclid=SyIvdnp5eXN7fn9yfnh-ent-eHp8fjc_dnp8fHlyc3pyfXplfnxzNz8udnp8c3tyfnt9fntlfH54Nyh2fA59eXsODXp5f39-CX9-Dwh4eAp7CXh_CQp7cnp4cgo&szntime=1780950655.356'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+        Medová kavárna
+        </Link>
+        <p>Čečínská 146, 345 26 Bělá nad Radbuzou</p>
+      </>
+    )
+  },
+  {
+    position: [49.38327022959632, 12.784055130034066],
+    iconUrl: '/map/restaurant.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.kudyznudy.cz/aktivity/kurzova-rozhledna-na-cerchove'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+       Kurzova rozhledna na Čerchově
+
+        </Link>
+        <p>345 33 Česká Kubice-Trhanov</p>
+      </>
+    )
+  },
+  {
+    position: [49.40765328144299, 12.95631134219726],
+    iconUrl: '/map/restaurant.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.zodmrakov.cz/'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+      Zemědělské obchodní družstvo Mrákov
+        </Link>
+        <p>Starý Klíčov 21, 345 01 Mrákov</p>
+      </>
+    )
+  },
+  {
+    position: [49.953438519231156, 12.780106871640633],
+    iconUrl: '/map/restaurant.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.kafirna.eu/'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+     Kafírna Ovesné Kladruby
+
+        </Link>
+        <p>Ovesné Kladruby 56, 353 01 Ovesné Kladruby</p>
+      </>
+    )
   }
 ]
 
