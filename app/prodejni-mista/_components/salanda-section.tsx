@@ -14,7 +14,6 @@ import {
   type SupportedLanguage
 } from '@/lib/i18n/site-languages'
 import { salesLocationsSectionIds } from '@/lib/i18n/sales-locations-nav'
-import { formatSalandaWeekRange } from '@/lib/salanda/format-week-range'
 import { mapSalandaWeeklyProgram } from '@/lib/salanda/program-mapper'
 import { cn } from '@/lib/utils'
 import { useLanguage } from '@/store/use-language'
@@ -36,15 +35,6 @@ export const SalandaSection = ({
     () => mapSalandaWeeklyProgram(program, currentLanguage),
     [program, currentLanguage]
   )
-
-  const weekRangeLabel =
-    weeklyProgram ?
-      formatSalandaWeekRange(
-        weeklyProgram.weekStart,
-        weeklyProgram.weekEnd,
-        currentLanguage
-      )
-    : ''
 
   return (
     <section
@@ -111,14 +101,12 @@ export const SalandaSection = ({
                 {content.programTitle}
               </h3>
 
-              <p className='mt-4 text-zinc-200'>{content.programIntro}</p>
-
               <div className='bg-brand-primary text-brand-action mt-4 border border-zinc-600/40 p-4'>
                 <p className='font-bold'>{content.programContactTitle}</p>
                 <p className='mt-2 text-sm leading-relaxed text-zinc-700'>
                   {content.programContactDescription}
                 </p>
-                <div className='mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-5'>
+                <div className='mt-3 flex flex-col items-end gap-2 sm:flex-row sm:flex-wrap sm:justify-end sm:gap-x-5'>
                   <Link
                     href='mailto:info@stadioner.cz'
                     className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
@@ -137,56 +125,33 @@ export const SalandaSection = ({
               </div>
 
               {weeklyProgram ?
-                <div className='mt-4 space-y-5'>
-                  <div>
-                    <p className='text-brand-primary text-lg font-bold'>
-                      {weeklyProgram.title}
-                    </p>
-                    {weekRangeLabel ?
-                      <p className='mt-1 text-sm text-zinc-200'>
-                        {weekRangeLabel}
-                      </p>
-                    : null}
-                  </div>
-
-                  <div className='space-y-4'>
-                    {weeklyProgram.dayGroups.map((dayGroup) => (
-                      <div
-                        key={dayGroup.day}
-                        className='border-t border-zinc-600 pt-4 first:border-t-0 first:pt-0'
-                      >
-                        <p className='text-brand-primary mb-2 font-bold'>
-                          {dayGroup.label}
-                        </p>
-
-                        <ul className='space-y-3'>
-                          {dayGroup.entries.map((entry, index) => (
-                            <li
-                              key={`${dayGroup.day}-${entry.title}-${index}`}
-                              className='text-zinc-100'
-                            >
-                              <div className='flex flex-wrap items-baseline gap-x-3 gap-y-1'>
-                                {entry.time ?
-                                  <span className='text-brand-primary font-semibold whitespace-nowrap'>
-                                    {entry.time}
-                                  </span>
-                                : null}
-                                <span className='font-medium'>
-                                  {entry.title}
-                                </span>
-                              </div>
-                              {entry.description ?
-                                <p className='mt-1 text-sm text-zinc-200'>
-                                  {entry.description}
-                                </p>
-                              : null}
-                            </li>
-                          ))}
-                        </ul>
+                <ul className='mt-4 space-y-4'>
+                  {weeklyProgram.entries.map((entry, index) => (
+                    <li
+                      key={`${entry.date}-${entry.title}-${index}`}
+                      className='border-t border-zinc-600 pt-4 text-zinc-100 first:border-t-0 first:pt-0'
+                    >
+                      <div className='flex flex-wrap items-baseline gap-x-3 gap-y-1'>
+                        {entry.dateLabel ?
+                          <span className='text-brand-primary font-semibold whitespace-nowrap'>
+                            {entry.dateLabel}
+                          </span>
+                        : null}
+                        {entry.time ?
+                          <span className='text-brand-primary font-semibold whitespace-nowrap'>
+                            {entry.time}
+                          </span>
+                        : null}
                       </div>
-                    ))}
-                  </div>
-                </div>
+                      <p className='mt-1 font-medium'>{entry.title}</p>
+                      {entry.description ?
+                        <p className='mt-1 text-sm text-zinc-200'>
+                          {entry.description}
+                        </p>
+                      : null}
+                    </li>
+                  ))}
+                </ul>
               : <p className='mt-4 text-zinc-200'>{content.programEmpty}</p>}
             </div>
           </Border>

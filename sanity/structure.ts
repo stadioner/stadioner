@@ -39,11 +39,11 @@ export const structure: StructureResolver = (S) =>
         ),
 
       S.listItem()
-        .title('Šalanda – program týdne')
+        .title('Šalanda – program')
         .icon(TiersIcon)
         .child(
           S.documentTypeList('salandaWeeklyProgram').defaultOrdering([
-            { field: 'weekStart', direction: 'desc' }
+            { field: '_updatedAt', direction: 'desc' }
           ])
         ),
 

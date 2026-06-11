@@ -301,12 +301,9 @@ export const unifiedEventsForSitemapQuery = groq`
 
 const salandaWeeklyProgramProjection = `
   _id,
-  title,
-  weekStart,
-  weekEnd,
   isActive,
   programItems[] {
-    day,
+    date,
     time,
     title,
     description
@@ -315,8 +312,8 @@ const salandaWeeklyProgramProjection = `
 
 export const activeSalandaWeeklyProgramQuery = groq`
   coalesce(
-    *[_type == "salandaWeeklyProgram" && isActive == true] | order(weekStart desc) [0],
-    *[_type == "salandaWeeklyProgram"] | order(weekStart desc) [0]
+    *[_type == "salandaWeeklyProgram" && isActive == true] | order(_updatedAt desc) [0],
+    *[_type == "salandaWeeklyProgram"] | order(_updatedAt desc) [0]
   ) {
     ${salandaWeeklyProgramProjection}
   }

@@ -1,47 +1,18 @@
 import { CalendarIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
-const dayOptions = [
-  { title: 'Pondělí', value: 'mon' },
-  { title: 'Úterý', value: 'tue' },
-  { title: 'Středa', value: 'wed' },
-  { title: 'Čtvrtek', value: 'thu' },
-  { title: 'Pátek', value: 'fri' },
-  { title: 'Sobota', value: 'sat' },
-  { title: 'Neděle', value: 'sun' }
-] as const
-
 export const salandaWeeklyProgramType = defineType({
   name: 'salandaWeeklyProgram',
-  title: 'Šalanda – program týdne',
+  title: 'Šalanda – program',
   type: 'document',
   icon: CalendarIcon,
   fields: [
     defineField({
-      name: 'title',
-      title: 'Název týdne',
-      type: 'localizedString',
-      description: 'Např. „Program týdne 2.–8. června“',
-      validation: (Rule) => Rule.required()
-    }),
-    defineField({
-      name: 'weekStart',
-      title: 'Začátek týdne',
-      type: 'date',
-      validation: (Rule) => Rule.required()
-    }),
-    defineField({
-      name: 'weekEnd',
-      title: 'Konec týdne',
-      type: 'date',
-      validation: (Rule) => Rule.required()
-    }),
-    defineField({
       name: 'isActive',
-      title: 'Aktuální týden',
+      title: 'Aktuální program',
       type: 'boolean',
       description:
-        'Zaškrtněte u programu, který se má zobrazovat na webu. V jednu chvíli by měl být aktivní jen jeden týden.',
+        'Zaškrtněte u programu, který se má zobrazovat na webu. V jednu chvíli by měl být aktivní jen jeden program.',
       initialValue: false
     }),
     defineField({
@@ -54,20 +25,17 @@ export const salandaWeeklyProgramType = defineType({
           name: 'programItem',
           fields: [
             defineField({
-              name: 'day',
-              title: 'Den',
-              type: 'string',
-              options: {
-                list: [...dayOptions],
-                layout: 'radio'
-              },
+              name: 'date',
+              title: 'Datum',
+              type: 'date',
               validation: (Rule) => Rule.required()
             }),
             defineField({
               name: 'time',
               title: 'Čas',
               type: 'string',
-              description: 'Např. 18:00 nebo 16:00–20:00'
+              description: 'Např. 18:00 nebo 16:00–20:00',
+              validation: (Rule) => Rule.required()
             }),
             defineField({
               name: 'title',
@@ -84,15 +52,13 @@ export const salandaWeeklyProgramType = defineType({
           preview: {
             select: {
               title: 'title.cs',
-              day: 'day',
+              date: 'date',
               time: 'time'
             },
-            prepare({ title, day, time }) {
-              const dayLabel =
-                dayOptions.find((option) => option.value === day)?.title ?? day
+            prepare({ title, date, time }) {
               return {
                 title: title ?? 'Bez názvu',
-                subtitle: [dayLabel, time].filter(Boolean).join(' · ')
+                subtitle: [date, time].filter(Boolean).join(' · ')
               }
             }
           }
@@ -102,24 +68,22 @@ export const salandaWeeklyProgramType = defineType({
   ],
   preview: {
     select: {
-      title: 'title.cs',
-      weekStart: 'weekStart',
-      isActive: 'isActive'
+      isActive: 'isActive',
+      items: 'programItems'
     },
-    prepare({ title, weekStart, isActive }) {
+    prepare({ isActive, items }) {
+      const count = items?.length ?? 0
       return {
-        title: title ?? 'Program týdne',
-        subtitle: [weekStart, isActive ? 'Aktuální' : null]
-          .filter(Boolean)
-          .join(' · ')
+        title: `Program (${count} ${count === 1 ? 'položka' : count < 5 ? 'položky' : 'položek'})`,
+        subtitle: isActive ? 'Aktuální' : undefined
       }
     }
   },
   orderings: [
     {
-      title: 'Začátek týdne (nejnovější)',
-      name: 'weekStartDesc',
-      by: [{ field: 'weekStart', direction: 'desc' }]
+      title: 'Naposledy upravené',
+      name: 'updatedAtDesc',
+      by: [{ field: '_updatedAt', direction: 'desc' }]
     }
   ]
 })

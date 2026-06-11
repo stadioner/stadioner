@@ -15,7 +15,6 @@ type SalandaSectionContent = {
   openingHours: OpeningHourRow[]
   closedLabel: string
   programTitle: string
-  programIntro: string
   programEmpty: string
   programContactTitle: string
   programContactDescription: string
@@ -41,7 +40,6 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     ],
     closedLabel: 'ZAVŘENO',
     programTitle: 'Program týdne',
-    programIntro: 'Program zahrnuje živou hudbu a vystoupení.',
     programEmpty: 'Program na tento týden právě připravujeme. Sledujte nás na sociálních sítích.',
     programContactTitle: 'Chcete vystoupit nebo něco navrhnout?',
     programContactDescription:
@@ -66,7 +64,6 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     ],
     closedLabel: 'CLOSED',
     programTitle: 'Weekly program',
-    programIntro: 'The program includes live music and performances.',
     programEmpty:
       'We are currently preparing the program for this week. Follow us on social media.',
     programContactTitle: 'Want to perform or suggest something?',
@@ -92,7 +89,6 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     ],
     closedLabel: 'GESCHLOSSEN',
     programTitle: 'Wochenprogramm',
-    programIntro: 'Das Programm umfasst Live-Musik und Auftritte.',
     programEmpty:
       'Das Programm für diese Woche wird gerade vorbereitet. Folgen Sie uns in den sozialen Netzwerken.',
     programContactTitle: 'Möchten Sie auftreten oder etwas vorschlagen?',
