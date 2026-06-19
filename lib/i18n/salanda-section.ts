@@ -18,6 +18,9 @@ type SalandaSectionContent = {
   programEmpty: string
   programContactTitle: string
   programContactDescription: string
+  celebrationsTitle: string
+  celebrationsDescription: string
+  celebrationsContactHint: string
 }
 
 const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
@@ -43,7 +46,12 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     programEmpty: 'Program na tento týden právě připravujeme. Sledujte nás na sociálních sítích.',
     programContactTitle: 'Chcete vystoupit nebo něco navrhnout?',
     programContactDescription:
-      'Součástí programu je živá hudba a vystoupení. Kdokoliv se může ozvat a mít zde své vlastní vystoupení.'
+      'Součástí programu je živá hudba a vystoupení. Kdokoliv se může ozvat a mít zde své vlastní vystoupení.',
+    celebrationsTitle: 'Menší oslava nebo soukromá akce?',
+    celebrationsDescription:
+      'Šalandu lze pronajmout i na menší oslavy a rodinné akce. Pronájem nabízíme mimo večerní provoz výčepu. Catering si můžete zajistit sami. Rádi vám ale nabídneme i naše produkty z pivovaru.',
+    celebrationsContactHint:
+      'Podmínky pronájmu vám rádi upřesníme individuálně.'
   },
   en: {
     sectionTitle: 'Taproom at Šalanda',
@@ -68,7 +76,12 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       'We are currently preparing the program for this week. Follow us on social media.',
     programContactTitle: 'Want to perform or suggest something?',
     programContactDescription:
-      'The program includes live music and performances. Anyone can get in touch and have their own performance here.'
+      'The program includes live music and performances. Anyone can get in touch and have their own performance here.',
+    celebrationsTitle: 'Planning a smaller celebration or private event?',
+    celebrationsDescription:
+      'Šalanda can also be rented for smaller celebrations and family gatherings. Rentals are available outside evening taproom hours. You can arrange your own catering. We are also happy to offer our brewery products.',
+    celebrationsContactHint:
+      'We will be glad to discuss rental terms with you individually.'
   },
   de: {
     sectionTitle: 'Ausschank auf Šalanda',
@@ -93,7 +106,12 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       'Das Programm für diese Woche wird gerade vorbereitet. Folgen Sie uns in den sozialen Netzwerken.',
     programContactTitle: 'Möchten Sie auftreten oder etwas vorschlagen?',
     programContactDescription:
-      'Zum Programm gehören Live-Musik und Auftritte. Jeder kann sich melden und hier seinen eigenen Auftritt haben.'
+      'Zum Programm gehören Live-Musik und Auftritte. Jeder kann sich melden und hier seinen eigenen Auftritt haben.',
+    celebrationsTitle: 'Kleinere Feier oder private Veranstaltung?',
+    celebrationsDescription:
+      'Šalanda kann auch für kleinere Feiern und Familienfeiern gemietet werden. Vermietung ist außerhalb des Abendbetriebs möglich. Catering können Sie selbst organisieren. Gerne bieten wir auch unsere Brauereiprodukte an.',
+    celebrationsContactHint:
+      'Die Mietbedingungen besprechen wir gerne individuell mit Ihnen.'
   }
 }
 
