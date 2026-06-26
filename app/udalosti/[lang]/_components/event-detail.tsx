@@ -9,7 +9,7 @@ import {
 import Link from 'next/link'
 import { Border } from '@/components/border'
 import Image from 'next/image'
-import { urlFor } from '@/sanity/lib/image'
+import { urlFor, urlForPortableBodyImage } from '@/sanity/lib/image'
 import {
   createPortableTextListComponents,
   hasPortableTextContent,
@@ -30,18 +30,29 @@ interface EventDetailProps {
   language: SupportedLanguage
 }
 
+type EventBodyImageValue = SanityImageSource & { alt?: string }
+
 const eventRichTextComponents: PortableTextComponents = {
   types: {
-    image: ({ value }: { value: SanityImageSource }) => (
-      <div className='relative my-6 aspect-video w-full overflow-hidden'>
-        <Image
-          src={urlFor(value)}
-          alt='Event Image'
-          fill
-          className='object-cover'
-        />
-      </div>
-    )
+    image: ({ value }: { value: EventBodyImageValue }) => {
+      const alt =
+        typeof value.alt === 'string' && value.alt.length > 0 ?
+          value.alt
+        : 'Event image'
+
+      return (
+        <figure className='my-6 w-full'>
+          <Image
+            src={urlForPortableBodyImage(value)}
+            alt={alt}
+            width={1600}
+            height={1200}
+            sizes='(max-width: 768px) 100vw, min(896px, 85vw)'
+            className='h-auto w-full max-w-full object-contain'
+          />
+        </figure>
+      )
+    }
   },
   block: {
     normal: ({ children, value }) =>
