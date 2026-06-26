@@ -1,7 +1,10 @@
 import type { PortableTextComponents } from '@portabletext/react'
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types'
-import { urlForPortableBodyImage } from '@/sanity/lib/image'
-import Image from 'next/image'
+import { PortableTextImage } from '@/components/portable-text/portable-text-image'
+import {
+  urlForPortableBodyImage,
+  urlForPortableBodyImageFullscreen
+} from '@/sanity/lib/image'
 import {
   createPortableTextListComponents,
   isPortableTextBlockEmpty,
@@ -21,16 +24,12 @@ export const RichText: PortableTextComponents = {
         : 'Article image'
 
       return (
-        <figure className='my-10 w-full'>
-          <Image
-            src={urlForPortableBodyImage(value)}
-            alt={alt}
-            width={1600}
-            height={1200}
-            sizes='(max-width: 768px) 100vw, min(896px, 85vw)'
-            className='h-auto w-full max-w-full object-contain'
-          />
-        </figure>
+        <PortableTextImage
+          src={urlForPortableBodyImage(value)}
+          fullscreenSrc={urlForPortableBodyImageFullscreen(value)}
+          alt={alt}
+          figureClassName='my-10 w-full'
+        />
       )
     }
   },

@@ -8,8 +8,13 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { Border } from '@/components/border'
+import { PortableTextImage } from '@/components/portable-text/portable-text-image'
 import Image from 'next/image'
-import { urlFor, urlForPortableBodyImage } from '@/sanity/lib/image'
+import {
+  urlFor,
+  urlForPortableBodyImage,
+  urlForPortableBodyImageFullscreen
+} from '@/sanity/lib/image'
 import {
   createPortableTextListComponents,
   hasPortableTextContent,
@@ -41,16 +46,12 @@ const eventRichTextComponents: PortableTextComponents = {
         : 'Event image'
 
       return (
-        <figure className='my-6 w-full'>
-          <Image
-            src={urlForPortableBodyImage(value)}
-            alt={alt}
-            width={1600}
-            height={1200}
-            sizes='(max-width: 768px) 100vw, min(896px, 85vw)'
-            className='h-auto w-full max-w-full object-contain'
-          />
-        </figure>
+        <PortableTextImage
+          src={urlForPortableBodyImage(value)}
+          fullscreenSrc={urlForPortableBodyImageFullscreen(value)}
+          alt={alt}
+          figureClassName='my-6 w-full'
+        />
       )
     }
   },

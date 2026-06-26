@@ -14,3 +14,10 @@ export const urlFor = (source: SanityImageSource) => {
 export const urlForPortableBodyImage = (source: SanityImageSource) => {
   return builder.image(source).width(1600).fit('max').auto('format').url()
 }
+
+/** Fullscreen lightbox variant for portable text images. */
+export const urlForPortableBodyImageFullscreen = (
+  source: SanityImageSource
+) => {
+  return builder.image(source).width(2400).fit('max').auto('format').url()
+}
