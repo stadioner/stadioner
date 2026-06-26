@@ -1,5 +1,6 @@
 'use client'
 
+import { Container } from '@/components/container'
 import { cn } from '@/lib/utils'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { XIcon, ZoomIn } from 'lucide-react'
@@ -62,12 +63,18 @@ export function PortableTextImage({
           <DialogPrimitive.Overlay className='data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 fixed inset-0 z-50 bg-black/90' />
           <DialogPrimitive.Content className='fixed inset-x-0 bottom-0 top-28 z-50 flex items-center justify-center p-4 outline-none sm:p-8 lg:top-32'>
             <DialogPrimitive.Title className='sr-only'>{alt}</DialogPrimitive.Title>
-            <DialogPrimitive.Close
-              className='absolute top-4 right-4 z-10 rounded-sm p-2 text-white opacity-90 transition-opacity hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:right-8'
-              aria-label='Zavřít'
-            >
-              <XIcon className='size-6' />
-            </DialogPrimitive.Close>
+            <div className='pointer-events-none absolute inset-x-0 top-4 z-10'>
+              <Container className='relative w-full'>
+                <div className='relative px-4'>
+                  <DialogPrimitive.Close
+                    className='pointer-events-auto absolute top-0 right-0 rounded-sm p-2 text-white opacity-90 transition-opacity hover:opacity-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/70'
+                    aria-label='Zavřít'
+                  >
+                    <XIcon className='size-6' />
+                  </DialogPrimitive.Close>
+                </div>
+              </Container>
+            </div>
             <div className='relative h-full w-full'>
               <Image
                 src={fullscreenSrc}
