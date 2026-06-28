@@ -231,10 +231,6 @@ export const eventsListByLanguageQuery = groq`
   *[_type == "event" && language == $language] | order(dateTime asc) {${eventListProjection}}
 `
 
-export const upcomingEventsQuery = groq`
-  *[_type == "event" && language == $language && dateTime >= now()] | order(dateTime asc) {${eventListProjection}}
-`
-
 export const eventBySlugQuery = groq`
   *[_type == "event" && slug.current == $slug && language == $language][0] {
     _id,
