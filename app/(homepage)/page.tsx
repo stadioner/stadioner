@@ -45,6 +45,8 @@ export const metadata: Metadata = buildPageMetadata({
   twitterImages: ['/hero/main.svg']
 })
 
+export const revalidate = 60
+
 export default async function HomePage() {
   const upcomingEventsPromise = Promise.all(
     (['cs', 'en', 'de'] as const).map(async (language) => {
