@@ -380,7 +380,6 @@ const defaultMarkers: ExternalMarker[] = [
   {
     position: [49.35975333741444, 13.358563380620216],
     iconUrl: '/map/limo.svg',
-    variant: 'pickup',
     popupContent: (
       <>
         <Link
@@ -521,6 +520,26 @@ const defaultMarkers: ExternalMarker[] = [
 
         </Link>
         <p>Ovesné Kladruby 56, 353 01 Ovesné Kladruby</p>
+      </>
+    )
+  },
+
+
+
+  {
+    position: [49.563786690538834, 13.20027842576216],
+    iconUrl: '/map/limo.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.pivovarpetrpetruzalek.cz/'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+    pivovar Petr Petružálek
+
+        </Link>
+        <p>Za Školou 383, 334 52 Merklín u Přeštic</p>
       </>
     )
   }
