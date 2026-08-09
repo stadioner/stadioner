@@ -27,36 +27,70 @@ export const ProductNavigation = ({
   const measureRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<Map<number, HTMLButtonElement>>(new Map())
-  const isScrolling = useRef(false)
+  const isProgrammaticScroll = useRef(false)
   const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const programmaticTimeout = useRef<ReturnType<typeof setTimeout> | null>(
+    null
+  )
   const prevCurrent = useRef(current)
+  const currentRef = useRef(current)
+  const onSelectRef = useRef(onSelect)
 
   const [overflows, setOverflows] = useState(false)
   const productsKey = products.map((product) => product.slug).join(',')
 
-  const scrollToIndex = useCallback((index: number, smooth: boolean) => {
-    const container = scrollRef.current
-    const item = itemRefs.current.get(index)
-    if (!container || !item) return
+  currentRef.current = current
+  onSelectRef.current = onSelect
 
-    const scrollLeft =
-      item.offsetLeft - (container.clientWidth - item.offsetWidth) / 2
-
-    isScrolling.current = true
-    container.scrollTo({
-      left: scrollLeft,
-      behavior: smooth ? 'smooth' : 'instant'
-    })
+  const clearProgrammaticScroll = useCallback(() => {
+    if (programmaticTimeout.current) {
+      clearTimeout(programmaticTimeout.current)
+      programmaticTimeout.current = null
+    }
+    isProgrammaticScroll.current = false
   }, [])
 
+  const markProgrammaticScroll = useCallback(
+    (durationMs: number) => {
+      isProgrammaticScroll.current = true
+      if (programmaticTimeout.current) {
+        clearTimeout(programmaticTimeout.current)
+      }
+      programmaticTimeout.current = setTimeout(() => {
+        isProgrammaticScroll.current = false
+        programmaticTimeout.current = null
+      }, durationMs)
+    },
+    []
+  )
+
+  const scrollToIndex = useCallback(
+    (index: number, smooth: boolean) => {
+      const container = scrollRef.current
+      const item = itemRefs.current.get(index)
+      if (!container || !item) return
+
+      const scrollLeft =
+        item.offsetLeft - (container.clientWidth - item.offsetWidth) / 2
+
+      markProgrammaticScroll(smooth ? 450 : 50)
+      container.scrollTo({
+        left: Math.max(0, scrollLeft),
+        behavior: smooth ? 'smooth' : 'instant'
+      })
+    },
+    [markProgrammaticScroll]
+  )
+
   const handleScrollEnd = useCallback(() => {
-    if (isScrolling.current || !overflows) return
+    if (isProgrammaticScroll.current || !overflows) return
+    if (itemRefs.current.size === 0) return
 
     const container = scrollRef.current
     if (!container) return
 
     const containerCenter = container.scrollLeft + container.clientWidth / 2
-    let closestIdx = 0
+    let closestIdx = -1
     let closestDistance = Infinity
 
     itemRefs.current.forEach((element, idx) => {
@@ -68,16 +102,13 @@ export const ProductNavigation = ({
       }
     })
 
-    if (closestIdx !== current) {
-      onSelect(closestIdx)
+    if (closestIdx !== -1 && closestIdx !== currentRef.current) {
+      onSelectRef.current(closestIdx)
     }
-  }, [current, onSelect, overflows])
+  }, [overflows])
 
   const handleScroll = () => {
-    if (isScrolling.current) {
-      isScrolling.current = false
-      return
-    }
+    if (isProgrammaticScroll.current) return
 
     if (scrollTimeout.current) {
       clearTimeout(scrollTimeout.current)
@@ -108,6 +139,7 @@ export const ProductNavigation = ({
 
   useEffect(() => {
     if (!overflows) {
+      markProgrammaticScroll(50)
       scrollRef.current?.scrollTo({ left: 0, behavior: 'instant' })
       prevCurrent.current = current
       return
@@ -117,27 +149,28 @@ export const ProductNavigation = ({
       prevCurrent.current !== -1 && prevCurrent.current !== current
     prevCurrent.current = current
 
-    let timeout: ReturnType<typeof setTimeout> | undefined
     const frame = requestAnimationFrame(() => {
       scrollToIndex(current, animate)
-      timeout = setTimeout(() => {
-        isScrolling.current = false
-      }, animate ? 350 : 0)
     })
 
     return () => {
       cancelAnimationFrame(frame)
-      if (timeout) clearTimeout(timeout)
     }
-  }, [current, overflows, productsKey, scrollToIndex])
+  }, [current, overflows, productsKey, scrollToIndex, markProgrammaticScroll])
 
   useEffect(() => {
     return () => {
       if (scrollTimeout.current) {
         clearTimeout(scrollTimeout.current)
       }
+      clearProgrammaticScroll()
     }
-  }, [])
+  }, [clearProgrammaticScroll])
+
+  const handleItemSelect = (idx: number) => {
+    markProgrammaticScroll(450)
+    onSelect(idx)
+  }
 
   return (
     <div className='mt-3 flex items-center gap-2 sm:mt-6 sm:gap-4'>
@@ -149,11 +182,11 @@ export const ProductNavigation = ({
         &#8592;
       </button>
 
-      <div ref={viewportRef} className='relative min-w-0 flex-1 overflow-hidden'>
+      <div ref={viewportRef} className='relative min-w-0 flex-1 overflow-x-hidden'>
         <div
           ref={measureRef}
           aria-hidden
-          className='pointer-events-none invisible absolute flex gap-1 sm:gap-2'
+          className='pointer-events-none invisible absolute top-2 flex gap-1 sm:gap-2'
         >
           {products.map((product) => (
             <div
@@ -166,7 +199,7 @@ export const ProductNavigation = ({
         <div
           ref={scrollRef}
           onScroll={overflows ? handleScroll : undefined}
-          className={`flex gap-1 scroll-smooth sm:gap-2 ${
+          className={`flex items-center gap-1 py-2 scroll-smooth sm:gap-2 ${
             overflows ?
               'overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'
             : 'justify-center'
@@ -180,6 +213,12 @@ export const ProductNavigation = ({
             : undefined
           }
         >
+          {overflows ?
+            <div
+              aria-hidden
+              className='w-[calc(50%-1.25rem)] shrink-0 sm:w-[calc(50%-1.5rem)] md:w-[calc(50%-1.75rem)]'
+            />
+          : null}
           {products.map((product, idx) => {
             const isSelected = idx === current
 
@@ -193,13 +232,13 @@ export const ProductNavigation = ({
                     itemRefs.current.delete(idx)
                   }
                 }}
-                onClick={() => onSelect(idx)}
+                onClick={() => handleItemSelect(idx)}
                 className={`shrink-0 cursor-pointer rounded-full border-2 ${
                   isSelected ? 'border-brand-secondary' : 'border-transparent'
                 } bg-zinc-800`}
                 style={overflows ? { scrollSnapAlign: 'center' } : undefined}
-                whileTap={{ scale: 0.9 }}
-                animate={{ scale: isSelected ? 1.1 : 1 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{ scale: isSelected ? 1.08 : 1 }}
                 transition={{ type: 'spring', stiffness: 300 }}
                 aria-label={`Select ${product.name}`}
                 aria-current={isSelected ? 'true' : undefined}
@@ -215,6 +254,12 @@ export const ProductNavigation = ({
               </motion.button>
             )
           })}
+          {overflows ?
+            <div
+              aria-hidden
+              className='w-[calc(50%-1.25rem)] shrink-0 sm:w-[calc(50%-1.5rem)] md:w-[calc(50%-1.75rem)]'
+            />
+          : null}
         </div>
       </div>
 
