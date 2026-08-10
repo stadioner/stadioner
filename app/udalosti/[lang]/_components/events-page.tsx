@@ -14,8 +14,8 @@ import { Container } from '@/components/container'
 import { Event } from '@/types/event'
 import { SupportedLanguage } from '@/types/blog'
 import {
-  formatEventDateNumeric,
-  formatEventTime,
+  formatEventDateNumericRange,
+  formatEventTimeRange,
   isEventPast
 } from '@/lib/events/date-time'
 import { eventHasRecap } from '@/lib/events/visibility'
@@ -91,7 +91,10 @@ export function EventsPage({ events, language }: EventsPageProps) {
                         <div className='flex items-stretch gap-4'>
                           <div className='border-brand-action/20 bg-brand-primary flex min-w-[104px] items-center justify-center self-stretch border px-3 py-2 text-center'>
                             <span className='text-brand-action text-sm font-semibold whitespace-nowrap md:text-base'>
-                              {formatEventDateNumeric(event.dateTime)}
+                              {formatEventDateNumericRange(
+                                event.dateTime,
+                                event.endDateTime
+                              )}
                             </span>
                           </div>
 
@@ -102,9 +105,11 @@ export function EventsPage({ events, language }: EventsPageProps) {
                             <div className='text-brand-primary/70 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
                               <div className='flex items-center gap-1.5'>
                                 <Clock className='h-4 w-4' />
-                                {formatEventTime(event.dateTime, language)}
-                                {event.endDateTime &&
-                                  ` - ${formatEventTime(event.endDateTime, language)}`}
+                                {formatEventTimeRange(
+                                  event.dateTime,
+                                  event.endDateTime,
+                                  language
+                                )}
                               </div>
                               {event.location && (
                                 <div className='flex items-center gap-1.5'>
@@ -188,7 +193,10 @@ export function EventsPage({ events, language }: EventsPageProps) {
                           <div className='flex items-stretch gap-4'>
                             <div className='border-brand-primary/10 bg-brand-primary/80 flex min-w-[104px] items-center justify-center self-stretch border px-3 py-2 text-center'>
                               <span className='text-brand-action/70 text-sm font-semibold whitespace-nowrap md:text-base'>
-                                {formatEventDateNumeric(event.dateTime)}
+                                {formatEventDateNumericRange(
+                                  event.dateTime,
+                                  event.endDateTime
+                                )}
                               </span>
                             </div>
 
@@ -199,12 +207,11 @@ export function EventsPage({ events, language }: EventsPageProps) {
                               <div className='text-brand-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
                                 <div className='flex items-center gap-1.5'>
                                   <Clock className='h-4 w-4' />
-                                  {formatEventTime(
+                                  {formatEventTimeRange(
                                     event.dateTime,
+                                    event.endDateTime,
                                     language
                                   )}
-                                  {event.endDateTime &&
-                                    ` - ${formatEventTime(event.endDateTime, language)}`}
                                 </div>
                                 {event.location && (
                                   <div className='flex items-center gap-1.5'>

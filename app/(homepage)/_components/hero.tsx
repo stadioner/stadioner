@@ -4,7 +4,10 @@ import Link from 'next/link'
 import { Container } from '@/components/container'
 import { Border } from '@/components/border'
 import { useLanguage } from '@/store/use-language'
-import { formatEventDateNumeric, formatEventTime } from '@/lib/events/date-time'
+import {
+  formatEventDateNumericRange,
+  formatEventTimeRange
+} from '@/lib/events/date-time'
 import { type Event } from '@/types/event'
 import { type SupportedLanguage } from '@/types/blog'
 
@@ -95,14 +98,16 @@ export const Hero = ({ upcomingEventsByLanguage }: HeroProps) => {
                         <p>
                           {hasSchedule ?
                             <>
-                              {formatEventDateNumeric(upcomingEvent.dateTime)}
-                              {' · '}
-                              {formatEventTime(
+                              {formatEventDateNumericRange(
                                 upcomingEvent.dateTime,
+                                upcomingEvent.endDateTime
+                              )}
+                              {' · '}
+                              {formatEventTimeRange(
+                                upcomingEvent.dateTime,
+                                upcomingEvent.endDateTime,
                                 activeLanguage
                               )}
-                              {upcomingEvent.endDateTime &&
-                                ` - ${formatEventTime(upcomingEvent.endDateTime, activeLanguage)}`}
                             </>
                           : panelCopy.pending}
                         </p>

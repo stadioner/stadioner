@@ -25,8 +25,8 @@ import { SupportedLanguage } from '@/types/blog'
 import { type ReactNode } from 'react'
 import { EventRsvp } from './event-rsvp'
 import {
-  formatEventDate,
-  formatEventTime,
+  formatEventDateRange,
+  formatEventTimeRange,
   isEventPast
 } from '@/lib/events/date-time'
 
@@ -160,13 +160,19 @@ export function EventDetail({ event, language }: EventDetailProps) {
               <div className='text-brand-action/70 flex flex-wrap gap-x-8 gap-y-3 text-lg'>
                 <div className='flex items-center gap-2'>
                   <CalendarIcon className='text-brand-action h-5 w-5' />
-                  {formatEventDate(event.dateTime, language)}
+                  {formatEventDateRange(
+                    event.dateTime,
+                    event.endDateTime,
+                    language
+                  )}
                 </div>
                 <div className='flex items-center gap-2'>
                   <Clock className='text-brand-action h-5 w-5' />
-                  {formatEventTime(event.dateTime, language)}
-                  {event.endDateTime &&
-                    ` - ${formatEventTime(event.endDateTime, language)}`}
+                  {formatEventTimeRange(
+                    event.dateTime,
+                    event.endDateTime,
+                    language
+                  )}
                 </div>
                 {event.location && (
                   <div className='flex items-center gap-2'>

@@ -113,6 +113,84 @@ export const formatEventDateNumeric = (isoDateTime: string): string => {
   return `${Number(parts.day)}.${Number(parts.month)}.${parts.year}`
 }
 
+export const isSameEventDay = (
+  startIsoDateTime: string,
+  endIsoDateTime?: string
+): boolean => {
+  if (!endIsoDateTime) {
+    return true
+  }
+
+  const startParts = getDatePartsInEventTimeZone(startIsoDateTime)
+  const endParts = getDatePartsInEventTimeZone(endIsoDateTime)
+
+  if (!startParts || !endParts) {
+    return true
+  }
+
+  return (
+    startParts.year === endParts.year &&
+    startParts.month === endParts.month &&
+    startParts.day === endParts.day
+  )
+}
+
+export const formatEventDateRange = (
+  startIsoDateTime: string,
+  endIsoDateTime: string | undefined,
+  language: SupportedLanguage
+): string => {
+  if (!endIsoDateTime || isSameEventDay(startIsoDateTime, endIsoDateTime)) {
+    return formatEventDate(startIsoDateTime, language)
+  }
+
+  const startDate = new Date(startIsoDateTime)
+  const endDate = new Date(endIsoDateTime)
+
+  if (Number.isNaN(startDate.getTime()) || Number.isNaN(endDate.getTime())) {
+    return formatEventDate(startIsoDateTime, language)
+  }
+
+  return new Intl.DateTimeFormat(languageLocaleMap[language], {
+    timeZone: EVENT_TIME_ZONE,
+    dateStyle: 'long'
+  }).formatRange(startDate, endDate)
+}
+
+export const formatEventDateNumericRange = (
+  startIsoDateTime: string,
+  endIsoDateTime?: string
+): string => {
+  if (!endIsoDateTime || isSameEventDay(startIsoDateTime, endIsoDateTime)) {
+    return formatEventDateNumeric(startIsoDateTime)
+  }
+
+  const startParts = getDatePartsInEventTimeZone(startIsoDateTime)
+  const endParts = getDatePartsInEventTimeZone(endIsoDateTime)
+
+  if (!startParts || !endParts) {
+    return formatEventDateNumeric(startIsoDateTime)
+  }
+
+  const startDay = Number(startParts.day)
+  const startMonth = Number(startParts.month)
+  const endDay = Number(endParts.day)
+  const endMonth = Number(endParts.month)
+
+  if (
+    startParts.year === endParts.year &&
+    startParts.month === endParts.month
+  ) {
+    return `${startDay}.–${endDay}.${startMonth}.${startParts.year}`
+  }
+
+  if (startParts.year === endParts.year) {
+    return `${startDay}.${startMonth}.–${endDay}.${endMonth}.${startParts.year}`
+  }
+
+  return `${formatEventDateNumeric(startIsoDateTime)}–${formatEventDateNumeric(endIsoDateTime)}`
+}
+
 export const formatEventTime = (
   isoDateTime: string,
   language: SupportedLanguage
@@ -122,3 +200,26 @@ export const formatEventTime = (
     minute: '2-digit',
     hourCycle: 'h23'
   })
+
+export const formatEventTimeRange = (
+  startIsoDateTime: string,
+  endIsoDateTime: string | undefined,
+  language: SupportedLanguage
+): string => {
+  const startTime = formatEventTime(startIsoDateTime, language)
+
+  if (
+    !endIsoDateTime ||
+    !isSameEventDay(startIsoDateTime, endIsoDateTime)
+  ) {
+    return startTime
+  }
+
+  const endTime = formatEventTime(endIsoDateTime, language)
+
+  if (!endTime || endTime === startTime) {
+    return startTime
+  }
+
+  return `${startTime} - ${endTime}`
+}
