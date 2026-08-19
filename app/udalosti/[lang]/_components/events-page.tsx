@@ -191,8 +191,20 @@ export function EventsPage({ events, language }: EventsPageProps) {
 
                         const pastRow = (
                           <div className='flex items-stretch gap-4'>
-                            <div className='border-brand-primary/10 bg-brand-primary/80 flex min-w-[104px] items-center justify-center self-stretch border px-3 py-2 text-center'>
-                              <span className='text-brand-action/70 text-sm font-semibold whitespace-nowrap md:text-base'>
+                            <div
+                              className={`flex min-w-[104px] items-center justify-center self-stretch border px-3 py-2 text-center ${
+                                hasRecap ?
+                                  'border-brand-action/20 bg-brand-primary'
+                                : 'border-brand-primary/10 bg-brand-primary/80'
+                              }`}
+                            >
+                              <span
+                                className={`text-sm font-semibold whitespace-nowrap md:text-base ${
+                                  hasRecap ?
+                                    'text-brand-action'
+                                  : 'text-brand-action/70'
+                                }`}
+                              >
                                 {formatEventDateNumericRange(
                                   event.dateTime,
                                   event.endDateTime
@@ -201,10 +213,22 @@ export function EventsPage({ events, language }: EventsPageProps) {
                             </div>
 
                             <div className='flex min-w-0 flex-1 flex-col justify-center'>
-                              <h4 className='text-brand-primary/60 font-mohave mb-2 truncate text-xl font-bold uppercase transition-colors md:text-2xl'>
+                              <h4
+                                className={`font-mohave mb-2 truncate text-xl font-bold uppercase transition-colors md:text-2xl ${
+                                  hasRecap ?
+                                    'text-brand-primary'
+                                  : 'text-brand-primary/60'
+                                }`}
+                              >
                                 {event.title}
                               </h4>
-                              <div className='text-brand-primary/50 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
+                              <div
+                                className={`flex flex-wrap gap-x-6 gap-y-2 text-sm ${
+                                  hasRecap ?
+                                    'text-brand-primary/70'
+                                  : 'text-brand-primary/50'
+                                }`}
+                              >
                                 <div className='flex items-center gap-1.5'>
                                   <Clock className='h-4 w-4' />
                                   {formatEventTimeRange(
@@ -225,7 +249,7 @@ export function EventsPage({ events, language }: EventsPageProps) {
                             {hasRecap && (
                               <>
                                 <div className='bg-brand-primary/10 flex shrink-0 items-center self-center px-3 py-1'>
-                                  <span className='text-brand-primary/80 flex items-center gap-2 text-xs font-bold tracking-wider uppercase'>
+                                  <span className='text-brand-primary flex items-center gap-2 text-xs font-bold tracking-wider uppercase'>
                                     {t.recapBadge}
                                   </span>
                                 </div>
@@ -233,7 +257,7 @@ export function EventsPage({ events, language }: EventsPageProps) {
                                   <Button
                                     size='icon'
                                     variant='ghost'
-                                    className='text-brand-primary/70 hover:bg-brand-primary/10'
+                                    className='text-brand-primary hover:bg-brand-primary/10'
                                     asChild
                                   >
                                     <span>
@@ -252,10 +276,10 @@ export function EventsPage({ events, language }: EventsPageProps) {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, x: -20 }}
-                            className={`border-brand-primary/15 border bg-transparent opacity-60 ${
+                            className={`border-brand-primary/15 border bg-transparent ${
                               hasRecap ?
-                                'group hover:bg-brand-primary/5 cursor-pointer transition-colors'
-                              : 'cursor-not-allowed'
+                                'group hover:bg-brand-primary/5 cursor-pointer opacity-100 transition-colors'
+                              : 'cursor-not-allowed opacity-60'
                             }`}
                           >
                             {hasRecap ?
