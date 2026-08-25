@@ -31,7 +31,9 @@ export const uiLabels = {
     crate: 'Bedna',
     barrel: 'Sud',
     barrel30: 'Sud 30 l',
-    barrel50: 'Sud 50 l'
+    barrel50: 'Sud 50 l',
+    noveltyNote:
+      'Novinka MALINOVKA — dostupná v lahvích 0.5 l a sudech 20 l, 30 l a 50 l.'
   },
   en: {
     composition: 'Ingredients',
@@ -45,7 +47,9 @@ export const uiLabels = {
     crate: 'Crate',
     barrel: 'Keg',
     barrel30: 'Keg 30 l',
-    barrel50: 'Keg 50 l'
+    barrel50: 'Keg 50 l',
+    noveltyNote:
+      'New: MALINOVKA — available in 0.5 l bottles and 20 l, 30 l and 50 l kegs.'
   },
   de: {
     composition: 'Zutaten',
@@ -59,6 +63,8 @@ export const uiLabels = {
     crate: 'Kiste',
     barrel: 'Fass',
     barrel30: 'Fass 30 l',
-    barrel50: 'Fass 50 l'
+    barrel50: 'Fass 50 l',
+    noveltyNote:
+      'Neu: MALINOVKA — erhältlich in 0,5-l-Flaschen und 20-l-, 30-l- und 50-l-Fässern.'
   }
 } as const

@@ -201,6 +201,9 @@ export const Products = ({
               />
             </div>
           </div>
+          <p className='text-brand-primary mt-8 text-center text-sm sm:mt-10 sm:text-base'>
+            {labels.noveltyNote}
+          </p>
         </Container>
         {rippedPaper && (
           <div
