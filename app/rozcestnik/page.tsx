@@ -10,6 +10,7 @@ import {
   Mail,
   Phone,
   MapPin,
+  Store,
   ExternalLink,
   Beer,
   Calendar,
@@ -72,10 +73,24 @@ export default function RozcestnikPage() {
         category: 'business'
       },
       {
-        title: 'Prodejní místa',
-        description: 'Kde najdete naše produkty v Plzeňském kraji',
-        href: '/prodejni-mista',
+        title: 'Síť partnerů',
+        description: 'Restaurace a obchody, kde koupíte STADIONER',
+        href: '/prodejni-mista/sit-partneru',
         icon: <MapPin size={24} />,
+        category: 'business'
+      },
+      {
+        title: 'Podniková prodejna',
+        description: 'Nákup přímo v pivovaru v Koutě na Šumavě',
+        href: '/prodejni-mista/podnikova-prodejna',
+        icon: <Store size={24} />,
+        category: 'business'
+      },
+      {
+        title: 'Výčep na Šalandě',
+        description: 'Otevírací doba a program výčepu v areálu pivovaru',
+        href: '/prodejni-mista/vycep-na-salade',
+        icon: <Beer size={24} />,
         category: 'business'
       },
       // Produkty
@@ -159,10 +174,24 @@ export default function RozcestnikPage() {
         category: 'business'
       },
       {
-        title: 'Sales Points',
-        description: 'Where to find our products in the Plzeň Region',
-        href: '/prodejni-mista',
+        title: 'Partner Network',
+        description: 'Restaurants and shops where you can buy STADIONER',
+        href: '/prodejni-mista/sit-partneru',
         icon: <MapPin size={24} />,
+        category: 'business'
+      },
+      {
+        title: 'Company Store',
+        description: 'Shop directly at the brewery in Kout na Šumavě',
+        href: '/prodejni-mista/podnikova-prodejna',
+        icon: <Store size={24} />,
+        category: 'business'
+      },
+      {
+        title: 'Taproom at Šalanda',
+        description: 'Opening hours and weekly program at the brewery taproom',
+        href: '/prodejni-mista/vycep-na-salade',
+        icon: <Beer size={24} />,
         category: 'business'
       },
       // Products
@@ -248,10 +277,24 @@ export default function RozcestnikPage() {
         category: 'business'
       },
       {
-        title: 'Verkaufsstellen',
-        description: 'Wo Sie unsere Produkte in der Region Pilsen finden',
-        href: '/prodejni-mista',
+        title: 'Partnernetzwerk',
+        description: 'Restaurants und Geschäfte, in denen Sie STADIONER kaufen',
+        href: '/prodejni-mista/sit-partneru',
         icon: <MapPin size={24} />,
+        category: 'business'
+      },
+      {
+        title: 'Betriebsverkauf',
+        description: 'Einkauf direkt in der Brauerei in Kout na Šumavě',
+        href: '/prodejni-mista/podnikova-prodejna',
+        icon: <Store size={24} />,
+        category: 'business'
+      },
+      {
+        title: 'Ausschank auf Šalanda',
+        description: 'Öffnungszeiten und Wochenprogramm des Ausschanks',
+        href: '/prodejni-mista/vycep-na-salade',
+        icon: <Beer size={24} />,
         category: 'business'
       },
       // Produkte

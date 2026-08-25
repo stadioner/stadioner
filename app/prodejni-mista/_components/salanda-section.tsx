@@ -13,7 +13,6 @@ import {
   isSupportedLanguage,
   type SupportedLanguage
 } from '@/lib/i18n/site-languages'
-import { salesLocationsSectionIds } from '@/lib/i18n/sales-locations-nav'
 import { mapSalandaWeeklyProgram } from '@/lib/salanda/program-mapper'
 import { cn } from '@/lib/utils'
 import { useLanguage } from '@/store/use-language'
@@ -38,15 +37,14 @@ export const SalandaSection = ({
 
   return (
     <section
-      id={salesLocationsSectionIds.taproom}
-      className='bg-brand-primary scroll-mt-36 py-12'
+      className='bg-brand-primary'
       aria-label={content.sectionTitle}
     >
       <Container>
         <div className='max-w-[100ch]'>
-          <h2 className='text-brand-action text-3xl font-bold md:text-4xl lg:text-6xl'>
+          <h1 className='text-brand-action text-3xl font-bold md:text-4xl lg:text-6xl'>
             {content.sectionTitle}
-          </h2>
+          </h1>
           <p className='text-brand-action/90 mt-1'>{content.address}</p>
           <div className='text-brand-action mt-4 space-y-3'>
             {content.introParagraphs.map((paragraph) => (

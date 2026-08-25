@@ -32,7 +32,32 @@ const nextConfig: NextConfig = {
       },
       {
         source: '/prodejni-mista',
-        destination: '/cs/prodejni-mista',
+        destination: '/cs/prodejni-mista/sit-partneru',
+        permanent: true
+      },
+      {
+        source: '/prodejni-mista/sit-partneru',
+        destination: '/cs/prodejni-mista/sit-partneru',
+        permanent: true
+      },
+      {
+        source: '/prodejni-mista/podnikova-prodejna',
+        destination: '/cs/prodejni-mista/podnikova-prodejna',
+        permanent: true
+      },
+      {
+        source: '/prodejni-mista/vycep-na-salade',
+        destination: '/cs/prodejni-mista/vycep-na-salade',
+        permanent: true
+      },
+      {
+        source: '/prodejni-mista/vydejni-misto',
+        destination: '/cs/prodejni-mista/podnikova-prodejna',
+        permanent: true
+      },
+      {
+        source: '/:locale(cs|en|de)/prodejni-mista/vydejni-misto',
+        destination: '/:locale/prodejni-mista/podnikova-prodejna',
         permanent: true
       },
       {

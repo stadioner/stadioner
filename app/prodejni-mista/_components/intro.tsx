@@ -3,7 +3,11 @@
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
 import { MapLegend } from '@/components/map-legend'
-import { salesLocationsSectionIds } from '@/lib/i18n/sales-locations-nav'
+import { getSalesLocationsHref } from '@/lib/i18n/sales-locations-nav'
+import {
+  isSupportedLanguage,
+  type SupportedLanguage
+} from '@/lib/i18n/site-languages'
 import { useLanguage } from '@/store/use-language'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -15,20 +19,21 @@ const Map = dynamic(
 
 export const Intro = () => {
   const { language } = useLanguage()
+  const currentLanguage: SupportedLanguage = isSupportedLanguage(language) ?
+      language
+    : 'cs'
+  const storeHref = getSalesLocationsHref(currentLanguage, 'store')
 
   return (
-    <section
-      id={salesLocationsSectionIds.partners}
-      className='scroll-mt-36 bg-brand-primary pb-20'
-    >
-      <Container className='pb-20'>
+    <section className='bg-brand-primary'>
+      <Container>
         <div>
           <div className='pb-6'>
-            <h2 className='text-brand-action text-3xl font-bold md:text-4xl lg:text-6xl'>
-              {language === 'cs' && 'Kde koupit STADIONER?'}
-              {language === 'en' && 'Where to buy STADIONER?'}
-              {language === 'de' && 'Wo kann man STADIONER kaufen?'}
-            </h2>
+            <h1 className='text-brand-action text-3xl font-bold md:text-4xl lg:text-6xl'>
+              {language === 'cs' && 'Síť partnerů'}
+              {language === 'en' && 'Partner Network'}
+              {language === 'de' && 'Partnernetzwerk'}
+            </h1>
             <p className='max-w-[100ch]'>
               {language === 'cs' && (
                 <>
@@ -43,8 +48,14 @@ export const Intro = () => {
                   >
                     rezervovat online
                   </Link>{' '}
-                  a vyzvednout na výdejním místě. Chcete mít přehled, kde nás
-                  najdete dál?{' '}
+                  a vyzvednout v{' '}
+                  <Link
+                    href={storeHref}
+                    className='font-bold underline'
+                  >
+                    podnikové prodejně
+                  </Link>
+                  . Chcete mít přehled, kde nás najdete dál?{' '}
                   <Link
                     href='/cs/newsletter'
                     className='font-bold underline'
@@ -66,8 +77,14 @@ export const Intro = () => {
                   >
                     reserve online
                   </Link>{' '}
-                  and pick up your order at a pickup point. Want to stay up to
-                  date on where you can find us next?
+                  and pick up your order at the{' '}
+                  <Link
+                    href={storeHref}
+                    className='font-bold underline'
+                  >
+                    company store
+                  </Link>
+                  . Want to stay up to date on where you can find us next?{' '}
                   <Link
                     href='/en/newsletter'
                     className='font-bold underline'
@@ -90,8 +107,15 @@ export const Intro = () => {
                   >
                     online reservieren
                   </Link>{' '}
-                  und an einer Abholstelle abholen. Mochten Sie den Uberblick
-                  behalten, wo Sie uns als Nachstes finden?
+                  und im{' '}
+                  <Link
+                    href={storeHref}
+                    className='font-bold underline'
+                  >
+                    Betriebsverkauf
+                  </Link>{' '}
+                  abholen. Mochten Sie den Uberblick behalten, wo Sie uns als
+                  Nachstes finden?{' '}
                   <Link
                     href='/de/newsletter'
                     className='font-bold underline'

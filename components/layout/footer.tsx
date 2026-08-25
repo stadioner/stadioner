@@ -6,10 +6,13 @@ import { ExternalLinkIcon, FacebookIcon, InstagramIcon } from 'lucide-react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { useNewsletterForm } from '@/hooks/use-newsletter-form'
+import { getSalesLocationsHref } from '@/lib/i18n/sales-locations-nav'
+import { isSupportedLanguage } from '@/lib/i18n/site-languages'
 
 export const Footer = () => {
   const { language } = useLanguage()
-  const localizedRootPath = `/${language}`
+  const currentLanguage = isSupportedLanguage(language) ? language : 'cs'
+  const localizedRootPath = `/${currentLanguage}`
   const { email, setEmail, isSubmitting, submit, copy } = useNewsletterForm({
     language,
     markSubscribed: false
@@ -35,10 +38,20 @@ export const Footer = () => {
               {language === 'en' && 'Products'}
               {language === 'de' && 'Produkte'}
             </Link>
-            <Link href={`${localizedRootPath}/prodejni-mista`}>
-              {language === 'cs' && 'Prodejní Místa'}
-              {language === 'en' && 'Sales Locations'}
-              {language === 'de' && 'Verkaufsstellen'}
+            <Link href={getSalesLocationsHref(currentLanguage, 'partners')}>
+              {language === 'cs' && 'Síť partnerů'}
+              {language === 'en' && 'Partner Network'}
+              {language === 'de' && 'Partnernetzwerk'}
+            </Link>
+            <Link href={getSalesLocationsHref(currentLanguage, 'store')}>
+              {language === 'cs' && 'Podniková prodejna'}
+              {language === 'en' && 'Company Store'}
+              {language === 'de' && 'Betriebsverkauf'}
+            </Link>
+            <Link href={getSalesLocationsHref(currentLanguage, 'taproom')}>
+              {language === 'cs' && 'Výčep na Šalandě'}
+              {language === 'en' && 'Taproom at Šalanda'}
+              {language === 'de' && 'Ausschank auf Šalanda'}
             </Link>
             <Link href={`${localizedRootPath}/udalosti`}>
               {language === 'cs' && 'Události'}

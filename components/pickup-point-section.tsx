@@ -8,7 +8,6 @@ import {
   isSupportedLanguage,
   type SupportedLanguage
 } from '@/lib/i18n/site-languages'
-import { salesLocationsSectionIds } from '@/lib/i18n/sales-locations-nav'
 import { cn } from '@/lib/utils'
 import { useLanguage } from '@/store/use-language'
 
@@ -35,12 +34,12 @@ type PickupPointContent = {
 
 const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
   cs: {
-    sectionTitle: 'Výdejní Místo',
+    sectionTitle: 'Podniková prodejna',
     address: 'Kout na Šumavě 2, 345 02 Kout na Šumavě',
     imageAlt:
       'Skladový sklep s klenutým stropem a bednami nápojů STADIONER na paletách',
     intro:
-      'Hlavní výdejní místo pivovaru STADIONER se nachází přímo v areálu pivovaru v Koutě na Šumavě. Zde si můžete zakoupit všechny naše produkty přímo od výrobce, včetně čerstvých piv, limonád a vod ze šumavských pramenů. Nabízíme také možnost vrácení prázdných lahví. Možnost zakoupit lahvové i sudové pivo.',
+      'Podniková prodejna pivovaru STADIONER se nachází přímo v areálu pivovaru v Koutě na Šumavě. Zde si můžete zakoupit všechny naše produkty přímo od výrobce, včetně čerstvých piv, limonád a vod ze šumavských pramenů. Nabízíme také možnost vrácení prázdných lahví. Možnost zakoupit lahvové i sudové pivo.',
     depositInfo:
       'Zálohy: lahev 5 Kč, bedna 100 Kč, sud (30L, 50L) 1500 Kč, sud (10L, 20.5L) 2000 Kč',
     paymentInfo: 'Platba možná na místě v hotovosti i kartou.',
@@ -67,12 +66,12 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
     holidayClosures: ['1. 5. 2026: ZAVŘENO', '8. 5. 2026: ZAVŘENO']
   },
   en: {
-    sectionTitle: 'Pickup Point',
+    sectionTitle: 'Company Store',
     address: 'Kout na Šumavě 2, 345 02 Kout na Šumavě',
     imageAlt:
       'Storage cellar with vaulted ceiling and stacks of STADIONER beverage crates on pallets',
     intro:
-      'The main pickup point of STADIONER brewery is located directly in the brewery premises in Kout na Šumavě. Here you can purchase all our products directly from the producer, including fresh beers, lemonades, and water from Šumava springs. We also offer bottle returns. You can purchase both bottled and keg beer.',
+      'The STADIONER company store is located directly in the brewery premises in Kout na Šumavě. Here you can purchase all our products directly from the producer, including fresh beers, lemonades, and water from Šumava springs. We also offer bottle returns. You can purchase both bottled and keg beer.',
     depositInfo:
       'Deposits: bottle 5 CZK, crate 100 CZK, keg (30L, 50L) 1500 CZK, keg (10L, 20.5L) 2000 CZK',
     paymentInfo: 'Payment on site is possible both in cash and by card.',
@@ -99,12 +98,12 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
     holidayClosures: ['May 1, 2026: CLOSED', 'May 8, 2026: CLOSED']
   },
   de: {
-    sectionTitle: 'Abholstelle',
+    sectionTitle: 'Betriebsverkauf',
     address: 'Kout na Šumavě 2, 345 02 Kout na Šumavě',
     imageAlt:
       'Lagerkeller mit Gewölbedecke und Stapeln von STADIONER-Getränkekisten auf Paletten',
     intro:
-      'Die Hauptabholstelle der Brauerei STADIONER befindet sich direkt auf dem Brauereigelände in Kout na Šumavě. Hier können Sie alle unsere Produkte direkt vom Hersteller kaufen, einschließlich frischer Biere, Limonaden und Wasser aus den Böhmerwaldquellen. Wir bieten auch die Rückgabe leerer Flaschen an. Sie können sowohl Flaschenbier als auch Bier im Fass kaufen.',
+      'Der Betriebsverkauf der Brauerei STADIONER befindet sich direkt auf dem Brauereigelände in Kout na Šumavě. Hier können Sie alle unsere Produkte direkt vom Hersteller kaufen, einschließlich frischer Biere, Limonaden und Wasser aus den Böhmerwaldquellen. Wir bieten auch die Rückgabe leerer Flaschen an. Sie können sowohl Flaschenbier als auch Bier im Fass kaufen.',
     depositInfo:
       'Pfand: Flasche 5 CZK, Kiste 100 CZK, Fass (30L, 50L) 1500 CZK, Fass (10L, 20.5L) 2000 CZK',
     paymentInfo: 'Zahlung vor Ort ist bar oder mit Karte möglich.',
@@ -143,8 +142,12 @@ const dayToRowKey: Partial<Record<number, OpeningHourRow['key']>> = {
 }
 
 export const PickupPointSection = ({
+  headingAs = 'h2',
+  showTopRippedPaper = true,
   showBottomRippedPaper = true
 }: {
+  headingAs?: 'h1' | 'h2'
+  showTopRippedPaper?: boolean
   showBottomRippedPaper?: boolean
 }) => {
   const language = useLanguage((state) => state.language)
@@ -172,20 +175,27 @@ export const PickupPointSection = ({
     return () => ro.disconnect()
   }, [syncTextColumnHeight, currentLanguage])
 
+  const HeadingTag = headingAs
+
   return (
     <section
-      id={salesLocationsSectionIds.pickup}
-      className='scroll-mt-36 bg-brand-primary'
+      className={
+        showTopRippedPaper || showBottomRippedPaper ?
+          'bg-brand-primary'
+        : 'bg-brand-action'
+      }
     >
-      <RippedPaperSVG flip />
+      {showTopRippedPaper ?
+        <RippedPaperSVG flip />
+      : null}
       <div className='bg-brand-action py-12'>
         <Container className='grid gap-10 md:grid-cols-2 md:items-start'>
           <div className='flex flex-col justify-between'>
             <div ref={textColumnRef}>
               <div>
-                <h2 className='text-brand-primary flex-nowrap text-3xl font-bold text-nowrap md:text-4xl lg:text-6xl'>
+                <HeadingTag className='text-brand-primary flex-nowrap text-3xl font-bold text-nowrap md:text-4xl lg:text-6xl'>
                   {content.sectionTitle}
-                </h2>
+                </HeadingTag>
                 <p className='mt-1 text-zinc-100'>{content.address}</p>
               </div>
 

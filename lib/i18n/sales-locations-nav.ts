@@ -1,15 +1,26 @@
 import type { SupportedLanguage } from '@/lib/i18n/site-languages'
 
-export const salesLocationsSectionIds = {
+export const salesLocationsBaseSegment = 'prodejni-mista'
+
+export const salesLocationsPaths = {
   partners: 'sit-partneru',
-  pickup: 'vydejni-misto',
+  store: 'podnikova-prodejna',
   taproom: 'vycep-na-salade'
 } as const
+
+export type SalesLocationPage = keyof typeof salesLocationsPaths
+
+export const salesLocationsLegacyHashRedirects: Record<string, string> = {
+  'sit-partneru': salesLocationsPaths.partners,
+  'vydejni-misto': salesLocationsPaths.store,
+  'podnikova-prodejna': salesLocationsPaths.store,
+  'vycep-na-salade': salesLocationsPaths.taproom
+}
 
 type SalesLocationsNavLabels = {
   trigger: string
   partners: string
-  pickup: string
+  store: string
   taproom: string
 }
 
@@ -17,19 +28,19 @@ const labelsByLanguage: Record<SupportedLanguage, SalesLocationsNavLabels> = {
   cs: {
     trigger: 'Prodejní Místa',
     partners: 'Síť partnerů',
-    pickup: 'Výdejní místo',
+    store: 'Podniková prodejna',
     taproom: 'Výčep na Šalandě'
   },
   en: {
     trigger: 'Sales Locations',
     partners: 'Partner Network',
-    pickup: 'Pickup Point',
+    store: 'Company Store',
     taproom: 'Taproom at Šalanda'
   },
   de: {
     trigger: 'Verkaufsstellen',
     partners: 'Partnernetzwerk',
-    pickup: 'Abholstelle',
+    store: 'Betriebsverkauf',
     taproom: 'Ausschank auf Šalanda'
   }
 }
@@ -38,25 +49,30 @@ export const getSalesLocationsNavLabels = (
   language: SupportedLanguage
 ): SalesLocationsNavLabels => labelsByLanguage[language]
 
-export const getSalesLocationsNavItems = (
+export const getSalesLocationsHref = (
   language: SupportedLanguage,
-  localizedRootPath: string
-) => {
+  page: SalesLocationPage
+): string =>
+  `/${language}/${salesLocationsBaseSegment}/${salesLocationsPaths[page]}`
+
+export const getSalesLocationsNavItems = (language: SupportedLanguage) => {
   const labels = getSalesLocationsNavLabels(language)
-  const basePath = `${localizedRootPath}/prodejni-mista`
 
   return [
     {
+      key: 'partners',
       label: labels.partners,
-      href: `${basePath}#${salesLocationsSectionIds.partners}`
+      href: getSalesLocationsHref(language, 'partners')
     },
     {
-      label: labels.pickup,
-      href: `${basePath}#${salesLocationsSectionIds.pickup}`
+      key: 'store',
+      label: labels.store,
+      href: getSalesLocationsHref(language, 'store')
     },
     {
+      key: 'taproom',
       label: labels.taproom,
-      href: `${basePath}#${salesLocationsSectionIds.taproom}`
+      href: getSalesLocationsHref(language, 'taproom')
     }
   ] as const
 }

@@ -1,34 +1,18 @@
-import { Metadata } from 'next'
-import { Intro } from './_components/intro'
-import { VycepNaSaladeSection } from './_components/vycep-na-salade'
-import { buildPageMetadata } from '@/lib/seo/metadata'
-import { PickupPointSection } from '@/components/pickup-point-section'
+import { cookies } from 'next/headers'
+import { permanentRedirect } from 'next/navigation'
+import { getSalesLocationsHref } from '@/lib/i18n/sales-locations-nav'
+import {
+  defaultLocale,
+  isLocalizedSeoLocale
+} from '@/lib/seo/site'
 
-export const metadata: Metadata = buildPageMetadata({
-  title: 'Prodejní místa - Kde koupit naše produkty',
-  description:
-    'Najděte naše produkty v Plzeňském kraji. Hlavní výdejní místo v pivovaru Kout na Šumavě a další prodejní místa v restauracích a obchodech.',
-  canonicalPath: '/cs/prodejni-mista',
-  keywords: [
-    'prodejní místa',
-    'kde koupit',
-    'pivovar',
-    'STADIONER',
-    'Kout na Šumavě',
-    'Plzeňský kraj',
-    'restaurace',
-    'obchody',
-    'výdejní místo'
-  ]
-})
+export default async function ProdejniMistaPage() {
+  const cookieStore = await cookies()
+  const localeCookie = cookieStore.get('NEXT_LOCALE')?.value
+  const locale =
+    localeCookie && isLocalizedSeoLocale(localeCookie) ?
+      localeCookie
+    : defaultLocale
 
-export default function ProdejniMistaPage() {
-  return (
-    <main className='bg-brand-primary pt-40'>
-      <h1 className='sr-only'>Prodejní místa STADIONER</h1>
-      <Intro />
-      <PickupPointSection showBottomRippedPaper={true}  />
-      <VycepNaSaladeSection />
-    </main>
-  )
+  permanentRedirect(getSalesLocationsHref(locale, 'partners'))
 }

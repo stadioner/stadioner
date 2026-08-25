@@ -38,7 +38,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     `/${locale}/historie`,
     `/${locale}/produkty`,
     `/${locale}/kontakt`,
-    `/${locale}/prodejni-mista`,
+    `/${locale}/prodejni-mista/sit-partneru`,
+    `/${locale}/prodejni-mista/podnikova-prodejna`,
+    `/${locale}/prodejni-mista/vycep-na-salade`,
     `/${locale}/newsletter`,
     `/${locale}/pro-firmy`,
     `/${locale}/rozcestnik`,
@@ -61,7 +63,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const priority =
       path.split('/').length <= 2 ? 1
       : path.endsWith('/produkty') ? 0.9
-      : path.endsWith('/kontakt') || path.endsWith('/prodejni-mista') ? 0.8
+      : path.endsWith('/kontakt') ||
+        path.includes('/prodejni-mista/') ? 0.8
       : (
         path.endsWith('/cookies') ||
         path.endsWith('/gdpr') ||

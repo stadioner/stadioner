@@ -3,6 +3,8 @@
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
 import { MapLegend } from '@/components/map-legend'
+import { getSalesLocationsHref } from '@/lib/i18n/sales-locations-nav'
+import { isSupportedLanguage } from '@/lib/i18n/site-languages'
 import { useLanguage } from '@/store/use-language'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
@@ -13,6 +15,10 @@ const Map = dynamic(
 
 export const Places = () => {
   const { language } = useLanguage()
+  const storeHref = getSalesLocationsHref(
+    isSupportedLanguage(language) ? language : 'cs',
+    'store'
+  )
 
   return (
     <section className='bg-brand-primary pt-20 pb-20'>
@@ -37,8 +43,14 @@ export const Places = () => {
                 >
                   rezervovat online
                 </Link>{' '}
-                a vyzvednout na výdejním místě. Chcete mít přehled, kde nás
-                najdete dál?{' '}
+                a vyzvednout v{' '}
+                <Link
+                  href={storeHref}
+                  className='font-bold underline'
+                >
+                  podnikové prodejně
+                </Link>
+                . Chcete mít přehled, kde nás najdete dál?{' '}
                 <Link
                   href='/cs/newsletter'
                   className='font-bold underline'
@@ -58,10 +70,16 @@ export const Places = () => {
                   rel='noopener noreferrer'
                   className='font-bold underline'
                 >
-                  reserve online
-                </Link>
-                and pick up your order at a pickup point. Want to stay up to
-                date on where you can find us next?
+                    reserve online
+                  </Link>{' '}
+                  and pick up your order at the{' '}
+                  <Link
+                    href={storeHref}
+                    className='font-bold underline'
+                  >
+                    company store
+                  </Link>
+                  . Want to stay up to date on where you can find us next?{' '}
                 <Link
                   href='/en/newsletter'
                   className='font-bold underline'
@@ -82,10 +100,17 @@ export const Places = () => {
                   rel='noopener noreferrer'
                   className='font-bold underline'
                 >
-                  online reservieren
-                </Link>
-                und an einer Abholstelle abholen. Mochten Sie den Uberblick
-                behalten, wo Sie uns als Nachstes finden?
+                    online reservieren
+                  </Link>{' '}
+                  und im{' '}
+                  <Link
+                    href={storeHref}
+                    className='font-bold underline'
+                  >
+                    Betriebsverkauf
+                  </Link>{' '}
+                  abholen. Mochten Sie den Uberblick behalten, wo Sie uns als
+                  Nachstes finden?{' '}
                 <Link
                   href='/de/newsletter'
                   className='font-bold underline'

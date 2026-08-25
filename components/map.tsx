@@ -597,7 +597,7 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
         marker.variant === 'pickup' ?
           <div className='space-y-2'>
             <div className='text-brand-action bg-brand-primary border-brand-action w-min border px-1 text-xs font-medium tracking-tight whitespace-nowrap'>
-              Výdejní místo
+              Podniková prodejna
             </div>
             <div>{marker.popupContent}</div>
           </div>

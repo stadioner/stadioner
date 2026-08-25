@@ -16,6 +16,7 @@ import {
   type SupportedLanguage
 } from '@/lib/i18n/site-languages'
 import {
+  getSalesLocationsHref,
   getSalesLocationsNavItems,
   getSalesLocationsNavLabels
 } from '@/lib/i18n/sales-locations-nav'
@@ -35,12 +36,14 @@ const PhoneSalesLocationsNav = ({
   labels,
   items,
   pagePath,
+  currentPath,
   isActive,
   onLinkClick
 }: {
   labels: ReturnType<typeof getSalesLocationsNavLabels>
   items: ReturnType<typeof getSalesLocationsNavItems>
   pagePath: string
+  currentPath: string
   isActive: boolean
   onLinkClick: () => void
 }) => {
@@ -70,7 +73,14 @@ const PhoneSalesLocationsNav = ({
             onClick={onLinkClick}
             className='text-brand-primary/80 text-lg md:text-xl'
           >
-            <Link href={item.href}>{item.label}</Link>
+            <Link
+              href={item.href}
+              className={cn(
+                currentPath === item.href && 'underline underline-offset-4'
+              )}
+            >
+              {item.label}
+            </Link>
           </li>
         ))}
       </ul>
@@ -89,12 +99,13 @@ export const SalesLocationsNav = ({
   const localizedRootPath = `/${currentLanguage}`
   const pathname = usePathname()
   const currentPath = pathname ?? ''
-  const pagePath = `${localizedRootPath}/prodejni-mista`
+  const sectionPath = `${localizedRootPath}/prodejni-mista`
+  const pagePath = getSalesLocationsHref(currentLanguage, 'partners')
   const isActive =
-    currentPath === pagePath || currentPath.startsWith(`${pagePath}/`)
+    currentPath === sectionPath || currentPath.startsWith(`${sectionPath}/`)
 
   const labels = getSalesLocationsNavLabels(currentLanguage)
-  const items = getSalesLocationsNavItems(currentLanguage, localizedRootPath)
+  const items = getSalesLocationsNavItems(currentLanguage)
   const { open, setOpen, openMenu, scheduleClose, closeMenu } =
     useNavDropdownHover()
 
@@ -109,6 +120,7 @@ export const SalesLocationsNav = ({
         labels={labels}
         items={items}
         pagePath={pagePath}
+        currentPath={currentPath}
         isActive={isActive}
         onLinkClick={handleLinkClick}
       />
@@ -167,7 +179,11 @@ export const SalesLocationsNav = ({
                   <Link
                     href={item.href}
                     onClick={handleLinkClick}
-                    className='text-brand-action hover:bg-brand-primary/40 block px-3 py-1.5 text-base whitespace-nowrap transition-colors'
+                    className={cn(
+                      'text-brand-action hover:bg-brand-primary/40 block px-3 py-1.5 text-base whitespace-nowrap transition-colors',
+                      currentPath === item.href &&
+                        'bg-brand-primary/40 font-bold'
+                    )}
                   >
                     {item.label}
                   </Link>
