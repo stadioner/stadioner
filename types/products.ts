@@ -1,24 +1,39 @@
+export type PackagingKey =
+  | 'bottle'
+  | 'crate'
+  | 'barrel20'
+  | 'barrel30'
+  | 'barrel50'
+
+export const PACKAGING_KEYS: PackagingKey[] = [
+  'bottle',
+  'crate',
+  'barrel20',
+  'barrel30',
+  'barrel50'
+]
+
 export interface Product {
   name: string
-  subtitle: string
+  subtitle?: string
   category: string
   categoryLabel: string
   slug: string
   url: string
-  description: string
+  description?: string
   stats: { label: string; value: string }[]
   image: string
   icon: string
-  ingredients: string
+  ingredients?: string
   /** Cena za lahev / jednotku v Kč */
   bottlePriceCzk?: number
   /** Cena za bednu (20 ks) v Kč */
   cratePriceCzk?: number
-  /** Ceny sudů v Kč (barrel30 = menší sud v e-shopu, barrel50 = 50 l) */
-  kegPricesCzk?: Partial<Record<'barrel30' | 'barrel50', number>>
+  /** Ceny sudů v Kč */
+  kegPricesCzk?: Partial<Record<'barrel20' | 'barrel30' | 'barrel50', number>>
+  /** If set, packaging options are explicit instead of derived from image files */
+  packaging?: PackagingKey[]
 }
-
-export type PackagingKey = 'bottle' | 'crate' | 'barrel30' | 'barrel50'
 
 export type PackagingAvailability = Record<PackagingKey, boolean>
 
@@ -32,6 +47,7 @@ export interface Category {
 export interface ProductVariantUrls {
   bottle: string
   crate: string
+  barrel20: string
   barrel30: string
   barrel50: string
 }

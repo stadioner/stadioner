@@ -73,6 +73,11 @@ export const Products = ({
           url: productVariantUrls.crate
         },
         {
+          key: 'barrel20' as PackagingKey,
+          label: labels.barrel20,
+          url: productVariantUrls.barrel20
+        },
+        {
           key: 'barrel30' as PackagingKey,
           label: labels.barrel30,
           url: productVariantUrls.barrel30
@@ -201,9 +206,6 @@ export const Products = ({
               />
             </div>
           </div>
-          <p className='text-brand-primary mt-8 text-center text-sm sm:mt-10 sm:text-base'>
-            {labels.noveltyNote}
-          </p>
         </Container>
         {rippedPaper && (
           <div

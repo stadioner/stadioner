@@ -125,7 +125,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
             'Párování piva k menu, stabilní dodávky a podpora prezentace.',
           icon: '/map/restaurace.svg',
           coverImage: '/b2b/restaruace.webp',
-          productImage: '/products/pivo/12/bottle.webp',
+          productImage: '/products/pivo/profesor/bottle.webp',
           ambience: 'bg-gradient-to-br from-brand-primary to-brand-secondary'
         },
         {
@@ -167,7 +167,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           id: 'bottle',
           label: 'Lahev',
           details: '0.5 l vratná lahev',
-          image: '/products/pivo/12/bottle.webp'
+          image: '/products/pivo/profesor/bottle.webp'
         },
         {
           id: 'crate',
@@ -317,7 +317,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
             'Beer pairing with menu items, reliable supply, and strong presentation.',
           icon: '/map/restaurace.svg',
           coverImage: '/b2b/restaruace.webp',
-          productImage: '/products/pivo/12/bottle.webp',
+          productImage: '/products/pivo/profesor/bottle.webp',
           ambience: 'bg-gradient-to-br from-brand-primary to-brand-secondary'
         },
         {
@@ -359,7 +359,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           id: 'bottle',
           label: 'Bottle',
           details: '0.5 l returnable bottle',
-          image: '/products/pivo/12/bottle.webp'
+          image: '/products/pivo/profesor/bottle.webp'
         },
         {
           id: 'crate',
@@ -509,7 +509,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
             'Bier passend zur Speisekarte, stabile Lieferungen und Präsentation.',
           icon: '/map/restaurace.svg',
           coverImage: '/b2b/restaruace.webp',
-          productImage: '/products/pivo/12/bottle.webp',
+          productImage: '/products/pivo/profesor/bottle.webp',
           ambience: 'bg-gradient-to-br from-brand-primary to-brand-secondary'
         },
         {
@@ -551,7 +551,7 @@ export const b2bContent: Record<B2BLanguage, B2BSectionCopy> = {
           id: 'bottle',
           label: 'Flasche',
           details: '0.5 l Mehrwegflasche',
-          image: '/products/pivo/12/bottle.webp'
+          image: '/products/pivo/profesor/bottle.webp'
         },
         {
           id: 'crate',

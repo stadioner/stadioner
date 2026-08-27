@@ -26,17 +26,24 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function ProduktyPage() {
   const products = [...beersCs, ...limosCs, ...watersCs]
-  const productSchemas = products.map((product) =>
-    buildProductSchema({
-      name: product.name,
-      description: product.description,
-      sku: product.slug,
-      language: 'cs',
-      imageUrl: toAbsoluteUrl(product.image),
-      productUrl: product.url,
-      availability: 'InStock'
-    })
-  )
+  const productSchemas = products.flatMap((product) => {
+    if (!product.description) return []
+
+    return [
+      {
+        slug: product.slug,
+        schema: buildProductSchema({
+          name: product.name,
+          description: product.description,
+          sku: product.slug,
+          language: 'cs',
+          imageUrl: toAbsoluteUrl(product.image),
+          productUrl: product.url,
+          availability: 'InStock'
+        })
+      }
+    ]
+  })
 
   return (
     <>
@@ -49,9 +56,9 @@ export default function ProduktyPage() {
         </Suspense>
         {/*<CompletePriceList />*/}
       </main>
-      {productSchemas.map((schema, index) => (
+      {productSchemas.map(({ slug, schema }) => (
         <script
-          key={`${products[index]?.slug ?? index}`}
+          key={slug}
           type='application/ld+json'
           dangerouslySetInnerHTML={jsonLdToHtml(schema)}
         />

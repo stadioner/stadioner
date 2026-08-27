@@ -7,23 +7,27 @@ export const formatPriceCzk = (amount: number): string =>
 
 export const deriveVariantUrls = (
   baseImagePath: string,
-  category: string
+  category: string,
+  sharedKegImages = false
 ): ProductVariantUrls => {
   const baseDir = baseImagePath.replace(
-    /(bottle|crate|barrel-30|barrel-50)\.webp$/,
+    /(bottle|crate|barrel-20|barrel-30|barrel-50)\.webp$/,
     ''
   )
 
   const isBeer = category === 'pivo'
   const sharedBeerDir = '/products/pivo/'
+  const kegDir = isBeer || sharedKegImages ? sharedBeerDir : baseDir
 
   return {
     bottle: `${baseDir}bottle.webp`,
     crate: isBeer ? `${sharedBeerDir}crate.webp` : `${baseDir}crate.webp`,
-    barrel30:
-      isBeer ? `${sharedBeerDir}barrel-30.webp` : `${baseDir}barrel-30.webp`,
-    barrel50:
-      isBeer ? `${sharedBeerDir}barrel-50.webp` : `${baseDir}barrel-50.webp`
+    barrel20:
+      sharedKegImages ?
+        `${sharedBeerDir}barrel-30.webp`
+      : `${baseDir}barrel-20.webp`,
+    barrel30: `${kegDir}barrel-30.webp`,
+    barrel50: `${kegDir}barrel-50.webp`
   }
 }
 

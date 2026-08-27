@@ -22,7 +22,7 @@ function resolvePriceLine(
   if (packaging === 'crate' && product.cratePriceCzk != null) {
     return `${formatPriceCzk(product.cratePriceCzk)} Kč`
   }
-  if (packaging === 'barrel30' || packaging === 'barrel50') {
+  if (packaging === 'barrel20' || packaging === 'barrel30' || packaging === 'barrel50') {
     const amount = product.kegPricesCzk?.[packaging]
     if (amount != null) {
       return `${formatPriceCzk(amount)} Kč`
@@ -69,10 +69,12 @@ export const ProductInfo = ({
   return (
     <div className='flex flex-1 flex-col justify-center'>
       <div className='mb-4 sm:mb-8'>
-        <p className='mb-1 text-xs tracking-widest text-zinc-300 uppercase sm:mb-4'>
-          {product.subtitle}
-        </p>
-        <div className='mb-2 flex items-center justify-between sm:mb-4'>
+        {product.subtitle ?
+          <p className='mb-1 text-xs tracking-widest text-zinc-300 uppercase sm:mb-4'>
+            {product.subtitle}
+          </p>
+        : null}
+        <div className='mb-2 sm:mb-4'>
           <AnimatePresence mode='wait'>
             <motion.h2
               key={productKey}
@@ -80,51 +82,46 @@ export const ProductInfo = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className='text-brand-primary flex min-w-0 flex-1 flex-wrap items-baseline gap-x-2 pr-2 text-2xl font-bold sm:gap-x-3 sm:pr-4 sm:text-3xl md:text-6xl'
+              className='text-brand-primary m-0 text-2xl leading-none font-bold sm:text-3xl md:text-6xl'
             >
-              <span>{product.name}</span>
-              {/*{priceLine && (
-                <span className='text-lg font-normal text-zinc-400'>
-                  {priceLine}
-                </span>
-              )}*/}
+              {product.name}
+              {!hideBuyButton && product.ingredients ?
+                <Dialog>
+                  <DialogTrigger className='border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-brand-action ml-[0.32em] inline-block cursor-pointer appearance-none border align-baseline px-2 pt-1 pb-0 text-[0.22em] leading-none font-bold transition hover:opacity-90'>
+                    {labels.composition}
+                  </DialogTrigger>
+                  <DialogContent className='bg-brand-primary w-fit max-w-[calc(100vw-2rem)] gap-3 rounded-none p-4 sm:max-w-none'>
+                    <DialogHeader>
+                      <DialogTitle className='text-brand-action text-2xl'>
+                        {labels.compositionTitle}
+                      </DialogTitle>
+                    </DialogHeader>
+                    <Image
+                      src={product.ingredients}
+                      alt='ingredients'
+                      width={1443}
+                      height={2048}
+                      className='h-auto max-h-[min(75vh,42rem)] w-auto max-w-[calc(100vw-3rem)]'
+                    />
+                  </DialogContent>
+                </Dialog>
+              : null}
             </motion.h2>
           </AnimatePresence>
-          {!hideBuyButton && product.ingredients ?
-            <div className='flex items-center gap-2'>
-              <Dialog>
-                <DialogTrigger className='border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-brand-action mb-2 cursor-pointer self-end border px-2 py-1 text-xs font-bold transition hover:opacity-90 sm:px-3 sm:text-sm'>
-                  {labels.composition}
-                </DialogTrigger>
-                <DialogContent className='bg-brand-primary w-fit max-w-[calc(100vw-2rem)] gap-3 rounded-none p-4 sm:max-w-none'>
-                  <DialogHeader>
-                    <DialogTitle className='text-brand-action text-2xl'>
-                      {labels.compositionTitle}
-                    </DialogTitle>
-                  </DialogHeader>
-                  <Image
-                    src={product.ingredients}
-                    alt='ingredients'
-                    width={1443}
-                    height={2048}
-                    className='h-auto max-h-[min(75vh,42rem)] w-auto max-w-[calc(100vw-3rem)]'
-                  />
-                </DialogContent>
-              </Dialog>
-            </div>
-          : null}
         </div>
         <AnimatePresence mode='wait'>
-          <motion.p
-            key={productKey}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4, delay: 0.1 }}
-            className='mb-4 hidden max-w-lg text-zinc-200 sm:mb-8 sm:block'
-          >
-            {product.description}
-          </motion.p>
+          {product.description ?
+            <motion.p
+              key={productKey}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className='mb-4 hidden max-w-lg text-zinc-200 sm:mb-8 sm:block'
+            >
+              {product.description}
+            </motion.p>
+          : null}
         </AnimatePresence>
 
         {/*{hideBuyButton && (

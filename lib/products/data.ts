@@ -16,9 +16,9 @@ export const beersCs: Product[] = [
       { label: 'ABV', value: '6.5%' },
       { label: 'STUPEŇ', value: '15°' }
     ],
-    image: '/products/pivo/15/bottle.webp',
-    icon: '/products/pivo/15/icon.svg',
-    ingredients: '/products/pivo/15/etiq.webp',
+    image: '/products/pivo/safar/bottle.webp',
+    icon: '/products/pivo/safar/icon.svg',
+    ingredients: '/products/pivo/safar/etiq.webp',
     bottlePriceCzk: 33,
     cratePriceCzk: 660,
     kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
@@ -38,9 +38,9 @@ export const beersCs: Product[] = [
       { label: 'STUPEŇ', value: '12°' },
       { label: 'FILTRACE', value: 'Nefiltrované' }
     ],
-    image: '/products/pivo/12/bottle.webp',
-    icon: '/products/pivo/12/icon.svg',
-    ingredients: '/products/pivo/12/etiq.webp',
+    image: '/products/pivo/profesor/bottle.webp',
+    icon: '/products/pivo/profesor/icon.svg',
+    ingredients: '/products/pivo/profesor/etiq.webp',
     bottlePriceCzk: 29,
     cratePriceCzk: 580,
     kegPricesCzk: { barrel30: 1680, barrel50: 2800 }
@@ -59,9 +59,9 @@ export const beersCs: Product[] = [
       { label: 'ABV', value: '5.1%' },
       { label: 'STUPEŇ', value: '12°' }
     ],
-    image: '/products/pivo/12-tmava/bottle.webp',
-    icon: '/products/pivo/12-tmava/icon.svg',
-    ingredients: '/products/pivo/12-tmava/etiq.webp',
+    image: '/products/pivo/hvozdar/bottle.webp',
+    icon: '/products/pivo/hvozdar/icon.svg',
+    ingredients: '/products/pivo/hvozdar/etiq.webp',
     bottlePriceCzk: 33,
     cratePriceCzk: 660,
     kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
@@ -80,9 +80,9 @@ export const beersCs: Product[] = [
       { label: 'ABV', value: '4.5%' },
       { label: 'STUPEŇ', value: '11°' }
     ],
-    image: '/products/pivo/11/bottle.webp',
-    icon: '/products/pivo/11/icon.svg',
-    ingredients: '/products/pivo/11/etiq.webp',
+    image: '/products/pivo/experiment/bottle.webp',
+    icon: '/products/pivo/experiment/icon.svg',
+    ingredients: '/products/pivo/experiment/etiq.webp',
     bottlePriceCzk: 29,
     cratePriceCzk: 580,
     kegPricesCzk: { barrel30: 1620, barrel50: 2700 }
@@ -101,9 +101,9 @@ export const beersCs: Product[] = [
       { label: 'ABV', value: '4.2%' },
       { label: 'STUPEŇ', value: '10°' }
     ],
-    image: '/products/pivo/10/bottle.webp',
-    icon: '/products/pivo/10/icon.svg',
-    ingredients: '/products/pivo/10/etiq.webp',
+    image: '/products/pivo/pozarnik/bottle.webp',
+    icon: '/products/pivo/pozarnik/icon.svg',
+    ingredients: '/products/pivo/pozarnik/etiq.webp',
     bottlePriceCzk: 27,
     cratePriceCzk: 540,
     kegPricesCzk: { barrel30: 1560, barrel50: 2600 }
@@ -153,6 +153,17 @@ export const beersCs: Product[] = [
 ]
 
 export const limosCs: Product[] = [
+  {
+    name: 'Malinovka',
+    category: 'limo',
+    categoryLabel: 'Limonáda',
+    slug: 'limonada-malina',
+    url: 'https://eshop.stadioner.cz/products/limonada-malina',
+    stats: [],
+    image: '/products/limo/malina/bottle.webp',
+    icon: '/products/limo/malina/icon.webp',
+    packaging: ['bottle', 'barrel20', 'barrel30', 'barrel50']
+  },
   {
     name: 'Limonáda citrón',
     subtitle: 'Svěží citronová limonáda z pramenité vody',
@@ -279,9 +290,9 @@ export const beersEn: Product[] = [
       { label: 'ABV', value: '6.5%' },
       { label: 'DEGREE', value: '15°' }
     ],
-    image: '/products/pivo/15/bottle.webp',
-    icon: '/products/pivo/15/icon.svg',
-    ingredients: '/products/pivo/15/etiq.webp',
+    image: '/products/pivo/safar/bottle.webp',
+    icon: '/products/pivo/safar/icon.svg',
+    ingredients: '/products/pivo/safar/etiq.webp',
     bottlePriceCzk: 33,
     cratePriceCzk: 660,
     kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
@@ -301,9 +312,9 @@ export const beersEn: Product[] = [
       { label: 'DEGREE', value: '12°' },
       { label: 'FILTRATION', value: 'Unfiltered' }
     ],
-    image: '/products/pivo/12/bottle.webp',
-    icon: '/products/pivo/12/icon.svg',
-    ingredients: '/products/pivo/12/etiq.webp',
+    image: '/products/pivo/profesor/bottle.webp',
+    icon: '/products/pivo/profesor/icon.svg',
+    ingredients: '/products/pivo/profesor/etiq.webp',
     bottlePriceCzk: 29,
     cratePriceCzk: 580,
     kegPricesCzk: { barrel30: 1680, barrel50: 2800 }
@@ -322,9 +333,9 @@ export const beersEn: Product[] = [
       { label: 'ABV', value: '5.1%' },
       { label: 'DEGREE', value: '12°' }
     ],
-    image: '/products/pivo/12-tmava/bottle.webp',
-    icon: '/products/pivo/12-tmava/icon.svg',
-    ingredients: '/products/pivo/12-tmava/etiq.webp',
+    image: '/products/pivo/hvozdar/bottle.webp',
+    icon: '/products/pivo/hvozdar/icon.svg',
+    ingredients: '/products/pivo/hvozdar/etiq.webp',
     bottlePriceCzk: 33,
     cratePriceCzk: 660,
     kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
@@ -343,9 +354,9 @@ export const beersEn: Product[] = [
       { label: 'ABV', value: '4.5%' },
       { label: 'DEGREE', value: '11°' }
     ],
-    image: '/products/pivo/11/bottle.webp',
-    icon: '/products/pivo/11/icon.svg',
-    ingredients: '/products/pivo/11/etiq.webp',
+    image: '/products/pivo/experiment/bottle.webp',
+    icon: '/products/pivo/experiment/icon.svg',
+    ingredients: '/products/pivo/experiment/etiq.webp',
     bottlePriceCzk: 29,
     cratePriceCzk: 580,
     kegPricesCzk: { barrel30: 1620, barrel50: 2700 }
@@ -364,9 +375,9 @@ export const beersEn: Product[] = [
       { label: 'ABV', value: '4.2%' },
       { label: 'DEGREE', value: '10°' }
     ],
-    image: '/products/pivo/10/bottle.webp',
-    icon: '/products/pivo/10/icon.svg',
-    ingredients: '/products/pivo/10/etiq.webp',
+    image: '/products/pivo/pozarnik/bottle.webp',
+    icon: '/products/pivo/pozarnik/icon.svg',
+    ingredients: '/products/pivo/pozarnik/etiq.webp',
     bottlePriceCzk: 27,
     cratePriceCzk: 540,
     kegPricesCzk: { barrel30: 1560, barrel50: 2600 }
@@ -416,6 +427,17 @@ export const beersEn: Product[] = [
 ]
 
 export const limosEn: Product[] = [
+  {
+    name: 'Malinovka',
+    category: 'limo',
+    categoryLabel: 'Lemonade',
+    slug: 'limonada-malina',
+    url: 'https://eshop.stadioner.cz/products/limonada-malina',
+    stats: [],
+    image: '/products/limo/malina/bottle.webp',
+    icon: '/products/limo/malina/icon.webp',
+    packaging: ['bottle', 'barrel20', 'barrel30', 'barrel50']
+  },
   {
     name: 'Lemon Lemonade',
     subtitle: 'Refreshing lemon soda made from spring water',
@@ -542,9 +564,9 @@ export const beersDe: Product[] = [
       { label: 'ABV', value: '6.5%' },
       { label: 'GRAD', value: '15°' }
     ],
-    image: '/products/pivo/15/bottle.webp',
-    icon: '/products/pivo/15/icon.svg',
-    ingredients: '/products/pivo/15/etiq.webp',
+    image: '/products/pivo/safar/bottle.webp',
+    icon: '/products/pivo/safar/icon.svg',
+    ingredients: '/products/pivo/safar/etiq.webp',
     bottlePriceCzk: 33,
     cratePriceCzk: 660,
     kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
@@ -564,9 +586,9 @@ export const beersDe: Product[] = [
       { label: 'GRAD', value: '12°' },
       { label: 'FILTRATION', value: 'Ungefiltert' }
     ],
-    image: '/products/pivo/12/bottle.webp',
-    icon: '/products/pivo/12/icon.svg',
-    ingredients: '/products/pivo/12/etiq.webp',
+    image: '/products/pivo/profesor/bottle.webp',
+    icon: '/products/pivo/profesor/icon.svg',
+    ingredients: '/products/pivo/profesor/etiq.webp',
     bottlePriceCzk: 29,
     cratePriceCzk: 580,
     kegPricesCzk: { barrel30: 1680, barrel50: 2800 }
@@ -585,9 +607,9 @@ export const beersDe: Product[] = [
       { label: 'ABV', value: '5.1%' },
       { label: 'GRAD', value: '12°' }
     ],
-    image: '/products/pivo/12-tmava/bottle.webp',
-    icon: '/products/pivo/12-tmava/icon.svg',
-    ingredients: '/products/pivo/12-tmava/etiq.webp',
+    image: '/products/pivo/hvozdar/bottle.webp',
+    icon: '/products/pivo/hvozdar/icon.svg',
+    ingredients: '/products/pivo/hvozdar/etiq.webp',
     bottlePriceCzk: 33,
     cratePriceCzk: 660,
     kegPricesCzk: { barrel30: 1980, barrel50: 3300 }
@@ -606,9 +628,9 @@ export const beersDe: Product[] = [
       { label: 'ABV', value: '4.5%' },
       { label: 'GRAD', value: '11°' }
     ],
-    image: '/products/pivo/11/bottle.webp',
-    icon: '/products/pivo/11/icon.svg',
-    ingredients: '/products/pivo/11/etiq.webp',
+    image: '/products/pivo/experiment/bottle.webp',
+    icon: '/products/pivo/experiment/icon.svg',
+    ingredients: '/products/pivo/experiment/etiq.webp',
     bottlePriceCzk: 29,
     cratePriceCzk: 580,
     kegPricesCzk: { barrel30: 1620, barrel50: 2700 }
@@ -627,9 +649,9 @@ export const beersDe: Product[] = [
       { label: 'ABV', value: '4.2%' },
       { label: 'GRAD', value: '10°' }
     ],
-    image: '/products/pivo/10/bottle.webp',
-    icon: '/products/pivo/10/icon.svg',
-    ingredients: '/products/pivo/10/etiq.webp',
+    image: '/products/pivo/pozarnik/bottle.webp',
+    icon: '/products/pivo/pozarnik/icon.svg',
+    ingredients: '/products/pivo/pozarnik/etiq.webp',
     bottlePriceCzk: 27,
     cratePriceCzk: 540,
     kegPricesCzk: { barrel30: 1560, barrel50: 2600 }
@@ -679,6 +701,17 @@ export const beersDe: Product[] = [
 ]
 
 export const limosDe: Product[] = [
+  {
+    name: 'Malinovka',
+    category: 'limo',
+    categoryLabel: 'Limonade',
+    slug: 'limonada-malina',
+    url: 'https://eshop.stadioner.cz/products/limonada-malina',
+    stats: [],
+    image: '/products/limo/malina/bottle.webp',
+    icon: '/products/limo/malina/icon.webp',
+    packaging: ['bottle', 'barrel20', 'barrel30', 'barrel50']
+  },
   {
     name: 'Zitronenlimonade',
     subtitle: 'Erfrischende Zitronenlimonade aus Quellwasser',
