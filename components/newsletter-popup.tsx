@@ -36,10 +36,11 @@ export const NewsletterPopup = () => {
   })
 
   useEffect(() => {
-    // Don't show popup on newsletter or studio pages
+    // Don't show popup on newsletter, studio, or Oktoberfest event pages
     if (
       currentPath.endsWith('/newsletter') ||
-      currentPath.includes('/studio')
+      currentPath.includes('/studio') ||
+      currentPath.includes('oktoberfest')
     ) {
       return
     }

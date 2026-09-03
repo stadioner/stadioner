@@ -14,8 +14,7 @@ export const Footer = () => {
   const currentLanguage = isSupportedLanguage(language) ? language : 'cs'
   const localizedRootPath = `/${currentLanguage}`
   const { email, setEmail, isSubmitting, submit, copy } = useNewsletterForm({
-    language,
-    markSubscribed: false
+    language
   })
 
   return (

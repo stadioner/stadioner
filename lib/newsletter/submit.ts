@@ -4,7 +4,8 @@ export const MAILCHIMP_SUBSCRIBE_URL =
 export const NEWSLETTER_STORAGE_KEYS = {
   subscribed: 'newsletter-subscribed',
   popupDismissed: 'newsletter-popup-dismissed',
-  popupCloseCount: 'newsletter-popup-close-count'
+  popupCloseCount: 'newsletter-popup-close-count',
+  oktoberfestPopupDismissed: 'oktoberfest-newsletter-popup-dismissed:v2'
 } as const
 
 const buildNewsletterFormData = (email: string) => {
@@ -33,8 +34,7 @@ export const submitNewsletterSafely = async (email: string): Promise<void> => {
 }
 
 export const markNewsletterSubscribed = (): void => {
-  if (typeof window === 'undefined') return
-  localStorage.setItem(NEWSLETTER_STORAGE_KEYS.subscribed, 'true')
+  writeLocalStorage(NEWSLETTER_STORAGE_KEYS.subscribed, 'true')
 }
 
 export const getNewsletterPopupCloseCount = (): number => {
@@ -58,4 +58,36 @@ export const increaseNewsletterPopupCloseCount = (): number => {
   }
 
   return nextCount
+}
+
+const readLocalStorage = (key: string): string | null => {
+  if (typeof window === 'undefined') return null
+
+  try {
+    return localStorage.getItem(key)
+  } catch {
+    return null
+  }
+}
+
+const writeLocalStorage = (key: string, value: string): void => {
+  if (typeof window === 'undefined') return
+
+  try {
+    localStorage.setItem(key, value)
+  } catch {
+    // Private mode / quota errors should not break the page.
+  }
+}
+
+export const hasNewsletterSubscribed = (): boolean => {
+  const value = readLocalStorage(NEWSLETTER_STORAGE_KEYS.subscribed)
+  return value === 'true' || value === '1'
+}
+
+export const hasDismissedOktoberfestNewsletterPopup = (): boolean =>
+  readLocalStorage(NEWSLETTER_STORAGE_KEYS.oktoberfestPopupDismissed) === 'true'
+
+export const markOktoberfestNewsletterPopupDismissed = (): void => {
+  writeLocalStorage(NEWSLETTER_STORAGE_KEYS.oktoberfestPopupDismissed, 'true')
 }

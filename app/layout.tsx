@@ -8,6 +8,7 @@ import { AgeGate } from '@/components/age-gate'
 import { CookieConsent } from '@/components/cookie-consent'
 import { CookieManager } from '@/components/cookie-manager'
 import { NewsletterPopup } from '@/components/newsletter-popup'
+import { OktoberfestNewsletterPopup } from '@/components/oktoberfest-newsletter-popup'
 import { Analytics } from '@vercel/analytics/next'
 import { ToastProvider } from '@/components/custom-toast'
 import { siteUrl } from '@/lib/seo/site'
@@ -114,6 +115,7 @@ export default function RootLayout({
           <Navbar />
           <AgeGate>
             <NewsletterPopup />
+            <OktoberfestNewsletterPopup />
             {children}
             <Footer />
             <CookieConsent />
