@@ -35,10 +35,10 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     openingHours: [
       { key: 'mon', label: 'Pondělí', value: 'ZAVŘENO', closed: true },
       { key: 'tue', label: 'Úterý', value: 'ZAVŘENO', closed: true },
-      { key: 'wed', label: 'Středa', value: '16:00 - 20:00', closed: false },
-      { key: 'thu', label: 'Čtvrtek', value: '16:00 - 22:00', closed: false },
-      { key: 'fri', label: 'Pátek', value: '10:00 - 22:00', closed: false },
-      { key: 'sat', label: 'Sobota', value: '10:00 - 22:00', closed: false },
+      { key: 'wed', label: 'Středa', value: 'ZAVŘENO', closed: true },
+      { key: 'thu', label: 'Čtvrtek', value: 'ZAVŘENO', closed: true },
+      { key: 'fri', label: 'Pátek', value: '14:00 - 22:00', closed: false },
+      { key: 'sat', label: 'Sobota', value: '14:00 - 22:00', closed: false },
       { key: 'sun', label: 'Neděle', value: '14:00 - 18:00', closed: false }
     ],
     closedLabel: 'ZAVŘENO',
@@ -64,10 +64,10 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     openingHours: [
       { key: 'mon', label: 'Monday', value: 'CLOSED', closed: true },
       { key: 'tue', label: 'Tuesday', value: 'CLOSED', closed: true },
-      { key: 'wed', label: 'Wednesday', value: '16:00 - 20:00', closed: false },
-      { key: 'thu', label: 'Thursday', value: '16:00 - 22:00', closed: false },
-      { key: 'fri', label: 'Friday', value: '10:00 - 22:00', closed: false },
-      { key: 'sat', label: 'Saturday', value: '10:00 - 22:00', closed: false },
+      { key: 'wed', label: 'Wednesday', value: 'CLOSED', closed: true },
+      { key: 'thu', label: 'Thursday', value: 'CLOSED', closed: true },
+      { key: 'fri', label: 'Friday', value: '14:00 - 22:00', closed: false },
+      { key: 'sat', label: 'Saturday', value: '14:00 - 22:00', closed: false },
       { key: 'sun', label: 'Sunday', value: '14:00 - 18:00', closed: false }
     ],
     closedLabel: 'CLOSED',
@@ -94,10 +94,10 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     openingHours: [
       { key: 'mon', label: 'Montag', value: 'GESCHLOSSEN', closed: true },
       { key: 'tue', label: 'Dienstag', value: 'GESCHLOSSEN', closed: true },
-      { key: 'wed', label: 'Mittwoch', value: '16:00 - 20:00', closed: false },
-      { key: 'thu', label: 'Donnerstag', value: '16:00 - 22:00', closed: false },
-      { key: 'fri', label: 'Freitag', value: '10:00 - 22:00', closed: false },
-      { key: 'sat', label: 'Samstag', value: '10:00 - 22:00', closed: false },
+      { key: 'wed', label: 'Mittwoch', value: 'GESCHLOSSEN', closed: true },
+      { key: 'thu', label: 'Donnerstag', value: 'GESCHLOSSEN', closed: true },
+      { key: 'fri', label: 'Freitag', value: '14:00 - 22:00', closed: false },
+      { key: 'sat', label: 'Samstag', value: '14:00 - 22:00', closed: false },
       { key: 'sun', label: 'Sonntag', value: '14:00 - 18:00', closed: false }
     ],
     closedLabel: 'GESCHLOSSEN',
