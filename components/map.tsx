@@ -451,7 +451,7 @@ const defaultMarkers: ExternalMarker[] = [
           target='_blank'
           className='text-lg font-bold'
         >
-        Eso Market
+          Eso Market
         </Link>
         <p>Babylon 83, 344 01 Babylon</p>
       </>
@@ -467,7 +467,7 @@ const defaultMarkers: ExternalMarker[] = [
           target='_blank'
           className='text-lg font-bold'
         >
-        Medová kavárna
+          Medová kavárna
         </Link>
         <p>Čečínská 146, 345 26 Bělá nad Radbuzou</p>
       </>
@@ -483,8 +483,7 @@ const defaultMarkers: ExternalMarker[] = [
           target='_blank'
           className='text-lg font-bold'
         >
-       Kurzova rozhledna na Čerchově
-
+          Kurzova rozhledna na Čerchově
         </Link>
         <p>345 33 Česká Kubice-Trhanov</p>
       </>
@@ -500,7 +499,7 @@ const defaultMarkers: ExternalMarker[] = [
           target='_blank'
           className='text-lg font-bold'
         >
-      Zemědělské obchodní družstvo Mrákov
+          Zemědělské obchodní družstvo Mrákov
         </Link>
         <p>Starý Klíčov 21, 345 01 Mrákov</p>
       </>
@@ -516,8 +515,7 @@ const defaultMarkers: ExternalMarker[] = [
           target='_blank'
           className='text-lg font-bold'
         >
-     Kafírna Ovesné Kladruby
-
+          Kafírna Ovesné Kladruby
         </Link>
         <p>Ovesné Kladruby 56, 353 01 Ovesné Kladruby</p>
       </>
@@ -533,8 +531,7 @@ const defaultMarkers: ExternalMarker[] = [
           target='_blank'
           className='text-lg font-bold'
         >
-    pivovar Petr Petružálek
-
+          pivovar Petr Petružálek
         </Link>
         <p>Za Školou 383, 334 52 Merklín u Přeštic</p>
       </>
@@ -550,8 +547,7 @@ const defaultMarkers: ExternalMarker[] = [
           target='_blank'
           className='text-lg font-bold'
         >
-        Nápoje Klatovy
-
+          Nápoje Klatovy
         </Link>
         <p>Plzeňská 39, 339 01 Klatovy-Klatovy II</p>
       </>
@@ -567,14 +563,12 @@ const defaultMarkers: ExternalMarker[] = [
           target='_blank'
           className='text-lg font-bold'
         >
-        Chodská kavárna
-
+          Chodská kavárna
         </Link>
-        <p>Klenčí pod Čerchovem 123, 345 34 Klenčí pod Čerchovem
-        </p>
+        <p>Klenčí pod Čerchovem 123, 345 34 Klenčí pod Čerchovem</p>
       </>
     )
-  },
+  }
 ]
 
 const ClusteredMarkers = ({ markers }: { markers: ResolvedMarker[] }) => {
