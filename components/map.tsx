@@ -523,9 +523,6 @@ const defaultMarkers: ExternalMarker[] = [
       </>
     )
   },
-
-
-
   {
     position: [49.563786690538834, 13.20027842576216],
     iconUrl: '/map/limo.svg',
@@ -542,7 +539,42 @@ const defaultMarkers: ExternalMarker[] = [
         <p>Za Školou 383, 334 52 Merklín u Přeštic</p>
       </>
     )
-  }
+  },
+  {
+    position: [49.400605399735745, 13.293240888950049],
+    iconUrl: '/map/limo.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://napojeklatovy.cz'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+        Nápoje Klatovy
+
+        </Link>
+        <p>Plzeňská 39, 339 01 Klatovy-Klatovy II</p>
+      </>
+    )
+  },
+  {
+    position: [49.43547461850232, 12.815385570502036],
+    iconUrl: '/map/limo.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.instagram.com/chodska_kavarna/'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+        Chodská kavárna
+
+        </Link>
+        <p>Klenčí pod Čerchovem 123, 345 34 Klenčí pod Čerchovem
+        </p>
+      </>
+    )
+  },
 ]
 
 const ClusteredMarkers = ({ markers }: { markers: ResolvedMarker[] }) => {
