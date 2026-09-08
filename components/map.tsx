@@ -650,7 +650,9 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
       {/* https://leaflet-extras.github.io/leaflet-providers/preview/ */}
 
       {/* minimal */}
-      <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}' />
+      {/* <TileLayer url='https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}' /> */}
+
+      <TileLayer url='https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png' />
 
       <ClusteredMarkers markers={resolvedMarkers} />
     </MapContainer>
