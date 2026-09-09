@@ -647,13 +647,12 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
         center={resolvedCenter}
         zoom={resolvedZoom}
       />
-      {/* https://leaflet-extras.github.io/leaflet-providers/preview/ */}
+      {/* <TileLayer
+        url='https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}'
+        attribution='Tiles &copy; Esri'
+      /> */}
 
-      <TileLayer
-        url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
-        subdomains='abcd'
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
-      />
+      <TileLayer url='https://tile.openstreetmap.org/{z}/{x}/{y}.png' />
 
       <ClusteredMarkers markers={resolvedMarkers} />
     </MapContainer>
