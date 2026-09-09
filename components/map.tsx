@@ -648,10 +648,10 @@ export const Map: FC<MapProps> = ({ flexible, center, zoom, markers }) => {
         zoom={resolvedZoom}
       />
       {/* https://leaflet-extras.github.io/leaflet-providers/preview/ */}
+
       <TileLayer
         url='https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png'
         subdomains='abcd'
-        maxZoom={20}
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
       />
 
