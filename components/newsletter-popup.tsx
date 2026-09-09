@@ -97,12 +97,14 @@ export const NewsletterPopup = () => {
               {/* Description */}
               <p className='text-brand-primary/80 mb-4 text-sm'>
                 {copy.description}{' '}
+                {copy.gdprPrefix}{' '}
                 <Link
                   href={`/${language}/gdpr`}
                   className='hover:text-brand-primary underline'
                 >
                   {copy.gdprLink}
                 </Link>
+                {language === 'de' && ' zu'}
               </p>
 
               {/* Form */}
@@ -138,12 +140,14 @@ export const NewsletterPopup = () => {
                 </h3>
                 <p className='text-brand-primary/80 text-sm'>
                   {copy.description}{' '}
+                  {copy.gdprPrefix}{' '}
                   <Link
                     href={`/${language}/gdpr`}
                     className='hover:text-brand-primary underline'
                   >
                     {copy.gdprLink}
                   </Link>
+                  {language === 'de' && ' zu'}
                 </p>
               </div>
 

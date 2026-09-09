@@ -28,7 +28,7 @@ export const newsletterCopy: Record<
   cs: {
     heading: 'Přihlaste se k odběru našeho newsletteru',
     description:
-      'Získejte jako první informace o našich produktech, akcích apod.',
+      'Získejte jako první informace o našich produktech a akcích.',
     info: 'Přihlaste se k odběru našeho newsletteru a získejte jako první informace o našich produktech, akcích apod.',
     placeholder: 'Váš email',
     submit: 'Přihlásit se',
