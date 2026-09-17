@@ -40,7 +40,7 @@ const eventsPageTranslations: Record<
     noUpcoming: 'Žádné nadcházející události.',
     comingSoon: 'Připravujeme',
     pastTitle: 'Již proběhlo',
-    recapBadge: 'Recap'
+    recapBadge: 'Shrnutí'
   },
   en: {
     upcomingTitle: 'Upcoming Events',
@@ -56,6 +56,25 @@ const eventsPageTranslations: Record<
     pastTitle: 'Vergangene Veranstaltungen',
     recapBadge: 'Rückblick'
   }
+}
+
+function RecapChip({
+  label,
+  className
+}: {
+  label: string
+  className?: string
+}) {
+  return (
+    <div
+      className={`border-brand-action/20 bg-brand-primary items-center gap-1 border px-3 py-2 ${className ?? ''}`}
+    >
+      <span className='text-brand-action text-xs font-bold tracking-wider uppercase'>
+        {label}
+      </span>
+      <ChevronRight className='text-brand-action h-4 w-4' />
+    </div>
+  )
 }
 
 export function EventsPage({ events, language }: EventsPageProps) {
@@ -214,7 +233,7 @@ export function EventsPage({ events, language }: EventsPageProps) {
 
                             <div className='flex min-w-0 flex-1 flex-col justify-center'>
                               <h4
-                                className={`font-mohave mb-2 truncate text-xl font-bold uppercase transition-colors md:text-2xl ${
+                                className={`font-mohave mb-2 text-xl font-bold uppercase transition-colors md:text-2xl ${
                                   hasRecap ?
                                     'text-brand-primary'
                                   : 'text-brand-primary/60'
@@ -244,28 +263,19 @@ export function EventsPage({ events, language }: EventsPageProps) {
                                   </div>
                                 )}
                               </div>
+                              {hasRecap && (
+                                <RecapChip
+                                  label={t.recapBadge}
+                                  className='mt-3 inline-flex w-fit sm:hidden'
+                                />
+                              )}
                             </div>
 
                             {hasRecap && (
-                              <>
-                                <div className='bg-brand-primary/10 flex shrink-0 items-center self-center px-3 py-1'>
-                                  <span className='text-brand-primary flex items-center gap-2 text-xs font-bold tracking-wider uppercase'>
-                                    {t.recapBadge}
-                                  </span>
-                                </div>
-                                <div className='hidden shrink-0 self-center sm:block'>
-                                  <Button
-                                    size='icon'
-                                    variant='ghost'
-                                    className='text-brand-primary hover:bg-brand-primary/10'
-                                    asChild
-                                  >
-                                    <span>
-                                      <ChevronRight className='h-4 w-4' />
-                                    </span>
-                                  </Button>
-                                </div>
-                              </>
+                              <RecapChip
+                                label={t.recapBadge}
+                                className='hidden shrink-0 self-center sm:flex'
+                              />
                             )}
                           </div>
                         )
@@ -278,8 +288,8 @@ export function EventsPage({ events, language }: EventsPageProps) {
                             exit={{ opacity: 0, x: -20 }}
                             className={`border-brand-primary/15 border bg-transparent ${
                               hasRecap ?
-                                'group hover:bg-brand-primary/5 cursor-pointer opacity-100 transition-colors'
-                              : 'cursor-not-allowed opacity-60'
+                                'group hover:bg-brand-primary/5 cursor-pointer transition-colors'
+                              : 'cursor-default'
                             }`}
                           >
                             {hasRecap ?
@@ -289,7 +299,9 @@ export function EventsPage({ events, language }: EventsPageProps) {
                               >
                                 {pastRow}
                               </Link>
-                            : <div className='block p-4'>{pastRow}</div>}
+                            : <div className='block p-4 opacity-60'>
+                                {pastRow}
+                              </div>}
                           </motion.div>
                         )
                       })}

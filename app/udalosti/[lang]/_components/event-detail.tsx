@@ -120,9 +120,9 @@ export function EventDetail({ event, language }: EventDetailProps) {
   const hasRecap = hasPortableTextContent(event.recap)
   const isPastEvent = isEventPast(event)
   const recapHeading =
-    language === 'cs' ? 'Recap akce'
-    : language === 'de' ? 'Rückblick auf die Veranstaltung'
-    : 'Event recap'
+    language === 'cs' ? 'Shrnutí'
+    : language === 'de' ? 'Rückblick'
+    : 'Recap'
 
   return (
     <div>
