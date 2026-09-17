@@ -37,7 +37,7 @@ export const SalandaSection = ({
 
   return (
     <section
-      className='bg-brand-primary'
+      className='bg-brand-primary pb-16'
       aria-label={content.sectionTitle}
     >
       <Container>

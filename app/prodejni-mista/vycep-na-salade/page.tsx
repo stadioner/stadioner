@@ -1,5 +1,7 @@
 import { Metadata } from 'next'
+import { Suspense } from 'react'
 import { VycepNaSaladeSection } from '@/app/prodejni-mista/_components/vycep-na-salade'
+import { Products } from '@/components/products'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
@@ -20,8 +22,14 @@ export const metadata: Metadata = buildPageMetadata({
 
 export default function VycepNaSaladePage() {
   return (
-    <main className='bg-brand-primary pt-32 pb-20 md:pt-40'>
+    <main className='bg-brand-primary pt-32 md:pt-40'>
       <VycepNaSaladeSection />
+      <Suspense fallback={<div className='bg-brand-action py-8' />}>
+        <Products
+          rippedPaper
+          showBottomRippedPaper={false}
+        />
+      </Suspense>
     </main>
   )
 }

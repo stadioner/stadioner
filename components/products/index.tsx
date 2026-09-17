@@ -17,6 +17,7 @@ import type { PackagingKey, PackagingOption } from '@/types/products'
 
 export const Products = ({
   rippedPaper,
+  showBottomRippedPaper = true,
   hScreen,
   b2bMode = false,
   b2bTitle,
@@ -25,6 +26,7 @@ export const Products = ({
   b2bCtaHref
 }: {
   rippedPaper?: boolean
+  showBottomRippedPaper?: boolean
   hScreen?: boolean
   b2bMode?: boolean
   b2bTitle?: string
@@ -207,14 +209,14 @@ export const Products = ({
             </div>
           </div>
         </Container>
-        {rippedPaper && (
+        {rippedPaper && showBottomRippedPaper ?
           <div
             className='absolute -bottom-4 left-0 z-10 w-full'
             style={{ lineHeight: 0 }}
           >
             <RippedPaperSVG />
           </div>
-        )}
+        : null}
       </div>
     </section>
   )

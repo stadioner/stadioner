@@ -2,6 +2,7 @@
 
 import Image from 'next/image'
 import { useCallback, useLayoutEffect, useRef, useState } from 'react'
+import { Border } from '@/components/border'
 import { Container } from '@/components/container'
 import { RippedPaperSVG } from '@/components/ripped-paper-svg'
 import {
@@ -144,11 +145,13 @@ const dayToRowKey: Partial<Record<number, OpeningHourRow['key']>> = {
 export const PickupPointSection = ({
   headingAs = 'h2',
   showTopRippedPaper = true,
-  showBottomRippedPaper = true
+  showBottomRippedPaper = true,
+  pageLayout = false
 }: {
   headingAs?: 'h1' | 'h2'
   showTopRippedPaper?: boolean
   showBottomRippedPaper?: boolean
+  pageLayout?: boolean
 }) => {
   const language = useLanguage((state) => state.language)
   const currentLanguage = isSupportedLanguage(language) ? language : 'cs'
@@ -176,27 +179,69 @@ export const PickupPointSection = ({
   }, [syncTextColumnHeight, currentLanguage])
 
   const HeadingTag = headingAs
+  const showRippedPaper = !pageLayout
+
+  const openingHoursList = (
+    <div className='space-y-1'>
+      {content.openingHours.map((row) => {
+        const isToday = row.key === currentDayKey
+
+        return (
+          <div
+            key={row.key}
+            className={cn(
+              'flex items-center justify-between px-3 py-2 text-zinc-100 transition-colors',
+              isToday && 'bg-brand-primary text-brand-action'
+            )}
+          >
+            <span className={cn(isToday && 'font-bold')}>{row.label}</span>
+            <span
+              className={cn(
+                'font-medium',
+                row.value === content.closedLabel && !isToday && 'text-red-400',
+                isToday && 'font-bold'
+              )}
+            >
+              {row.value}
+            </span>
+          </div>
+        )
+      })}
+    </div>
+  )
 
   return (
     <section
       className={
-        showTopRippedPaper || showBottomRippedPaper ?
+        pageLayout || showTopRippedPaper || showBottomRippedPaper ?
           'bg-brand-primary'
         : 'bg-brand-action'
       }
     >
-      {showTopRippedPaper ?
+      {showRippedPaper && showTopRippedPaper ?
         <RippedPaperSVG flip />
       : null}
-      <div className='bg-brand-action py-12'>
+      <div className={pageLayout ? 'pb-16' : 'bg-brand-action py-12'}>
         <Container className='grid gap-10 md:grid-cols-2 md:items-start'>
           <div className='flex flex-col justify-between'>
             <div ref={textColumnRef}>
               <div>
-                <HeadingTag className='text-brand-primary flex-nowrap text-3xl font-bold text-nowrap md:text-4xl lg:text-6xl'>
+                <HeadingTag
+                  className={cn(
+                    'flex-nowrap text-3xl font-bold text-nowrap md:text-4xl lg:text-6xl',
+                    pageLayout ? 'text-brand-action' : 'text-brand-primary'
+                  )}
+                >
                   {content.sectionTitle}
                 </HeadingTag>
-                <p className='mt-1 text-zinc-100'>{content.address}</p>
+                <p
+                  className={cn(
+                    'mt-1',
+                    pageLayout ? 'text-brand-action/90' : 'text-zinc-100'
+                  )}
+                >
+                  {content.address}
+                </p>
               </div>
 
               <Image
@@ -208,52 +253,37 @@ export const PickupPointSection = ({
                 className='py-4 md:hidden'
               />
 
-              <div className='space-y-4 text-zinc-100 md:mt-6'>
+              <div
+                className={cn(
+                  'space-y-4 md:mt-6',
+                  pageLayout ? 'text-brand-action' : 'text-zinc-100'
+                )}
+              >
                 <p>{content.intro}</p>
 
-                <div className='text-sm text-zinc-200'>
+                <div className={pageLayout ? 'text-sm' : 'text-sm text-zinc-200'}>
                   <p>{content.depositInfo}</p>
                 </div>
 
-                <div className='text-sm text-zinc-200'>
+                <div className={pageLayout ? 'text-sm' : 'text-sm text-zinc-200'}>
                   <p>{content.paymentInfo}</p>
                 </div>
 
-                <div className='border-t border-zinc-600 pt-4'>
-                  <h4 className='text-brand-primary mb-2 text-xl font-semibold'>
-                    {content.openingHoursTitle}
-                  </h4>
-
-                  <div className='space-y-1'>
-                    {content.openingHours.map((row) => {
-                      const isToday = row.key === currentDayKey
-
-                      return (
-                        <div
-                          key={row.key}
-                          className={cn(
-                            'flex items-center justify-between px-3 py-2 transition-colors',
-                            isToday && 'bg-brand-primary text-brand-action'
-                          )}
-                        >
-                          <span className={cn(isToday && 'font-bold')}>
-                            {row.label}
-                          </span>
-                          <span
-                            className={cn(
-                              'font-medium',
-                              row.value === content.closedLabel &&
-                                !isToday &&
-                                'text-red-400',
-                              isToday && 'font-bold'
-                            )}
-                          >
-                            {row.value}
-                          </span>
-                        </div>
-                      )
-                    })}
-                  </div>
+                {pageLayout ?
+                  <Border backgroundLight>
+                    <div className='bg-brand-action p-5 md:p-6'>
+                      <h2 className='text-brand-primary mb-2 text-xl font-semibold md:text-2xl'>
+                        {content.openingHoursTitle}
+                      </h2>
+                      {openingHoursList}
+                    </div>
+                  </Border>
+                : <div className='border-t border-zinc-600 pt-4'>
+                    <h4 className='text-brand-primary mb-2 text-xl font-semibold'>
+                      {content.openingHoursTitle}
+                    </h4>
+                    {openingHoursList}
+                  </div>}
 
                   {/*<div className='mt-4 border-t border-zinc-600 pt-3 text-sm text-zinc-100'>
                     <p className='text-brand-primary font-semibold'>
@@ -265,7 +295,6 @@ export const PickupPointSection = ({
                       </p>
                     ))}
                   </div>*/}
-                </div>
               </div>
             </div>
           </div>
@@ -291,7 +320,7 @@ export const PickupPointSection = ({
           </div>
         </Container>
       </div>
-      {showBottomRippedPaper ?
+      {showRippedPaper && showBottomRippedPaper ?
         <RippedPaperSVG />
       : null}
     </section>
