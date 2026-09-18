@@ -27,11 +27,18 @@ export default function KontaktPage() {
             </h2>
             <div className='space-y-3'>
               <Link
-                href='mailto:info@stadioner.cz'
+                href='mailto:obchod@stadioner.cz'
                 className='hover:text-brand-action flex items-center gap-3 text-lg transition-colors'
               >
                 <Mail size={20} />
-                info@stadioner.cz
+                obchod@stadioner.cz
+              </Link>
+              <Link
+                href='tel:+420606074929'
+                className='hover:text-brand-action flex items-center gap-3 text-lg transition-colors'
+              >
+                <Phone size={20} />
+                +420 606 074 929
               </Link>
             </div>
           </div>
@@ -78,6 +85,13 @@ export default function KontaktPage() {
                   >
                     <Phone size={20} />
                     +420 721 980 257
+                  </Link>
+                  <Link
+                    href='mailto:info@stadioner.cz'
+                    className='hover:text-brand-action flex items-center gap-3 text-lg transition-colors'
+                  >
+                    <Mail size={20} />
+                    info@stadioner.cz
                   </Link>
                 </div>
               </div>
