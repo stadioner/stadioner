@@ -568,6 +568,22 @@ const defaultMarkers: ExternalMarker[] = [
         <p>Klenčí pod Čerchovem 123, 345 34 Klenčí pod Čerchovem</p>
       </>
     )
+  },
+  {
+    position: [49.499337618109834, 12.989410638875002],
+    iconUrl: '/map/pivoteka.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.facebook.com/p/Potraviny-Tomma-61550121687699/'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+          Můjobchod Potraviny Tomma
+        </Link>
+        <p>Blížejov 151, 345 45 Blížejov</p>
+      </>
+    )
   }
 ]
 
