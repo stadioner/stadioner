@@ -33,6 +33,8 @@ export interface Product {
   kegPricesCzk?: Partial<Record<'barrel20' | 'barrel30' | 'barrel50', number>>
   /** If set, packaging options are explicit instead of derived from image files */
   packaging?: PackagingKey[]
+  /** When false, product is prepared but omitted from public listings. Defaults to true. */
+  published?: boolean
 }
 
 export type PackagingAvailability = Record<PackagingKey, boolean>

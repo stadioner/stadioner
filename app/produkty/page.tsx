@@ -3,7 +3,7 @@ import { CompletePriceList } from '@/components/products/complete-price-list'
 import { Suspense } from 'react'
 import { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo/metadata'
-import { beersCs, limosCs, watersCs } from '@/lib/products/data'
+import { beersCs, limosCs, watersCs, getPublishedProducts } from '@/lib/products/data'
 import { buildProductSchema, jsonLdToHtml } from '@/lib/seo/schema'
 import { toAbsoluteUrl } from '@/lib/seo/site'
 
@@ -25,7 +25,7 @@ export const metadata: Metadata = buildPageMetadata({
 })
 
 export default function ProduktyPage() {
-  const products = [...beersCs, ...limosCs, ...watersCs]
+  const products = getPublishedProducts([...beersCs, ...limosCs, ...watersCs])
   const productSchemas = products.flatMap((product) => {
     if (!product.description) return []
 

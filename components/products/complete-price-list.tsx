@@ -1,4 +1,4 @@
-import { beersCs, limosCs, watersCs } from '@/lib/products/data'
+import { beersCs, limosCs, watersCs, getPublishedProducts } from '@/lib/products/data'
 import { SHOP_DEPOSITS_CZK } from '@/lib/products/deposits'
 import { PARTY_KEG_RENTAL_CZK } from '@/lib/products/party-keg-rental'
 import { formatPriceCzk } from '@/lib/products/utils'
@@ -9,7 +9,7 @@ function cellCzk(value?: number): string {
   return `${formatPriceCzk(value)} Kč`
 }
 
-const retailRows = [...beersCs, ...limosCs, ...watersCs]
+const retailRows = getPublishedProducts([...beersCs, ...limosCs, ...watersCs])
 
 export function CompletePriceList() {
   return (

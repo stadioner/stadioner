@@ -3,6 +3,24 @@ import type { Product, Language } from '@/types/products'
 // Czech products
 export const beersCs: Product[] = [
   {
+    name: 'Māorihead 13°',
+    subtitle: 'IPL s novozélandskými chmely',
+    category: 'pivo',
+    categoryLabel: 'Pivo',
+    slug: 'maorihead-13',
+    url: 'https://eshop.stadioner.cz/products/maorihead-13',
+    description:
+      'Māorihead 13° je India Pale Lager chmelený novozélandskými chmely. Spojuje čistotu ležáku s výraznou chmelovou aromatikou – svěží, moderní a stále dobře pitelný speciál.',
+    stats: [
+      { label: 'TYP', value: 'IPL' },
+      { label: 'STUPEŇ', value: '13°' }
+    ],
+    image: '/products/pivo/maorihead/bottle.webp',
+    icon: '/products/pivo/maorihead/icon.webp',
+    ingredients: '/products/pivo/maorihead/etiq.webp',
+    packaging: ['bottle', 'barrel20', 'barrel30']
+  },
+  {
     name: 'Šafář 15°',
     subtitle: 'Mohutný patnáctistupňový speciál s hlubokou zlatou barvou',
     category: 'pivo',
@@ -149,6 +167,40 @@ export const beersCs: Product[] = [
     bottlePriceCzk: 49,
     cratePriceCzk: 980,
     kegPricesCzk: { barrel30: 2460 }
+  },
+  {
+    name: 'Bednář 15°',
+    subtitle: 'Tmavý speciál s plným tělem a řemeslným charakterem',
+    category: 'pivo',
+    categoryLabel: 'Pivo',
+    slug: 'bednar-15',
+    url: 'https://eshop.stadioner.cz/products/bednar-15',
+    description:
+      'Bednář 15° je tmavý speciál s plným tělem a výrazným charakterem. Silnější stupňovitost a pečlivě sestavená sladová skladba dávají pivu hloubku, která ocení milovníky tmavých speciálů – ideální k pečeným masům, sýrům nebo k pomalému posezení.',
+    stats: [
+      { label: 'TYP', value: 'Tmavý speciál' },
+      { label: 'STUPEŇ', value: '15°' }
+    ],
+    image: '/products/pivo/bednar/bottle.webp',
+    icon: '/products/pivo/bednar/icon.webp',
+    published: false
+  },
+  {
+    name: 'Inuithead 15°',
+    subtitle: 'New England IPA s plným tělem a šťavnatým projevem',
+    category: 'pivo',
+    categoryLabel: 'Pivo',
+    slug: 'inuithead-15',
+    url: 'https://eshop.stadioner.cz/products/inuithead-15',
+    description:
+      'Inuithead 15° je svrchně kvašené pivo stylu New England IPA. Nabízí plnější tělo, šťavnatý projev a výraznou chmelovou aromatikou – silnější speciál pro milovníky moderních IPA.',
+    stats: [
+      { label: 'TYP', value: 'New England IPA' },
+      { label: 'STUPEŇ', value: '15°' }
+    ],
+    image: '/products/pivo/inuithead/bottle.webp',
+    icon: '/products/pivo/inuithead/icon.webp',
+    published: false
   }
 ]
 
@@ -276,6 +328,24 @@ export const watersCs: Product[] = [
 
 // English products
 export const beersEn: Product[] = [
+  {
+    name: 'Māorihead 13°',
+    subtitle: 'IPL with New Zealand hops',
+    category: 'pivo',
+    categoryLabel: 'Beer',
+    slug: 'maorihead-13',
+    url: 'https://eshop.stadioner.cz/products/maorihead-13',
+    description:
+      'Māorihead 13° is an India Pale Lager hopped with New Zealand varieties. It combines lager clarity with expressive hop aroma – fresh, modern, and still easy to drink.',
+    stats: [
+      { label: 'TYPE', value: 'IPL' },
+      { label: 'DEGREE', value: '13°' }
+    ],
+    image: '/products/pivo/maorihead/bottle.webp',
+    icon: '/products/pivo/maorihead/icon.webp',
+    ingredients: '/products/pivo/maorihead/etiq.webp',
+    packaging: ['bottle', 'barrel20', 'barrel30']
+  },
   {
     name: 'Šafář 15°',
     subtitle: 'Powerful fifteen-degree special with deep golden color',
@@ -423,6 +493,40 @@ export const beersEn: Product[] = [
     bottlePriceCzk: 49,
     cratePriceCzk: 980,
     kegPricesCzk: { barrel30: 2460 }
+  },
+  {
+    name: 'Bednář 15°',
+    subtitle: 'Dark special with a full body and craft character',
+    category: 'pivo',
+    categoryLabel: 'Beer',
+    slug: 'bednar-15',
+    url: 'https://eshop.stadioner.cz/products/bednar-15',
+    description:
+      'Bednář 15° is a dark special with a full body and distinctive character. Higher gravity and a carefully built malt bill give the beer depth that dark-special lovers will appreciate – ideal with roasted meats, cheeses, or a slow sit-down.',
+    stats: [
+      { label: 'TYPE', value: 'Dark special' },
+      { label: 'DEGREE', value: '15°' }
+    ],
+    image: '/products/pivo/bednar/bottle.webp',
+    icon: '/products/pivo/bednar/icon.webp',
+    published: false
+  },
+  {
+    name: 'Inuithead 15°',
+    subtitle: 'New England IPA with a full body and juicy character',
+    category: 'pivo',
+    categoryLabel: 'Beer',
+    slug: 'inuithead-15',
+    url: 'https://eshop.stadioner.cz/products/inuithead-15',
+    description:
+      'Inuithead 15° is a top-fermented New England IPA with a fuller body, juicy profile, and expressive hop aroma – a stronger special for modern IPA fans.',
+    stats: [
+      { label: 'TYPE', value: 'New England IPA' },
+      { label: 'DEGREE', value: '15°' }
+    ],
+    image: '/products/pivo/inuithead/bottle.webp',
+    icon: '/products/pivo/inuithead/icon.webp',
+    published: false
   }
 ]
 
@@ -550,6 +654,24 @@ export const watersEn: Product[] = [
 
 // German products
 export const beersDe: Product[] = [
+  {
+    name: 'Māorihead 13°',
+    subtitle: 'IPL mit neuseeländischen Hopfen',
+    category: 'pivo',
+    categoryLabel: 'Bier',
+    slug: 'maorihead-13',
+    url: 'https://eshop.stadioner.cz/products/maorihead-13',
+    description:
+      'Māorihead 13° ist ein India Pale Lager mit neuseeländischen Hopfen. Es verbindet die Klarheit eines Lagers mit ausgeprägter Hopfenaromatik – frisch, modern und trotzdem gut trinkbar.',
+    stats: [
+      { label: 'TYP', value: 'IPL' },
+      { label: 'GRAD', value: '13°' }
+    ],
+    image: '/products/pivo/maorihead/bottle.webp',
+    icon: '/products/pivo/maorihead/icon.webp',
+    ingredients: '/products/pivo/maorihead/etiq.webp',
+    packaging: ['bottle', 'barrel20', 'barrel30']
+  },
   {
     name: 'Šafář 15°',
     subtitle: 'Kräftiger Fünfzehn-Grad-Spezial mit tiefgoldener Farbe',
@@ -697,6 +819,40 @@ export const beersDe: Product[] = [
     bottlePriceCzk: 49,
     cratePriceCzk: 980,
     kegPricesCzk: { barrel30: 2460 }
+  },
+  {
+    name: 'Bednář 15°',
+    subtitle: 'Dunkles Spezialbier mit vollem Körper und handwerklichem Charakter',
+    category: 'pivo',
+    categoryLabel: 'Bier',
+    slug: 'bednar-15',
+    url: 'https://eshop.stadioner.cz/products/bednar-15',
+    description:
+      'Bednář 15° ist ein dunkles Spezialbier mit vollem Körper und ausgeprägtem Charakter. Die höhere Stammwürze und die sorgfältig zusammengestellte Malzmischung geben dem Bier Tiefe – ideal zu Braten, Käse oder einem ruhigen Abend.',
+    stats: [
+      { label: 'TYP', value: 'Dunkles Spezial' },
+      { label: 'GRAD', value: '15°' }
+    ],
+    image: '/products/pivo/bednar/bottle.webp',
+    icon: '/products/pivo/bednar/icon.webp',
+    published: false
+  },
+  {
+    name: 'Inuithead 15°',
+    subtitle: 'New England IPA mit vollem Körper und saftigem Charakter',
+    category: 'pivo',
+    categoryLabel: 'Bier',
+    slug: 'inuithead-15',
+    url: 'https://eshop.stadioner.cz/products/inuithead-15',
+    description:
+      'Inuithead 15° ist ein obergäriges New England IPA mit vollerem Körper, saftigem Charakter und ausgeprägter Hopfenaromatik – ein stärkeres Spezial für Fans moderner IPA.',
+    stats: [
+      { label: 'TYP', value: 'New England IPA' },
+      { label: 'GRAD', value: '15°' }
+    ],
+    image: '/products/pivo/inuithead/bottle.webp',
+    icon: '/products/pivo/inuithead/icon.webp',
+    published: false
   }
 ]
 
@@ -823,12 +979,29 @@ export const watersDe: Product[] = [
 ]
 
 // Product maps by language
+const isPublished = (product: Product) => product.published !== false
+
+export const getPublishedProducts = (products: Product[]) =>
+  products.filter(isPublished)
+
 export const getProductMap = (lang: Language) => {
   if (lang === 'en') {
-    return { pivo: beersEn, limo: limosEn, voda: watersEn }
+    return {
+      pivo: getPublishedProducts(beersEn),
+      limo: getPublishedProducts(limosEn),
+      voda: getPublishedProducts(watersEn)
+    }
   }
   if (lang === 'de') {
-    return { pivo: beersDe, limo: limosDe, voda: watersDe }
+    return {
+      pivo: getPublishedProducts(beersDe),
+      limo: getPublishedProducts(limosDe),
+      voda: getPublishedProducts(watersDe)
+    }
   }
-  return { pivo: beersCs, limo: limosCs, voda: watersCs }
+  return {
+    pivo: getPublishedProducts(beersCs),
+    limo: getPublishedProducts(limosCs),
+    voda: getPublishedProducts(watersCs)
+  }
 }
