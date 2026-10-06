@@ -554,18 +554,18 @@ const defaultMarkers: ExternalMarker[] = [
     )
   },
   {
-    position: [49.43547461850232, 12.815385570502036],
+    position: [50.25193143946151, 12.892661149350435],
     iconUrl: '/map/limo.svg',
     popupContent: (
       <>
         <Link
-          href='https://www.instagram.com/chodska_kavarna/'
+          href='https://kontr-napoje.cz'
           target='_blank'
           className='text-lg font-bold'
         >
-          Chodská kavárna
+          Kontr nápoje
         </Link>
-        <p>Klenčí pod Čerchovem 123, 345 34 Klenčí pod Čerchovem</p>
+        <p>Botanická 238/3, 362 63 Dalovice</p>
       </>
     )
   },
