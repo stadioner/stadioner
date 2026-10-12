@@ -2,10 +2,11 @@
 
 - Write site copy in Czech; on B2B (`/pro-firmy`) use formal Vy with a capital V (Vy, Vám).
 - Prefer short, direct copy; drop extra marketing clauses, capacity counts, and promotional banners unless asked to keep them.
-- Show images uncropped and complete; Sanity rich-text images should open fullscreen on click; prefer sharp corners over rounded for product and label photos.
+- Show images uncropped and complete; Sanity rich-text images should open fullscreen on click; prefer sharp corners over rounded for product and label photos; bottle photos keep a transparent background.
 - Reuse the custom double border (`components/border.tsx`): thicker outer stroke, thinner inner stroke, brand green `#3b492b`.
 - Navbar dropdowns should open on hover with a gap-tolerant trigger; the parent nav label stays clickable and visually consistent with other items.
 - On the B2B product configurator, keep the product name and Složení button aligned on the same bottom axis.
+- Event recap labels stay a single word (cs Shrnutí, en Recap, de Rückblick).
 
 ## Learned Workspace Facts
 
@@ -17,3 +18,4 @@
 - Homepage “next event” is driven by event date logic, not a hardcoded featured event.
 - Past events without a recap are faded and non-navigable; events with a recap stay clickable (`lib/events/visibility.ts`).
 - Brand tokens: cream `#ede3c8`, action green `#3b492b`; shared `Border` is used across the UI.
+- Products in `lib/products/data.ts` with `published: false` stay out of public listings and the B2B configurator until explicitly published.

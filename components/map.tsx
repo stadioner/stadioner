@@ -584,6 +584,38 @@ const defaultMarkers: ExternalMarker[] = [
         <p>Blížejov 151, 345 45 Blížejov</p>
       </>
     )
+  },
+  {
+    position: [50.136612, 14.2788044],
+    iconUrl: '/map/pivoteka.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.pivni-kvelb.cz'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+          Pivní Kvelb
+        </Link>
+        <p>U Špejcharu 48, 252 67 Tuchoměřice</p>
+      </>
+    )
+  },
+  {
+    position: [48.9827591, 14.4549688],
+    iconUrl: '/map/hospoda.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.kmpcb.cz'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+          Klub malých pivovarů České Budějovice
+        </Link>
+        <p>Husova tř. 119/103, 370 05 České Budějovice</p>
+      </>
+    )
   }
 ]
 
