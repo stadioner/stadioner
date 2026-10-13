@@ -82,12 +82,12 @@ export const ProductInfo = ({
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.4 }}
-              className='text-brand-primary m-0 text-2xl leading-none font-bold sm:text-3xl md:text-6xl'
+              className='text-brand-primary m-0 flex flex-wrap items-end gap-x-2.5 text-2xl leading-none font-bold sm:gap-x-3 sm:text-3xl md:text-6xl'
             >
-              {product.name}
+              <span>{product.name}</span>
               {!hideBuyButton && product.ingredients ?
                 <Dialog>
-                  <DialogTrigger className='border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-brand-action ml-[0.32em] inline-block cursor-pointer appearance-none border align-baseline px-2 pt-1 pb-0 text-[0.22em] leading-none font-bold transition hover:opacity-90'>
+                  <DialogTrigger className='border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-brand-action inline-flex shrink-0 cursor-pointer items-center border px-2.5 py-1 text-sm leading-none font-bold transition hover:opacity-90 sm:px-3 sm:py-1.5 sm:text-base md:px-3.5 md:py-2 md:text-lg'>
                     {labels.composition}
                   </DialogTrigger>
                   <DialogContent className='bg-brand-primary w-fit max-w-[calc(100vw-2rem)] gap-3 rounded-none p-4 sm:max-w-none'>

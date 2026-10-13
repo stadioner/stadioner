@@ -207,13 +207,22 @@ export const beersCs: Product[] = [
 export const limosCs: Product[] = [
   {
     name: 'Malinovka',
+    subtitle: 'Svěží malinová limonáda z pramenité vody',
     category: 'limo',
     categoryLabel: 'Limonáda',
     slug: 'limonada-malina',
     url: 'https://eshop.stadioner.cz/products/limonada-malina',
-    stats: [],
+    description:
+      'Malinovka STADIONER je svěží nealkoholický nápoj vyráběný z pramenité vody z šumavských lesů. Malinová šťáva dává sladší ovocnou chuť, jemné sycení ji nechává lehkou. Bez zbytečných konzervantů, ve vratné lahvi.',
+    stats: [
+      { label: 'OBJEM', value: '500 ml' },
+      { label: 'CHUŤ', value: 'Malina' },
+      { label: 'SLOŽENÍ', value: 'Pramenitá voda' },
+      { label: 'BALENÍ', value: 'Vratný obal' }
+    ],
     image: '/products/limo/malina/bottle.webp',
     icon: '/products/limo/malina/icon.webp',
+    ingredients: '/products/limo/malina/etiq.webp',
     packaging: ['bottle', 'barrel20', 'barrel30', 'barrel50']
   },
   {
@@ -533,13 +542,22 @@ export const beersEn: Product[] = [
 export const limosEn: Product[] = [
   {
     name: 'Malinovka',
+    subtitle: 'Refreshing raspberry lemonade made from spring water',
     category: 'limo',
     categoryLabel: 'Lemonade',
     slug: 'limonada-malina',
     url: 'https://eshop.stadioner.cz/products/limonada-malina',
-    stats: [],
+    description:
+      'STADIONER Malinovka is a refreshing non-alcoholic drink made from spring water from the Šumava forests. Raspberry juice gives it a sweeter fruit taste, and light carbonation keeps it easy to drink. No unnecessary preservatives, in a returnable bottle.',
+    stats: [
+      { label: 'VOLUME', value: '500 ml' },
+      { label: 'FLAVOR', value: 'Raspberry' },
+      { label: 'INGREDIENTS', value: 'Spring water' },
+      { label: 'PACKAGING', value: 'Returnable bottle' }
+    ],
     image: '/products/limo/malina/bottle.webp',
     icon: '/products/limo/malina/icon.webp',
+    ingredients: '/products/limo/malina/etiq.webp',
     packaging: ['bottle', 'barrel20', 'barrel30', 'barrel50']
   },
   {
@@ -859,13 +877,22 @@ export const beersDe: Product[] = [
 export const limosDe: Product[] = [
   {
     name: 'Malinovka',
+    subtitle: 'Erfrischende Himbeerlimonade aus Quellwasser',
     category: 'limo',
     categoryLabel: 'Limonade',
     slug: 'limonada-malina',
     url: 'https://eshop.stadioner.cz/products/limonada-malina',
-    stats: [],
+    description:
+      'Die Malinovka von STADIONER ist ein erfrischendes alkoholfreies Getränk aus Quellwasser des Böhmerwalds. Himbeersaft sorgt für einen süßeren Fruchtgeschmack, die feine Kohlensäure hält sie leicht. Ohne unnötige Konservierungsstoffe, in der Mehrwegflasche.',
+    stats: [
+      { label: 'VOLUMEN', value: '500 ml' },
+      { label: 'GESCHMACK', value: 'Himbeere' },
+      { label: 'ZUSAMMENSETZUNG', value: 'Quellwasser' },
+      { label: 'VERPACKUNG', value: 'Mehrwegflasche' }
+    ],
     image: '/products/limo/malina/bottle.webp',
     icon: '/products/limo/malina/icon.webp',
+    ingredients: '/products/limo/malina/etiq.webp',
     packaging: ['bottle', 'barrel20', 'barrel30', 'barrel50']
   },
   {
