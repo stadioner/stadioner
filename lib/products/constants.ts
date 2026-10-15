@@ -32,7 +32,9 @@ export const uiLabels = {
     barrel: 'Sud',
     barrel20: 'Sud 20 l',
     barrel30: 'Sud 30 l',
-    barrel50: 'Sud 50 l'
+    barrel50: 'Sud 50 l',
+    availabilityNotice:
+      'Dostupnost produktů uvedená na webových stránkách nemusí být aktuální. Pro ověření aktuální dostupnosti nás prosím kontaktujte na tel. čísle'
   },
   en: {
     composition: 'Ingredients',
@@ -47,7 +49,9 @@ export const uiLabels = {
     barrel: 'Keg',
     barrel20: 'Keg 20 l',
     barrel30: 'Keg 30 l',
-    barrel50: 'Keg 50 l'
+    barrel50: 'Keg 50 l',
+    availabilityNotice:
+      'Product availability shown on this website may not be up to date. To confirm current availability, please contact us by phone at'
   },
   de: {
     composition: 'Zutaten',
@@ -62,6 +66,8 @@ export const uiLabels = {
     barrel: 'Fass',
     barrel20: 'Fass 20 l',
     barrel30: 'Fass 30 l',
-    barrel50: 'Fass 50 l'
+    barrel50: 'Fass 50 l',
+    availabilityNotice:
+      'Die auf der Website angezeigte Produktverfügbarkeit ist möglicherweise nicht aktuell. Zur Bestätigung der aktuellen Verfügbarkeit kontaktieren Sie uns bitte telefonisch unter'
   }
 } as const

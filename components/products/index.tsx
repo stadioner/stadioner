@@ -11,6 +11,7 @@ import { useProducts } from '@/hooks/use-products'
 import { CategorySelector } from './category-selector'
 import { ProductNavigation } from './product-navigation'
 import { PackagingSelector } from './packaging-selector'
+import { AvailabilityNotice } from './availability-notice'
 import { ProductImage } from './product-image'
 import { ProductInfo } from './product-info'
 import type { PackagingKey, PackagingOption } from '@/types/products'
@@ -163,6 +164,10 @@ export const Products = ({
             selectedPackagingLabel={selectedPackagingLabel}
             onPackagingChange={handlePackagingChange}
           />
+
+          {!b2bMode ?
+            <AvailabilityNotice text={labels.availabilityNotice} />
+          : null}
 
           <div className='mt-4 flex flex-col items-stretch gap-4 sm:mt-6 sm:gap-8 md:mt-12 md:grid md:grid-cols-[2fr_1fr]'>
             <div className='relative flex flex-1 items-center justify-center md:hidden'>
