@@ -295,6 +295,24 @@ export const unifiedEventsForSitemapQuery = groq`
   *[_type == "unifiedEvent"] | order(dateTime asc) {${unifiedEventProjection}}
 `
 
+export const unifiedEventsWithGalleryQuery = groq`
+  *[
+    _type == "unifiedEvent" &&
+    count(gallery[defined(asset)]) > 0
+  ] | order(dateTime desc) {
+    _id,
+    dateTime,
+    title,
+    gallery[] {
+      _key,
+      alt,
+      asset,
+      hotspot,
+      crop
+    }
+  }
+`
+
 const salandaWeeklyProgramProjection = `
   _id,
   isActive,

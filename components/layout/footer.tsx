@@ -64,6 +64,11 @@ export const Footer = () => {
               {language === 'en' && 'Events'}
               {language === 'de' && 'Veranstaltungen'}
             </Link>
+            <Link href={`${localizedRootPath}/fotogalerie`}>
+              {language === 'cs' && 'Fotogalerie'}
+              {language === 'en' && 'Gallery'}
+              {language === 'de' && 'Fotogalerie'}
+            </Link>
             <Link href={`${localizedRootPath}/clanky`}>
               {language === 'cs' && 'Články'}
               {language === 'en' && 'Articles'}

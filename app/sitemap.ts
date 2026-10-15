@@ -36,6 +36,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticLocalizedPaths = localizedSeoLocales.flatMap((locale) => [
     `/${locale}`,
     `/${locale}/historie`,
+    `/${locale}/fotogalerie`,
     `/${locale}/produkty`,
     `/${locale}/kontakt`,
     `/${locale}/prodejni-mista/sit-partneru`,

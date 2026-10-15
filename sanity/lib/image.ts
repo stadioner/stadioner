@@ -21,3 +21,13 @@ export const urlForPortableBodyImageFullscreen = (
 ) => {
   return builder.image(source).width(2400).fit('max').auto('format').url()
 }
+
+/** Gallery grid thumbnail. */
+export const urlForGalleryThumbnail = (source: SanityImageSource) => {
+  return builder.image(source).width(800).height(800).fit('crop').auto('format').url()
+}
+
+/** Gallery lightbox fullscreen variant. */
+export const urlForGalleryFullscreen = (source: SanityImageSource) => {
+  return builder.image(source).width(2400).fit('max').auto('format').url()
+}

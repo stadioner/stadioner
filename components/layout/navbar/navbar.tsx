@@ -96,6 +96,17 @@ export const Navbar = () => {
                   />
                   <NavItem
                     label={
+                      language === 'cs' ? 'Fotogalerie'
+                      : language === 'en' ?
+                        'Gallery'
+                      : language === 'de' ?
+                        'Fotogalerie'
+                      : ''
+                    }
+                    href={`${localizedRootPath}/fotogalerie`}
+                  />
+                  <NavItem
+                    label={
                       language === 'cs' ? 'Články'
                       : language === 'en' ?
                         'Articles'

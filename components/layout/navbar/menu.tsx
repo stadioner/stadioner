@@ -119,6 +119,17 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
               phone
               setIsOpen={setIsOpen}
               label={
+                currentLanguage === 'cs' ? 'Fotogalerie'
+                : currentLanguage === 'en' ?
+                  'Gallery'
+                : 'Fotogalerie'
+              }
+              href={`${localizedRootPath}/fotogalerie`}
+            />
+            <NavItem
+              phone
+              setIsOpen={setIsOpen}
+              label={
                 currentLanguage === 'cs' ? 'Články'
                 : currentLanguage === 'en' ?
                   'Articles'

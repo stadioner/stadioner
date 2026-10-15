@@ -1,5 +1,5 @@
 import { CalendarIcon } from '@sanity/icons'
-import { defineField, defineType } from 'sanity'
+import { defineArrayMember, defineField, defineType } from 'sanity'
 
 const languageOrder = ['cs', 'en', 'de'] as const
 
@@ -80,6 +80,27 @@ export const unifiedEventType = defineType({
       type: 'localizedBlockContent',
       title: 'Recaps',
       group: ['cs', 'en', 'de']
+    }),
+    defineField({
+      name: 'gallery',
+      title: 'Photo Gallery',
+      type: 'array',
+      group: 'shared',
+      of: [
+        defineArrayMember({
+          type: 'image',
+          options: {
+            hotspot: true
+          },
+          fields: [
+            defineField({
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative text'
+            })
+          ]
+        })
+      ]
     }),
     defineField({
       name: 'rsvpCount',
