@@ -7,7 +7,7 @@ interface AvailabilityNoticeProps {
 
 export const AvailabilityNotice = ({ text }: AvailabilityNoticeProps) => {
   return (
-    <p className='mx-auto mt-3 max-w-2xl px-2 text-center text-xs leading-snug text-zinc-300 sm:mt-4'>
+    <p className='mx-auto mt-3 max-w-2xl px-2 text-center text-xs leading-snug text-zinc-300 sm:mt-4 lg:max-w-none lg:whitespace-nowrap'>
       {text}{' '}
       <a
         href={PHONE_HREF}
