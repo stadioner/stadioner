@@ -5,6 +5,7 @@ import { Mail, Phone } from 'lucide-react'
 import Link from 'next/link'
 import { Border } from '@/components/border'
 import { Container } from '@/components/container'
+import { SalandaReservationForm } from '@/app/prodejni-mista/_components/salanda-reservation-form'
 import {
   getSalandaSectionContent,
   salandaDayToRowKey
@@ -53,14 +54,17 @@ export const SalandaSection = ({
           </div>
         </div>
 
-        <div className='mt-8 grid gap-6 lg:grid-cols-2 lg:items-start'>
-          <Border backgroundLight>
-            <div className='bg-brand-action p-5 md:p-6'>
+        <div className='mt-8 grid gap-6 lg:grid-cols-2 lg:items-stretch'>
+          <Border
+            backgroundLight
+            className='h-full'
+          >
+            <div className='bg-brand-action flex h-full flex-col p-5 md:p-6'>
               <h3 className='text-brand-primary text-2xl font-bold md:text-3xl'>
                 {content.openingHoursTitle}
               </h3>
 
-              <div className='mt-4 space-y-1'>
+              <div className='mt-4 flex flex-1 flex-col justify-center space-y-1'>
                 {content.openingHours.map((row) => {
                   const isToday = row.key === currentDayKey
 
@@ -93,63 +97,17 @@ export const SalandaSection = ({
             </div>
           </Border>
 
-          <Border backgroundLight>
-            <div className='bg-brand-action p-5 md:p-6'>
+          <Border
+            backgroundLight
+            className='h-full'
+          >
+            <div className='bg-brand-action flex h-full flex-col p-5 md:p-6'>
               <h3 className='text-brand-primary text-2xl font-bold md:text-3xl'>
                 {content.programTitle}
               </h3>
 
-              <div className='bg-brand-primary text-brand-action mt-4 border border-zinc-600/40 p-4'>
-                <p className='font-bold'>{content.programContactTitle}</p>
-                <p className='mt-2 text-sm leading-relaxed text-zinc-700'>
-                  {content.programContactDescription}
-                </p>
-                <div className='mt-3 flex flex-col items-end gap-2 sm:flex-row sm:flex-wrap sm:justify-end sm:gap-x-5'>
-                  <Link
-                    href='mailto:info@stadioner.cz'
-                    className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
-                  >
-                    <Mail className='size-4 shrink-0' aria-hidden />
-                    info@stadioner.cz
-                  </Link>
-                  <Link
-                    href='tel:+420721980257'
-                    className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
-                  >
-                    <Phone className='size-4 shrink-0' aria-hidden />
-                    +420 721 980 257
-                  </Link>
-                </div>
-              </div>
-
-              <div className='bg-brand-primary text-brand-action mt-4 border border-zinc-600/40 p-4'>
-                <p className='font-bold'>{content.celebrationsTitle}</p>
-                <p className='mt-2 text-sm leading-relaxed text-zinc-700'>
-                  {content.celebrationsDescription}
-                </p>
-                <p className='mt-2 text-sm leading-relaxed text-zinc-700'>
-                  {content.celebrationsContactHint}
-                </p>
-                <div className='mt-3 flex flex-col items-end gap-2 sm:flex-row sm:flex-wrap sm:justify-end sm:gap-x-5'>
-                  <Link
-                    href='mailto:info@stadioner.cz'
-                    className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
-                  >
-                    <Mail className='size-4 shrink-0' aria-hidden />
-                    info@stadioner.cz
-                  </Link>
-                  <Link
-                    href='tel:+420721980257'
-                    className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
-                  >
-                    <Phone className='size-4 shrink-0' aria-hidden />
-                    +420 721 980 257
-                  </Link>
-                </div>
-              </div>
-
               {weeklyProgram ?
-                <ul className='mt-4 space-y-4'>
+                <ul className='mt-4 flex-1 space-y-4'>
                   {weeklyProgram.entries.map((entry, index) => (
                     <li
                       key={`${entry.date}-${entry.title}-${index}`}
@@ -176,7 +134,38 @@ export const SalandaSection = ({
                     </li>
                   ))}
                 </ul>
-              : <p className='mt-4 text-zinc-200'>{content.programEmpty}</p>}
+              : <p className='mt-4 flex-1 text-zinc-200'>{content.programEmpty}</p>}
+
+              <div className='bg-brand-primary text-brand-action mt-4 border border-zinc-600/40 p-4'>
+                <p className='font-bold'>{content.programContactTitle}</p>
+                <p className='mt-2 text-sm leading-relaxed text-zinc-700'>
+                  {content.programContactDescription}
+                </p>
+                <div className='mt-3 flex flex-col items-end gap-2 sm:flex-row sm:flex-wrap sm:justify-end sm:gap-x-5'>
+                  <Link
+                    href='mailto:info@stadioner.cz'
+                    className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
+                  >
+                    <Mail className='size-4 shrink-0' aria-hidden />
+                    info@stadioner.cz
+                  </Link>
+                  <Link
+                    href='tel:+420721980257'
+                    className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
+                  >
+                    <Phone className='size-4 shrink-0' aria-hidden />
+                    +420 721 980 257
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </Border>
+        </div>
+
+        <div className='mt-6'>
+          <Border background>
+            <div className='bg-brand-action p-6 md:p-8'>
+              <SalandaReservationForm />
             </div>
           </Border>
         </div>

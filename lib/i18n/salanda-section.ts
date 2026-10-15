@@ -7,6 +7,42 @@ type OpeningHourRow = {
   closed: boolean
 }
 
+export type SalandaOccasionOption = {
+  value: string
+  label: string
+}
+
+export type SalandaReservationFormCopy = {
+  title: string
+  subtitle: string
+  phoneHint: string
+  phoneDisplay: string
+  phoneHref: string
+  fullName: string
+  fullNamePlaceholder: string
+  phone: string
+  phonePlaceholder: string
+  email: string
+  emailPlaceholder: string
+  reservationDate: string
+  arrivalTime: string
+  guests: string
+  guestsLabel: (count: number) => string
+  guestsLabel13Plus: string
+  occasion: string
+  occasionPlaceholder: string
+  occasionOptions: SalandaOccasionOption[]
+  note: string
+  notePlaceholder: string
+  submit: string
+  submitting: string
+  requiredLegend: string
+  success: string
+  error: string
+  gdprPrefix: string
+  gdprLink: string
+}
+
 type SalandaSectionContent = {
   sectionTitle: string
   address: string
@@ -18,9 +54,7 @@ type SalandaSectionContent = {
   programEmpty: string
   programContactTitle: string
   programContactDescription: string
-  celebrationsTitle: string
-  celebrationsDescription: string
-  celebrationsContactHint: string
+  reservation: SalandaReservationFormCopy
 }
 
 const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
@@ -47,11 +81,43 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     programContactTitle: 'Chcete vystoupit nebo něco navrhnout?',
     programContactDescription:
       'Součástí programu je živá hudba a vystoupení. Kdokoliv se může ozvat a mít zde své vlastní vystoupení.',
-    celebrationsTitle: 'Menší oslava nebo soukromá akce?',
-    celebrationsDescription:
-      'Šalandu lze pronajmout i na menší oslavy a rodinné akce. Pronájem nabízíme mimo večerní provoz výčepu. Catering si můžete zajistit sami. Rádi vám ale nabídneme i naše produkty z pivovaru.',
-    celebrationsContactHint:
-      'Podmínky pronájmu vám rádi upřesníme individuálně.'
+    reservation: {
+      title: 'Rezervace stolu',
+      subtitle: 'Těšíme se na vaši návštěvu!',
+      phoneHint: 'Nebo volejte:',
+      phoneDisplay: '+420 721 980 257',
+      phoneHref: 'tel:+420721980257',
+      fullName: 'Jméno a příjmení',
+      fullNamePlaceholder: 'Vyplňte jméno a příjmení',
+      phone: 'Telefonní číslo',
+      phonePlaceholder: '+420 777 123 456',
+      email: 'E-mail',
+      emailPlaceholder: 'vas@email.cz',
+      reservationDate: 'Datum rezervace',
+      arrivalTime: 'Čas příchodu',
+      guests: 'Počet osob',
+      guestsLabel: (count) =>
+        count === 1 ? '1 osoba' : count < 5 ? `${count} osoby` : `${count} osob`,
+      guestsLabel13Plus: '13+ osob',
+      occasion: 'Událost / příležitost',
+      occasionPlaceholder: 'Vyberte příležitost',
+      occasionOptions: [
+        { value: 'regular', label: 'Běžná rezervace stolu' },
+        { value: 'birthday', label: 'Narozeniny' },
+        { value: 'family', label: 'Rodinná oslava' },
+        { value: 'corporate', label: 'Firemní setkání' },
+        { value: 'other', label: 'Jiné' }
+      ],
+      note: 'Poznámka k rezervaci',
+      notePlaceholder: 'Speciální požadavky, výzdoba, dětská židlička...',
+      submit: 'Odeslat rezervaci',
+      submitting: 'Odesílám...',
+      requiredLegend: '* Povinné údaje',
+      success: 'Děkujeme! Rezervaci jsme přijali a brzy se vám ozveme.',
+      error: 'Omlouváme se, došlo k chybě. Zkuste to prosím znovu.',
+      gdprPrefix: 'Odesláním souhlasíte s',
+      gdprLink: 'ochranou osobních údajů'
+    }
   },
   en: {
     sectionTitle: 'Šalanda Taproom',
@@ -77,11 +143,43 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     programContactTitle: 'Want to perform or suggest something?',
     programContactDescription:
       'The program includes live music and performances. Anyone can get in touch and have their own performance here.',
-    celebrationsTitle: 'Planning a smaller celebration or private event?',
-    celebrationsDescription:
-      'Šalanda can also be rented for smaller celebrations and family gatherings. Rentals are available outside evening taproom hours. You can arrange your own catering. We are also happy to offer our brewery products.',
-    celebrationsContactHint:
-      'We will be glad to discuss rental terms with you individually.'
+    reservation: {
+      title: 'Table reservation',
+      subtitle: 'We look forward to your visit!',
+      phoneHint: 'Or call:',
+      phoneDisplay: '+420 721 980 257',
+      phoneHref: 'tel:+420721980257',
+      fullName: 'Full name',
+      fullNamePlaceholder: 'Enter your full name',
+      phone: 'Phone number',
+      phonePlaceholder: '+420 777 123 456',
+      email: 'E-mail',
+      emailPlaceholder: 'you@email.com',
+      reservationDate: 'Reservation date',
+      arrivalTime: 'Arrival time',
+      guests: 'Number of guests',
+      guestsLabel: (count) =>
+        count === 1 ? '1 person' : `${count} people`,
+      guestsLabel13Plus: '13+ people',
+      occasion: 'Occasion',
+      occasionPlaceholder: 'Select an occasion',
+      occasionOptions: [
+        { value: 'regular', label: 'Regular table reservation' },
+        { value: 'birthday', label: 'Birthday' },
+        { value: 'family', label: 'Family celebration' },
+        { value: 'corporate', label: 'Corporate gathering' },
+        { value: 'other', label: 'Other' }
+      ],
+      note: 'Reservation note',
+      notePlaceholder: 'Special requests, decorations, high chair...',
+      submit: 'Send reservation',
+      submitting: 'Sending...',
+      requiredLegend: '* Required fields',
+      success: 'Thank you! We have received your reservation and will get back to you soon.',
+      error: 'Sorry, something went wrong. Please try again.',
+      gdprPrefix: 'By submitting you agree to our',
+      gdprLink: 'privacy policy'
+    }
   },
   de: {
     sectionTitle: 'Ausschank Šalanda',
@@ -107,11 +205,44 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     programContactTitle: 'Möchten Sie auftreten oder etwas vorschlagen?',
     programContactDescription:
       'Zum Programm gehören Live-Musik und Auftritte. Jeder kann sich melden und hier seinen eigenen Auftritt haben.',
-    celebrationsTitle: 'Kleinere Feier oder private Veranstaltung?',
-    celebrationsDescription:
-      'Šalanda kann auch für kleinere Feiern und Familienfeiern gemietet werden. Vermietung ist außerhalb des Abendbetriebs möglich. Catering können Sie selbst organisieren. Gerne bieten wir auch unsere Brauereiprodukte an.',
-    celebrationsContactHint:
-      'Die Mietbedingungen besprechen wir gerne individuell mit Ihnen.'
+    reservation: {
+      title: 'Tischreservierung',
+      subtitle: 'Wir freuen uns auf Ihren Besuch!',
+      phoneHint: 'Oder rufen Sie an:',
+      phoneDisplay: '+420 721 980 257',
+      phoneHref: 'tel:+420721980257',
+      fullName: 'Vor- und Nachname',
+      fullNamePlaceholder: 'Namen eingeben',
+      phone: 'Telefonnummer',
+      phonePlaceholder: '+420 777 123 456',
+      email: 'E-Mail',
+      emailPlaceholder: 'ihre@email.de',
+      reservationDate: 'Reservierungsdatum',
+      arrivalTime: 'Ankunftszeit',
+      guests: 'Anzahl der Personen',
+      guestsLabel: (count) =>
+        count === 1 ? '1 Person' : `${count} Personen`,
+      guestsLabel13Plus: '13+ Personen',
+      occasion: 'Anlass',
+      occasionPlaceholder: 'Anlass auswählen',
+      occasionOptions: [
+        { value: 'regular', label: 'Normale Tischreservierung' },
+        { value: 'birthday', label: 'Geburtstag' },
+        { value: 'family', label: 'Familienfeier' },
+        { value: 'corporate', label: 'Firmenevent' },
+        { value: 'other', label: 'Sonstiges' }
+      ],
+      note: 'Hinweis zur Reservierung',
+      notePlaceholder: 'Besondere Wünsche, Dekoration, Hochstuhl...',
+      submit: 'Reservierung senden',
+      submitting: 'Wird gesendet...',
+      requiredLegend: '* Pflichtfelder',
+      success:
+        'Danke! Wir haben Ihre Reservierung erhalten und melden uns bald.',
+      error: 'Leider ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.',
+      gdprPrefix: 'Mit dem Absenden stimmen Sie der',
+      gdprLink: 'Datenschutzerklärung'
+    }
   }
 }
 
