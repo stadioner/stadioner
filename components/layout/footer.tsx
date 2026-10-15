@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button'
 import { useNewsletterForm } from '@/hooks/use-newsletter-form'
 import { getSalesLocationsHref } from '@/lib/i18n/sales-locations-nav'
 import { isSupportedLanguage } from '@/lib/i18n/site-languages'
+import { getProductMap } from '@/lib/products/data'
 
 export const Footer = () => {
   const { language } = useLanguage()
@@ -16,6 +17,12 @@ export const Footer = () => {
   const { email, setEmail, isSubmitting, submit, copy } = useNewsletterForm({
     language
   })
+  const productMap = getProductMap(currentLanguage)
+  const footerProducts = [
+    ...productMap.pivo,
+    ...productMap.limo,
+    ...productMap.voda
+  ]
 
   return (
     <footer className='bg-brand-secondary pt-20 pb-10'>
@@ -89,77 +96,14 @@ export const Footer = () => {
               {language === 'en' && 'Products'}
               {language === 'de' && 'Produkte'}
             </h4>
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=safar-15&kategorie=pivo`}
-            >
-              Šafář 15
-            </Link>
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=profesor-12&kategorie=pivo`}
-            >
-              Profesor 12
-            </Link>
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=hvozdar-12&kategorie=pivo`}
-            >
-              Hvozdář 12
-            </Link>
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=experiment-11&kategorie=pivo`}
-            >
-              Experiment 11
-            </Link>
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=pozarnik-10&kategorie=pivo`}
-            >
-              Požárník 10
-            </Link>
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=atlet-8&kategorie=pivo`}
-            >
-              Atlet 8
-            </Link>
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=indianhead-12&kategorie=pivo`}
-            >
-              Indianhead 12
-            </Link>
-
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=limonada-pomeranc&kategorie=limo`}
-            >
-              {language === 'cs' && 'Limonáda pomeranč'}
-              {language === 'en' && 'Orange Lemonade'}
-              {language === 'de' && 'Orangenlimonade'}
-            </Link>
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=limonada-citron&kategorie=limo`}
-            >
-              {language === 'cs' && 'Limonáda citrón'}
-              {language === 'en' && 'Lemon Lemonade'}
-              {language === 'de' && 'Zitronenlimonade'}
-            </Link>
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=cola-mix&kategorie=limo`}
-            >
-              {language === 'cs' && 'Cola mix'}
-              {language === 'en' && 'Cola mix'}
-              {language === 'de' && 'Cola Mix'}
-            </Link>
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=pramenita-voda-perliva&kategorie=voda`}
-            >
-              {language === 'cs' && 'Pramenitá voda (Sycená)'}
-              {language === 'en' && 'Spring water (Sparkling)'}
-              {language === 'de' && 'Quellwasser (Kohlensäurehaltig)'}
-            </Link>
-            <Link
-              href={`${localizedRootPath}/produkty?produkt=pramenita-voda-neperliva&kategorie=voda`}
-            >
-              {language === 'cs' && 'Pramenitá voda (Nesycená)'}
-              {language === 'en' && 'Spring water (Still)'}
-              {language === 'de' && 'Quellwasser (Still)'}
-            </Link>
+            {footerProducts.map((product) => (
+              <Link
+                key={product.slug}
+                href={`${localizedRootPath}/produkty?produkt=${product.slug}&kategorie=${product.category}`}
+              >
+                {product.name}
+              </Link>
+            ))}
           </div>
           <div className='flex flex-col gap-4 text-xl'>
             <div>
