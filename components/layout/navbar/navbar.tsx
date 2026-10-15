@@ -183,7 +183,7 @@ export const Navbar = () => {
               <div className='flex items-center'>
                 <button
                   onClick={() => setIsOpen(true)}
-                  className='text-brand-action text-lg'
+                  className='text-brand-action cursor-pointer text-lg'
                 >
                   Menu
                 </button>
