@@ -16,8 +16,11 @@ import {
 } from '@/lib/i18n/site-languages'
 import { useLanguage } from '@/store/use-language'
 
-const INPUT_CLASS =
-  'bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none'
+const FIELD_CLASS =
+  'bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 h-12 w-full border px-4 text-base leading-normal focus:ring-2 focus:outline-none'
+
+const TEXTAREA_CLASS =
+  'bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none resize-none'
 
 const ARRIVAL_TIMES = [
   '14:00',
@@ -192,7 +195,7 @@ export const SalandaReservationForm = () => {
             placeholder={copy.fullNamePlaceholder}
             required
             autoComplete='name'
-            className={INPUT_CLASS}
+            className={FIELD_CLASS}
           />
         </div>
 
@@ -213,7 +216,7 @@ export const SalandaReservationForm = () => {
               placeholder={copy.phonePlaceholder}
               required
               autoComplete='tel'
-              className={INPUT_CLASS}
+              className={FIELD_CLASS}
             />
           </div>
 
@@ -233,7 +236,7 @@ export const SalandaReservationForm = () => {
               placeholder={copy.emailPlaceholder}
               required
               autoComplete='email'
-              className={INPUT_CLASS}
+              className={FIELD_CLASS}
             />
           </div>
         </div>
@@ -254,7 +257,7 @@ export const SalandaReservationForm = () => {
               onChange={handleChange}
               min={minDate}
               required
-              className={INPUT_CLASS}
+              className={FIELD_CLASS}
             />
           </div>
 
@@ -271,7 +274,7 @@ export const SalandaReservationForm = () => {
               value={formData.arrivalTime}
               onChange={handleChange}
               required
-              className={INPUT_CLASS}
+              className={FIELD_CLASS}
             >
               {ARRIVAL_TIMES.map((time) => (
                 <option key={time} value={time}>
@@ -295,7 +298,7 @@ export const SalandaReservationForm = () => {
             value={formData.guests}
             onChange={handleChange}
             required
-            className={INPUT_CLASS}
+            className={FIELD_CLASS}
           >
             {GUEST_COUNTS.map((count) => (
               <option key={count} value={String(count)}>
@@ -318,7 +321,7 @@ export const SalandaReservationForm = () => {
             name='occasion'
             value={formData.occasion}
             onChange={handleChange}
-            className={INPUT_CLASS}
+            className={FIELD_CLASS}
           >
             {copy.occasionOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -342,7 +345,7 @@ export const SalandaReservationForm = () => {
             onChange={handleChange}
             placeholder={copy.notePlaceholder}
             rows={4}
-            className={`${INPUT_CLASS} resize-none`}
+            className={TEXTAREA_CLASS}
           />
         </div>
 
