@@ -1,10 +1,10 @@
 'use client'
 
 import { Container } from '@/components/container'
+import { preloadGalleryImage } from '@/lib/gallery/preload-image'
 import type { GalleryPhoto } from '@/types/gallery'
 import * as DialogPrimitive from '@radix-ui/react-dialog'
 import { ChevronLeft, ChevronRight, XIcon } from 'lucide-react'
-import Image from 'next/image'
 import { useEffect } from 'react'
 
 interface GalleryLightboxProps {
@@ -30,6 +30,16 @@ export function GalleryLightbox({
   const currentIndex = index ?? 0
   const photo = isOpen ? photos[currentIndex] : null
   const hasMultiple = photos.length > 1
+
+  useEffect(() => {
+    if (!isOpen || photos.length === 0) return
+
+    for (const offset of [1, -1]) {
+      const neighbor =
+        photos[(currentIndex + offset + photos.length) % photos.length]
+      if (neighbor) preloadGalleryImage(neighbor.fullscreenSrc, 'low')
+    }
+  }, [isOpen, currentIndex, photos])
 
   useEffect(() => {
     if (!isOpen) return
@@ -110,13 +120,13 @@ export function GalleryLightbox({
 
           {photo && (
             <div className='relative h-full w-full'>
-              <Image
+              {/* eslint-disable-next-line @next/next/no-img-element -- Sanity CDN URL; next/image re-encodes each photo and stalls the swap. */}
+              <img
                 src={photo.fullscreenSrc}
                 alt={photo.alt}
-                fill
-                sizes='100vw'
-                className='object-contain'
-                priority
+                decoding='async'
+                fetchPriority='high'
+                className='absolute inset-0 h-full w-full object-contain'
               />
             </div>
           )}

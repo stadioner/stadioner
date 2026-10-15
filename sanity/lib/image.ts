@@ -27,7 +27,15 @@ export const urlForGalleryThumbnail = (source: SanityImageSource) => {
   return builder.image(source).width(800).height(800).fit('crop').auto('format').url()
 }
 
-/** Gallery lightbox fullscreen variant. */
+/** Full lightbox frame, uncropped. ignoreImageParams skips the builder's hotspot crop. */
 export const urlForGalleryFullscreen = (source: SanityImageSource) => {
-  return builder.image(source).width(2400).fit('max').auto('format').url()
+  return builder
+    .image(source)
+    .ignoreImageParams()
+    .width(1920)
+    .height(1440)
+    .fit('max')
+    .auto('format')
+    .quality(75)
+    .url()
 }

@@ -2,6 +2,7 @@
 
 import { GalleryLightbox } from '@/components/gallery/gallery-lightbox'
 import { Container } from '@/components/container'
+import { preloadGalleryImage } from '@/lib/gallery/preload-image'
 import { mapGalleryEvents } from '@/lib/gallery/map-gallery'
 import { cn } from '@/lib/utils'
 import type { GalleryEventFromSanity } from '@/types/gallery'
@@ -101,6 +102,10 @@ export function PhotoGallery({ events }: PhotoGalleryProps) {
                   key={photo.id}
                   type='button'
                   onClick={() => setLightboxIndex(index)}
+                  onPointerEnter={() =>
+                    preloadGalleryImage(photo.fullscreenSrc, 'high')
+                  }
+                  onFocus={() => preloadGalleryImage(photo.fullscreenSrc, 'high')}
                   className='group relative aspect-square cursor-pointer overflow-hidden bg-black/5 text-left'
                   aria-label={`${labels.open}: ${photo.alt}`}
                 >
