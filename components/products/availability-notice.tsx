@@ -11,7 +11,7 @@ export const AvailabilityNotice = ({ text }: AvailabilityNoticeProps) => {
       {text}{' '}
       <a
         href={PHONE_HREF}
-        className='text-brand-primary font-medium underline decoration-brand-primary/50 underline-offset-2 transition hover:decoration-brand-primary'
+        className='text-brand-primary font-medium whitespace-nowrap underline decoration-brand-primary/50 underline-offset-2 transition hover:decoration-brand-primary'
       >
         {PHONE_DISPLAY}
       </a>
