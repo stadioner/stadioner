@@ -23,7 +23,7 @@ export const Navbar = () => {
     <>
       <nav
         className={cn(
-          'fixed top-7 right-0 left-0 z-[1001] hidden items-center transition lg:grid'
+          'fixed top-7 right-0 left-0 z-[1001] hidden items-center transition xl:grid'
         )}
       >
         <Container className='w-full'>
@@ -148,7 +148,7 @@ export const Navbar = () => {
 
       <nav
         className={cn(
-          'fixed top-5 right-0 left-0 z-[1001] mx-auto grid items-center transition lg:hidden'
+          'fixed top-5 right-0 left-0 z-[1001] mx-auto grid items-center transition xl:hidden'
         )}
       >
         <Container className='w-full'>

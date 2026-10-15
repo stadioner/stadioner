@@ -5,9 +5,9 @@ import { Products } from '@/components/products'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 
 export const metadata: Metadata = buildPageMetadata({
-  title: 'Výčep na Šalandě - Pivovar Kout na Šumavě',
+  title: 'Výčep Šalanda - Pivovar Kout na Šumavě',
   description:
-    'Výčep na Šalandě v areálu pivovaru STADIONER. Otevírací doba, týdenní program a možnost pronájmu.',
+    'Výčep Šalanda v areálu pivovaru STADIONER. Otevírací doba, týdenní program a možnost pronájmu.',
   canonicalPath: '/cs/prodejni-mista/vycep-na-salade',
   keywords: [
     'výčep',

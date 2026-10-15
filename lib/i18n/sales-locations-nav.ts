@@ -26,22 +26,22 @@ type SalesLocationsNavLabels = {
 
 const labelsByLanguage: Record<SupportedLanguage, SalesLocationsNavLabels> = {
   cs: {
-    trigger: 'Prodejní Místa',
+    trigger: 'Naše provozovny a partneři',
     partners: 'Síť partnerů',
     store: 'Podniková prodejna',
-    taproom: 'Výčep na Šalandě'
+    taproom: 'Výčep Šalanda'
   },
   en: {
-    trigger: 'Sales Locations',
+    trigger: 'Our venues & partners',
     partners: 'Partner Network',
     store: 'Company Store',
-    taproom: 'Taproom at Šalanda'
+    taproom: 'Šalanda Taproom'
   },
   de: {
-    trigger: 'Verkaufsstellen',
+    trigger: 'Unsere Betriebe & Partner',
     partners: 'Partnernetzwerk',
     store: 'Betriebsverkauf',
-    taproom: 'Ausschank auf Šalanda'
+    taproom: 'Ausschank Šalanda'
   }
 }
 

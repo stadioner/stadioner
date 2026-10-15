@@ -11,8 +11,8 @@ import {
 import { type ClassValue } from 'clsx'
 import { cn } from '@/lib/utils'
 
-/** Tailwind `lg` — below this width the compact mobile navbar is used. */
-export const NAVBAR_MOBILE_MEDIA_QUERY = '(max-width: 1023px)'
+/** Tailwind `xl` — below this width the compact mobile navbar is used. */
+export const NAVBAR_MOBILE_MEDIA_QUERY = '(max-width: 1279px)'
 
 /** Vertical gap between navbar trigger and dropdown (matches previous `mt-5`). */
 export const NAV_DROPDOWN_SIDE_OFFSET = 20

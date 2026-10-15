@@ -55,9 +55,9 @@ export const Footer = () => {
               {language === 'de' && 'Betriebsverkauf'}
             </Link>
             <Link href={getSalesLocationsHref(currentLanguage, 'taproom')}>
-              {language === 'cs' && 'Výčep na Šalandě'}
-              {language === 'en' && 'Taproom at Šalanda'}
-              {language === 'de' && 'Ausschank auf Šalanda'}
+              {language === 'cs' && 'Výčep Šalanda'}
+              {language === 'en' && 'Šalanda Taproom'}
+              {language === 'de' && 'Ausschank Šalanda'}
             </Link>
             <Link href={`${localizedRootPath}/udalosti`}>
               {language === 'cs' && 'Události'}

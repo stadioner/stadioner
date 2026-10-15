@@ -25,10 +25,10 @@ type SalandaSectionContent = {
 
 const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
   cs: {
-    sectionTitle: 'Výčep na Šalandě',
+    sectionTitle: 'Výčep Šalanda',
     address: 'Kout na Šumavě 2, 345 02 Kout na Šumavě',
     introParagraphs: [
-      'Výčep na Šalandě je místo v areálu pivovaru, kde si můžete dát produkty STADIONER – pivo, limonádu i vodu. K tomu najdete i něco malého k jídlu od lokálních podniků, například uzeniny z Mrákova.',
+      'Výčep Šalanda je místo v areálu pivovaru, kde si můžete dát produkty STADIONER – pivo, limonádu i vodu. K tomu najdete i něco malého k jídlu od lokálních podniků, například uzeniny z Mrákova.',
       'Doporučujeme si vzít něco teplého na sebe – uvnitř bývá chladněji.'
     ],
     openingHoursTitle: 'Otevírací doba',
@@ -54,10 +54,10 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       'Podmínky pronájmu vám rádi upřesníme individuálně.'
   },
   en: {
-    sectionTitle: 'Taproom at Šalanda',
+    sectionTitle: 'Šalanda Taproom',
     address: 'Kout na Šumavě 2, 345 02 Kout na Šumavě',
     introParagraphs: [
-      'The taproom at Šalanda is located in the brewery premises, where you can enjoy STADIONER products – beer, lemonade and water. You will also find light bites from local businesses, such as smoked meats from Mrákova.',
+      'The Šalanda taproom is located in the brewery premises, where you can enjoy STADIONER products – beer, lemonade and water. You will also find light bites from local businesses, such as smoked meats from Mrákova.',
       'We recommend bringing something warm to wear – it tends to be colder inside.'
     ],
     openingHoursTitle: 'Opening hours',
@@ -84,10 +84,10 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       'We will be glad to discuss rental terms with you individually.'
   },
   de: {
-    sectionTitle: 'Ausschank auf Šalanda',
+    sectionTitle: 'Ausschank Šalanda',
     address: 'Kout na Šumavě 2, 345 02 Kout na Šumavě',
     introParagraphs: [
-      'Der Ausschank auf Šalanda befindet sich auf dem Brauereigelände, wo Sie STADIONER-Produkte genießen können – Bier, Limonade und Wasser. Dazu gibt es kleine Speisen von lokalen Betrieben, zum Beispiel Wurstwaren aus Mrákova.',
+      'Der Ausschank Šalanda befindet sich auf dem Brauereigelände, wo Sie STADIONER-Produkte genießen können – Bier, Limonade und Wasser. Dazu gibt es kleine Speisen von lokalen Betrieben, zum Beispiel Wurstwaren aus Mrákova.',
       'Wir empfehlen, etwas Warmes anzuziehen – drinnen ist es oft kühler.'
     ],
     openingHoursTitle: 'Öffnungszeiten',
