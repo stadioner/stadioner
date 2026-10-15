@@ -616,6 +616,38 @@ const defaultMarkers: ExternalMarker[] = [
         <p>Husova tř. 119/103, 370 05 České Budějovice</p>
       </>
     )
+  },
+  {
+    position: [49.1893244, 16.6046235],
+    iconUrl: '/map/pivoteka.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.firmy.cz/detail/13224381-pivoteka-u-martina-brno-stare-brno.html'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+          Pivotéka u Martina
+        </Link>
+        <p>Hybešova 18, 602 00 Brno-střed</p>
+      </>
+    )
+  },
+  {
+    position: [48.8736255, 16.6246829],
+    iconUrl: '/map/penzion.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.moravcikovavina.cz'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+          Moravčíkova Vína
+        </Link>
+        <p>Mandloňová 161, 691 81 Horní Věstonice</p>
+      </>
+    )
   }
 ]
 
