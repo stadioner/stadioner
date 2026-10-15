@@ -17,7 +17,7 @@ import {
 import { useLanguage } from '@/store/use-language'
 
 const FIELD_CLASS =
-  'bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 h-12 w-full border px-4 text-base leading-normal focus:ring-2 focus:outline-none'
+  'bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 h-12 w-full min-w-0 max-w-full border px-4 text-base leading-normal focus:ring-2 focus:outline-none'
 
 const TEXTAREA_CLASS =
   'bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none resize-none'
@@ -242,7 +242,7 @@ export const SalandaReservationForm = () => {
         </div>
 
         <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
-          <div>
+          <div className='min-w-0'>
             <label
               htmlFor='reservationDate'
               className='text-brand-primary mb-2 block text-sm font-medium'
@@ -261,7 +261,7 @@ export const SalandaReservationForm = () => {
             />
           </div>
 
-          <div>
+          <div className='min-w-0'>
             <label
               htmlFor='arrivalTime'
               className='text-brand-primary mb-2 block text-sm font-medium'
