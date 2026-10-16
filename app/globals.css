@@ -161,3 +161,34 @@
   margin: 0 !important;
   box-shadow: none !important;
 }
+
+/* iOS Safari sizes input[type=date] to the localized date string and ignores
+   width / min-width, so the field spills out of a narrow card. Desktop
+   browsers do not, which is why a resized window never shows it. */
+@supports (-webkit-touch-callout: none) {
+  input.salanda-date-input {
+    -webkit-appearance: none;
+    appearance: none;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    min-inline-size: 0;
+    height: 100%;
+    margin: 0;
+  }
+
+  input.salanda-date-input::-webkit-date-and-time-value {
+    min-width: 0;
+    margin: 0;
+    text-align: left;
+  }
+
+  input.salanda-date-input::-webkit-datetime-edit,
+  input.salanda-date-input::-webkit-datetime-edit-fields-wrapper {
+    min-width: 0;
+    max-width: 100%;
+    padding: 0;
+  }
+}

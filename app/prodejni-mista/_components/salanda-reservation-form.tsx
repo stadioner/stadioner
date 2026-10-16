@@ -249,16 +249,23 @@ export const SalandaReservationForm = () => {
             >
               {copy.reservationDate} *
             </label>
-            <input
-              type='date'
-              id='reservationDate'
-              name='reservationDate'
-              value={formData.reservationDate}
-              onChange={handleChange}
-              min={minDate}
-              required
-              className={FIELD_CLASS}
-            />
+            {/* iOS Safari gives date inputs an intrinsic min width and paints
+                them outside the card. The shell keeps the border; the inner
+                box clips that overflow. */}
+            <div className='border-brand-action/65 bg-brand-primary focus-within:ring-brand-action/50 h-12 w-full min-w-0 max-w-full border focus-within:ring-2'>
+              <div className='grid h-full min-w-0 grid-cols-[minmax(0,1fr)] overflow-clip'>
+                <input
+                  type='date'
+                  id='reservationDate'
+                  name='reservationDate'
+                  value={formData.reservationDate}
+                  onChange={handleChange}
+                  min={minDate}
+                  required
+                  className='salanda-date-input text-brand-action col-start-1 row-start-1 block h-full w-full min-w-0 max-w-full border-0 bg-transparent px-4 text-base leading-[3rem] outline-none'
+                />
+              </div>
+            </div>
           </div>
 
           <div className='min-w-0'>
