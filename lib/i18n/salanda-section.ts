@@ -47,6 +47,7 @@ type SalandaSectionContent = {
   sectionTitle: string
   address: string
   introParagraphs: string[]
+  packagesNotice: string
   openingHoursTitle: string
   openingHours: OpeningHourRow[]
   closedLabel: string
@@ -65,6 +66,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       'Výčep Šalanda je místo v areálu pivovaru, kde si můžete dát produkty STADIONER – pivo, limonádu i vodu. K tomu najdete i něco malého k jídlu od lokálních podniků, například uzeniny z Mrákova.',
       'Doporučujeme si vzít něco teplého na sebe – uvnitř bývá chladněji.'
     ],
+    packagesNotice: 'Od května 2027 spouštíme programové balíčky.',
     openingHoursTitle: 'Otevírací doba',
     openingHours: [
       { key: 'mon', label: 'Pondělí', value: 'ZAVŘENO', closed: true },
@@ -126,6 +128,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       'The Šalanda taproom is located in the brewery premises, where you can enjoy STADIONER products – beer, lemonade and water. You will also find light bites from local businesses, such as smoked meats from Mrákova.',
       'We recommend bringing something warm to wear – it tends to be colder inside.'
     ],
+    packagesNotice: 'From May 2027 we will launch program packages.',
     openingHoursTitle: 'Opening hours',
     openingHours: [
       { key: 'mon', label: 'Monday', value: 'CLOSED', closed: true },
@@ -188,6 +191,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       'Der Ausschank Šalanda befindet sich auf dem Brauereigelände, wo Sie STADIONER-Produkte genießen können – Bier, Limonade und Wasser. Dazu gibt es kleine Speisen von lokalen Betrieben, zum Beispiel Wurstwaren aus Mrákova.',
       'Wir empfehlen, etwas Warmes anzuziehen – drinnen ist es oft kühler.'
     ],
+    packagesNotice: 'Ab Mai 2027 starten wir Programmpakete.',
     openingHoursTitle: 'Öffnungszeiten',
     openingHours: [
       { key: 'mon', label: 'Montag', value: 'GESCHLOSSEN', closed: true },

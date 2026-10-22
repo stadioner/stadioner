@@ -51,6 +51,7 @@ export const SalandaSection = ({
             {content.introParagraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
+            <p className='font-semibold'>{content.packagesNotice}</p>
           </div>
         </div>
 
