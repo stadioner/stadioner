@@ -28,19 +28,22 @@ const heroPanelCopy: Record<
     eyebrow: 'Nejbližší akce',
     pending: 'Termín brzy upřesníme',
     locationFallback: 'Místo bude doplněno',
-    holidayClosing: '1. 5. 2026 a 8. 5. 2026 máme zavřeno.'
+    holidayClosing:
+      '28. 10. 2026 (svátek) podniková prodejna otevřena 9:00–13:00.'
   },
   en: {
     eyebrow: 'Next event',
     pending: 'Date coming soon',
     locationFallback: 'Location to be announced',
-    holidayClosing: 'Closed on May 1, 2026 and May 8, 2026.'
+    holidayClosing:
+      'Oct 28, 2026 (public holiday): company store open 9:00–13:00.'
   },
   de: {
     eyebrow: 'Nächste Veranstaltung',
     pending: 'Termin folgt in Kürze',
     locationFallback: 'Ort wird noch ergänzt',
-    holidayClosing: 'Am 1. 5. 2026 und 8. 5. 2026 haben wir geschlossen.'
+    holidayClosing:
+      'Am 28. 10. 2026 (Feiertag) ist der Betriebsverkauf von 9:00–13:00 geöffnet.'
   }
 }
 

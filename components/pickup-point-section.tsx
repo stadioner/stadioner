@@ -19,6 +19,11 @@ type OpeningHourRow = {
   closed: boolean
 }
 
+type HolidayHoursRow = {
+  label: string
+  closed: boolean
+}
+
 type PickupPointContent = {
   sectionTitle: string
   address: string
@@ -29,8 +34,8 @@ type PickupPointContent = {
   openingHoursTitle: string
   openingHours: OpeningHourRow[]
   closedLabel: string
-  holidayClosingLabel: string
-  holidayClosures: string[]
+  holidayHoursLabel: string
+  holidayHours: HolidayHoursRow[]
 }
 
 const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
@@ -63,8 +68,10 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sun', label: 'Neděle', value: 'ZAVŘENO', closed: true }
     ],
     closedLabel: 'ZAVŘENO',
-    holidayClosingLabel: 'Sváteční zavírací dny',
-    holidayClosures: ['1. 5. 2026: ZAVŘENO', '8. 5. 2026: ZAVŘENO']
+    holidayHoursLabel: 'Sváteční otevírací doba',
+    holidayHours: [
+      { label: '28. 10. 2026 (svátek): 9:00 - 13:00', closed: false }
+    ]
   },
   en: {
     sectionTitle: 'Company Store',
@@ -95,8 +102,10 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sun', label: 'Sunday', value: 'CLOSED', closed: true }
     ],
     closedLabel: 'CLOSED',
-    holidayClosingLabel: 'Holiday closures',
-    holidayClosures: ['May 1, 2026: CLOSED', 'May 8, 2026: CLOSED']
+    holidayHoursLabel: 'Holiday opening hours',
+    holidayHours: [
+      { label: 'Oct 28, 2026 (public holiday): 9:00 - 13:00', closed: false }
+    ]
   },
   de: {
     sectionTitle: 'Betriebsverkauf',
@@ -127,8 +136,10 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sun', label: 'Sonntag', value: 'GESCHLOSSEN', closed: true }
     ],
     closedLabel: 'GESCHLOSSEN',
-    holidayClosingLabel: 'Feiertagsschließungen',
-    holidayClosures: ['1. 5. 2026: GESCHLOSSEN', '8. 5. 2026: GESCHLOSSEN']
+    holidayHoursLabel: 'Feiertagsöffnungszeiten',
+    holidayHours: [
+      { label: '28. 10. 2026 (Feiertag): 9:00 - 13:00', closed: false }
+    ]
   }
 }
 
@@ -210,6 +221,22 @@ export const PickupPointSection = ({
     </div>
   )
 
+  const holidayHoursBlock = (
+    <div className='mt-4 border-t border-zinc-600 pt-3 text-sm text-zinc-100'>
+      <p className='text-brand-primary font-semibold'>
+        {content.holidayHoursLabel}
+      </p>
+      {content.holidayHours.map((holiday) => (
+        <p
+          key={holiday.label}
+          className={holiday.closed ? 'text-red-400' : 'text-zinc-100'}
+        >
+          {holiday.label}
+        </p>
+      ))}
+    </div>
+  )
+
   return (
     <section
       className={
@@ -276,25 +303,18 @@ export const PickupPointSection = ({
                         {content.openingHoursTitle}
                       </h2>
                       {openingHoursList}
+                      {holidayHoursBlock}
                     </div>
                   </Border>
-                : <div className='border-t border-zinc-600 pt-4'>
-                    <h4 className='text-brand-primary mb-2 text-xl font-semibold'>
-                      {content.openingHoursTitle}
-                    </h4>
-                    {openingHoursList}
-                  </div>}
-
-                  {/*<div className='mt-4 border-t border-zinc-600 pt-3 text-sm text-zinc-100'>
-                    <p className='text-brand-primary font-semibold'>
-                      {content.holidayClosingLabel}
-                    </p>
-                    {content.holidayClosures.map((holiday) => (
-                      <p key={holiday} className='text-red-400'>
-                        {holiday}
-                      </p>
-                    ))}
-                  </div>*/}
+                : <>
+                    <div className='border-t border-zinc-600 pt-4'>
+                      <h4 className='text-brand-primary mb-2 text-xl font-semibold'>
+                        {content.openingHoursTitle}
+                      </h4>
+                      {openingHoursList}
+                    </div>
+                    {holidayHoursBlock}
+                  </>}
               </div>
             </div>
           </div>
