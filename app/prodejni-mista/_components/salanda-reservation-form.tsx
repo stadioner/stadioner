@@ -22,7 +22,7 @@ const FIELD_CLASS =
 const TEXTAREA_CLASS =
   'bg-brand-primary text-brand-action placeholder:text-brand-action/60 border-brand-action/65 focus:ring-brand-action/50 w-full border px-4 py-3 text-base focus:ring-2 focus:outline-none resize-none'
 
-const ARRIVAL_TIMES = [
+const WEEKDAY_ARRIVAL_TIMES = [
   '14:00',
   '15:00',
   '16:00',
@@ -32,6 +32,14 @@ const ARRIVAL_TIMES = [
   '20:00',
   '21:00'
 ] as const
+
+const SUNDAY_ARRIVAL_TIMES = ['17:00', '18:00', '19:00', '20:00', '21:00'] as const
+
+const isSundayDate = (isoDate: string): boolean => {
+  const [year, month, day] = isoDate.split('-').map(Number)
+  if (!year || !month || !day) return false
+  return new Date(year, month - 1, day).getDay() === 0
+}
 
 const GUEST_COUNTS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] as const
 
@@ -102,13 +110,29 @@ export const SalandaReservationForm = () => {
 
   const minDate = useMemo(() => todayIsoDate(), [])
 
+  const arrivalTimes = isSundayDate(formData.reservationDate)
+    ? SUNDAY_ARRIVAL_TIMES
+    : WEEKDAY_ARRIVAL_TIMES
+
   const handleChange = (
     event: React.ChangeEvent<
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >
   ) => {
     const { name, value } = event.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    setFormData((prev) => {
+      const next = { ...prev, [name]: value }
+      if (
+        name === 'reservationDate' &&
+        isSundayDate(value) &&
+        !SUNDAY_ARRIVAL_TIMES.includes(
+          next.arrivalTime as (typeof SUNDAY_ARRIVAL_TIMES)[number]
+        )
+      ) {
+        next.arrivalTime = SUNDAY_ARRIVAL_TIMES[0]
+      }
+      return next
+    })
   }
 
   const handleSubmit = async (event: React.FormEvent) => {
@@ -283,7 +307,7 @@ export const SalandaReservationForm = () => {
               required
               className={FIELD_CLASS}
             >
-              {ARRIVAL_TIMES.map((time) => (
+              {arrivalTimes.map((time) => (
                 <option key={time} value={time}>
                   {time}
                 </option>

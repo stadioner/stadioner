@@ -75,7 +75,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       { key: 'thu', label: 'Čtvrtek', value: 'ZAVŘENO', closed: true },
       { key: 'fri', label: 'Pátek', value: '14:00 - 22:00', closed: false },
       { key: 'sat', label: 'Sobota', value: '14:00 - 22:00', closed: false },
-      { key: 'sun', label: 'Neděle', value: '14:00 - 22:00', closed: false }
+      { key: 'sun', label: 'Neděle', value: '17:00 - 22:00', closed: false }
     ],
     closedLabel: 'ZAVŘENO',
     programTitle: 'Program týdne',
@@ -137,7 +137,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       { key: 'thu', label: 'Thursday', value: 'CLOSED', closed: true },
       { key: 'fri', label: 'Friday', value: '14:00 - 22:00', closed: false },
       { key: 'sat', label: 'Saturday', value: '14:00 - 22:00', closed: false },
-      { key: 'sun', label: 'Sunday', value: '14:00 - 22:00', closed: false }
+      { key: 'sun', label: 'Sunday', value: '17:00 - 22:00', closed: false }
     ],
     closedLabel: 'CLOSED',
     programTitle: 'Weekly program',
@@ -200,7 +200,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       { key: 'thu', label: 'Donnerstag', value: 'GESCHLOSSEN', closed: true },
       { key: 'fri', label: 'Freitag', value: '14:00 - 22:00', closed: false },
       { key: 'sat', label: 'Samstag', value: '14:00 - 22:00', closed: false },
-      { key: 'sun', label: 'Sonntag', value: '14:00 - 22:00', closed: false }
+      { key: 'sun', label: 'Sonntag', value: '17:00 - 22:00', closed: false }
     ],
     closedLabel: 'GESCHLOSSEN',
     programTitle: 'Wochenprogramm',
