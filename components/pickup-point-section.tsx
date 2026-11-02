@@ -19,11 +19,6 @@ type OpeningHourRow = {
   closed: boolean
 }
 
-type HolidayHoursRow = {
-  label: string
-  closed: boolean
-}
-
 type PickupPointContent = {
   sectionTitle: string
   address: string
@@ -34,8 +29,6 @@ type PickupPointContent = {
   openingHoursTitle: string
   openingHours: OpeningHourRow[]
   closedLabel: string
-  holidayHoursLabel: string
-  holidayHours: HolidayHoursRow[]
 }
 
 const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
@@ -67,11 +60,7 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sat', label: 'Sobota', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Neděle', value: 'ZAVŘENO', closed: true }
     ],
-    closedLabel: 'ZAVŘENO',
-    holidayHoursLabel: 'Sváteční otevírací doba',
-    holidayHours: [
-      { label: '28. 10. 2026 (svátek): 9:00 - 13:00', closed: false }
-    ]
+    closedLabel: 'ZAVŘENO'
   },
   en: {
     sectionTitle: 'Company Store',
@@ -101,11 +90,7 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sat', label: 'Saturday', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Sunday', value: 'CLOSED', closed: true }
     ],
-    closedLabel: 'CLOSED',
-    holidayHoursLabel: 'Holiday opening hours',
-    holidayHours: [
-      { label: 'Oct 28, 2026 (public holiday): 9:00 - 13:00', closed: false }
-    ]
+    closedLabel: 'CLOSED'
   },
   de: {
     sectionTitle: 'Betriebsverkauf',
@@ -135,11 +120,7 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sat', label: 'Samstag', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Sonntag', value: 'GESCHLOSSEN', closed: true }
     ],
-    closedLabel: 'GESCHLOSSEN',
-    holidayHoursLabel: 'Feiertagsöffnungszeiten',
-    holidayHours: [
-      { label: '28. 10. 2026 (Feiertag): 9:00 - 13:00', closed: false }
-    ]
+    closedLabel: 'GESCHLOSSEN'
   }
 }
 
@@ -221,22 +202,6 @@ export const PickupPointSection = ({
     </div>
   )
 
-  const holidayHoursBlock = (
-    <div className='mt-4 border-t border-zinc-600 pt-3 text-sm text-zinc-100'>
-      <p className='text-brand-primary font-semibold'>
-        {content.holidayHoursLabel}
-      </p>
-      {content.holidayHours.map((holiday) => (
-        <p
-          key={holiday.label}
-          className={holiday.closed ? 'text-red-400' : 'text-zinc-100'}
-        >
-          {holiday.label}
-        </p>
-      ))}
-    </div>
-  )
-
   return (
     <section
       className={
@@ -303,7 +268,6 @@ export const PickupPointSection = ({
                         {content.openingHoursTitle}
                       </h2>
                       {openingHoursList}
-                      {holidayHoursBlock}
                     </div>
                   </Border>
                 : <>
@@ -313,7 +277,6 @@ export const PickupPointSection = ({
                       </h4>
                       {openingHoursList}
                     </div>
-                    {holidayHoursBlock}
                   </>}
               </div>
             </div>
