@@ -29,6 +29,19 @@ type PickupPointContent = {
   openingHoursTitle: string
   openingHours: OpeningHourRow[]
   closedLabel: string
+  closureNotice: string
+}
+
+/** Inclusive last day the one-off closure stays on the page (Europe/Prague). */
+const COMPANY_STORE_CLOSED_ON = '2026-11-17'
+
+function pragueDateKey(date: Date): string {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Prague',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).format(date)
 }
 
 const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
@@ -60,7 +73,8 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sat', label: 'Sobota', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Neděle', value: 'ZAVŘENO', closed: true }
     ],
-    closedLabel: 'ZAVŘENO'
+    closedLabel: 'ZAVŘENO',
+    closureNotice: '17. 11. 2026 je podniková prodejna zavřená.'
   },
   en: {
     sectionTitle: 'Company Store',
@@ -90,7 +104,8 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sat', label: 'Saturday', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Sunday', value: 'CLOSED', closed: true }
     ],
-    closedLabel: 'CLOSED'
+    closedLabel: 'CLOSED',
+    closureNotice: 'The company store is closed on 17 November 2026.'
   },
   de: {
     sectionTitle: 'Betriebsverkauf',
@@ -120,7 +135,8 @@ const contentByLanguage: Record<SupportedLanguage, PickupPointContent> = {
       { key: 'sat', label: 'Samstag', value: '9:00 - 12:00', closed: false },
       { key: 'sun', label: 'Sonntag', value: 'GESCHLOSSEN', closed: true }
     ],
-    closedLabel: 'GESCHLOSSEN'
+    closedLabel: 'GESCHLOSSEN',
+    closureNotice: 'Am 17. November 2026 ist der Betriebsverkauf geschlossen.'
   }
 }
 
@@ -148,7 +164,11 @@ export const PickupPointSection = ({
   const language = useLanguage((state) => state.language)
   const currentLanguage = isSupportedLanguage(language) ? language : 'cs'
   const content = contentByLanguage[currentLanguage]
-  const currentDayKey = dayToRowKey[new Date().getDay()]
+  const todayKey = pragueDateKey(new Date())
+  const showClosureNotice = todayKey <= COMPANY_STORE_CLOSED_ON
+  const storeClosedToday = todayKey === COMPANY_STORE_CLOSED_ON
+  const currentDayKey =
+    storeClosedToday ? undefined : dayToRowKey[new Date().getDay()]
 
   const textColumnRef = useRef<HTMLDivElement>(null)
   const [textColumnHeightPx, setTextColumnHeightPx] = useState<number | null>(
@@ -175,6 +195,11 @@ export const PickupPointSection = ({
 
   const openingHoursList = (
     <div className='space-y-1'>
+      {showClosureNotice ?
+        <p className='px-3 py-2 text-sm font-medium text-red-400'>
+          {content.closureNotice}
+        </p>
+      : null}
       {content.openingHours.map((row) => {
         const isToday = row.key === currentDayKey
 
@@ -253,11 +278,15 @@ export const PickupPointSection = ({
               >
                 <p>{content.intro}</p>
 
-                <div className={pageLayout ? 'text-sm' : 'text-sm text-zinc-200'}>
+                <div
+                  className={pageLayout ? 'text-sm' : 'text-sm text-zinc-200'}
+                >
                   <p>{content.depositInfo}</p>
                 </div>
 
-                <div className={pageLayout ? 'text-sm' : 'text-sm text-zinc-200'}>
+                <div
+                  className={pageLayout ? 'text-sm' : 'text-sm text-zinc-200'}
+                >
                   <p>{content.paymentInfo}</p>
                 </div>
 
@@ -277,7 +306,8 @@ export const PickupPointSection = ({
                       </h4>
                       {openingHoursList}
                     </div>
-                  </>}
+                  </>
+                }
               </div>
             </div>
           </div>
