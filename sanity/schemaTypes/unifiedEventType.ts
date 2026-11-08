@@ -1,6 +1,8 @@
 import { CalendarIcon } from '@sanity/icons'
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
+import { MultiImageArrayInput } from '../components/multi-image-array-input'
+
 const languageOrder = ['cs', 'en', 'de'] as const
 
 export const unifiedEventType = defineType({
@@ -86,6 +88,14 @@ export const unifiedEventType = defineType({
       title: 'Photo Gallery',
       type: 'array',
       group: 'shared',
+      description:
+        'Upload several photos at once with “Upload multiple photos”, or drag and drop multiple files onto this field.',
+      options: {
+        layout: 'grid'
+      },
+      components: {
+        input: MultiImageArrayInput
+      },
       of: [
         defineArrayMember({
           type: 'image',
