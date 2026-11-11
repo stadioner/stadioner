@@ -648,6 +648,22 @@ const defaultMarkers: ExternalMarker[] = [
         <p>Mandloňová 161, 691 81 Horní Věstonice</p>
       </>
     )
+  },
+  {
+    position: [49.5106752, 12.8003146],
+    iconUrl: '/map/limo.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://www.mojebala.cz/mapa'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+          Bala potraviny
+        </Link>
+        <p>Vranovská 117, 345 22 Poběžovice</p>
+      </>
+    )
   }
 ]
 
