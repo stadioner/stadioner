@@ -664,6 +664,22 @@ const defaultMarkers: ExternalMarker[] = [
         <p>Vranovská 117, 345 22 Poběžovice</p>
       </>
     )
+  },
+  {
+    position: [49.4540774, 12.9565866],
+    iconUrl: '/map/hospoda.svg',
+    popupContent: (
+      <>
+        <Link
+          href='https://chrastavickahospudka.cz/'
+          target='_blank'
+          className='text-lg font-bold'
+        >
+          Chrastavická hospůdka
+        </Link>
+        <p>Chrastavice 57, 344 01 Domažlice</p>
+      </>
+    )
   }
 ]
 
