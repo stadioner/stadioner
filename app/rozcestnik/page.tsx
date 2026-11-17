@@ -88,7 +88,7 @@ export default function RozcestnikPage() {
       },
       {
         title: 'Výčep Šalanda',
-        description: 'Otevírací doba a program výčepu v areálu pivovaru',
+        description: 'V zimním období uzavřen – otevřeme na jaře',
         href: '/prodejni-mista/vycep-na-salade',
         icon: <Beer size={24} />,
         category: 'business'
@@ -189,7 +189,7 @@ export default function RozcestnikPage() {
       },
       {
         title: 'Šalanda Taproom',
-        description: 'Opening hours and weekly program at the brewery taproom',
+        description: 'Closed for the winter season – we reopen in spring',
         href: '/prodejni-mista/vycep-na-salade',
         icon: <Beer size={24} />,
         category: 'business'
@@ -292,7 +292,7 @@ export default function RozcestnikPage() {
       },
       {
         title: 'Ausschank Šalanda',
-        description: 'Öffnungszeiten und Wochenprogramm des Ausschanks',
+        description: 'In der Wintersaison geschlossen – Wiedereröffnung im Frühjahr',
         href: '/prodejni-mista/vycep-na-salade',
         icon: <Beer size={24} />,
         category: 'business'

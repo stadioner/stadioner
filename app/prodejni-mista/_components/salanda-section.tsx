@@ -8,6 +8,7 @@ import { Container } from '@/components/container'
 import { SalandaReservationForm } from '@/app/prodejni-mista/_components/salanda-reservation-form'
 import {
   getSalandaSectionContent,
+  isSalandaWinterClosed,
   salandaDayToRowKey
 } from '@/lib/i18n/salanda-section'
 import {
@@ -29,10 +30,22 @@ export const SalandaSection = ({
       language
     : 'cs'
   const content = getSalandaSectionContent(currentLanguage)
-  const currentDayKey = salandaDayToRowKey[new Date().getDay()]
+  const currentDayKey =
+    isSalandaWinterClosed ? undefined : salandaDayToRowKey[new Date().getDay()]
+  const openingHours =
+    isSalandaWinterClosed ?
+      content.openingHours.map((row) => ({
+        ...row,
+        value: content.closedLabel,
+        closed: true
+      }))
+    : content.openingHours
 
   const weeklyProgram = useMemo(
-    () => mapSalandaWeeklyProgram(program, currentLanguage),
+    () =>
+      isSalandaWinterClosed ?
+        null
+      : mapSalandaWeeklyProgram(program, currentLanguage),
     [program, currentLanguage]
   )
 
@@ -47,11 +60,21 @@ export const SalandaSection = ({
             {content.sectionTitle}
           </h1>
           <p className='text-brand-action/90 mt-1'>{content.address}</p>
+          {isSalandaWinterClosed ?
+            <p
+              className='text-brand-action mt-4 text-lg font-semibold'
+              role='status'
+            >
+              {content.winterClosureNotice}
+            </p>
+          : null}
           <div className='text-brand-action mt-4 space-y-3'>
             {content.introParagraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
-            <p className='font-semibold'>{content.packagesNotice}</p>
+            {!isSalandaWinterClosed ?
+              <p className='font-semibold'>{content.packagesNotice}</p>
+            : null}
           </div>
         </div>
 
@@ -66,7 +89,12 @@ export const SalandaSection = ({
               </h3>
 
               <div className='mt-4 flex flex-1 flex-col justify-center space-y-1'>
-                {content.openingHours.map((row) => {
+                {isSalandaWinterClosed ?
+                  <p className='px-3 py-2 text-sm font-medium text-red-400'>
+                    {content.winterClosureNotice}
+                  </p>
+                : null}
+                {openingHours.map((row) => {
                   const isToday = row.key === currentDayKey
 
                   return (
@@ -135,41 +163,49 @@ export const SalandaSection = ({
                     </li>
                   ))}
                 </ul>
-              : <p className='mt-4 flex-1 text-zinc-200'>{content.programEmpty}</p>}
+              : <p className='mt-4 flex-1 text-zinc-200'>
+                  {isSalandaWinterClosed ?
+                    content.winterClosureNotice
+                  : content.programEmpty}
+                </p>}
 
-              <div className='bg-brand-primary text-brand-action mt-4 border border-zinc-600/40 p-4'>
-                <p className='font-bold'>{content.programContactTitle}</p>
-                <p className='mt-2 text-sm leading-relaxed text-zinc-700'>
-                  {content.programContactDescription}
-                </p>
-                <div className='mt-3 flex flex-col items-end gap-2 sm:flex-row sm:flex-wrap sm:justify-end sm:gap-x-5'>
-                  <Link
-                    href='mailto:info@stadioner.cz'
-                    className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
-                  >
-                    <Mail className='size-4 shrink-0' aria-hidden />
-                    info@stadioner.cz
-                  </Link>
-                  <Link
-                    href='tel:+420721980257'
-                    className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
-                  >
-                    <Phone className='size-4 shrink-0' aria-hidden />
-                    +420 721 980 257
-                  </Link>
+              {!isSalandaWinterClosed ?
+                <div className='bg-brand-primary text-brand-action mt-4 border border-zinc-600/40 p-4'>
+                  <p className='font-bold'>{content.programContactTitle}</p>
+                  <p className='mt-2 text-sm leading-relaxed text-zinc-700'>
+                    {content.programContactDescription}
+                  </p>
+                  <div className='mt-3 flex flex-col items-end gap-2 sm:flex-row sm:flex-wrap sm:justify-end sm:gap-x-5'>
+                    <Link
+                      href='mailto:info@stadioner.cz'
+                      className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
+                    >
+                      <Mail className='size-4 shrink-0' aria-hidden />
+                      info@stadioner.cz
+                    </Link>
+                    <Link
+                      href='tel:+420721980257'
+                      className='hover:text-brand-action/70 inline-flex items-center gap-2 text-sm font-semibold transition-colors'
+                    >
+                      <Phone className='size-4 shrink-0' aria-hidden />
+                      +420 721 980 257
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              : null}
             </div>
           </Border>
         </div>
 
-        <div className='mt-6'>
-          <Border background>
-            <div className='bg-brand-action p-6 md:p-8'>
-              <SalandaReservationForm />
-            </div>
-          </Border>
-        </div>
+        {!isSalandaWinterClosed ?
+          <div className='mt-6'>
+            <Border background>
+              <div className='bg-brand-action p-6 md:p-8'>
+                <SalandaReservationForm />
+              </div>
+            </Border>
+          </div>
+        : null}
       </Container>
     </section>
   )

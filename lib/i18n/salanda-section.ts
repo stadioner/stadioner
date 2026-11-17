@@ -48,6 +48,7 @@ type SalandaSectionContent = {
   address: string
   introParagraphs: string[]
   packagesNotice: string
+  winterClosureNotice: string
   openingHoursTitle: string
   openingHours: OpeningHourRow[]
   closedLabel: string
@@ -58,6 +59,9 @@ type SalandaSectionContent = {
   reservation: SalandaReservationFormCopy
 }
 
+/** Flip to false when Šalanda reopens for the season. */
+export const isSalandaWinterClosed = true
+
 const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
   cs: {
     sectionTitle: 'Výčep Šalanda',
@@ -67,6 +71,8 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       'Doporučujeme si vzít něco teplého na sebe – uvnitř bývá chladněji.'
     ],
     packagesNotice: 'Od května 2027 spouštíme programové balíčky.',
+    winterClosureNotice:
+      'Výčep Šalanda je v zimním období uzavřen. Otevřeme na jaře.',
     openingHoursTitle: 'Otevírací doba',
     openingHours: [
       { key: 'mon', label: 'Pondělí', value: 'ZAVŘENO', closed: true },
@@ -129,6 +135,8 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       'We recommend bringing something warm to wear – it tends to be colder inside.'
     ],
     packagesNotice: 'From May 2027 we will launch program packages.',
+    winterClosureNotice:
+      'Šalanda Taproom is closed for the winter season. We reopen in spring.',
     openingHoursTitle: 'Opening hours',
     openingHours: [
       { key: 'mon', label: 'Monday', value: 'CLOSED', closed: true },
@@ -192,6 +200,8 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       'Wir empfehlen, etwas Warmes anzuziehen – drinnen ist es oft kühler.'
     ],
     packagesNotice: 'Ab Mai 2027 starten wir Programmpakete.',
+    winterClosureNotice:
+      'Der Ausschank Šalanda ist in der Wintersaison geschlossen. Wir öffnen im Frühjahr wieder.',
     openingHoursTitle: 'Öffnungszeiten',
     openingHours: [
       { key: 'mon', label: 'Montag', value: 'GESCHLOSSEN', closed: true },
