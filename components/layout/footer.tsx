@@ -59,6 +59,9 @@ export const Footer = () => {
               {language === 'en' && 'Šalanda Taproom'}
               {language === 'de' && 'Ausschank Šalanda'}
             </Link>
+            <Link href={`${localizedRootPath}/tap-takeover`}>
+              Tap Takeover
+            </Link>
             <Link href={`${localizedRootPath}/udalosti`}>
               {language === 'cs' && 'Události'}
               {language === 'en' && 'Events'}

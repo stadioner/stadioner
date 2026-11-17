@@ -44,6 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     `/${locale}/prodejni-mista/vycep-na-salade`,
     `/${locale}/newsletter`,
     `/${locale}/pro-firmy`,
+    `/${locale}/tap-takeover`,
     `/${locale}/rozcestnik`,
     `/${locale}/cookies`,
     `/${locale}/gdpr`,

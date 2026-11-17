@@ -66,6 +66,11 @@ const nextConfig: NextConfig = {
         permanent: true
       },
       {
+        source: '/tap-takeover',
+        destination: '/cs/tap-takeover',
+        permanent: true
+      },
+      {
         source: '/newsletter',
         destination: '/cs/newsletter',
         permanent: true

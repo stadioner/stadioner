@@ -10,6 +10,8 @@
 - Keep the product name and Složení button on the same baseline and readable on mobile (products UI and B2B configurator).
 - Event recap labels stay a single word (cs Shrnutí, en Recap, de Rückblick).
 - EmailJS notification emails (B2B and Šalanda) should match the branded B2B HTML table style (cream/green).
+- Special/holiday opening-hour notices on Podniková prodejna must sit inside the opening-hours panel (readable contrast), not outside on the cream background.
+- When Šalanda opening hours change, keep table-reservation arrival time slots in sync with those hours.
 
 ## Learned Workspace Facts
 
@@ -22,6 +24,6 @@
 - Past events without a recap are faded and non-navigable; events with a recap stay clickable (`lib/events/visibility.ts`).
 - Brand tokens: cream `#ede3c8`, action green `#3b492b`; shared `Border` is used across the UI.
 - Products in `lib/products/data.ts` with `published: false` stay out of public listings, the B2B configurator, and footer product links until explicitly published; footer products come from the published catalog (`getProductMap`), not a hardcoded list.
-- Photo gallery at `/fotogalerie`: Sanity `gallery` on `unifiedEvent`, filter by event, grid with lightbox prev/next; linked in navbar and footer.
+- Photo gallery at `/fotogalerie`: Sanity `gallery` on `unifiedEvent` (Studio supports bulk multi-photo upload), filter by event, grid with lightbox prev/next; linked in navbar and footer.
 - Public product UI shows a small availability disclaimer under the packaging selector (`AvailabilityNotice`, not on B2B): website availability may be outdated; verify via phone `+420 606 074 929` (`uiLabels.availabilityNotice`).
 - Výčep Šalanda includes a table reservation form via EmailJS (same pattern as the B2B inquiry form); alternate contact phone `+420 721 980 257`.

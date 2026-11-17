@@ -58,6 +58,10 @@ export const Navbar = () => {
                     }
                     href={`${localizedRootPath}/pro-firmy`}
                   />
+                  <NavItem
+                    label='Tap Takeover'
+                    href={`${localizedRootPath}/tap-takeover`}
+                  />
                 </ul>
               </div>
 

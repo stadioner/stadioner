@@ -101,6 +101,12 @@ export const Menu = ({ setIsOpen }: MenuProps) => {
               }
               href={`${localizedRootPath}/pro-firmy`}
             />
+            <NavItem
+              phone
+              setIsOpen={setIsOpen}
+              label='Tap Takeover'
+              href={`${localizedRootPath}/tap-takeover`}
+            />
           </MobileMenuSection>
 
           <MobileMenuSection divider>
