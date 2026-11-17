@@ -95,11 +95,15 @@ export const Hero = ({ upcomingEventsByLanguage }: HeroProps) => {
                                 upcomingEvent.dateTime,
                                 upcomingEvent.endDateTime
                               )}
-                              {' · '}
-                              {formatEventTimeRange(
-                                upcomingEvent.dateTime,
-                                upcomingEvent.endDateTime,
-                                activeLanguage
+                              {upcomingEvent.showTime !== false && (
+                                <>
+                                  {' · '}
+                                  {formatEventTimeRange(
+                                    upcomingEvent.dateTime,
+                                    upcomingEvent.endDateTime,
+                                    activeLanguage
+                                  )}
+                                </>
                               )}
                             </>
                           : panelCopy.pending}

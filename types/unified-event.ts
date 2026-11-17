@@ -11,6 +11,7 @@ export interface UnifiedEvent {
   _updatedAt?: string
   dateTime: string
   endDateTime?: string
+  showTime?: boolean
   location?: string
   isComingSoon?: boolean
   mainImage?: {

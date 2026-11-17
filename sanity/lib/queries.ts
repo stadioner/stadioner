@@ -55,6 +55,7 @@ const unifiedEventProjection = `
   _updatedAt,
   dateTime,
   endDateTime,
+  showTime,
   location,
   isComingSoon,
   mainImage,

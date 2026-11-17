@@ -166,14 +166,16 @@ export function EventDetail({ event, language }: EventDetailProps) {
                     language
                   )}
                 </div>
-                <div className='flex items-center gap-2'>
-                  <Clock className='text-brand-action h-5 w-5' />
-                  {formatEventTimeRange(
-                    event.dateTime,
-                    event.endDateTime,
-                    language
-                  )}
-                </div>
+                {event.showTime !== false && (
+                  <div className='flex items-center gap-2'>
+                    <Clock className='text-brand-action h-5 w-5' />
+                    {formatEventTimeRange(
+                      event.dateTime,
+                      event.endDateTime,
+                      language
+                    )}
+                  </div>
+                )}
                 {event.location && (
                   <div className='flex items-center gap-2'>
                     <MapPin className='text-brand-action h-5 w-5' />

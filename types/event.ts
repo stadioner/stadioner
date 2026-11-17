@@ -9,6 +9,7 @@ export interface Event {
   }
   dateTime: string
   endDateTime?: string
+  showTime?: boolean
   location?: string
   isComingSoon?: boolean
   rsvpCount?: number

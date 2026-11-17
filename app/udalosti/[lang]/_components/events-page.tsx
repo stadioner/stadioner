@@ -122,14 +122,16 @@ export function EventsPage({ events, language }: EventsPageProps) {
                               {event.title}
                             </h4>
                             <div className='text-brand-primary/70 flex flex-wrap gap-x-6 gap-y-2 text-sm'>
-                              <div className='flex items-center gap-1.5'>
-                                <Clock className='h-4 w-4' />
-                                {formatEventTimeRange(
-                                  event.dateTime,
-                                  event.endDateTime,
-                                  language
-                                )}
-                              </div>
+                              {event.showTime !== false && (
+                                <div className='flex items-center gap-1.5'>
+                                  <Clock className='h-4 w-4' />
+                                  {formatEventTimeRange(
+                                    event.dateTime,
+                                    event.endDateTime,
+                                    language
+                                  )}
+                                </div>
+                              )}
                               {event.location && (
                                 <div className='flex items-center gap-1.5'>
                                   <MapPin className='h-4 w-4' />
@@ -248,14 +250,16 @@ export function EventsPage({ events, language }: EventsPageProps) {
                                   : 'text-brand-primary/50'
                                 }`}
                               >
-                                <div className='flex items-center gap-1.5'>
-                                  <Clock className='h-4 w-4' />
-                                  {formatEventTimeRange(
-                                    event.dateTime,
-                                    event.endDateTime,
-                                    language
-                                  )}
-                                </div>
+                                {event.showTime !== false && (
+                                  <div className='flex items-center gap-1.5'>
+                                    <Clock className='h-4 w-4' />
+                                    {formatEventTimeRange(
+                                      event.dateTime,
+                                      event.endDateTime,
+                                      language
+                                    )}
+                                  </div>
+                                )}
                                 {event.location && (
                                   <div className='flex items-center gap-1.5'>
                                     <MapPin className='h-4 w-4' />

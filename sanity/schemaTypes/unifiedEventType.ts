@@ -31,6 +31,15 @@ export const unifiedEventType = defineType({
       group: 'shared'
     }),
     defineField({
+      name: 'showTime',
+      type: 'boolean',
+      title: 'Show time',
+      description:
+        'Turn off when the time is unknown so the website only publishes the date.',
+      initialValue: true,
+      group: 'shared'
+    }),
+    defineField({
       name: 'location',
       type: 'string',
       title: 'Location',

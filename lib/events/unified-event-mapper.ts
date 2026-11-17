@@ -30,6 +30,7 @@ export const mapUnifiedEventToEvent = (
     },
     dateTime: unifiedEvent.dateTime,
     endDateTime: unifiedEvent.endDateTime,
+    showTime: unifiedEvent.showTime !== false,
     location: unifiedEvent.location,
     isComingSoon: unifiedEvent.isComingSoon,
     rsvpCount: unifiedEvent.rsvpCount,
