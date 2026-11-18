@@ -19,7 +19,8 @@ export interface Product {
   category: string
   categoryLabel: string
   slug: string
-  url: string
+  /** Direct e-shop product URL. When omitted, buy CTA falls back to e-shop home. */
+  url?: string
   description?: string
   stats: { label: string; value: string }[]
   image: string

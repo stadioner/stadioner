@@ -8,7 +8,7 @@ export const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'maorihead-13',
-    url: 'https://eshop.stadioner.cz/products/maorihead-13',
+    url: 'https://eshop.stadioner.cz/maorihead-ipl-13/',
     description:
       'Māorihead 13° je India Pale Lager chmelený novozélandskými chmely. Spojuje čistotu ležáku s výraznou chmelovou aromatikou – svěží, moderní a stále dobře pitelný speciál.',
     stats: [
@@ -26,7 +26,6 @@ export const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'safar-15',
-    url: 'https://eshop.stadioner.cz/products/safar-15',
     description:
       'Pivo Šafář 15 je mohutný patnáctistupňový speciál s hlubokou zlatou barvou a krémovou pěnou. Nabízí plné tělo, výraznou sladovou sladkost vyváženou pevnou hořkostí a dlouhým dozníváním. Ideální k vepřovému kolenu, kachně, tvrdým sýrům nebo k pořádnému posezení, kdy si chcete dopřát něco opravdu silného.',
     stats: [
@@ -47,7 +46,7 @@ export const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'profesor-12',
-    url: 'https://eshop.stadioner.cz/products/profesor-12',
+    url: 'https://eshop.stadioner.cz/profesor-12/',
     description:
       'Pivo Profesor 12° je ideální volbou pro ty, kdo hledají poctivé, nekompromisní pivo bez zbytečných úprav. Je nefiltrované, takže si zachovává přirozenou chuť a charakter skutečného českého ležáku. Perfektně se hodí ke grilovaným masům, sýrům i jen tak k posezení s přáteli.',
     stats: [
@@ -69,7 +68,7 @@ export const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'hvozdar-12',
-    url: 'https://eshop.stadioner.cz/products/hvozdar-12',
+    url: 'https://eshop.stadioner.cz/hvozdar-12/',
     description:
       'Hvozdář 12° je tmavý ležák, který vás překvapí svou vyváženou chutí. Kombinace pražených sladů dodává pivu nezaměnitelný karamelový nádech a temně mahagonovou barvu. Ideální volba pro milovníky tmavých piv, kteří hledají plný zážitek bez přehnané sladkosti.',
     stats: [
@@ -90,7 +89,6 @@ export const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'experiment-11',
-    url: 'https://eshop.stadioner.cz/products/experiment-11',
     description:
       'Pivo Experiment 11 je skvělou volbou pro milovníky autentického pivního zážitku. Nabízí plnou chuť s výrazným charakterem, který osloví každého, kdo ocení poctivé řemeslné pivo. Skvěle doplní grilované pokrmy, uzeniny nebo chvíle strávené v dobré společnosti.',
     stats: [
@@ -111,7 +109,7 @@ export const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'pozarnik-10',
-    url: 'https://eshop.stadioner.cz/products/pozarnik-10',
+    url: 'https://eshop.stadioner.cz/pozarnik-10/',
     description:
       'Pivo Požárník 10 je osvěžující, poctivý desetistupňový ležák pro každou příležitost. Lehčí tělo, příjemná hořkost a čistá chuť bez zbytečných efektů – přesně takové pivo, které hasí žízeň a zachraňuje večer. Výborně padne k pikantním křídýlkům, hranolkům nebo kdykoliv, když je potřeba rychle a spolehlivě „uhasit".',
     stats: [
@@ -132,7 +130,7 @@ export const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'atlet-8',
-    url: 'https://eshop.stadioner.cz/products/atlet-8',
+    url: 'https://eshop.stadioner.cz/atlet-8/',
     description:
       'Atlet 8° je lehké výčepní pivo s čistou chutí a jemnou hořkostí. Nižší stupňovitost z něj dělá ideální volbu na dlouhé posezení, po sportu nebo když chcete pivo, které neunaví, ale pořád má říz a poctivý pivní charakter.',
     stats: [
@@ -153,7 +151,6 @@ export const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'indianhead-12',
-    url: 'https://eshop.stadioner.cz/products/indianhead-12',
     description:
       'Indianhead 12° je svrchně kvašené pivo stylu New England IPA. Vyniká plnějším tělem, šťavnatým projevem a výraznou chmelovou aromatikou. Chmely Sabro a Strata přinášejí tóny tropického ovoce, citrusů a jemný dozvuk peckovin.',
     stats: [
@@ -174,7 +171,6 @@ export const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'bednar-15',
-    url: 'https://eshop.stadioner.cz/products/bednar-15',
     description:
       'Bednář 15° je tmavý speciál s plným tělem a výrazným charakterem. Silnější stupňovitost a pečlivě sestavená sladová skladba dávají pivu hloubku, která ocení milovníky tmavých speciálů – ideální k pečeným masům, sýrům nebo k pomalému posezení.',
     stats: [
@@ -191,7 +187,6 @@ export const beersCs: Product[] = [
     category: 'pivo',
     categoryLabel: 'Pivo',
     slug: 'inuithead-15',
-    url: 'https://eshop.stadioner.cz/products/inuithead-15',
     description:
       'Inuithead 15° je svrchně kvašené pivo stylu New England IPA. Nabízí plnější tělo, šťavnatý projev a výraznou chmelovou aromatikou – silnější speciál pro milovníky moderních IPA.',
     stats: [
@@ -211,7 +206,6 @@ export const limosCs: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonáda',
     slug: 'limonada-malina',
-    url: 'https://eshop.stadioner.cz/products/limonada-malina',
     description:
       'Malinovka STADIONER je svěží nealkoholický nápoj vyráběný z pramenité vody z šumavských lesů. Malinová šťáva dává sladší ovocnou chuť, jemné sycení ji nechává lehkou. Bez zbytečných konzervantů, ve vratné lahvi.',
     stats: [
@@ -231,7 +225,6 @@ export const limosCs: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonáda',
     slug: 'limonada-citron',
-    url: 'https://eshop.stadioner.cz/products/limonada-citron',
     description:
       'Citronová limonáda STADIONER je svěží nealkoholický nápoj vyráběný z pramenité vody z šumavských lesů. Vyniká příjemně kyselou chutí citronu, která osvěží v každé situaci – ať už při práci, sportu nebo odpočinku. Díky pečlivě zvolenému složení bez zbytečných konzervantů je limonáda lehká, přírodní a vyvážená.',
     stats: [
@@ -252,7 +245,6 @@ export const limosCs: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonáda',
     slug: 'limonada-pomeranc',
-    url: 'https://eshop.stadioner.cz/products/limonada-pomeranc',
     description:
       'Pomerančová limonáda STADIONER je sladší nealkoholický nápoj s výraznou ovocnou chutí, vyráběný z pramenité vody z šumavských lesů. Díky jemnému sycení a přírodnímu aroma nabízí osvěžení, které potěší v horkých dnech i při odpočinku. Bez zbytečných konzervantů a umělých barviv.',
     stats: [
@@ -273,7 +265,6 @@ export const limosCs: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonáda',
     slug: 'cola-mix',
-    url: 'https://eshop.stadioner.cz/products/cola-mix',
     description:
       'Cola mix STADIONER spojuje tradiční colovou chuť s osvěžujícím citronovým nádechem. Vyrábí se z pramenité vody z šumavských lesů a je jemně sycená pro ideální pitelný zážitek. Perfektní volba pro milovníky coly, kteří chtějí něco neobvyklého, ale přitom známého.',
     stats: [
@@ -297,7 +288,6 @@ export const watersCs: Product[] = [
     category: 'voda',
     categoryLabel: 'Voda',
     slug: 'pramenita-voda-perliva',
-    url: 'https://eshop.stadioner.cz/products/pramenita-voda-perliva',
     description:
       'Pramenitá voda STADIONER pochází z čistých šumavských pramenů. Je přirozeně čistá, bez přidaných látek a minerálů. Ideální pro každodenní pití, sportovní aktivity nebo jako základ pro přípravu nápojů. Balená ve vratných obalech pro šetrnost k životnímu prostředí.',
     stats: [
@@ -318,7 +308,6 @@ export const watersCs: Product[] = [
     category: 'voda',
     categoryLabel: 'Voda',
     slug: 'pramenita-voda-neperliva',
-    url: 'https://eshop.stadioner.cz/products/pramenita-voda-neperliva',
     description:
       'Pramenitá voda STADIONER pochází z čistých šumavských pramenů. Je přirozeně čistá, bez přidaných látek a minerálů, a díky své jemné chuti je ideální pro každodenní pití. Vhodná k hydrataci během dne, sportu i k přípravě jídel či nápojů. Balená ve vratných obalech pro šetrnost k životnímu prostředí.',
     stats: [
@@ -343,7 +332,7 @@ export const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'maorihead-13',
-    url: 'https://eshop.stadioner.cz/products/maorihead-13',
+    url: 'https://eshop.stadioner.cz/maorihead-ipl-13/',
     description:
       'Māorihead 13° is an India Pale Lager hopped with New Zealand varieties. It combines lager clarity with expressive hop aroma – fresh, modern, and still easy to drink.',
     stats: [
@@ -361,7 +350,6 @@ export const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'safar-15',
-    url: 'https://eshop.stadioner.cz/products/safar-15',
     description:
       'Šafář 15 beer is a powerful fifteen-degree special with a deep golden color and creamy foam. It offers a full body, pronounced malty sweetness balanced by firm bitterness and a long finish. Ideal with pork knuckle, duck, hard cheeses, or for a proper sit-down when you want to treat yourself to something really strong.',
     stats: [
@@ -382,7 +370,7 @@ export const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'profesor-12',
-    url: 'https://eshop.stadioner.cz/products/profesor-12',
+    url: 'https://eshop.stadioner.cz/profesor-12/',
     description:
       'Professor 12° is the perfect choice for those who seek an honest, uncompromising beer without unnecessary tweaks. Unfiltered, it preserves the natural taste and character of a true Czech lager. Perfect with grilled meats, cheeses, or just for a relaxed evening with friends.',
     stats: [
@@ -404,7 +392,7 @@ export const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'hvozdar-12',
-    url: 'https://eshop.stadioner.cz/products/hvozdar-12',
+    url: 'https://eshop.stadioner.cz/hvozdar-12/',
     description:
       'Hvozdář 12° is a dark lager that surprises with its balanced taste. The combination of roasted malts gives the beer a distinctive caramel touch and a dark mahogany color. An ideal choice for dark beer lovers looking for a full experience without excessive sweetness.',
     stats: [
@@ -425,7 +413,6 @@ export const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'experiment-11',
-    url: 'https://eshop.stadioner.cz/products/experiment-11',
     description:
       'An experimental 11° lager with modern hopping, available exclusively in kegs. Perfect for venues and events – best enjoyed fresh on tap. This beer offers a unique taste experience for those who appreciate authentic craft brewing.',
     stats: [
@@ -446,7 +433,7 @@ export const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'pozarnik-10',
-    url: 'https://eshop.stadioner.cz/products/pozarnik-10',
+    url: 'https://eshop.stadioner.cz/pozarnik-10/',
     description:
       'Požárník 10 beer is a refreshing, honest ten-degree lager for any occasion. Lighter body, pleasant bitterness, and clean taste without unnecessary effects – exactly the kind of beer that quenches thirst and saves the evening. Perfect with spicy wings, fries, or whenever you need to quickly and reliably "put out the fire".',
     stats: [
@@ -467,7 +454,7 @@ export const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'atlet-8',
-    url: 'https://eshop.stadioner.cz/products/atlet-8',
+    url: 'https://eshop.stadioner.cz/atlet-8/',
     description:
       'Atlet 8° is a light tap beer with a clean taste and gentle bitterness. Its lower original gravity makes it ideal for long sessions, after sports, or whenever you want a beer that stays refreshing without losing honest lager character.',
     stats: [
@@ -488,7 +475,6 @@ export const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'indianhead-12',
-    url: 'https://eshop.stadioner.cz/products/indianhead-12',
     description:
       'Indianhead 12° is a top-fermented New England IPA with a juicy profile, fuller body, and expressive hop aroma. Sabro and Strata hops bring notes of tropical fruit, citrus, and a gentle stone-fruit finish.',
     stats: [
@@ -509,7 +495,6 @@ export const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'bednar-15',
-    url: 'https://eshop.stadioner.cz/products/bednar-15',
     description:
       'Bednář 15° is a dark special with a full body and distinctive character. Higher gravity and a carefully built malt bill give the beer depth that dark-special lovers will appreciate – ideal with roasted meats, cheeses, or a slow sit-down.',
     stats: [
@@ -526,7 +511,6 @@ export const beersEn: Product[] = [
     category: 'pivo',
     categoryLabel: 'Beer',
     slug: 'inuithead-15',
-    url: 'https://eshop.stadioner.cz/products/inuithead-15',
     description:
       'Inuithead 15° is a top-fermented New England IPA with a fuller body, juicy profile, and expressive hop aroma – a stronger special for modern IPA fans.',
     stats: [
@@ -546,7 +530,6 @@ export const limosEn: Product[] = [
     category: 'limo',
     categoryLabel: 'Lemonade',
     slug: 'limonada-malina',
-    url: 'https://eshop.stadioner.cz/products/limonada-malina',
     description:
       'STADIONER Malinovka is a refreshing non-alcoholic drink made from spring water from the Šumava forests. Raspberry juice gives it a sweeter fruit taste, and light carbonation keeps it easy to drink. No unnecessary preservatives, in a returnable bottle.',
     stats: [
@@ -566,7 +549,6 @@ export const limosEn: Product[] = [
     category: 'limo',
     categoryLabel: 'Lemonade',
     slug: 'limonada-citron',
-    url: 'https://eshop.stadioner.cz/products/limonada-citron',
     description:
       'STADIONER Lemon Lemonade is a refreshing non-alcoholic drink made from spring water from the Šumava forests. It features a pleasantly tart lemon taste that refreshes in any situation—at work, during sports, or while relaxing. Carefully balanced without unnecessary preservatives.',
     stats: [
@@ -587,7 +569,6 @@ export const limosEn: Product[] = [
     category: 'limo',
     categoryLabel: 'Lemonade',
     slug: 'limonada-pomeranc',
-    url: 'https://eshop.stadioner.cz/products/limonada-pomeranc',
     description:
       'STADIONER Orange Lemonade is a sweeter non-alcoholic drink with a pronounced fruity taste, made from spring water from the Šumava forests. Gently carbonated and naturally flavored for a pleasant refreshment.',
     stats: [
@@ -608,7 +589,6 @@ export const limosEn: Product[] = [
     category: 'limo',
     categoryLabel: 'Lemonade',
     slug: 'cola-mix',
-    url: 'https://eshop.stadioner.cz/products/cola-mix',
     description:
       'STADIONER Cola mix combines the traditional cola taste with a refreshing lemon note. Made from spring water from the Šumava forests and gently carbonated for ideal drinkability.',
     stats: [
@@ -632,7 +612,6 @@ export const watersEn: Product[] = [
     category: 'voda',
     categoryLabel: 'Water',
     slug: 'pramenita-voda-perliva',
-    url: 'https://eshop.stadioner.cz/products/pramenita-voda-perliva',
     description:
       'STADIONER spring water comes from the pristine springs of the Šumava mountains. Naturally pure, without added substances or minerals. Ideal for everyday drinking, sports, or as a base for beverages. Packed in returnable bottles for sustainability.',
     stats: [
@@ -653,7 +632,6 @@ export const watersEn: Product[] = [
     category: 'voda',
     categoryLabel: 'Water',
     slug: 'pramenita-voda-neperliva',
-    url: 'https://eshop.stadioner.cz/products/pramenita-voda-neperliva',
     description:
       'STADIONER spring water comes from clean Šumava springs. Naturally pure and with a gentle taste, ideal for everyday hydration, sports, and cooking. Packed in returnable bottles to be kind to the environment.',
     stats: [
@@ -678,7 +656,7 @@ export const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'maorihead-13',
-    url: 'https://eshop.stadioner.cz/products/maorihead-13',
+    url: 'https://eshop.stadioner.cz/maorihead-ipl-13/',
     description:
       'Māorihead 13° ist ein India Pale Lager mit neuseeländischen Hopfen. Es verbindet die Klarheit eines Lagers mit ausgeprägter Hopfenaromatik – frisch, modern und trotzdem gut trinkbar.',
     stats: [
@@ -696,7 +674,6 @@ export const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'safar-15',
-    url: 'https://eshop.stadioner.cz/products/safar-15',
     description:
       'Šafář 15 Bier ist ein kräftiger Fünfzehn-Grad-Spezial mit tiefgoldener Farbe und cremiger Schaumkrone. Es bietet einen vollen Körper, ausgeprägte Malzsüße, ausgewogen durch feste Bittere und langen Abgang. Ideal zu Schweinshaxe, Ente, Hartkäse oder zum gemütlichen Beisammensein, wenn Sie sich etwas wirklich Starkes gönnen möchten.',
     stats: [
@@ -717,7 +694,7 @@ export const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'profesor-12',
-    url: 'https://eshop.stadioner.cz/products/profesor-12',
+    url: 'https://eshop.stadioner.cz/profesor-12/',
     description:
       'Professor 12° ist die ideale Wahl für alle, die ein ehrliches, kompromissloses Bier ohne unnötige Zusätze suchen. Ungefiltert bewahrt es den natürlichen Geschmack und Charakter eines echten tschechischen Lagers. Perfekt zu Gegrilltem, Käse oder einfach zum gemütlichen Beisammensein.',
     stats: [
@@ -739,7 +716,7 @@ export const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'hvozdar-12',
-    url: 'https://eshop.stadioner.cz/products/hvozdar-12',
+    url: 'https://eshop.stadioner.cz/hvozdar-12/',
     description:
       'Hvozdář 12° ist ein dunkles Lagerbier, das mit seinem ausgewogenen Geschmack überrascht. Die Kombination aus geröstetem Malz verleiht dem Bier eine unverwechselbare Karamellnote und eine dunkelmahagonifarbene Farbe. Eine ideale Wahl für Liebhaber dunkler Biere, die ein volles Erlebnis ohne übermäßige Süße suchen.',
     stats: [
@@ -760,7 +737,6 @@ export const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'experiment-11',
-    url: 'https://eshop.stadioner.cz/products/experiment-11',
     description:
       'Experimentelles 11° Lager mit modernem Hopfen, ausschließlich in Fässern erhältlich. Ideal für Gastronomie und Events – frisch vom Fass am besten. Dieses Bier bietet ein einzigartiges Geschmackserlebnis für alle, die authentisches Handwerksbrauen schätzen.',
     stats: [
@@ -781,7 +757,7 @@ export const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'pozarnik-10',
-    url: 'https://eshop.stadioner.cz/products/pozarnik-10',
+    url: 'https://eshop.stadioner.cz/pozarnik-10/',
     description:
       'Požárník 10 Bier ist ein erfrischendes, ehrliches Zehn-Grad-Lager für jeden Anlass. Leichterer Körper, angenehme Bittere und sauberer Geschmack ohne unnötige Effekte – genau das Bier, das den Durst löscht und den Abend rettet. Perfekt zu pikanten Flügeln, Pommes oder wann immer man schnell und zuverlässig "löschen" muss.',
     stats: [
@@ -802,7 +778,7 @@ export const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'atlet-8',
-    url: 'https://eshop.stadioner.cz/products/atlet-8',
+    url: 'https://eshop.stadioner.cz/atlet-8/',
     description:
       'Atlet 8° ist ein leichtes Schankbier mit sauberem Geschmack und milder Bittere. Die niedrigere Stammwürze macht es ideal für lange Runden, nach dem Sport oder wenn Sie ein Bier möchten, das erfrischend bleibt und trotzdem ehrlichen Lagercharakter behält.',
     stats: [
@@ -823,7 +799,6 @@ export const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'indianhead-12',
-    url: 'https://eshop.stadioner.cz/products/indianhead-12',
     description:
       'Indianhead 12° ist ein obergäriges New England IPA mit saftigem Charakter, vollerem Körper und ausgeprägter Hopfenaromatik. Die Hopfensorten Sabro und Strata bringen tropische Frucht, Zitrusnoten und einen milden Nachklang von Steinobst.',
     stats: [
@@ -844,7 +819,6 @@ export const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'bednar-15',
-    url: 'https://eshop.stadioner.cz/products/bednar-15',
     description:
       'Bednář 15° ist ein dunkles Spezialbier mit vollem Körper und ausgeprägtem Charakter. Die höhere Stammwürze und die sorgfältig zusammengestellte Malzmischung geben dem Bier Tiefe – ideal zu Braten, Käse oder einem ruhigen Abend.',
     stats: [
@@ -861,7 +835,6 @@ export const beersDe: Product[] = [
     category: 'pivo',
     categoryLabel: 'Bier',
     slug: 'inuithead-15',
-    url: 'https://eshop.stadioner.cz/products/inuithead-15',
     description:
       'Inuithead 15° ist ein obergäriges New England IPA mit vollerem Körper, saftigem Charakter und ausgeprägter Hopfenaromatik – ein stärkeres Spezial für Fans moderner IPA.',
     stats: [
@@ -881,7 +854,6 @@ export const limosDe: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonade',
     slug: 'limonada-malina',
-    url: 'https://eshop.stadioner.cz/products/limonada-malina',
     description:
       'Die Malinovka von STADIONER ist ein erfrischendes alkoholfreies Getränk aus Quellwasser des Böhmerwalds. Himbeersaft sorgt für einen süßeren Fruchtgeschmack, die feine Kohlensäure hält sie leicht. Ohne unnötige Konservierungsstoffe, in der Mehrwegflasche.',
     stats: [
@@ -901,7 +873,6 @@ export const limosDe: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonade',
     slug: 'limonada-citron',
-    url: 'https://eshop.stadioner.cz/products/limonada-citron',
     description:
       'Die Zitronenlimonade von STADIONER ist ein erfrischendes alkoholfreies Getränk aus Quellwasser des Böhmerwalds. Angenehm säuerlich und ideal zum Arbeiten, Sport oder Entspannen. Ohne unnötige Konservierungsstoffe – leicht, natürlich und ausgewogen.',
     stats: [
@@ -922,7 +893,6 @@ export const limosDe: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonade',
     slug: 'limonada-pomeranc',
-    url: 'https://eshop.stadioner.cz/products/limonada-pomeranc',
     description:
       'Die Orangenlimonade von STADIONER ist ein süßer, fruchtiger Durstlöscher aus Quellwasser des Böhmerwalds. Sanft kohlensäurehaltig mit natürlichem Aroma – ideal zur Erfrischung.',
     stats: [
@@ -943,7 +913,6 @@ export const limosDe: Product[] = [
     category: 'limo',
     categoryLabel: 'Limonade',
     slug: 'cola-mix',
-    url: 'https://eshop.stadioner.cz/products/cola-mix',
     description:
       'STADIONER Cola Mix verbindet den traditionellen Cola-Geschmack mit einer erfrischenden Zitronennote. Aus Quellwasser des Böhmerwalds und sanft kohlensäurehaltig – ideal trinkbar.',
     stats: [
@@ -967,7 +936,6 @@ export const watersDe: Product[] = [
     category: 'voda',
     categoryLabel: 'Wasser',
     slug: 'pramenita-voda-perliva',
-    url: 'https://eshop.stadioner.cz/products/pramenita-voda-perliva',
     description:
       'Das Quellwasser von STADIONER stammt aus sauberen Quellen des Böhmerwalds. Natürlich rein, ohne Zusatzstoffe oder Mineralien. Ideal für den täglichen Genuss, Sport oder als Basis für Getränke. In Mehrwegflaschen für mehr Nachhaltigkeit.',
     stats: [
@@ -988,7 +956,6 @@ export const watersDe: Product[] = [
     category: 'voda',
     categoryLabel: 'Wasser',
     slug: 'pramenita-voda-neperliva',
-    url: 'https://eshop.stadioner.cz/products/pramenita-voda-neperliva-lahev',
     description:
       'STADIONER Quellwasser stammt aus reinen Böhmerwaldquellen. Natürlich rein, mit sanftem Geschmack – ideal für tägliche Hydration, Sport und Kochen. In Mehrwegflaschen für die Umwelt.',
     stats: [

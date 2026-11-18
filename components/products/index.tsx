@@ -15,6 +15,7 @@ import { AvailabilityNotice } from './availability-notice'
 import { ProductImage } from './product-image'
 import { ProductInfo } from './product-info'
 import type { PackagingKey, PackagingOption } from '@/types/products'
+import { resolveEshopProductUrl } from '@/lib/products/utils'
 
 export const Products = ({
   rippedPaper,
@@ -111,14 +112,7 @@ export const Products = ({
     packagingOptions.find((o) => o.key === selectedPackaging)?.label ||
     labels.packaging
 
-  const buyUrl = product.url
-
-  // Products that are being prepared (not available for purchase)
-  const preparingProducts = ['experiment-11']
-  const isPreparing =
-    preparingProducts.includes(product.slug) ||
-    (product.slug === '' &&
-      (selectedPackaging === 'bottle' || selectedPackaging === 'crate'))
+  const buyUrl = resolveEshopProductUrl(product.url)
 
   const handlePackagingChange = (key: PackagingKey) => {
     setSelectedPackagingBySlug((prev) => ({
@@ -182,9 +176,7 @@ export const Products = ({
 
             <ProductInfo
               product={product}
-              selectedPackaging={selectedPackaging}
               buyUrl={buyUrl}
-              isPreparing={isPreparing}
               hideBuyButton={b2bMode}
               noteText={b2bMode ? b2bNote : undefined}
               cta={
@@ -200,8 +192,7 @@ export const Products = ({
                 composition: labels.composition,
                 compositionTitle: labels.compositionTitle,
                 depositNote: labels.depositNote,
-                buy: labels.buy,
-                preparing: labels.preparing
+                buy: labels.buy
               }}
             />
 

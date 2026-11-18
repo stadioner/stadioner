@@ -4,6 +4,7 @@ import { Suspense } from 'react'
 import { Metadata } from 'next'
 import { buildPageMetadata } from '@/lib/seo/metadata'
 import { beersCs, limosCs, watersCs, getPublishedProducts } from '@/lib/products/data'
+import { resolveEshopProductUrl } from '@/lib/products/utils'
 import { buildProductSchema, jsonLdToHtml } from '@/lib/seo/schema'
 import { toAbsoluteUrl } from '@/lib/seo/site'
 
@@ -38,7 +39,7 @@ export default function ProduktyPage() {
           sku: product.slug,
           language: 'cs',
           imageUrl: toAbsoluteUrl(product.image),
-          productUrl: product.url,
+          productUrl: resolveEshopProductUrl(product.url),
           availability: 'InStock'
         })
       }

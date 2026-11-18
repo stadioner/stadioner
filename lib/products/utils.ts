@@ -1,5 +1,13 @@
 import type { ProductVariantUrls } from '@/types/products'
 
+export const ESHOP_HOME_URL = 'https://eshop.stadioner.cz'
+
+/** Product e-shop URL, or e-shop homepage when the product is not listed. */
+export const resolveEshopProductUrl = (url?: string): string => {
+  const trimmed = url?.trim()
+  return trimmed ? trimmed : ESHOP_HOME_URL
+}
+
 export const formatPriceCzk = (amount: number): string =>
   new Intl.NumberFormat('cs-CZ', {
     maximumFractionDigits: 0

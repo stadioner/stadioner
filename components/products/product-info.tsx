@@ -9,40 +9,17 @@ import {
   DialogTitle,
   DialogTrigger
 } from '@/components/ui/dialog'
-import type { PackagingKey, Product } from '@/types/products'
-import { formatPriceCzk } from '@/lib/products/utils'
-
-function resolvePriceLine(
-  product: Product,
-  packaging: PackagingKey
-): string | null {
-  if (packaging === 'bottle' && product.bottlePriceCzk != null) {
-    return `${formatPriceCzk(product.bottlePriceCzk)} Kč`
-  }
-  if (packaging === 'crate' && product.cratePriceCzk != null) {
-    return `${formatPriceCzk(product.cratePriceCzk)} Kč`
-  }
-  if (packaging === 'barrel20' || packaging === 'barrel30' || packaging === 'barrel50') {
-    const amount = product.kegPricesCzk?.[packaging]
-    if (amount != null) {
-      return `${formatPriceCzk(amount)} Kč`
-    }
-  }
-  return null
-}
+import type { Product } from '@/types/products'
 
 interface ProductInfoProps {
   product: Product
-  selectedPackaging: PackagingKey
   buyUrl: string
   labels: {
     composition: string
     compositionTitle: string
     depositNote: string
     buy: string
-    preparing: string
   }
-  isPreparing?: boolean
   hideBuyButton?: boolean
   noteText?: string
   cta?: {
@@ -54,17 +31,14 @@ interface ProductInfoProps {
 
 export const ProductInfo = ({
   product,
-  selectedPackaging,
   buyUrl,
   labels,
-  isPreparing = false,
   hideBuyButton = false,
   noteText,
   cta
 }: ProductInfoProps) => {
   // Use slug as key to only animate on product change, not packaging change
   const productKey = product.slug
-  const priceLine = resolvePriceLine(product, selectedPackaging)
 
   return (
     <div className='flex flex-1 flex-col justify-center'>
@@ -85,7 +59,7 @@ export const ProductInfo = ({
               className='text-brand-primary m-0 flex flex-wrap items-end gap-x-2.5 text-2xl leading-none font-bold sm:gap-x-3 sm:text-3xl md:text-6xl'
             >
               <span>{product.name}</span>
-              {!hideBuyButton && product.ingredients ?
+              {product.ingredients ?
                 <Dialog>
                   <DialogTrigger className='border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-brand-action inline-flex shrink-0 cursor-pointer items-center border px-2.5 py-1 text-sm leading-none font-bold transition hover:opacity-90 sm:px-3 sm:py-1.5 sm:text-base md:px-3.5 md:py-2 md:text-lg'>
                     {labels.composition}
@@ -124,9 +98,9 @@ export const ProductInfo = ({
           : null}
         </AnimatePresence>
 
-        {/*{hideBuyButton && (
+        {hideBuyButton ?
           <div className='mt-2 sm:mt-3'>
-            {cta && (
+            {cta ?
               <Button
                 asChild
                 variant='shop'
@@ -140,59 +114,28 @@ export const ProductInfo = ({
                   {cta.label}
                 </Link>
               </Button>
-            )}
-            {noteText && (
+            : null}
+            {noteText ?
               <p className='mt-2 text-xs text-zinc-300'>{noteText}</p>
-            )}
+            : null}
           </div>
-        )}
-
-        {!hideBuyButton && (
-          <>
-            <div className='mb-3 flex justify-between border-t border-zinc-600 pt-3 sm:mb-6 sm:pt-6'>
-              {product.stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className='flex min-w-[70px] flex-col items-center sm:min-w-[90px]'
-                >
-                  <span className='text-xs text-zinc-400'>{stat.label}</span>
-                  <span className='text-brand-primary text-sm font-bold sm:text-lg'>
-                    {stat.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <div className='inline-flex flex-col items-start'>
-              {isPreparing ?
-                <Button
-                  variant={'shop'}
-                  className='w-fit'
-                  disabled
-                >
-                  {labels.preparing}
-                </Button>
-              : <Button
-                  asChild
-                  variant={'shop'}
-                  className='w-fit'
-                >
-                  <Link
-                    href={buyUrl}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                  >
-                    {labels.buy}
-                  </Link>
-                </Button>
-              }
-              {!isPreparing && (
-                <p className='mt-1 text-xs text-zinc-400'>
-                  {labels.depositNote}
-                </p>
-              )}
-            </div>
-          </>
-        )}*/}
+        : <div className='inline-flex flex-col items-start'>
+            <Button
+              asChild
+              variant='shop'
+              className='w-fit'
+            >
+              <Link
+                href={buyUrl}
+                target='_blank'
+                rel='noopener noreferrer'
+              >
+                {labels.buy}
+              </Link>
+            </Button>
+            <p className='mt-1 text-xs text-zinc-400'>{labels.depositNote}</p>
+          </div>
+        }
       </div>
     </div>
   )
