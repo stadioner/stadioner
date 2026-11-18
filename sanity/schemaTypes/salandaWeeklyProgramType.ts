@@ -34,8 +34,8 @@ export const salandaWeeklyProgramType = defineType({
               name: 'time',
               title: 'Čas',
               type: 'string',
-              description: 'Např. 18:00 nebo 16:00–20:00',
-              validation: (Rule) => Rule.required()
+              description:
+                'Např. 18:00 nebo 16:00–20:00. Nechte prázdné, pokud čas není známý.'
             }),
             defineField({
               name: 'title',

@@ -15,6 +15,7 @@ export type SalandaOccasionOption = {
 export type SalandaReservationFormCopy = {
   title: string
   subtitle: string
+  adventOnlySubtitle: string
   phoneHint: string
   phoneDisplay: string
   phoneHref: string
@@ -25,6 +26,7 @@ export type SalandaReservationFormCopy = {
   email: string
   emailPlaceholder: string
   reservationDate: string
+  adventDatePlaceholder: string
   arrivalTime: string
   guests: string
   guestsLabel: (count: number) => string
@@ -53,6 +55,7 @@ type SalandaSectionContent = {
   openingHours: OpeningHourRow[]
   closedLabel: string
   programTitle: string
+  adventProgramTitle: string
   programEmpty: string
   programContactTitle: string
   programContactDescription: string
@@ -72,7 +75,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     ],
     packagesNotice: 'Od května 2027 spouštíme programové balíčky.',
     winterClosureNotice:
-      'Výčep Šalanda je v zimním období uzavřen. Otevřeme na jaře.',
+      'Výčep Šalanda je v zimním období uzavřen. Výjimkou jsou adventní neděle 6., 13. a 20. prosince – na ty můžete rezervovat stůl.',
     openingHoursTitle: 'Otevírací doba',
     openingHours: [
       { key: 'mon', label: 'Pondělí', value: 'ZAVŘENO', closed: true },
@@ -85,6 +88,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     ],
     closedLabel: 'ZAVŘENO',
     programTitle: 'Program týdne',
+    adventProgramTitle: 'Adventní program',
     programEmpty: 'Program na tento týden právě připravujeme. Sledujte nás na sociálních sítích.',
     programContactTitle: 'Chcete vystoupit nebo něco navrhnout?',
     programContactDescription:
@@ -92,6 +96,8 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     reservation: {
       title: 'Rezervace stolu',
       subtitle: 'Těšíme se na vaši návštěvu!',
+      adventOnlySubtitle:
+        'Rezervace je dočasně dostupná pouze na adventní hudební program (6., 13. a 20. 12.).',
       phoneHint: 'Nebo volejte:',
       phoneDisplay: '+420 721 980 257',
       phoneHref: 'tel:+420721980257',
@@ -102,6 +108,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       email: 'E-mail',
       emailPlaceholder: 'vas@email.cz',
       reservationDate: 'Datum rezervace',
+      adventDatePlaceholder: 'Vyberte adventní neděli',
       arrivalTime: 'Čas příchodu',
       guests: 'Počet osob',
       guestsLabel: (count) =>
@@ -110,6 +117,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       occasion: 'Událost / příležitost',
       occasionPlaceholder: 'Vyberte příležitost',
       occasionOptions: [
+        { value: 'advent', label: 'Adventní hudební program' },
         { value: 'regular', label: 'Běžná rezervace stolu' },
         { value: 'birthday', label: 'Narozeniny' },
         { value: 'family', label: 'Rodinná oslava' },
@@ -136,7 +144,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     ],
     packagesNotice: 'From May 2027 we will launch program packages.',
     winterClosureNotice:
-      'Šalanda Taproom is closed for the winter season. We reopen in spring.',
+      'Šalanda Taproom is closed for the winter season. Exception: Advent Sundays 6, 13 and 20 December – you can reserve a table for those dates.',
     openingHoursTitle: 'Opening hours',
     openingHours: [
       { key: 'mon', label: 'Monday', value: 'CLOSED', closed: true },
@@ -149,6 +157,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     ],
     closedLabel: 'CLOSED',
     programTitle: 'Weekly program',
+    adventProgramTitle: 'Advent program',
     programEmpty:
       'We are currently preparing the program for this week. Follow us on social media.',
     programContactTitle: 'Want to perform or suggest something?',
@@ -157,6 +166,8 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     reservation: {
       title: 'Table reservation',
       subtitle: 'We look forward to your visit!',
+      adventOnlySubtitle:
+        'Reservations are temporarily available only for the Advent music program (6, 13 and 20 Dec).',
       phoneHint: 'Or call:',
       phoneDisplay: '+420 721 980 257',
       phoneHref: 'tel:+420721980257',
@@ -167,6 +178,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       email: 'E-mail',
       emailPlaceholder: 'you@email.com',
       reservationDate: 'Reservation date',
+      adventDatePlaceholder: 'Select an Advent Sunday',
       arrivalTime: 'Arrival time',
       guests: 'Number of guests',
       guestsLabel: (count) =>
@@ -175,6 +187,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       occasion: 'Occasion',
       occasionPlaceholder: 'Select an occasion',
       occasionOptions: [
+        { value: 'advent', label: 'Advent music program' },
         { value: 'regular', label: 'Regular table reservation' },
         { value: 'birthday', label: 'Birthday' },
         { value: 'family', label: 'Family celebration' },
@@ -201,7 +214,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     ],
     packagesNotice: 'Ab Mai 2027 starten wir Programmpakete.',
     winterClosureNotice:
-      'Der Ausschank Šalanda ist in der Wintersaison geschlossen. Wir öffnen im Frühjahr wieder.',
+      'Der Ausschank Šalanda ist in der Wintersaison geschlossen. Ausnahme: die Adventssonntage 6., 13. und 20. Dezember – für diese Termine können Sie einen Tisch reservieren.',
     openingHoursTitle: 'Öffnungszeiten',
     openingHours: [
       { key: 'mon', label: 'Montag', value: 'GESCHLOSSEN', closed: true },
@@ -214,6 +227,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     ],
     closedLabel: 'GESCHLOSSEN',
     programTitle: 'Wochenprogramm',
+    adventProgramTitle: 'Adventsprogramm',
     programEmpty:
       'Das Programm für diese Woche wird gerade vorbereitet. Folgen Sie uns in den sozialen Netzwerken.',
     programContactTitle: 'Möchten Sie auftreten oder etwas vorschlagen?',
@@ -222,6 +236,8 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
     reservation: {
       title: 'Tischreservierung',
       subtitle: 'Wir freuen uns auf Ihren Besuch!',
+      adventOnlySubtitle:
+        'Reservierungen sind vorübergehend nur für das adventliche Musikprogramm (6., 13. und 20. 12.) möglich.',
       phoneHint: 'Oder rufen Sie an:',
       phoneDisplay: '+420 721 980 257',
       phoneHref: 'tel:+420721980257',
@@ -232,6 +248,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       email: 'E-Mail',
       emailPlaceholder: 'ihre@email.de',
       reservationDate: 'Reservierungsdatum',
+      adventDatePlaceholder: 'Adventssonntag wählen',
       arrivalTime: 'Ankunftszeit',
       guests: 'Anzahl der Personen',
       guestsLabel: (count) =>
@@ -240,6 +257,7 @@ const contentByLanguage: Record<SupportedLanguage, SalandaSectionContent> = {
       occasion: 'Anlass',
       occasionPlaceholder: 'Anlass auswählen',
       occasionOptions: [
+        { value: 'advent', label: 'Adventliches Musikprogramm' },
         { value: 'regular', label: 'Normale Tischreservierung' },
         { value: 'birthday', label: 'Geburtstag' },
         { value: 'family', label: 'Familienfeier' },

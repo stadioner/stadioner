@@ -15,6 +15,7 @@ import {
   isSupportedLanguage,
   type SupportedLanguage
 } from '@/lib/i18n/site-languages'
+import { isSalandaAdventReservationPeriod } from '@/lib/salanda/advent'
 import { mapSalandaWeeklyProgram } from '@/lib/salanda/program-mapper'
 import { cn } from '@/lib/utils'
 import { useLanguage } from '@/store/use-language'
@@ -30,6 +31,11 @@ export const SalandaSection = ({
       language
     : 'cs'
   const content = getSalandaSectionContent(currentLanguage)
+  const adventReservationsOpen = isSalandaAdventReservationPeriod()
+  const showProgramDespiteWinter =
+    isSalandaWinterClosed && adventReservationsOpen
+  const showReservationForm =
+    !isSalandaWinterClosed || adventReservationsOpen
   const currentDayKey =
     isSalandaWinterClosed ? undefined : salandaDayToRowKey[new Date().getDay()]
   const openingHours =
@@ -41,13 +47,18 @@ export const SalandaSection = ({
       }))
     : content.openingHours
 
-  const weeklyProgram = useMemo(
-    () =>
-      isSalandaWinterClosed ?
-        null
-      : mapSalandaWeeklyProgram(program, currentLanguage),
-    [program, currentLanguage]
-  )
+  const weeklyProgram = useMemo(() => {
+    if (isSalandaWinterClosed && !adventReservationsOpen) {
+      return null
+    }
+
+    return mapSalandaWeeklyProgram(program, currentLanguage)
+  }, [program, currentLanguage, adventReservationsOpen])
+
+  const programTitle =
+    showProgramDespiteWinter ?
+      content.adventProgramTitle
+    : content.programTitle
 
   return (
     <section
@@ -132,7 +143,7 @@ export const SalandaSection = ({
           >
             <div className='bg-brand-action flex h-full flex-col p-5 md:p-6'>
               <h3 className='text-brand-primary text-2xl font-bold md:text-3xl'>
-                {content.programTitle}
+                {programTitle}
               </h3>
 
               {weeklyProgram ?
@@ -164,7 +175,7 @@ export const SalandaSection = ({
                   ))}
                 </ul>
               : <p className='mt-4 flex-1 text-zinc-200'>
-                  {isSalandaWinterClosed ?
+                  {isSalandaWinterClosed && !adventReservationsOpen ?
                     content.winterClosureNotice
                   : content.programEmpty}
                 </p>}
@@ -197,11 +208,15 @@ export const SalandaSection = ({
           </Border>
         </div>
 
-        {!isSalandaWinterClosed ?
+        {showReservationForm ?
           <div className='mt-6'>
             <Border background>
               <div className='bg-brand-action p-6 md:p-8'>
-                <SalandaReservationForm />
+                <SalandaReservationForm
+                  adventDatesOnly={
+                    isSalandaWinterClosed && adventReservationsOpen
+                  }
+                />
               </div>
             </Border>
           </div>

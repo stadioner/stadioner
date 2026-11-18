@@ -7,7 +7,7 @@ import { buildPageMetadata } from '@/lib/seo/metadata'
 export const metadata: Metadata = buildPageMetadata({
   title: 'Výčep Šalanda - Pivovar Kout na Šumavě',
   description:
-    'Výčep Šalanda v areálu pivovaru STADIONER. V zimním období uzavřen – otevřeme na jaře.',
+    'Výčep Šalanda v areálu pivovaru STADIONER. V zimním období uzavřen – výjimkou jsou adventní neděle 6., 13. a 20. prosince.',
   canonicalPath: '/cs/prodejni-mista/vycep-na-salade',
   keywords: [
     'výčep',
@@ -16,7 +16,8 @@ export const metadata: Metadata = buildPageMetadata({
     'STADIONER',
     'Kout na Šumavě',
     'otevírací doba',
-    'program'
+    'program',
+    'advent'
   ]
 })
 

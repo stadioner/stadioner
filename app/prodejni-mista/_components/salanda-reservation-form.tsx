@@ -14,6 +14,11 @@ import {
   isSupportedLanguage,
   type SupportedLanguage
 } from '@/lib/i18n/site-languages'
+import {
+  isSalandaAdventReservationDate,
+  SALANDA_ADVENT_RESERVATION_DATES
+} from '@/lib/salanda/advent'
+import { formatSalandaProgramDate } from '@/lib/salanda/format-program-date'
 import { useLanguage } from '@/store/use-language'
 
 const FIELD_CLASS =
@@ -54,16 +59,16 @@ interface FormData {
   note: string
 }
 
-const emptyForm: FormData = {
+const createEmptyForm = (adventDatesOnly: boolean): FormData => ({
   fullName: '',
   phone: '',
   email: '',
   reservationDate: '',
   arrivalTime: '18:00',
   guests: '2',
-  occasion: 'regular',
+  occasion: adventDatesOnly ? 'advent' : 'regular',
   note: ''
-}
+})
 
 const languageLabel = (language: SupportedLanguage): string => {
   if (language === 'cs') return 'Čeština'
@@ -97,7 +102,11 @@ const guestsDisplay = (
   return guests
 }
 
-export const SalandaReservationForm = () => {
+export const SalandaReservationForm = ({
+  adventDatesOnly = false
+}: {
+  adventDatesOnly?: boolean
+}) => {
   const language = useLanguage((state) => state.language)
   const currentLanguage: SupportedLanguage = isSupportedLanguage(language)
     ? language
@@ -106,9 +115,18 @@ export const SalandaReservationForm = () => {
   const { showToast } = useToast()
 
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const [formData, setFormData] = useState<FormData>(emptyForm)
+  const [formData, setFormData] = useState<FormData>(() =>
+    createEmptyForm(adventDatesOnly)
+  )
 
   const minDate = useMemo(() => todayIsoDate(), [])
+  const today = minDate
+
+  const availableAdventDates = useMemo(
+    () =>
+      SALANDA_ADVENT_RESERVATION_DATES.filter((date) => date >= today),
+    [today]
+  )
 
   const arrivalTimes = isSundayDate(formData.reservationDate)
     ? SUNDAY_ARRIVAL_TIMES
@@ -140,6 +158,13 @@ export const SalandaReservationForm = () => {
     setIsSubmitting(true)
 
     try {
+      if (
+        adventDatesOnly &&
+        !isSalandaAdventReservationDate(formData.reservationDate)
+      ) {
+        throw new Error('Reservation date is outside Advent openings')
+      }
+
       const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
       const templateId = process.env.NEXT_PUBLIC_EMAILJS_SALANDA_TEMPLATE_ID
       const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
@@ -172,7 +197,7 @@ export const SalandaReservationForm = () => {
       })
 
       showToast(copy.success, 'success')
-      setFormData(emptyForm)
+      setFormData(createEmptyForm(adventDatesOnly))
     } catch (error) {
       console.error('EmailJS error:', error)
       showToast(copy.error, 'error')
@@ -186,7 +211,9 @@ export const SalandaReservationForm = () => {
       <h3 className='text-brand-primary text-2xl font-bold md:text-3xl'>
         {copy.title}
       </h3>
-      <p className='text-brand-primary/90 mt-2'>{copy.subtitle}</p>
+      <p className='text-brand-primary/90 mt-2'>
+        {adventDatesOnly ? copy.adventOnlySubtitle : copy.subtitle}
+      </p>
       <p className='text-brand-primary/90 mt-3 text-sm'>
         {copy.phoneHint}{' '}
         <Link
@@ -273,23 +300,42 @@ export const SalandaReservationForm = () => {
             >
               {copy.reservationDate} *
             </label>
-            {/* iOS Safari gives date inputs an intrinsic min width and paints
+            {adventDatesOnly ?
+              <select
+                id='reservationDate'
+                name='reservationDate'
+                value={formData.reservationDate}
+                onChange={handleChange}
+                required
+                className={FIELD_CLASS}
+              >
+                <option value='' disabled>
+                  {copy.adventDatePlaceholder}
+                </option>
+                {availableAdventDates.map((date) => (
+                  <option key={date} value={date}>
+                    {formatSalandaProgramDate(date, currentLanguage)}
+                  </option>
+                ))}
+              </select>
+            : /* iOS Safari gives date inputs an intrinsic min width and paints
                 them outside the card. The shell keeps the border; the inner
-                box clips that overflow. */}
-            <div className='border-brand-action/65 bg-brand-primary focus-within:ring-brand-action/50 h-12 w-full min-w-0 max-w-full border focus-within:ring-2'>
-              <div className='grid h-full min-w-0 grid-cols-[minmax(0,1fr)] overflow-clip'>
-                <input
-                  type='date'
-                  id='reservationDate'
-                  name='reservationDate'
-                  value={formData.reservationDate}
-                  onChange={handleChange}
-                  min={minDate}
-                  required
-                  className='salanda-date-input text-brand-action col-start-1 row-start-1 block h-full w-full min-w-0 max-w-full border-0 bg-transparent px-4 text-base leading-[3rem] outline-none'
-                />
+                box clips that overflow. */
+              <div className='border-brand-action/65 bg-brand-primary focus-within:ring-brand-action/50 h-12 w-full min-w-0 max-w-full border focus-within:ring-2'>
+                <div className='grid h-full min-w-0 grid-cols-[minmax(0,1fr)] overflow-clip'>
+                  <input
+                    type='date'
+                    id='reservationDate'
+                    name='reservationDate'
+                    value={formData.reservationDate}
+                    onChange={handleChange}
+                    min={minDate}
+                    required
+                    className='salanda-date-input text-brand-action col-start-1 row-start-1 block h-full w-full min-w-0 max-w-full border-0 bg-transparent px-4 text-base leading-[3rem] outline-none'
+                  />
+                </div>
               </div>
-            </div>
+            }
           </div>
 
           <div className='min-w-0'>
@@ -340,27 +386,29 @@ export const SalandaReservationForm = () => {
           </select>
         </div>
 
-        <div>
-          <label
-            htmlFor='occasion'
-            className='text-brand-primary mb-2 block text-sm font-medium'
-          >
-            {copy.occasion}
-          </label>
-          <select
-            id='occasion'
-            name='occasion'
-            value={formData.occasion}
-            onChange={handleChange}
-            className={FIELD_CLASS}
-          >
-            {copy.occasionOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </div>
+        {!adventDatesOnly ?
+          <div>
+            <label
+              htmlFor='occasion'
+              className='text-brand-primary mb-2 block text-sm font-medium'
+            >
+              {copy.occasion}
+            </label>
+            <select
+              id='occasion'
+              name='occasion'
+              value={formData.occasion}
+              onChange={handleChange}
+              className={FIELD_CLASS}
+            >
+              {copy.occasionOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </select>
+          </div>
+        : null}
 
         <div>
           <label

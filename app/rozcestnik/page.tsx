@@ -88,7 +88,8 @@ export default function RozcestnikPage() {
       },
       {
         title: 'Výčep Šalanda',
-        description: 'V zimním období uzavřen – otevřeme na jaře',
+        description:
+          'V zimním období uzavřen – výjimkou adventní neděle 6., 13. a 20. 12.',
         href: '/prodejni-mista/vycep-na-salade',
         icon: <Beer size={24} />,
         category: 'business'
@@ -189,7 +190,8 @@ export default function RozcestnikPage() {
       },
       {
         title: 'Šalanda Taproom',
-        description: 'Closed for the winter season – we reopen in spring',
+        description:
+          'Closed for winter – exception: Advent Sundays 6, 13 and 20 Dec',
         href: '/prodejni-mista/vycep-na-salade',
         icon: <Beer size={24} />,
         category: 'business'
@@ -292,7 +294,8 @@ export default function RozcestnikPage() {
       },
       {
         title: 'Ausschank Šalanda',
-        description: 'In der Wintersaison geschlossen – Wiedereröffnung im Frühjahr',
+        description:
+          'Im Winter geschlossen – Ausnahme: Adventssonntage 6., 13. und 20. 12.',
         href: '/prodejni-mista/vycep-na-salade',
         icon: <Beer size={24} />,
         category: 'business'
