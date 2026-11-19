@@ -8,6 +8,7 @@ export interface TakeoverFaqItem {
 export interface TakeoverHighlightItem {
   id: string
   title: string
+  description: string
 }
 
 export interface TakeoverFormCopy {
@@ -61,6 +62,7 @@ export interface TakeoverSectionCopy {
     lead: string
     highlights: TakeoverHighlightItem[]
     deliverTitle: string
+    deliverLead: string
     deliverItems: string[]
   }
   calculator: TakeoverCalculatorCopy
@@ -92,12 +94,29 @@ export const takeoverContent: Record<TakeoverLanguage, TakeoverSectionCopy> = {
       title: 'Jak to vypadá',
       lead: 'Jeden večer u Vás. My přivezeme pivo, program i atmosféru.',
       highlights: [
-        { id: 'evening', title: 'Speciální pivní večer' },
-        { id: 'taps', title: '5–6 piv na čepu' },
-        { id: 'tasting', title: 'Degustace s příběhy' },
-        { id: 'program', title: 'Program pro hosty' }
+        {
+          id: 'evening',
+          title: 'Speciální pivní večer',
+          description: 'Hotový formát akce přímo ve Vaší hospodě.'
+        },
+        {
+          id: 'taps',
+          title: '5–6 piv na čepu',
+          description: 'Ležáky i speciály rovnou z pivovaru.'
+        },
+        {
+          id: 'tasting',
+          title: 'Degustace s příběhy',
+          description: 'Každé pivo dostane svůj příběh a sklenici.'
+        },
+        {
+          id: 'program',
+          title: 'Program pro hosty',
+          description: 'Kvíz a atmosféra, která večer podrží.'
+        }
       ],
       deliverTitle: 'Od nás dostanete',
+      deliverLead: 'Technika, pivo i prezentace. Vy se věnujete hostům.',
       deliverItems: [
         'Piva za VO ceny',
         'Sklenice 0,3 l zdarma',
@@ -189,12 +208,29 @@ export const takeoverContent: Record<TakeoverLanguage, TakeoverSectionCopy> = {
       title: 'How it works',
       lead: 'One night at Your venue. We bring the beer, programme and atmosphere.',
       highlights: [
-        { id: 'evening', title: 'Special beer evening' },
-        { id: 'taps', title: '5–6 beers on tap' },
-        { id: 'tasting', title: 'Tasting with stories' },
-        { id: 'program', title: 'Guest programme' }
+        {
+          id: 'evening',
+          title: 'Special beer evening',
+          description: 'A ready-made format at Your pub.'
+        },
+        {
+          id: 'taps',
+          title: '5–6 beers on tap',
+          description: 'Lagers and specials straight from the brewery.'
+        },
+        {
+          id: 'tasting',
+          title: 'Tasting with stories',
+          description: 'Each beer gets its story and a glass.'
+        },
+        {
+          id: 'program',
+          title: 'Guest programme',
+          description: 'A quiz and atmosphere that carry the night.'
+        }
       ],
       deliverTitle: 'What You get from us',
+      deliverLead: 'Beer, kit and presentation. You focus on Your guests.',
       deliverItems: [
         'Beers at wholesale prices',
         'Free 0.3 l glasses',
@@ -285,12 +321,29 @@ export const takeoverContent: Record<TakeoverLanguage, TakeoverSectionCopy> = {
       title: 'So läuft es ab',
       lead: 'Ein Abend bei Ihnen. Wir bringen Bier, Programm und Atmosphäre.',
       highlights: [
-        { id: 'evening', title: 'Besonderer Bierabend' },
-        { id: 'taps', title: '5–6 Biere vom Fass' },
-        { id: 'tasting', title: 'Verkostung mit Geschichten' },
-        { id: 'program', title: 'Programm für Gäste' }
+        {
+          id: 'evening',
+          title: 'Besonderer Bierabend',
+          description: 'Fertiges Format direkt in Ihrer Kneipe.'
+        },
+        {
+          id: 'taps',
+          title: '5–6 Biere vom Fass',
+          description: 'Lager und Spezialitäten direkt aus der Brauerei.'
+        },
+        {
+          id: 'tasting',
+          title: 'Verkostung mit Geschichten',
+          description: 'Jedes Bier bekommt seine Geschichte und ein Glas.'
+        },
+        {
+          id: 'program',
+          title: 'Programm für Gäste',
+          description: 'Quiz und Atmosphäre, die den Abend tragen.'
+        }
       ],
       deliverTitle: 'Das bekommen Sie von uns',
+      deliverLead: 'Bier, Technik und Präsentation. Sie kümmern sich um die Gäste.',
       deliverItems: [
         'Biere zum Großhandelspreis',
         '0,3-l-Gläser kostenlos',

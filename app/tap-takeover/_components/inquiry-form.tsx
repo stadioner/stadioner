@@ -59,21 +59,21 @@ export const TakeoverInquiryForm = () => {
         throw new Error('EmailJS configuration is missing')
       }
 
-      const extras = [
+      const extrasList = [
         glassesExtra ? 'sklenice 0,3 l' : null,
         equipmentExtra ? 'výčepní zařízení' : null
-      ]
-        .filter(Boolean)
-        .join(', ')
-
-      const snapshot = getSnapshot(numberLocaleMap[lang])
-      const userMessage = formData.message.trim()
-      const messageParts = [
-        userMessage,
-        extras ? `Zdarma požadováno: ${extras}` : null,
-        snapshot
       ].filter(Boolean)
 
+      const messageParts = [
+        '[Tap Takeover]',
+        formData.message.trim() || null,
+        extrasList.length > 0 ?
+          `Zdarma požadováno: ${extrasList.join(', ')}`
+        : null,
+        getSnapshot(numberLocaleMap[lang])
+      ].filter(Boolean)
+
+      // Reuses B2B EmailJS template (plan limit — no separate takeover template).
       const templateParams = {
         company_name: formData.venueName,
         contact_name: formData.contactName,

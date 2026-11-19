@@ -61,7 +61,7 @@ export const B2BHero = () => {
                     asChild
                     variant='outline'
                     size='lg'
-                    className='border-brand-action text-brand-action hover:bg-brand-action hover:text-brand-primary bg-transparent'
+                    className='border-brand-action bg-brand-primary text-brand-action hover:bg-brand-action hover:text-brand-primary border shadow-none'
                   >
                     <a
                       href='#b2b-packaging'
