@@ -8,7 +8,7 @@ import { TakeoverProfitCalculator } from './_components/profit-calculator'
 
 export default function TapTakeoverPage() {
   return (
-    <main className='bg-brand-primary pb-20'>
+    <main className='bg-brand-primary'>
       <TakeoverHero />
       <TakeoverOverview />
       <div
